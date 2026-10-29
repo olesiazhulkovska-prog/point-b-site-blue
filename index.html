@@ -3202,6 +3202,13 @@ html body #why-us-section .snap-start:nth-child(5n+2) .\@container > div.flex > 
 }
 html body #why-us-section .snap-start:nth-child(5n+2) .\@container > div.flex > svg path { stroke: #F98513 !important; }
 
+html.pb-inner body main > div.min-h-screen:not(#_):not(#__):not(#___){background:linear-gradient(180deg,transparent 0,transparent var(--hh,0px),rgb(14,22,62) var(--hh,0px)) !important}
 html body button#header-admin-cms-btn:not(#_):not(#__):not(#___):not(#____),html body button#mobile-nav-admin:not(#_):not(#__):not(#___):not(#____){display:none !important}</style>
+
+<script>
+/* inner pages: below the first (hero) block the page is solid navy, so no translucent strips show between sections */
+(function(){function f(){try{var w=document.querySelector('main > div.min-h-screen');if(!w)return;var c=w.firstElementChild;if(!c)return;var h=Math.round(c.getBoundingClientRect().bottom-w.getBoundingClientRect().top);if(w.__hh!==h){w.__hh=h;w.style.setProperty('--hh',h+'px')}}catch(e){}}
+if(window.__pbxTick)window.__pbxTick(f);addEventListener('resize',f);addEventListener('hashchange',function(){setTimeout(f,300)})})();
+</script>
 </body>
 </html>
