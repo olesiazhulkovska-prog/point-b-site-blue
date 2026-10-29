@@ -1,0 +1,95 @@
+// Vercel Serverless Function: приймає заявку з сайту і створює картку в keyCRM.
+// Ключ API зберігається ТІЛЬКИ у змінних середовища Vercel (Project → Settings → Environment Variables):
+//   KEYCRM_API_KEY      — API-ключ keyCRM (обов'язково)
+//   KEYCRM_PIPELINE_ID  — ID воронки (за замовчуванням 4, «Продажі»)
+//   KEYCRM_STATUS_ID    — ID статусу (за замовчуванням 56, «До контакту»)
+//   KEYCRM_SOURCE_ID    — ID джерела (за замовчуванням 50, «Сайт»)
+// Документація keyCRM OpenAPI: https://docs.keycrm.app/
+
+const clean = (v, max = 500) => String(v ?? '').replace(/[\u0000-\u001F\u007F]/g, ' ').trim().slice(0, max);
+
+// Поля форми → кастомні поля картки в CRM (вільний текст, значення передаємо як у формі)
+const CUSTOM_FIELDS = [
+  ['LD_1068', 'role'],
+  ['LD_1114', 'telegram'],
+  ['LD_1115', 'service'],
+  ['LD_1071', 'industry'],
+  ['LD_1070', 'employeesCount'],
+  ['LD_1072', 'ordersCount'],
+  ['LD_1113', 'budget'],
+  ['LD_1073', 'primaryTask'],
+  ['LD_1116', 'heardFrom'],
+];
+const UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
+
+export default async function handler(req, res) {
+  if (req.method !== 'POST') {
+    res.setHeader('Allow', 'POST');
+    return res.status(405).json({ ok: false, error: 'method_not_allowed' });
+  }
+
+  let body;
+  try {
+    body = typeof req.body === 'string' ? JSON.parse(req.body || '{}') : req.body || {};
+  } catch {
+    return res.status(400).json({ ok: false, error: 'invalid_json' });
+  }
+
+  // Без імені й телефону заявку не приймаємо
+  const name = clean(body.name, 120);
+  const phone = clean(body.contact, 30);
+  if (!name || phone.replace(/\D/g, '').length < 10) {
+    return res.status(400).json({ ok: false, error: 'invalid_payload' });
+  }
+
+  const apiKey = process.env.KEYCRM_API_KEY;
+  if (!apiKey) {
+    return res.status(500).json({ ok: false, error: 'crm_not_configured' });
+  }
+
+  const custom_fields = CUSTOM_FIELDS
+    .map(([uuid, key]) => ({ uuid, value: clean(body[key], 800) }))
+    .filter(f => f.value);
+
+  const role = clean(body.role, 80);
+  const payload = {
+    title: `Заявка з сайту — ${name}${role ? ', ' + role : ''}`,
+    pipeline_id: Number(process.env.KEYCRM_PIPELINE_ID) || 4,
+    status_id: Number(process.env.KEYCRM_STATUS_ID) || 56,
+    source_id: Number(process.env.KEYCRM_SOURCE_ID) || 50,
+    contact: { full_name: name, phone },
+    custom_fields,
+    manager_comment: [
+      body.sourcePage ? `Сторінка заявки: ${clean(body.sourcePage, 200)}` : '',
+      body.id ? `ID заявки на сайті: ${clean(body.id, 80)}` : '',
+    ].filter(Boolean).join('\n'),
+  };
+
+  // UTM — окремими полями верхнього рівня
+  const utm = body.utm && typeof body.utm === 'object' ? body.utm : {};
+  UTM_KEYS.forEach(k => {
+    const v = clean(utm[k], 200);
+    if (v) payload[k] = v;
+  });
+
+  try {
+    const r = await fetch('https://openapi.keycrm.app/v1/pipelines/cards', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify(payload),
+    });
+    if (!r.ok) {
+      const text = await r.text();
+      console.error('keyCRM error', r.status, text.slice(0, 500));
+      return res.status(502).json({ ok: false, error: 'crm_error', status: r.status });
+    }
+    return res.status(200).json({ ok: true });
+  } catch (e) {
+    console.error('keyCRM request failed', e);
+    return res.status(502).json({ ok: false, error: 'crm_unreachable' });
+  }
+}
