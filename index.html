@@ -2349,7 +2349,8 @@ html body h3.sv3-h3 .normal-case:not(#_):not(#__){text-transform:none !important
 html body .hero-track[data-static="1"] #hero-dark:not(#_){position:sticky !important;top:0}
 html body .hero-track[data-static="1"] .hero-L:not(#_){z-index:6}
 </style>
-  </head>
+  <script>(function(){var u=navigator.userAgent;if(/safari/i.test(u)&&!/chrome|chromium|crios|fxios|edg|android/i.test(u)){document.documentElement.classList.add("is-safari");window.__pbSafari=1}})();</script>
+</head>
   <body>
     <div class="scene-bg" aria-hidden="true"></div>
     <div class="scene-tint" aria-hidden="true"></div>
@@ -2533,7 +2534,8 @@ window.__pbxTick=function(f){fns.push(f);sched();setTimeout(f,0)};})();
   }
 
   var lastT = 0;
-  function loop(t) { if (!t || t - lastT >= 30) { lastT = t || 0; fc += 1; sync(); draw(); } raf = requestAnimationFrame(loop); }
+  var scrAt = 0; if (window.__pbSafari) addEventListener('scroll', function () { scrAt = performance.now(); }, { passive: true });
+  function loop(t) { if (window.__pbSafari && performance.now() - scrAt < 160) { raf = requestAnimationFrame(loop); return; } if (!t || t - lastT >= 30) { lastT = t || 0; fc += 1; sync(); draw(); } raf = requestAnimationFrame(loop); }
   var bgSeen = true;
   function startLoop() { if (reduce || running || document.hidden || !bgSeen) return; running = true; raf = requestAnimationFrame(loop); }
   function stopLoop() { if (raf) cancelAnimationFrame(raf); raf = 0; running = false; }
@@ -3206,6 +3208,13 @@ html.pb-inner body main > div.min-h-screen:not(#_):not(#__):not(#___){background
 /* Safari: stable compositing for fixed/sticky layers */
 .scene-bg,.scene-tint,canvas.bg{transform:translate3d(0,0,0);-webkit-transform:translate3d(0,0,0);backface-visibility:hidden;-webkit-backface-visibility:hidden}
 html,body{-webkit-text-size-adjust:100%}
+
+/* Safari lite mode: no blur, no ambient animations, no smooth-scroll, so scrolling stays steady */
+html.is-safari,html.is-safari body{scroll-behavior:auto !important}
+html.is-safari *:not(#_):not(#__){-webkit-backdrop-filter:none !important;backdrop-filter:none !important}
+html.is-safari header.sticky:not(#_):not(#__){background:rgba(17,17,68,.97) !important}
+html.is-safari .scene-bg::before,html.is-safari .scene-bg::after,html.is-safari .scene-tint::before{animation:none !important}
+html.is-safari #hero-dark .pbx-fx{display:none !important}
 html body button#header-admin-cms-btn:not(#_):not(#__):not(#___):not(#____),html body button#mobile-nav-admin:not(#_):not(#__):not(#___):not(#____){display:none !important}</style>
 
 <script>
