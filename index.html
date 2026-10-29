@@ -2549,7 +2549,7 @@ window.__pbxTick=function(f){fns.push(f);sched();setTimeout(f,0)};})();
     textOp = hp ? clamp(1 - (P - .04) / .5, 0, 1) : 0;
     if (P !== lastP) {
       lastP = P;
-      root.style.setProperty('--p', P.toFixed(3));
+      (window.__pbTint||(window.__pbTint=document.querySelector('.scene-tint')))&&window.__pbTint.style.setProperty('--p', P.toFixed(3));
       cv.style.opacity = (1 - .5 * P).toFixed(3);
     }
   }
@@ -2814,8 +2814,7 @@ function mount(foot){
     },{rootMargin:'300px 0px 300px 0px'});
     io.observe(g); return true;
   }
-  var t=setInterval(function(){ if(init()) clearInterval(t); },500);
-  setTimeout(function(){clearInterval(t)},20000);
+  /* disabled: toggling content-visibility while scrolling made Safari flicker */
 })();
 
 /* pbx: icons for service-card bullets */
@@ -3203,6 +3202,10 @@ html body #why-us-section .snap-start:nth-child(5n+2) .\@container > div.flex > 
 html body #why-us-section .snap-start:nth-child(5n+2) .\@container > div.flex > svg path { stroke: #F98513 !important; }
 
 html.pb-inner body main > div.min-h-screen:not(#_):not(#__):not(#___){background:linear-gradient(180deg,transparent 0,transparent var(--hh,0px),rgb(14,22,62) var(--hh,0px)) !important}
+
+/* Safari: stable compositing for fixed/sticky layers */
+.scene-bg,.scene-tint,canvas.bg{transform:translate3d(0,0,0);-webkit-transform:translate3d(0,0,0);backface-visibility:hidden;-webkit-backface-visibility:hidden}
+html,body{-webkit-text-size-adjust:100%}
 html body button#header-admin-cms-btn:not(#_):not(#__):not(#___):not(#____),html body button#mobile-nav-admin:not(#_):not(#__):not(#___):not(#____){display:none !important}</style>
 
 <script>
