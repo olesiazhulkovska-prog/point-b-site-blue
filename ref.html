@@ -29,13 +29,15 @@ button.g{background:rgba(255,255,255,.1);color:#fff;font-weight:500;padding:8px 
 </style></head><body><div class="w">
 <div style="font-weight:300;letter-spacing:.04em;font-size:20px">POINT <b style="color:#FF8A1F">.B</b></div>
 <h1>Генератор реферальних посилань</h1>
-<p class="s">Введіть назву партнера — отримаєте посилання. Коли клієнт залишить заявку, код партнера потрапить у картку keyCRM (поле «Звідки дізналися / промокод» і utm_campaign).</p>
+<p class="s">Введіть назву партнера — отримаєте посилання. Коли клієнт залишить заявку, код партнера потрапить у картку keyCRM (поле «Звідки дізналися / промокод»: код і % знижки, а також utm_campaign).</p>
 <div class="c">
 <label>Партнер (назва)</label>
 <input id="n" placeholder="Напр.: Svitli Agency" autocomplete="off">
 <label>Код у посиланні <span style="color:#8f94d6">(створюється автоматично, можна змінити)</span></label>
 <input id="c" placeholder="svitli-agency" autocomplete="off">
 <div class="h">Латиниця, цифри, - та _. Від 2 до 40 символів.</div>
+<label>% знижки для клієнта</label>
+<select id="d"><option value="">Без знижки</option><option value="5">5%</option><option value="10">10%</option><option value="15">15%</option></select>
 <label>Куди веде посилання</label>
 <select id="p"><option value="">Головна</option><option value="#/keycrm">keyCRM</option><option value="#/ai-bots">AI-боти</option><option value="#/analytics">Аналітика</option><option value="#/cases">Кейси</option><option value="#/about">Про нас</option><option value="#/contact">Контакти</option></select>
 <div class="err" id="e"></div>
@@ -54,7 +56,7 @@ var $=function(i){return document.getElementById(i)},n=$('n'),c=$('c'),p=$('p'),
 function slug(s){return s.toLowerCase().split('').map(function(x){return x in T?T[x]:x}).join('').replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'').slice(0,40)}
 function build(){var v=c.value.trim();e.textContent='';if(!v){o.value='';return false}
 if(!RE.test(v)){o.value='';e.textContent='Код: 2–40 символів, лише a-z, 0-9, - та _';return false}
-o.value=B+'?ref='+v+p.value;return true}
+o.value=B+'?ref='+v+($('d').value?'&disc='+$('d').value:'')+p.value;return true}
 function load(){try{return JSON.parse(localStorage.getItem(K)||'[]')}catch(x){return[]}}
 function save(a){try{localStorage.setItem(K,JSON.stringify(a))}catch(x){}}
 function copy(t,b){(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).catch(function(){var i=document.createElement('input');i.value=t;document.body.appendChild(i);i.select();document.execCommand('copy');i.remove()});if(b){var s=b.textContent;b.textContent='Скопійовано ✓';setTimeout(function(){b.textContent=s},1400)}}
@@ -64,9 +66,9 @@ var x=document.createElement('button');x.className='g';x.textContent='Копію
 var d=document.createElement('button');d.className='g';d.textContent='✕';d.onclick=function(){var q=load();q.splice(i,1);save(q);render()};
 r.appendChild(s);r.appendChild(x);r.appendChild(d);L.appendChild(r)})}
 n.oninput=function(){if(!touched)c.value=slug(n.value);build()};
-c.oninput=function(){touched=true;build()};p.onchange=build;
+c.oninput=function(){touched=true;build()};p.onchange=build;$('d').onchange=build;
 $('cp').onclick=function(){if(build()&&o.value)copy(o.value,$('cp'))};
-$('sv').onclick=function(){if(!build()||!o.value)return;var a=load();a.unshift({name:n.value.trim()||c.value.trim(),url:o.value});save(a);render()};
+$('sv').onclick=function(){if(!build()||!o.value)return;var a=load();a.unshift({name:(n.value.trim()||c.value.trim())+($('d').value?' · знижка '+$('d').value+'%':''),url:o.value});save(a);render()};
 render();
 })();
 </script></body></html>

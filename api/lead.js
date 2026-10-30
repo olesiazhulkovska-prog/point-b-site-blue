@@ -50,7 +50,9 @@ export default async function handler(req, res) {
 
   // Реферальний код партнера (?ref=код) — пишемо в LD_1116 («Звідки дізналися / промокод») і в utm_campaign
   const ref = REF_RE.test(String(body.ref ?? '')) ? String(body.ref) : '';
-  const heard = [ref ? `Реферал: ${ref}` : '', clean(body.heardFrom, 600)].filter(Boolean).join(' | ');
+  const discN = Number(body.disc);
+  const disc = ref && Number.isInteger(discN) && discN > 0 && discN <= 100 ? discN : 0;
+  const heard = [ref ? `Реферал: ${ref}` : '', disc ? `Знижка: ${disc}%` : '', clean(body.heardFrom, 600)].filter(Boolean).join(' | ');
 
   const custom_fields = CUSTOM_FIELDS
     .map(([uuid, key]) => ({ uuid, value: key === 'heardFrom' ? heard : clean(body[key], 800) }))
