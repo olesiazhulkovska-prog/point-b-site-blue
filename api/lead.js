@@ -20,6 +20,20 @@ const CUSTOM_FIELDS = [
   ['LD_1073', 'primaryTask'],
   ['LD_1116', 'heardFrom'],
 ];
+// Людська назва сторінки, з якої надійшла заявка (sourcePage: modal-<page>, service-<id>, case-<slug>, contact…)
+const PAGE_NAMES = {
+  index: 'Головна', home: 'Головна', keycrm: 'Послуга: keyCRM', 'ai-bots': 'Послуга: AI-боти', analytics: 'Послуга: Аналітика',
+  cases: 'Кейси', about: 'Про компанію', contact: 'Контакти', 'contact.html': 'Контакти', privacy: 'Політика конфіденційності',
+};
+const pageLabel = (raw) => {
+  const v = clean(raw, 200);
+  if (!v) return '';
+  const m = v.match(/^(modal|service|case)-(.+)$/);
+  const key = m ? m[2] : v;
+  if (m && m[1] === 'case') return `Кейс: ${key}`;
+  if (m && m[1] === 'service') return PAGE_NAMES[key] || `Послуга: ${key}`;
+  return PAGE_NAMES[key] || key;
+};
 const REF_RE = /^[A-Za-z0-9_-]{2,40}$/;
 const UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
 
@@ -58,18 +72,14 @@ export default async function handler(req, res) {
     .map(([uuid, key]) => ({ uuid, value: key === 'heardFrom' ? heard : clean(body[key], 800) }))
     .filter(f => f.value);
 
-  const role = clean(body.role, 80);
+  const page = pageLabel(body.sourcePage);
   const payload = {
-    title: `Заявка з сайту — ${name}${role ? ', ' + role : ''}`,
+    title: page ? `Заявка з сайту — ${page}` : 'Заявка з сайту',
     pipeline_id: Number(process.env.KEYCRM_PIPELINE_ID) || 4,
     status_id: Number(process.env.KEYCRM_STATUS_ID) || 56,
     source_id: Number(process.env.KEYCRM_SOURCE_ID) || 50,
     contact: { full_name: name, phone },
     custom_fields,
-    manager_comment: [
-      body.sourcePage ? `Сторінка заявки: ${clean(body.sourcePage, 200)}` : '',
-      body.id ? `ID заявки на сайті: ${clean(body.id, 80)}` : '',
-    ].filter(Boolean).join('\n'),
   };
 
   // UTM — окремими полями верхнього рівня
