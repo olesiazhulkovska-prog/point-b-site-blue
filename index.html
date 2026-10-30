@@ -3263,5 +3263,6 @@ html body button#header-admin-cms-btn:not(#_):not(#__):not(#___):not(#____),html
 (function(){function f(){try{var w=document.querySelector('main > div.min-h-screen');if(!w)return;var c=w.firstElementChild;if(!c)return;var h=Math.round(c.getBoundingClientRect().bottom-w.getBoundingClientRect().top);if(w.__hh!==h){w.__hh=h;w.style.setProperty('--hh',h+'px')}}catch(e){}}
 if(window.__pbxTick)window.__pbxTick(f);addEventListener('resize',f);addEventListener('hashchange',function(){setTimeout(f,300)})})();
 </script>
+<script id="pb-adminref">(function(){function add(){var out=document.getElementById("admin-logout-btn");if(!out||document.getElementById("pb-ref-link"))return;var box=out.parentElement;if(!box)return;var ref=box.firstElementChild;var a=document.createElement("a");a.id="pb-ref-link";a.href="/ref";a.target="_blank";a.rel="noopener";a.textContent="Реферальні посилання ↗";a.setAttribute("style","display:inline-flex;align-items:center;padding:10px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.25);color:#fff;font-size:14px;text-decoration:none;white-space:nowrap;margin-right:8px");box.insertBefore(a,ref)}new MutationObserver(add).observe(document.documentElement,{childList:true,subtree:true});add()})();</script>
 </body>
 </html>
