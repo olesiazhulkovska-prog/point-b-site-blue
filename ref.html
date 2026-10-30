@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="uk"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Генератор реферальних посилань — Point B</title>
+<link rel="icon" href="/favicon.svg">
+<style>
+@font-face{font-family:IV;font-weight:100 900;src:url(/assets/fe5a96623f8.woff2);unicode-range:U+301,U+400-45F,U+490-491,U+4B0-4B1,U+2116}
+@font-face{font-family:IV;font-weight:100 900;src:url(/assets/fab73656158.woff2);unicode-range:U+00-FF,U+131,U+152-153,U+2000-206F}
+*{box-sizing:border-box;margin:0}
+body{font-family:IV,Inter,system-ui,sans-serif;background:#111144;color:#fff;min-height:100vh;padding:32px 16px;background-image:radial-gradient(circle at 90% 0,rgba(255,138,31,.25),transparent 45%)}
+.w{max-width:640px;margin:0 auto}
+h1{font-size:26px;font-weight:700;margin:8px 0 6px}
+p.s{color:#b9bdf0;font-size:14px;line-height:1.5;margin-bottom:24px}
+.c{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:20px;margin-bottom:16px}
+label{display:block;font-size:13px;color:#b9bdf0;margin:14px 0 6px}label:first-child{margin-top:0}
+input,select{width:100%;padding:12px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.2);background:rgba(0,0,0,.25);color:#fff;font:inherit;font-size:15px}
+input:focus,select:focus{outline:2px solid #FF8A1F;border-color:transparent}
+select option{color:#111}
+.h{font-size:12px;color:#8f94d6;margin-top:6px}
+.out{display:flex;gap:8px;margin-top:4px}
+.out input{font-family:ui-monospace,monospace;font-size:13px}
+button{background:#FF8A1F;color:#111144;border:0;border-radius:10px;padding:12px 18px;font:inherit;font-weight:700;cursor:pointer;white-space:nowrap}
+button.g{background:rgba(255,255,255,.1);color:#fff;font-weight:500;padding:8px 12px;font-size:13px}
+.err{color:#ff9a9a;font-size:13px;margin-top:8px;min-height:16px}
+.row{display:flex;align-items:center;gap:8px;padding:10px 0;border-top:1px solid rgba(255,255,255,.1);font-size:13px}
+.row:first-child{border-top:0}.row span{flex:1;word-break:break-all;color:#d6d8ff}.row b{color:#FFB04A;display:block;font-size:14px}
+.n{font-size:12px;color:#8f94d6;line-height:1.5}
+</style></head><body><div class="w">
+<div style="font-weight:300;letter-spacing:.04em;font-size:20px">POINT <b style="color:#FF8A1F">.B</b></div>
+<h1>Генератор реферальних посилань</h1>
+<p class="s">Введіть назву партнера — отримаєте посилання. Коли клієнт залишить заявку, код партнера потрапить у картку keyCRM (поле «Звідки дізналися / промокод» і utm_campaign).</p>
+<div class="c">
+<label>Партнер (назва)</label>
+<input id="n" placeholder="Напр.: Svitli Agency" autocomplete="off">
+<label>Код у посиланні <span style="color:#8f94d6">(створюється автоматично, можна змінити)</span></label>
+<input id="c" placeholder="svitli-agency" autocomplete="off">
+<div class="h">Латиниця, цифри, - та _. Від 2 до 40 символів.</div>
+<label>Куди веде посилання</label>
+<select id="p"><option value="">Головна</option><option value="#/keycrm">keyCRM</option><option value="#/ai-bots">AI-боти</option><option value="#/analytics">Аналітика</option><option value="#/cases">Кейси</option><option value="#/about">Про нас</option><option value="#/contact">Контакти</option></select>
+<div class="err" id="e"></div>
+<label>Готове посилання</label>
+<div class="out"><input id="o" readonly><button id="cp">Копіювати</button></div>
+<button class="g" id="sv" style="margin-top:12px">Зберегти в список</button>
+</div>
+<div class="c"><div style="font-weight:600;margin-bottom:6px">Збережені посилання</div><div id="l"><div class="n">Поки порожньо.</div></div>
+<div class="n" style="margin-top:12px">Список зберігається лише в цьому браузері. Нічого не відправляється на сервер.</div></div>
+</div>
+<script>
+(function(){
+var T={а:'a',б:'b',в:'v',г:'h',ґ:'g',д:'d',е:'e',є:'ye',ж:'zh',з:'z',и:'y',і:'i',ї:'yi',й:'y',к:'k',л:'l',м:'m',н:'n',о:'o',п:'p',р:'r',с:'s',т:'t',у:'u',ф:'f',х:'kh',ц:'ts',ч:'ch',ш:'sh',щ:'shch',ь:'',ю:'yu',я:'ya',ы:'y',э:'e',ё:'yo'};
+var B='https://www.pointb-group.com/',RE=/^[A-Za-z0-9_-]{2,40}$/,K='pb_ref_links';
+var $=function(i){return document.getElementById(i)},n=$('n'),c=$('c'),p=$('p'),o=$('o'),e=$('e'),touched=false;
+function slug(s){return s.toLowerCase().split('').map(function(x){return x in T?T[x]:x}).join('').replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'').slice(0,40)}
+function build(){var v=c.value.trim();e.textContent='';if(!v){o.value='';return false}
+if(!RE.test(v)){o.value='';e.textContent='Код: 2–40 символів, лише a-z, 0-9, - та _';return false}
+o.value=B+'?ref='+v+p.value;return true}
+function load(){try{return JSON.parse(localStorage.getItem(K)||'[]')}catch(x){return[]}}
+function save(a){try{localStorage.setItem(K,JSON.stringify(a))}catch(x){}}
+function copy(t,b){(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).catch(function(){var i=document.createElement('input');i.value=t;document.body.appendChild(i);i.select();document.execCommand('copy');i.remove()});if(b){var s=b.textContent;b.textContent='Скопійовано ✓';setTimeout(function(){b.textContent=s},1400)}}
+function render(){var a=load(),L=$('l');if(!a.length){L.innerHTML='<div class="n">Поки порожньо.</div>';return}
+L.innerHTML='';a.forEach(function(it,i){var r=document.createElement('div');r.className='row';var s=document.createElement('span'),b=document.createElement('b');b.textContent=it.name;s.appendChild(b);s.appendChild(document.createTextNode(it.url));
+var x=document.createElement('button');x.className='g';x.textContent='Копіювати';x.onclick=function(){copy(it.url,x)};
+var d=document.createElement('button');d.className='g';d.textContent='✕';d.onclick=function(){var q=load();q.splice(i,1);save(q);render()};
+r.appendChild(s);r.appendChild(x);r.appendChild(d);L.appendChild(r)})}
+n.oninput=function(){if(!touched)c.value=slug(n.value);build()};
+c.oninput=function(){touched=true;build()};p.onchange=build;
+$('cp').onclick=function(){if(build()&&o.value)copy(o.value,$('cp'))};
+$('sv').onclick=function(){if(!build()||!o.value)return;var a=load();a.unshift({name:n.value.trim()||c.value.trim(),url:o.value});save(a);render()};
+render();
+})();
+</script></body></html>
