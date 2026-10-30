@@ -20,6 +20,7 @@ const CUSTOM_FIELDS = [
   ['LD_1073', 'primaryTask'],
   ['LD_1116', 'heardFrom'],
 ];
+const REF_RE = /^[A-Za-z0-9_-]{2,40}$/;
 const UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
 
 export default async function handler(req, res) {
@@ -47,8 +48,12 @@ export default async function handler(req, res) {
     return res.status(500).json({ ok: false, error: 'crm_not_configured' });
   }
 
+  // Реферальний код партнера (?ref=код) — пишемо в LD_1116 («Звідки дізналися / промокод») і в utm_campaign
+  const ref = REF_RE.test(String(body.ref ?? '')) ? String(body.ref) : '';
+  const heard = [ref ? `Реферал: ${ref}` : '', clean(body.heardFrom, 600)].filter(Boolean).join(' | ');
+
   const custom_fields = CUSTOM_FIELDS
-    .map(([uuid, key]) => ({ uuid, value: clean(body[key], 800) }))
+    .map(([uuid, key]) => ({ uuid, value: key === 'heardFrom' ? heard : clean(body[key], 800) }))
     .filter(f => f.value);
 
   const role = clean(body.role, 80);
@@ -71,6 +76,12 @@ export default async function handler(req, res) {
     const v = clean(utm[k], 200);
     if (v) payload[k] = v;
   });
+  if (ref) {
+    // Код партнера — у utm_campaign (для аналітики); решту UTM не затираємо
+    payload.utm_campaign = payload.utm_campaign ? `${ref} (${payload.utm_campaign})` : ref;
+    if (!payload.utm_source) payload.utm_source = 'partner';
+    if (!payload.utm_medium) payload.utm_medium = 'referral';
+  }
 
   try {
     const r = await fetch('https://openapi.keycrm.app/v1/pipelines/cards', {
