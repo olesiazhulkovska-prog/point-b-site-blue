@@ -485,16 +485,12 @@ body { color: var(--ink); }
 /* ---------- fixed scene ---------- */
 .scene-bg {
   position: fixed; inset: 0; z-index: -3; pointer-events: none;
-  background:
-    radial-gradient(48% 52% at 6% 0%, rgba(47, 75, 255, .85) 0%, rgba(47, 75, 255, 0) 70%),
-    radial-gradient(46% 46% at 94% -6%, rgba(143, 163, 255, .28) 0%, rgba(143, 163, 255, 0) 70%),
-    radial-gradient(38% 34% at 100% 40%, rgba(47, 75, 255, .35) 0%, rgba(47, 75, 255, 0) 70%),
-    linear-gradient(180deg, #1B2E8C 0%, #111144 52%, #111144 100%);
+  background: linear-gradient(180deg, #111144 0%, #111144 66%, #2431A4 100%);
 }
 .scene-tint {
   position: fixed; inset: 0; z-index: -2; pointer-events: none;
   opacity: calc(var(--p, 0) * .82);
-  background: radial-gradient(60% 45% at 50% 50%, rgba(47, 75, 255, .5) 0%, rgba(47, 75, 255, 0) 72%), #111144;
+  background: linear-gradient(180deg, #111144 0%, #111144 66%, #2431A4 100%);
 }
 canvas.bg { position: fixed; inset: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
 .pb-page-bg { background: transparent !important; }
@@ -2141,7 +2137,7 @@ html body #why-us-section span.self-center.font-bold:not(#_):not(#__){color:#B34
 
 /* --- soft colour blobs drifting behind the page (ambient, very slow) --- */
 .scene-bg,.scene-tint{overflow:clip}
-.scene-bg::before,.scene-bg::after,.scene-tint::before{content:"";position:absolute;border-radius:50%;pointer-events:none;will-change:transform}
+.scene-bg::before,.scene-bg::after,.scene-tint::before{content:none;display:none}
 .scene-bg::before{width:64vmax;height:64vmax;left:-16vmax;top:-20vmax;
   background:radial-gradient(closest-side,rgba(47,75,255,.34),rgba(47,75,255,0) 70%);
   translate:calc(var(--bx,0)*-1px) calc(var(--by,0)*-1px);animation:pb-drift-a 44s ease-in-out infinite alternate}
@@ -3348,7 +3344,7 @@ html body .sv3-card:not(#_):not(#__):not(#___):not(#____):not(#_____) .sv3-list{
 html body .sv3-card:not(#_):not(#__):not(#___):not(#____):not(#_____) .sv3-list li{color:#111144 !important}
 html body .sv3-card:not(#_):not(#__):not(#___):not(#____):not(#_____) .sv3-list li::before{background:#F98513 !important}
 html body .sv3-card:not(#_):not(#__):not(#___):not(#____):not(#_____) .sv3-cta{grid-column:1;justify-self:start;margin:0 0 6px !important;animation:pbTabIn .45s ease both .12s}
-html body .sv3-card:not(#_):not(#__):not(#___):not(#____):not(#_____) .sv3-viz{grid-column:2;grid-row:1 / 14;align-self:stretch;min-width:0;margin-right:0;padding:clamp(20px,1.9vw,40px) clamp(20px,2vw,44px) !important;border-radius:24px !important;background:linear-gradient(160deg,#1B2E8C 0%,#111144 50%,#111144 100%) !important;box-shadow:0 24px 44px -26px rgba(17,17,68,.55) !important}
+html body .sv3-card:not(#_):not(#__):not(#___):not(#____):not(#_____) .sv3-viz{grid-column:2;grid-row:1 / 14;align-self:stretch;min-width:0;margin-right:0;padding:clamp(20px,1.9vw,40px) clamp(20px,2vw,44px) !important;border-radius:24px !important;background:linear-gradient(180deg,#111144 0%,#111144 62%,#2431A4 100%) !important;box-shadow:0 24px 44px -26px rgba(17,17,68,.55) !important}
 html body .sv3-card:not(#_):not(#__):not(#___):not(#____):not(#_____) .sv3-dg{height:clamp(540px,37vw,660px) !important}
 @keyframes pbTabIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){.pb-tab[data-act="1"]::after{animation:none;transform:none}html body .sv3-card :is(.sv3-desc,.sv3-list,.sv3-cta){animation:none !important}}

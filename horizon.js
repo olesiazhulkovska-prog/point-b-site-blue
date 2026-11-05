@@ -483,7 +483,7 @@ window.__mountHorizon = mountHorizon;
     if(!window.__mountHorizon||document.getElementById('pb-horizon'))return;
     var tint=document.querySelector('.scene-tint');if(!tint)return;
     var root=document.createElement('div');root.id='pb-horizon';root.setAttribute('aria-hidden','true');
-    root.style.cssText='position:fixed;inset:0;z-index:-2;pointer-events:none;overflow:hidden;background:#0B0B3A;display:none';
+    root.style.cssText='position:fixed;inset:0;z-index:-2;pointer-events:none;overflow:hidden;background:#111144;display:none';
     var cv=document.createElement('canvas');cv.style.cssText='position:absolute;inset:0;width:100%;height:100%;display:block';
     root.appendChild(cv);tint.parentNode.insertBefore(root,tint);
     var ok=false;
@@ -498,6 +498,6 @@ window.__mountHorizon = mountHorizon;
     }
     addEventListener('scroll',upd,{passive:true});addEventListener('resize',upd);setInterval(upd,400);upd();
   }
-  window.__pbHorizonProps={background:'#0B0B3A',coreColor:'#FFFFFF',midColor:'#5B7BFF',deepColor:'#2431A4',brightness:2,coreSize:.02,coreHover:.04,haze:3,speed:1,parallax:3,fit:50,horizonY:.7055,horizonRadius:1.867,rimSpread:.035};
+  window.__pbHorizonProps={background:'#111144',coreColor:'#F6F5F4',midColor:'#2431A4',deepColor:'#111144',brightness:2.4,coreSize:.02,coreHover:.04,haze:3,speed:1,parallax:3,fit:50,horizonY:.82,horizonRadius:1.867,rimSpread:.035};
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot();
 })();
