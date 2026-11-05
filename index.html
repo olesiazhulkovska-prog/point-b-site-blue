@@ -3310,25 +3310,30 @@ html body button#header-admin-cms-btn:not(#_):not(#__):not(#___):not(#____),html
 html:not(.pb-inner) canvas#flow{display:none !important}
 </style>
 <style id="pb-r9">
-/* Послуги (десктоп): назви зліва · графік посередині · опис справа */
+/* Послуги (від 1400px): назви зліва · графік у синій картці · опис справа, на білому тлі */
 @media (min-width:1400px){
-html body .sv3-stack:not(#_):not(#__):not(#___):not(#____):not(#_____){display:grid !important;grid-template-columns:minmax(210px,.7fr) minmax(0,2.2fr) minmax(280px,1.1fr);grid-template-rows:auto auto 1fr;column-gap:36px;row-gap:16px;padding:56px 48px;min-height:640px;border-radius:24px;background:linear-gradient(160deg,#1B2E8C 0%,#111144 50%,#111144 100%);box-shadow:0 28px 48px -28px rgba(17,17,68,.75),inset 0 1px 0 rgba(255,255,255,.10);align-items:start}
+html body #services-section:not(#_):not(#__):not(#___):not(#____):not(#_____){padding-left:32px !important;padding-right:32px !important}
+html body .sv3-stack:not(#_):not(#__):not(#___):not(#____):not(#_____){display:grid !important;grid-template-columns:clamp(320px,26vw,420px) minmax(0,1fr) clamp(270px,22vw,340px);grid-template-rows:auto auto 1fr;column-gap:40px;row-gap:20px;padding:0;min-height:0;border-radius:0;background:none;box-shadow:none;align-items:start}
 html body .sv3-card:not(#_):not(#__):not(#___):not(#____):not(#_____),html body .sv3-card:not(#_):not(#__):not(#___):not(#____):not(#_____) .sv3-copy{display:contents !important}
 html body .sv3-card:not(#_):not(#__):not(#___):not(#____):not(#_____)::after{display:none !important}
 html body .sv3-card:not(#_):not(#__):not(#___):not(#____):not(#_____) .sv3-num,html body .sv3-card:not(#_):not(#__):not(#___):not(#____):not(#_____) .sv3-h3{position:absolute !important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;margin:0 !important;padding:0 !important;border:0 !important}
 html body .sv3-card[data-pb-a="0"]:not(#_):not(#__):not(#___):not(#____):not(#_____) :is(.sv3-desc,.sv3-list,.sv3-cta,.sv3-viz){display:none !important}
-.pb-tabs{grid-column:1;grid-row:1 / 4;display:flex;flex-direction:column;gap:6px;align-self:start}
-.pb-tabs button{all:unset;box-sizing:border-box;cursor:pointer;display:block;padding:10px 0;font:700 clamp(20px,1.85vw,28px)/1.15 var(--font-display);letter-spacing:-.01em;color:rgba(201,211,255,.32);transition:color .25s ease}
-.pb-tabs button:hover{color:rgba(255,255,255,.7)}
-.pb-tabs button[aria-selected="true"]{color:#fff}
-.pb-tabs button:focus-visible{outline:2px solid #FFB45E;outline-offset:4px;border-radius:6px}
-html body .sv3-card:not(#_):not(#__):not(#___):not(#____):not(#_____) .sv3-viz{grid-column:2;grid-row:1 / 4;align-self:stretch;min-width:0;animation:pbTabIn .4s ease both}
+.pb-tabs{grid-column:1;grid-row:1 / 4;display:flex;flex-direction:column;gap:4px;align-self:start}
+.pb-tabs .pb-tab{box-sizing:border-box;cursor:pointer;display:block;white-space:nowrap;padding:6px 0;font:700 clamp(24px,2.2vw,34px)/1.2 var(--font-display);letter-spacing:-.015em;color:#D3D8E6;transition:color .25s ease}
+html body .pb-tabs .pb-tab-t:not(#_):not(#__):not(#___){display:block;font:700 clamp(24px,2.2vw,34px)/1.2 var(--font-display);letter-spacing:-.015em;white-space:nowrap}
+.pb-tab-t::before{content:attr(data-t)}
+.pb-tabs .pb-tab:hover{color:#9AA5C8}
+.pb-tabs .pb-tab[data-act="1"]{color:#111144}
+.pb-tabs .pb-tab:focus-visible{outline:2px solid #F98513;outline-offset:4px;border-radius:6px}
+html body .sv3-card:not(#_):not(#__):not(#___):not(#____):not(#_____) .sv3-viz{grid-column:2;grid-row:1 / 4;align-self:stretch;min-width:0;padding:28px !important;border-radius:24px !important;background:linear-gradient(160deg,#1B2E8C 0%,#111144 50%,#111144 100%) !important;box-shadow:0 24px 44px -26px rgba(17,17,68,.55) !important;animation:pbTabIn .4s ease both}
 html body .sv3-card:not(#_):not(#__):not(#___):not(#____):not(#_____) .sv3-dg{height:520px !important}
-html body .sv3-card:not(#_):not(#__):not(#___):not(#____):not(#_____) .sv3-desc{grid-column:3;grid-row:1;max-width:none !important;margin:0 !important;animation:pbTabIn .4s ease both}
-html body .sv3-card:not(#_):not(#__):not(#___):not(#____):not(#_____) .sv3-list{grid-column:3;grid-row:2;max-width:none !important;margin:0 !important;animation:pbTabIn .4s ease both .05s}
+html body .sv3-card:not(#_):not(#__):not(#___):not(#____):not(#_____) .sv3-desc{grid-column:3;grid-row:1;max-width:none !important;margin:0 !important;color:#4A5578 !important;font-size:16px !important;line-height:1.5 !important;animation:pbTabIn .4s ease both}
+html body .sv3-card:not(#_):not(#__):not(#___):not(#____):not(#_____) .sv3-list{grid-column:3;grid-row:2;max-width:none !important;margin:0 !important;padding-top:0 !important;animation:pbTabIn .4s ease both .05s}
+html body .sv3-card:not(#_):not(#__):not(#___):not(#____):not(#_____) .sv3-list li{color:#111144 !important}
+html body .sv3-card:not(#_):not(#__):not(#___):not(#____):not(#_____) .sv3-list li::before{background:#F98513 !important}
 html body .sv3-card:not(#_):not(#__):not(#___):not(#____):not(#_____) .sv3-cta{grid-column:3;grid-row:3;align-self:end;justify-self:start;margin:0 !important;animation:pbTabIn .4s ease both .1s}
 @keyframes pbTabIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-@media (prefers-reduced-motion:reduce){.pb-tabs button{transition:none}html body .sv3-card :is(.sv3-viz,.sv3-desc,.sv3-list,.sv3-cta){animation:none !important}}
+@media (prefers-reduced-motion:reduce){.pb-tabs .pb-tab{transition:none}html body .sv3-card :is(.sv3-viz,.sv3-desc,.sv3-list,.sv3-cta){animation:none !important}}
 }
 @media (max-width:1399px){.pb-tabs{display:none}}
 </style>
@@ -3339,9 +3344,9 @@ function sync(){
  var st=document.querySelector('.sv3-stack');if(!st)return;
  var cs=st.querySelectorAll('.sv3-card');if(cs.length<2)return;
  if(!tabs||!tabs.isConnected){
-  tabs=document.createElement('div');tabs.className='pb-tabs';tabs.setAttribute('role','tablist');
+  tabs=document.createElement('div');tabs.className='pb-tabs';
   for(var i=0;i<cs.length;i++){(function(i){
-   var b=document.createElement('button');b.type='button';b.setAttribute('role','tab');b.textContent=L[i]||('Послуга '+(i+1));
+   var b=document.createElement('div');b.className='pb-tab';b.tabIndex=0;b.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();go(i)}});var sp=document.createElement('span');sp.className='pb-tab-t';sp.setAttribute('data-t',L[i]||('Послуга '+(i+1)));b.setAttribute('aria-label',L[i]||'');b.appendChild(sp);
    b.addEventListener('click',function(){go(i)});b.addEventListener('mouseenter',function(){go(i)});b.addEventListener('focus',function(){go(i)});
    tabs.appendChild(b)})(i)}
   st.insertBefore(tabs,st.firstChild);
@@ -3355,7 +3360,7 @@ function apply(){
   var v=i===cur?'1':'0';if(c.getAttribute('data-pb-a')!==v)c.setAttribute('data-pb-a',v);
   if(c.getAttribute('data-on')!=='true')c.setAttribute('data-on','true');
  });
- if(tabs)[].forEach.call(tabs.children,function(b,i){b.setAttribute('aria-selected',i===cur?'true':'false')});
+ if(tabs)[].forEach.call(tabs.children,function(b,i){b.setAttribute('data-act',i===cur?'1':'0')});
 }
 var t;new MutationObserver(function(){clearTimeout(t);t=setTimeout(sync,60)}).observe(document.body,{childList:true,subtree:true});
 sync();
