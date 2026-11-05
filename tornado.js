@@ -3715,7 +3715,7 @@ three/build/three.module.js:
     if(!window.__mountTornado||document.getElementById('pb-tornado'))return;
     var tint=document.querySelector('.scene-tint');if(!tint)return;
     var root=document.createElement('div');root.id='pb-tornado';root.setAttribute('aria-hidden','true');
-    root.style.cssText='position:fixed;inset:0;z-index:-2;pointer-events:none;overflow:hidden;background:#111144;display:none';
+    root.style.cssText='position:fixed;inset:0;z-index:-2;pointer-events:none;overflow:hidden;background:#111144;display:none;-webkit-mask-image:linear-gradient(180deg,#000 0,#000 24%,rgba(0,0,0,.28) 38%,rgba(0,0,0,.28) 66%,#000 84%,#000 100%);mask-image:linear-gradient(180deg,#000 0,#000 24%,rgba(0,0,0,.28) 38%,rgba(0,0,0,.28) 66%,#000 84%,#000 100%);';
     var cv=document.createElement('canvas');cv.style.cssText='display:block;width:100%;height:130%;margin-top:-30vh';
     root.appendChild(cv);tint.parentNode.insertBefore(root,tint);
     var api=null;
