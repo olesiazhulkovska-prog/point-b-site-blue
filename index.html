@@ -3309,6 +3309,18 @@ html body button#header-admin-cms-btn:not(#_):not(#__):not(#___):not(#____),html
 <style id="pb-r4">/* №64/№65 home: no animated line canvas behind the first screen — calm gradient, text is there immediately (lines stay on the last screen) */
 html:not(.pb-inner) canvas#flow{display:none !important}
 </style>
+<style id="pb-r6">
+/* Картки послуг: рівні внутрішні відступи, верх/низ тексту вирівняні по візуалу */
+@media (min-width:1100px){
+html body .sv3-card:not(#_):not(#__):not(#___):not(#____){--pb-pv:clamp(24px,4.4vh,40px);--pb-ph:clamp(28px,2.8vw,40px);padding:var(--pb-pv) var(--pb-ph) !important;gap:clamp(28px,3vw,48px) !important;grid-template-columns:minmax(0,40fr) minmax(0,60fr) !important;align-items:stretch !important}
+html body .sv3-card:not(#_):not(#__):not(#___):not(#____) .sv3-copy{justify-content:flex-start !important;height:100%;gap:14px !important}
+html body .sv3-card:not(#_):not(#__):not(#___):not(#____) .sv3-num{margin-bottom:0 !important}
+html body .sv3-card:not(#_):not(#__):not(#___):not(#____) .sv3-copy{padding-block:clamp(16px,6.2vh,56px) clamp(0px,1.2vh,10px)}
+html body .sv3-card:not(#_):not(#__):not(#___):not(#____) .sv3-cta{margin-top:auto !important;align-self:flex-start}
+html body .sv3-card:not(#_):not(#__):not(#___):not(#____) .sv3-dg{height:calc(var(--sv3-h) - 2 * var(--pb-pv) - 2px) !important}
+html body .sv3-card:not(#_):not(#__):not(#___):not(#____) .sv3-viz{align-self:stretch}
+}
+</style>
 <style id="pb-r5">/* service cards: description + bullets are as wide as the heading text */
 html body .sv3-copy > .sv3-desc:not(#_):not(#__),html body .sv3-copy > .sv3-list:not(#_):not(#__){max-width:var(--pb-tw,none)}
 </style>
