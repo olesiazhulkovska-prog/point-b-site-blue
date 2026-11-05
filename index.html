@@ -2694,7 +2694,7 @@ function mount(foot){
 
 /* ===== Design-system normaliser: type scale, spacing scale, one radius ===== */
 (function(){
-  var SP=[8,12,16,24,32,48,64,96];
+  var SP=[8,12,16,24,32,48,64,80,96];
   function snapSp(v){if(v<6)return v;var b=SP[0],d=1e9;for(var i=0;i<SP.length;i++){var x=Math.abs(SP[i]-v);if(x<d){d=x;b=SP[i]}}return b}
   function snapFs(px){
     if(px>=100)return ['var(--fs-h1)','.95'];
@@ -3393,7 +3393,12 @@ sync();
 </script>
 <style id="pb-r10">
 /* ширша зона контенту і більше повітря між блоками */
-html:root{--container:1760px;--gutter:clamp(20px,2.4vw,44px);--sec-y:clamp(104px,10.5vw,184px);--head-gap:clamp(48px,4.6vw,80px)}
+html:root{--container:min(100vw,2400px);--gutter:clamp(20px,5.5vw,80px);--sec-y:clamp(56px,6.9vw,100px);--head-gap:clamp(48px,4.6vw,80px)}
+</style>
+<style id="pb-r12">
+/* відступ між блоками 200px (по 100px зверху і знизу), поля сітки 80px */
+html body main :is(section.pb-sec,#stats-section,#services-section,#why-us-section,#cases-section,#reviews-section,#cta-section):not(#_):not(#__):not(#___):not(#____):not(#_____):not(#hero-dark){padding-top:var(--sec-y) !important;padding-bottom:var(--sec-y) !important}
+html body :is(.max-w-\[1680px\],header.fixed > div):not(#_):not(#__):not(#___):not(#____):not(#_____){max-width:var(--container) !important;padding-left:var(--gutter) !important;padding-right:var(--gutter) !important}
 </style>
 <style id="pb-r11">
 /* єдині краї контенту: hero-схема і блок послуг стають по тій самій сітці, що й решта секцій */
