@@ -3336,13 +3336,14 @@ html body div[style*="--chat-bot"]:not(#_):not(#__){white-space:pre-line}
   html body header #nav-logo-btn:not(#_):not(#__):not(#___){display:none !important}
   html body header #header-admin-cms-btn:not(#_):not(#__):not(#___){display:none !important}
   html body header #header-lead-modal-btn > span:last-child:not(#_):not(#__):not(#___){display:none !important}
-  html body header #header-lead-modal-btn:not(#_):not(#__):not(#___){background:linear-gradient(180deg,#FFB45E,#F98513) !important;color:#111144 !important;border:0 !important;box-shadow:none !important;min-height:44px}
+  html body header #header-lead-modal-btn:not(#_):not(#__):not(#___){background:linear-gradient(180deg,#FFB45E,#F98513) !important;color:#111144 !important;border:0 !important;box-shadow:none !important;min-height:0 !important;height:44px;box-sizing:border-box;align-items:center}
   html body header #header-lead-modal-btn > span:first-child:not(#_):not(#__):not(#___){margin-right:16px;font-weight:700;color:#111144 !important}
 }
 /* tablet 768–1023: menu items fit once the logo is gone — request button left, menu right, no burger */
 @media (min-width:768px) and (max-width:1023px){
-  html body header div.hidden.lg\:flex.items-center.gap-3:not(#_):not(#__):not(#___){order:1}
-  html body header nav.pb-nav:not(#_):not(#__):not(#___){display:flex !important;order:2;gap:0 !important;padding:4px !important}
+  html body header #header-lead-modal-btn:not(#_):not(#__):not(#___):not(#____){height:46px}
+  html body header div.hidden.lg\:flex.items-center.gap-3:not(#_):not(#__):not(#___){order:2}
+  html body header nav.pb-nav:not(#_):not(#__):not(#___){display:flex !important;order:1;gap:0 !important;padding:4px !important}
   html body header div.flex.lg\:hidden:not(#_):not(#__):not(#___){display:none !important}
   html body header button[aria-label="Відкрити меню"]:not(#_):not(#__):not(#___){display:none !important}
   html body .pb-hdr-hero #nav-services-dropdown-btn:not(#_):not(#__){display:flex !important}
@@ -3352,7 +3353,7 @@ html body div[style*="--chat-bot"]:not(#_):not(#__){white-space:pre-line}
   html body header nav.pb-nav .pb-nl:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______):not(#_______){padding-left:7px !important;padding-right:7px !important;font-size:13px !important}
 }
 @media (max-width:339px){
-  html body header #header-lead-modal-btn:not(#_):not(#__):not(#___){zoom:.84}
+  html body header #header-lead-modal-btn:not(#_):not(#__):not(#___){zoom:.84;height:52px}
   html body header div.hidden.lg\:flex.items-center.gap-3:not(#_):not(#__):not(#___){margin:0}
 }
 /* desktop: no outline around the logo */
