@@ -3307,13 +3307,13 @@ html body button#header-admin-cms-btn:not(#_):not(#__):not(#___):not(#____),html
 @media (min-width:768px){.pb-brand-row{justify-content:flex-start}}
 </style>
 <style id="pb-r4">/* №64/№65 home: no animated line canvas behind the first screen — calm gradient, text is there immediately (lines stay on the last screen) */
-html:not(.pb-inner) canvas#flow{display:none !important}
+canvas#flow{display:none !important}
 </style>
 <style id="pb-r9">
 /* Послуги (від 1400px): назви зліва · графік у синій картці · опис справа, на білому тлі */
 @media (min-width:1400px){
 html body #services-section:not(#_):not(#__):not(#___):not(#____):not(#_____){padding-left:32px !important;padding-right:32px !important}
-html body .sv3-stack:not(#_):not(#__):not(#___):not(#____):not(#_____){display:grid !important;grid-template-columns:clamp(320px,26vw,420px) minmax(0,1fr) clamp(270px,22vw,340px);grid-template-rows:auto auto 1fr;column-gap:40px;row-gap:20px;padding:0;min-height:0;border-radius:0;background:none;box-shadow:none;align-items:start}
+html body .sv3-stack:not(#_):not(#__):not(#___):not(#____):not(#_____){display:grid !important;grid-template-columns:clamp(320px,26vw,420px) minmax(0,1fr) clamp(260px,20vw,330px);grid-template-rows:auto auto 1fr;column-gap:40px;row-gap:20px;padding:0;min-height:0;border-radius:0;background:none;box-shadow:none;align-items:start}
 html body .sv3-card:not(#_):not(#__):not(#___):not(#____):not(#_____),html body .sv3-card:not(#_):not(#__):not(#___):not(#____):not(#_____) .sv3-copy{display:contents !important}
 html body .sv3-card:not(#_):not(#__):not(#___):not(#____):not(#_____)::after{display:none !important}
 html body .sv3-card:not(#_):not(#__):not(#___):not(#____):not(#_____) .sv3-num,html body .sv3-card:not(#_):not(#__):not(#___):not(#____):not(#_____) .sv3-h3{position:absolute !important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;margin:0 !important;padding:0 !important;border:0 !important}
@@ -3366,6 +3366,18 @@ var t;new MutationObserver(function(){clearTimeout(t);t=setTimeout(sync,60)}).ob
 sync();
 })();
 </script>
+<style id="pb-r10">
+/* ширша зона контенту і більше повітря між блоками */
+html:root{--container:1760px;--gutter:clamp(20px,2.4vw,44px);--sec-y:clamp(104px,10.5vw,184px);--head-gap:clamp(48px,4.6vw,80px)}
+@media (min-width:1400px){
+html body .sv3-stack:not(#_):not(#__):not(#___):not(#____):not(#_____){column-gap:clamp(32px,3vw,64px);row-gap:28px;margin-top:clamp(8px,1.5vw,24px)}
+html body .sv3-card:not(#_):not(#__):not(#___):not(#____):not(#_____) .sv3-viz{padding:clamp(20px,1.9vw,40px) !important}
+html body .sv3-card:not(#_):not(#__):not(#___):not(#____):not(#_____) .sv3-dg{height:clamp(520px,38vw,600px) !important}
+.pb-tabs{gap:clamp(10px,1.1vw,20px)}
+html body .sv3-card:not(#_):not(#__):not(#___):not(#____):not(#_____) .sv3-list{gap:14px !important}
+html body .sv3-card:not(#_):not(#__):not(#___):not(#____):not(#_____) .sv3-desc{margin-bottom:8px !important}
+}
+</style>
 <style id="pb-r5">/* service cards: description + bullets are as wide as the heading text */
 html body .sv3-copy > .sv3-desc:not(#_):not(#__),html body .sv3-copy > .sv3-list:not(#_):not(#__){max-width:var(--pb-tw,none)}
 </style>
