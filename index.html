@@ -3309,79 +3309,56 @@ html body button#header-admin-cms-btn:not(#_):not(#__):not(#___):not(#____),html
 <style id="pb-r4">/* №64/№65 home: no animated line canvas behind the first screen — calm gradient, text is there immediately (lines stay on the last screen) */
 html:not(.pb-inner) canvas#flow{display:none !important}
 </style>
-<style id="pb-r6">
-/* Картки послуг: рівні внутрішні відступи, верх/низ тексту вирівняні по візуалу */
-@media (min-width:1100px){
-html body .sv3-card:not(#_):not(#__):not(#___):not(#____){--pb-pv:clamp(24px,4.4vh,40px);--pb-ph:clamp(28px,2.8vw,40px);padding:var(--pb-pv) var(--pb-ph) !important;gap:clamp(28px,3vw,48px) !important;grid-template-columns:minmax(0,40fr) minmax(0,60fr) !important;align-items:stretch !important}
-html body .sv3-card:not(#_):not(#__):not(#___):not(#____) .sv3-copy{justify-content:flex-start !important;height:100%;gap:14px !important}
-html body .sv3-card:not(#_):not(#__):not(#___):not(#____) .sv3-num{margin-bottom:0 !important}
-html body .sv3-card:not(#_):not(#__):not(#___):not(#____) .sv3-copy{padding-block:clamp(16px,6.2vh,56px) clamp(0px,1.2vh,10px)}
-html body .sv3-card:not(#_):not(#__):not(#___):not(#____) .sv3-cta{margin-top:auto !important;align-self:flex-start}
-html body .sv3-card:not(#_):not(#__):not(#___):not(#____) .sv3-dg{height:calc(var(--sv3-h) - 2 * var(--pb-pv) - 2px) !important}
-html body .sv3-card:not(#_):not(#__):not(#___):not(#____) .sv3-viz{align-self:stretch}
+<style id="pb-r9">
+/* Послуги (десктоп): назви зліва · графік посередині · опис справа */
+@media (min-width:1400px){
+html body .sv3-stack:not(#_):not(#__):not(#___):not(#____):not(#_____){display:grid !important;grid-template-columns:minmax(210px,.7fr) minmax(0,2.2fr) minmax(280px,1.1fr);grid-template-rows:auto auto 1fr;column-gap:36px;row-gap:16px;padding:56px 48px;min-height:640px;border-radius:24px;background:linear-gradient(160deg,#1B2E8C 0%,#111144 50%,#111144 100%);box-shadow:0 28px 48px -28px rgba(17,17,68,.75),inset 0 1px 0 rgba(255,255,255,.10);align-items:start}
+html body .sv3-card:not(#_):not(#__):not(#___):not(#____):not(#_____),html body .sv3-card:not(#_):not(#__):not(#___):not(#____):not(#_____) .sv3-copy{display:contents !important}
+html body .sv3-card:not(#_):not(#__):not(#___):not(#____):not(#_____)::after{display:none !important}
+html body .sv3-card:not(#_):not(#__):not(#___):not(#____):not(#_____) .sv3-num,html body .sv3-card:not(#_):not(#__):not(#___):not(#____):not(#_____) .sv3-h3{position:absolute !important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;margin:0 !important;padding:0 !important;border:0 !important}
+html body .sv3-card[data-pb-a="0"]:not(#_):not(#__):not(#___):not(#____):not(#_____) :is(.sv3-desc,.sv3-list,.sv3-cta,.sv3-viz){display:none !important}
+.pb-tabs{grid-column:1;grid-row:1 / 4;display:flex;flex-direction:column;gap:6px;align-self:start}
+.pb-tabs button{all:unset;box-sizing:border-box;cursor:pointer;display:block;padding:10px 0;font:700 clamp(20px,1.85vw,28px)/1.15 var(--font-display);letter-spacing:-.01em;color:rgba(201,211,255,.32);transition:color .25s ease}
+.pb-tabs button:hover{color:rgba(255,255,255,.7)}
+.pb-tabs button[aria-selected="true"]{color:#fff}
+.pb-tabs button:focus-visible{outline:2px solid #FFB45E;outline-offset:4px;border-radius:6px}
+html body .sv3-card:not(#_):not(#__):not(#___):not(#____):not(#_____) .sv3-viz{grid-column:2;grid-row:1 / 4;align-self:stretch;min-width:0;animation:pbTabIn .4s ease both}
+html body .sv3-card:not(#_):not(#__):not(#___):not(#____):not(#_____) .sv3-dg{height:520px !important}
+html body .sv3-card:not(#_):not(#__):not(#___):not(#____):not(#_____) .sv3-desc{grid-column:3;grid-row:1;max-width:none !important;margin:0 !important;animation:pbTabIn .4s ease both}
+html body .sv3-card:not(#_):not(#__):not(#___):not(#____):not(#_____) .sv3-list{grid-column:3;grid-row:2;max-width:none !important;margin:0 !important;animation:pbTabIn .4s ease both .05s}
+html body .sv3-card:not(#_):not(#__):not(#___):not(#____):not(#_____) .sv3-cta{grid-column:3;grid-row:3;align-self:end;justify-self:start;margin:0 !important;animation:pbTabIn .4s ease both .1s}
+@keyframes pbTabIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.pb-tabs button{transition:none}html body .sv3-card :is(.sv3-viz,.sv3-desc,.sv3-list,.sv3-cta){animation:none !important}}
 }
+@media (max-width:1399px){.pb-tabs{display:none}}
 </style>
-<style id="pb-r7">
-/* Картки послуг: результат як головний елемент замість "01/02/03" */
-html body .sv3-card .sv3-num:not(#_):not(#__):not(#___):not(#____):not(#_____){display:flex !important;flex-direction:column;gap:4px;font-size:0 !important;line-height:1 !important;color:transparent !important;-webkit-text-fill-color:currentColor !important;-webkit-text-stroke:0 transparent !important;margin:0 0 6px !important}
-html body .sv3-card .sv3-num:not(#_):not(#__):not(#___):not(#____):not(#_____)::before{content:attr(data-m);display:block;font:800 clamp(40px,min(5.6vw,8vh),80px)/.92 var(--font-display);letter-spacing:-.03em;color:#fff;-webkit-text-fill-color:#fff;white-space:nowrap}
-html body .sv3-card .sv3-num:not(#_):not(#__):not(#___):not(#____):not(#_____)::after{content:attr(data-ml);display:block;font:600 15px/1.35 var(--font-body);color:#C9D3FF;-webkit-text-fill-color:#C9D3FF;max-width:30ch}
-html body .sv3-card[data-n="1"] .sv3-num:not(#_):not(#__):not(#___):not(#____):not(#_____)::before{color:#FFB45E;-webkit-text-fill-color:#FFB45E}
-html body .sv3-card .sv3-h3:not(#_):not(#__):not(#___):not(#____):not(#_____){margin-top:12px !important;padding-top:18px;border-top:1px solid rgba(143,163,255,.28)}
-@media (min-width:1100px){html body .sv3-card .sv3-copy:not(#_):not(#__):not(#___):not(#____):not(#_____){padding-block:0 !important}}
-@media (max-width:1099px){html body .sv3-card .sv3-num:not(#_):not(#__):not(#___):not(#____):not(#_____)::before{font-size:clamp(44px,13vw,64px)}}
-</style>
-<script id="pb-r7-js">
+<script id="pb-r9-js">
 (function(){
-var M=[["−40%","часу обробки замовлення"],["5 каналів","Instagram, TikTok, Telegram, Viber і сайт"],["100%","власність на систему й код"]];
-function run(){
- document.querySelectorAll('.sv3-card').forEach(function(c,i){
-  var n=c.querySelector('.sv3-num');if(!n)return;var m=M[i%3];
-  if(n.getAttribute('data-m')!==m[0])n.setAttribute('data-m',m[0]);
-  if(n.getAttribute('data-ml')!==m[1])n.setAttribute('data-ml',m[1]);
+var L=["Впровадження keyCRM","AI-бот 24/7","Власна CRM-система"],tabs=null,cur=0;
+function sync(){
+ var st=document.querySelector('.sv3-stack');if(!st)return;
+ var cs=st.querySelectorAll('.sv3-card');if(cs.length<2)return;
+ if(!tabs||!tabs.isConnected){
+  tabs=document.createElement('div');tabs.className='pb-tabs';tabs.setAttribute('role','tablist');
+  for(var i=0;i<cs.length;i++){(function(i){
+   var b=document.createElement('button');b.type='button';b.setAttribute('role','tab');b.textContent=L[i]||('Послуга '+(i+1));
+   b.addEventListener('click',function(){go(i)});b.addEventListener('mouseenter',function(){go(i)});b.addEventListener('focus',function(){go(i)});
+   tabs.appendChild(b)})(i)}
+  st.insertBefore(tabs,st.firstChild);
+ }
+ apply();
+}
+function go(i){if(i===cur)return;cur=i;apply()}
+function apply(){
+ var st=document.querySelector('.sv3-stack');if(!st)return;
+ st.querySelectorAll('.sv3-card').forEach(function(c,i){
+  var v=i===cur?'1':'0';if(c.getAttribute('data-pb-a')!==v)c.setAttribute('data-pb-a',v);
+  if(c.getAttribute('data-on')!=='true')c.setAttribute('data-on','true');
  });
+ if(tabs)[].forEach.call(tabs.children,function(b,i){b.setAttribute('aria-selected',i===cur?'true':'false')});
 }
-run();
-var t;new MutationObserver(function(){clearTimeout(t);t=setTimeout(run,60)}).observe(document.body,{childList:true,subtree:true});
-})();
-</script>
-<style id="pb-r8">
-#pb-trail{position:fixed;top:50%;height:300px;margin-top:-150px;width:2px;z-index:30;pointer-events:none;opacity:0;transition:opacity .35s ease;display:none}
-#pb-trail.on{opacity:1}
-@media (min-width:1100px){#pb-trail{display:block}}
-#pb-trail i{position:absolute;left:0;top:0;width:2px;height:100%;background:#C9D3FF;border-radius:2px}
-#pb-trail b{position:absolute;left:0;top:0;width:2px;height:0;background:#F98513;border-radius:2px}
-#pb-trail u{position:absolute;left:-5px;width:12px;height:12px;margin-top:-6px;border-radius:50%;background:#fff;border:2px solid #C9D3FF;box-sizing:border-box;transition:background .3s,border-color .3s}
-#pb-trail u.a{background:#F98513;border-color:#F98513}
-#pb-trail em{position:absolute;left:14px;top:50%;font:700 13px/1 var(--font-body);font-style:normal;color:#1B2E8C;writing-mode:vertical-rl;transform:translateY(-50%);white-space:nowrap;letter-spacing:.02em}
-@media (prefers-reduced-motion:reduce){#pb-trail,#pb-trail u{transition:none}}
-</style>
-<script id="pb-r8-js">
-(function(){
-var L=["keyCRM","Бот","Власна CRM"],el,fill,dots=[],lab;
-function build(){
- el=document.createElement('div');el.id='pb-trail';el.setAttribute('aria-hidden','true');
- el.innerHTML='<i></i><b></b><u style="top:0"></u><u style="top:50%"></u><u style="top:100%"></u><em></em>';
- document.body.appendChild(el);fill=el.querySelector('b');dots=[].slice.call(el.querySelectorAll('u'));lab=el.querySelector('em');
-}
-function tick(){
- var cs=[].slice.call(document.querySelectorAll('.sv3-card'));
- if(cs.length<2){if(el)el.classList.remove('on');return}
- if(!el)build();
- var vh=innerHeight,r0=cs[0].getBoundingClientRect(),last=cs[cs.length-1].getBoundingClientRect();
- var vis=r0.top<vh*.5&&last.bottom>vh*.5+40;
- el.classList.toggle('on',vis);
- var st=document.querySelector('.sv3-stack'),sl=st?st.getBoundingClientRect().left:r0.left;el.style.left=Math.max(10,Math.round(sl-20))+'px';
- var sticky=parseFloat(getComputedStyle(cs[1]).top)||110,sum=0,act=0;
- for(var i=1;i<cs.length;i++){var r=cs[i].getBoundingClientRect(),t=Math.max(0,Math.min(1,1-(r.top-sticky)/Math.max(1,r.height*.6)));sum+=t;if(t>=.5)act=i}
- fill.style.height=(sum/(cs.length-1)*100)+'%';
- dots.forEach(function(d,i){d.classList.toggle('a',i<=act)});
- lab.textContent='';
-}
-var q=0;function req(){if(q)return;q=requestAnimationFrame(function(){q=0;tick()})}
-addEventListener('scroll',req,{passive:true});addEventListener('resize',req);
-new MutationObserver(req).observe(document.body,{childList:true,subtree:true});
-req();
+var t;new MutationObserver(function(){clearTimeout(t);t=setTimeout(sync,60)}).observe(document.body,{childList:true,subtree:true});
+sync();
 })();
 </script>
 <style id="pb-r5">/* service cards: description + bullets are as wide as the heading text */
