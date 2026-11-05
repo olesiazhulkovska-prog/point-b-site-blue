@@ -3722,10 +3722,17 @@ three/build/three.module.js:
     root.style.display='block';
     try{api=window.__mountTornado(root,cv,document.documentElement,window.__pbTornadoProps||{})}catch(e){root.remove();return}
     function upd(){
-      var hero=document.getElementById('hero-dark'),vh=window.innerHeight||800,P=Math.min(1,Math.max(0,(window.scrollY||0)/(vh*.9)));
+      var hero=document.getElementById('hero-dark'),vh=window.innerHeight||800,y=window.scrollY||0,P=Math.min(1,Math.max(0,y/(vh*1.5)));
       var on=!!hero&&P<1;
       root.style.display=on?'block':'none';
-      if(on)root.style.opacity=(1-P).toFixed(3);
+      if(on){root.style.opacity=Math.pow(1-P,1.4).toFixed(3);root.style.transform='translate3d(0,'+(-(y*.35)).toFixed(1)+'px,0)';}
+      /* другий блок піднімається назустріч воронці */
+      var nx=hero&&hero.nextElementSibling;
+      if(nx&&!matchMedia('(prefers-reduced-motion: reduce)').matches){
+        var q=Math.min(1,Math.max(0,y/(vh*.7))),e=1-Math.pow(1-q,3);
+        nx.style.transform='translate3d(0,'+((1-e)*56).toFixed(1)+'px,0)';
+        nx.style.opacity=(.15+.85*e).toFixed(3);
+      }
     }
     addEventListener('scroll',upd,{passive:true});addEventListener('resize',upd);setInterval(upd,400);upd();
   }
