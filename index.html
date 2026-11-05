@@ -3329,21 +3329,21 @@ html body div[style*="--chat-bot"]:not(#_):not(#__){white-space:pre-line}
   html body div.md\:hidden.relative.z-10.w-full > div.grid.grid-cols-3 > div:not(#_):not(#__){min-height:0 !important}
 }
 
-/* №53 tablet 768–1023: normal navigation instead of the burger (logo + menu + request button must fit one row) */
-@media (min-width:768px) and (max-width:1023px){
-  html body header nav.pb-nav:not(#_):not(#__):not(#___){display:flex !important;gap:0}
-  html body header button[aria-label="Відкрити меню"]:not(#_):not(#__):not(#___){display:none !important}
-  html body header div.hidden.lg\:flex.items-center.gap-3:not(#_):not(#__):not(#___){display:flex !important}
-  html body .pb-hdr-hero #nav-services-dropdown-btn:not(#_):not(#__){display:flex !important}
-  html body header nav.pb-nav .pb-nl:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______):not(#_______){padding-left:8px !important;padding-right:8px !important;font-size:13.5px !important}
-  html body header div.hidden.lg\:flex.items-center.gap-3 > button.group:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______):not(#_______){font-size:15px !important;gap:10px !important}
+/* header < 1024: no bottom tab bar, no inline menu — orange request button + burger on the right */
+@media (max-width:1023px){
+  html body nav[aria-label="Нижня навігація"]:not(#_):not(#__):not(#___){display:none !important}
+  html body header div.hidden.lg\:flex.items-center.gap-3:not(#_):not(#__):not(#___){display:flex !important;margin-left:auto;margin-right:8px}
+  html body header #header-admin-cms-btn:not(#_):not(#__):not(#___){display:none !important}
+  html body header #header-lead-modal-btn > span:last-child:not(#_):not(#__):not(#___){display:none !important}
+  html body header #header-lead-modal-btn:not(#_):not(#__):not(#___){background:linear-gradient(180deg,#FFB45E,#F98513) !important;color:#111144 !important;border:0 !important;box-shadow:none !important;min-height:44px}
+  html body header #header-lead-modal-btn > span:first-child:not(#_):not(#__):not(#___){margin-right:16px;font-weight:700;color:#111144 !important}
 }
-@media (min-width:768px) and (max-width:899px){
-  html body header nav.pb-nav:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______):not(#_______){gap:0 !important;padding:4px !important}
-  html body header nav.pb-nav .pb-nl:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______):not(#_______){padding-left:6px !important;padding-right:6px !important;font-size:13px !important}
-  html body header div.hidden.lg\:flex.items-center.gap-3 > button.group:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______):not(#_______){font-size:13px !important;gap:0 !important}
-  html body header div.hidden.lg\:flex.items-center.gap-3 > button.group > span:last-child:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______):not(#_______){display:none !important}
+@media (max-width:339px){
+  html body header #header-lead-modal-btn:not(#_):not(#__):not(#___){zoom:.84}
+  html body header div.hidden.lg\:flex.items-center.gap-3:not(#_):not(#__):not(#___){margin-right:4px}
 }
+/* desktop: no outline around the logo */
+html body #nav-logo-btn:focus-visible:not(#_):not(#__){outline:none !important}
 
 /* №54 + №55 tablet (700–1199): the hero headline fades out before the scheme slides over it; on tall screens the first screen is shorter so the scheme shows from below */
 @media (min-width:700px) and (max-width:1199px){
@@ -3366,10 +3366,6 @@ html body div[style*="--chat-bot"]:not(#_):not(#__){white-space:pre-line}
 /* №58 case cards: dark fade under the caption on the photo */
 html body div.absolute.left-0.top-0.w-full.overflow-hidden[class*="h-[202px]"]::after{content:"";position:absolute;left:0;right:0;bottom:0;height:84px;pointer-events:none;background:linear-gradient(to top,rgba(17,17,68,.9),rgba(17,17,68,0))}
 
-/* №51 mobile: the scheme never ends under the bottom tab bar */
-@media (max-width:767px){
-  html body .hero-graph:not(#_):not(#__){padding-bottom:calc(72px + env(safe-area-inset-bottom)) !important}
-}
 </style>
 
 <script>
