@@ -3339,6 +3339,11 @@ html body div[style*="--chat-bot"]:not(#_):not(#__){white-space:pre-line}
   html body header #header-lead-modal-btn:not(#_):not(#__):not(#___){background:linear-gradient(180deg,#FFB45E,#F98513) !important;color:#111144 !important;border:0 !important;box-shadow:none !important;min-height:0 !important;height:44px;box-sizing:border-box;align-items:center}
   html body header #header-lead-modal-btn > span:first-child:not(#_):not(#__):not(#___){margin-right:16px;font-weight:700;color:#111144 !important}
 }
+/* mobile <768: burger left, request button right (same order as tablet: menu left, button right) */
+@media (max-width:767px){
+  html body header div.flex.lg\:hidden:not(#_):not(#__):not(#___){order:1}
+  html body header div.hidden.lg\:flex.items-center.gap-3:not(#_):not(#__):not(#___){order:2}
+}
 /* tablet 768–1023: menu items fit once the logo is gone — request button left, menu right, no burger */
 @media (min-width:768px) and (max-width:1023px){
   html body header #header-lead-modal-btn:not(#_):not(#__):not(#___):not(#____){height:46px}
