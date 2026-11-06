@@ -108,7 +108,7 @@
     S.tsecH = Math.round(vh * (vw >= 1024 ? 2.2 : 2));
     S.sec.style.setProperty('height', S.tsecH + 'px', 'important');
     S.sec.style.setProperty('margin-bottom', '0', 'important');
-    S.note.style.cssText = 'position:sticky;top:0;height:' + vh + 'px;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:92px 0 0 !important;';
+    S.note.style.cssText = 'position:sticky;top:' + Math.round(vh * 0.15) + 'px;height:' + Math.round(vh * 0.7) + 'px;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:0 !important;';
     // графік
     var H = S.gin.offsetHeight;
     var topPad = 76;
