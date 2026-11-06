@@ -105,7 +105,7 @@
     S.items = c.items;
     S.deskOn = c.deskOn;
     // текстова секція: закріплений блок + запас скролу
-    S.tsecH = Math.round(vh * (vw >= 1024 ? 2.6 : 2.2));
+    S.tsecH = Math.round(vh * (vw >= 1024 ? 2.2 : 2));
     S.sec.style.setProperty('height', S.tsecH + 'px', 'important');
     S.sec.style.setProperty('margin-bottom', '0', 'important');
     S.note.style.cssText = 'position:sticky;top:0;height:' + vh + 'px;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:92px 0 0 !important;';
@@ -121,7 +121,7 @@
       S.gtop = top;
       S.gH = H;
       S.gin.style.cssText = 'position:sticky;top:' + top + 'px;margin-top:' + (-Math.round(vh * 0.5)) + 'px;transform-origin:50% 0;' + (sc < 1 ? 'scale:' + sc + ';' : '');
-      var sp = Math.round(vh * 1.9);
+      var sp = Math.round(vh * 1.5);
       S.spacer.style.height = sp + 'px';
       S.spH = sp;
       S.graph.style.setProperty('display', 'block', 'important');
@@ -178,18 +178,19 @@
     var g;
     if (S.pinG) {
       var sr = S.spacer.getBoundingClientRect();
-      var ex = vh * 0.45;
+      var ex = vh * 0.3;
       g = clamp(((S.gtop + S.gH * S.gscale + ex) - sr.top) / (S.spH * 0.92 + ex));
       var k = S.items;
       var cards = k.filter(function (x) { return x.kind === 'card'; });
       var nc = cards.length;
       k.forEach(function (it) {
-        if (it.kind === 'lines') { setItem(it, clamp((g - 0.04) / 0.6), 'lines'); }
-        else if (it.kind === 'bar') { setItem(it, clamp((g - 0.78) / 0.14), 'bar'); }
+        if (it.kind === 'lines') { setItem(it, clamp((g - 0.5) / 0.3), 'lines'); }
+        else if (it.kind === 'bar') { setItem(it, clamp((g - 0.8) / 0.12), 'bar'); }
         else {
           var idx = cards.indexOf(it);
-          var st = 0.03 + idx * (0.64 / Math.max(1, nc));
-          setItem(it, clamp((g - st) / 0.18), 'card');
+          var starts = [0.02, 0.09, 0.16, 0.3, 0.43, 0.56];
+          var st = starts[idx] !== undefined ? starts[idx] : 0.02 + idx * 0.1;
+          setItem(it, clamp((g - st) / 0.13), 'card');
         }
       });
     } else {

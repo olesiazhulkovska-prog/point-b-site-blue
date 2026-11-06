@@ -2734,7 +2734,7 @@ function mount(foot){
         if(hasText&&!/^(Point|B|POINT)$/.test(e.textContent.trim())&&!e.closest('[data-hero-title]')){
           var fs=parseFloat(cs.fontSize),sn=snapFs(fs);
           /* v95: text inside the hero scheme reads one step larger on desktop (14->16, 16->18) */
-          if(innerWidth>=1100&&e.closest('.hero-note')){sn=['clamp(20px,1.6vw,28px)','1.45']}
+          if(innerWidth>=1100&&e.closest('.hero-note')){sn=['clamp(24px,2.3vw,38px)','1.4']}
           else if(innerWidth>=1360&&e.closest('.hero-graph-in')){sn=fs>=15?['18px','1.4']:['16px','1.4']}
           setp(e,'font-size',sn[0]);setp(e,'line-height',sn[1]);
         }
@@ -3236,7 +3236,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 .hero-track[data-static="1"] #hero-dark{position:-webkit-sticky !important;position:sticky !important;top:0}
 .hero-track[data-static="1"] .hero-graph:not(#_):not(#__){min-height:0 !important;padding-bottom:56px !important;justify-content:flex-start !important}
 .hero-graph-in:not(#_):not(#__):not(#___){zoom:1 !important}
-.hero-graph .hero-note-p{font-size:clamp(15px,2vw,18px) !important}
+.hero-graph .hero-note-p{font-size:clamp(19px,2.7vw,26px) !important;line-height:1.4 !important}
 #why-us-section .snap-start .\@container [class*="rounded-full"]{font-size:12px !important;line-height:1.2 !important;padding-left:10px !important;padding-right:10px !important;white-space:nowrap}
 .hero-track[data-static="1"] .hero-L:not(#_):not(#__){min-height:0 !important}
 }
@@ -3416,6 +3416,15 @@ html.pb-sunrise.pb-sunrise-go body #hero-dark > div.relative:not(#_):not(#__){op
 .pb-words{display:block}
 .pb-pill{--pa:0;background:rgba(246,245,244,var(--pa));color:color-mix(in srgb,#111144 calc(var(--pa) * 100%),#F6F5F4);border-radius:8px;padding:.06em .3em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
 .pb-gspacer{width:100%;flex:none}
+@media (min-width:1100px){.pb-words,.pb-pill{font-size:clamp(24px,2.3vw,38px);line-height:1.4}}
+.pb-pill{padding:.02em .3em}
+</style>
+<style id="pb-r23">/* hero → story: shorter dead space, wider text, no seam under the glow */
+#pb-horizon:not(#_){-webkit-mask-image:linear-gradient(180deg,#000 0,#000 80%,transparent 100%);mask-image:linear-gradient(180deg,#000 0,#000 80%,transparent 100%)}
+@media (min-width:1024px){.hero-track[data-static="1"] .hero-L:not(#_){margin-top:calc(-1 * clamp(200px,46svh,460px))}}
+.hero-track[data-static="1"] .hero-L:not(#_){pointer-events:none}
+.hero-track[data-static="1"] .hero-L .hero-graph-in:not(#_),.hero-track[data-static="1"] .hero-L .hero-graph-in:not(#_) *{pointer-events:auto}
+html body .hero-graph .hero-note:not(#_):not(#__){max-width:1120px}
 </style>
 <style id="pb-r5">/* service cards: description + bullets are as wide as the heading text */
 html body .sv3-copy > .sv3-desc:not(#_):not(#__),html body .sv3-copy > .sv3-list:not(#_):not(#__){max-width:var(--pb-tw,none)}
