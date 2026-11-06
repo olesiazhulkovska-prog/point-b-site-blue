@@ -3099,7 +3099,7 @@ function mount(foot){
     for(var i=0;i<8;i++){var cx=bez(x1,x2,s)-x,u=1-s,dx=3*u*u*x1+6*u*s*(x2-x1)+3*s*s*(1-x2);if(Math.abs(dx)<1e-6)break;s-=cx/dx;s=Math.max(0,Math.min(1,s))}
     return bez(y1,y2,s)}
   function frame(now){
-    var dt=Math.min(.05,Math.max(0,(now-last)/1000));last=now;
+    var dt=last?Math.min(.05,Math.max(0,(now-last)/1000)):1/60;last=now;
     var moving=now-lastMove<100;
     activity=moving?Math.min(1,activity+dt/.2):Math.max(0,activity-dt/IDLE);
     var fade=1-ease(1-activity);
@@ -3112,7 +3112,7 @@ function mount(foot){
       if(hide)continue;
       p.n.style.transform='translate3d('+p.x.toFixed(1)+'px,'+p.y.toFixed(1)+'px,0) translate(-50%,-50%) scale('+sc.toFixed(3)+')';
       p.n.style.opacity=op.toFixed(3)}
-    if(activity>0)raf=requestAnimationFrame(frame);else raf=0}
+    if(activity>0||moving)raf=requestAnimationFrame(frame);else raf=0}
   addEventListener('pointermove',function(e){
     if(e.pointerType&&e.pointerType!=='mouse')return;
     mount();
@@ -3121,7 +3121,7 @@ function mount(foot){
     cur.x=x;cur.y=y;
     if(!seen||!inside){seen=true;for(var i=0;i<pool.length;i++){var p=pool[i];p.x=x;p.y=y;p.vx=0;p.vy=0}}
     inside=true;
-    if(!raf){last=performance.now();raf=requestAnimationFrame(frame)}},{passive:true});
+    if(!raf){last=0;raf=requestAnimationFrame(frame)}},{passive:true});
   document.documentElement.addEventListener('pointerleave',function(){inside=false});
   document.addEventListener('visibilitychange',function(){if(document.hidden)inside=false});
 })();
@@ -3430,7 +3430,7 @@ html body .hero-graph .hero-note:not(#_):not(#__){max-width:1120px}
 html body .hero-graph-in [style*="var(--card)"]:not(#_):not(#__){--card:#F4F7FF;--card-border:#C9D3FF;--ink:#111144;--ink-soft:#4A4F93;--muted:#4A4F93;--track:rgba(17,17,68,.12);--chip-bg:rgba(17,17,68,.06);--chip-bg-soft:rgba(17,17,68,.04);--accent-green:#C25E00;--line:rgba(17,17,68,.14);box-shadow:none !important}
 </style>
 <style id="pb-r25">/* block 2 (story): rounded top edge, same arc as the stats block */
-html body .hero-track[data-static="1"] .hero-L-bg:not(#_):not(#__):not(#___){background:linear-gradient(180deg,#111144 0%,#111144 82%,#1B2E8C 100%) !important;--radius:50% 50% 0 0 / var(--arc) var(--arc) 0 0;border-radius:50% 50% 0 0 / var(--arc) var(--arc) 0 0}
+html body .hero-track[data-static="1"] .hero-L-bg:not(#_):not(#__):not(#___){background:linear-gradient(180deg,#111144 0%,#111144 82%,#1B2E8C 100%) !important;--radius:0;border-radius:0}
 </style>
 <style id="pb-r26">/* one typeface (Manrope) everywhere, no caps. Logo wordmarks are left alone. */
 :root,html body{--font-body:'Manrope',system-ui,sans-serif;--font-display:'Manrope',system-ui,sans-serif;--font-sans:'Manrope',system-ui,sans-serif;--font-mono:'Manrope',system-ui,sans-serif}
