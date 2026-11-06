@@ -3129,6 +3129,7 @@ function mount(foot){
     </script>
     <script>(function(){try{var d=document.documentElement,hh=location.hash;if((hh===''||hh==='#'||hh==='#/')&&!matchMedia('(prefers-reduced-motion: reduce)').matches){d.classList.add('pb-sunrise');setTimeout(function(){d.classList.add('pb-sunrise-go')},5000)}}catch(e){}})()</script>
     <script src="horizon.js" defer></script>
+    <script src="scrollstory.js" defer></script>
 <script src="vortex.js" defer></script>
   <style id="pb-rev-photo">#reviews-section figure figcaption>div:first-child{overflow:hidden}#reviews-section figure figcaption>div:first-child:has(.pb-rev-photo){width:48px;height:48px;min-width:48px}.pb-rev-photo{display:block;border-radius:50%}</style>
 <style id="pb-admin-login">/* admin login: the global h1 size (display) must not hit this small form title */
@@ -3409,6 +3410,12 @@ html body main #services-section:not(#_):not(#__):not(#___):not(#____):not(#____
 <style id="pb-r21">/* hero intro: sunrise, then text */
 html.pb-sunrise body #hero-dark > div.relative:not(#_):not(#__){opacity:0;translate:0 28px}
 html.pb-sunrise.pb-sunrise-go body #hero-dark > div.relative:not(#_):not(#__){opacity:1;translate:0 0;transition:opacity 1.2s ease-out,translate 1.2s cubic-bezier(.2,.7,.2,1)}
+</style>
+<style id="pb-r22">/* scroll story after hero */
+.pb-sr{position:absolute !important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.pb-words{display:block}
+.pb-pill{--pa:0;background:rgba(246,245,244,var(--pa));color:color-mix(in srgb,#111144 calc(var(--pa) * 100%),#F6F5F4);border-radius:8px;padding:.06em .3em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.pb-gspacer{width:100%;flex:none}
 </style>
 <style id="pb-r5">/* service cards: description + bullets are as wide as the heading text */
 html body .sv3-copy > .sv3-desc:not(#_):not(#__),html body .sv3-copy > .sv3-list:not(#_):not(#__){max-width:var(--pb-tw,none)}
