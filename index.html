@@ -2709,10 +2709,12 @@ function mount(foot){
   function restore(e){if(!e.__ds)return;for(var p in e.__ds){var o=e.__ds[p];if(o[0])e.style.setProperty(p,o[0],o[1]);else e.style.removeProperty(p)}e.__ds=null}
   var PROPS=['paddingTop','paddingRight','paddingBottom','paddingLeft'];
   var CP=['padding-top','padding-right','padding-bottom','padding-left'];
-  function run(root){
+  function run(root){var de=document.documentElement;de.classList.add('pb-ds-run');try{run0(root)}finally{void de.offsetHeight;de.classList.remove('pb-ds-run')}}
+  function run0(root){
     var small=matchMedia('(max-width:480px)').matches,mobile=matchMedia('(max-width:767px)').matches;
     var key=(small?'s':'')+(mobile?'m':'')+innerWidth;
     var all=(root||document.body).querySelectorAll('*');
+    if(root&&root!==document.body){var _l=[root];for(var q=0;q<all.length;q++)_l.push(all[q]);all=_l}
     for(var n=0;n<all.length;n++){var e=all[n],tag=e.tagName;
       if(tag==='SCRIPT'||tag==='STYLE'||tag==='CANVAS'||tag==='svg'||tag==='path'||tag==='VIDEO'||e.closest('svg'))continue;
       if(seen.get(e)===key)continue;restore(e);seen.set(e,key);
@@ -2747,7 +2749,10 @@ function mount(foot){
     }
   }
   var t=0;function sched(){clearTimeout(t);t=setTimeout(function(){run()},120)}
-  new MutationObserver(sched).observe(document.documentElement,{childList:true,subtree:true});
+  /* #71: новододані вузли (модалки, картки) нормалізуємо синхронно в мікротаску, до першого кадру, а не через 120мс — щоб не було стрибка радіусів і відступів */
+  new MutationObserver(function(ms){
+    for(var i=0;i<ms.length;i++){var ad=ms[i].addedNodes;for(var j=0;j<ad.length;j++){var nd=ad[j];if(nd.nodeType===1&&nd.isConnected)run(nd)}}
+  }).observe(document.documentElement,{childList:true,subtree:true});
   addEventListener('resize',sched);
   setTimeout(function(){run()},300);
   __pbxTick(function(){run()});
@@ -3369,6 +3374,16 @@ html body #site-footer :is(.text-\[14px\]):not([class*="font-mono"]):not(#_):not
 /* №73: менший відступ під фільтром кейсів */
 html body section:has(> div.flex.flex-wrap.gap-2\.5.items-center):not(#_):not(#__):not(#___){padding-bottom:0 !important}
 html body section:has(> div.flex.flex-wrap.gap-2\.5.items-center):not(#_):not(#__):not(#___) + section:not(#_):not(#__):not(#___){padding-top:48px !important}
+</style>
+<style id="pb-r15">
+/* №76: логотип не міняє ширину при скролі, тому меню не їде вліво */
+@media (min-width:1024px){html body header > div:not(#_):not(#__):not(#___) > :first-child:not(#_):not(#__){flex:none !important;min-width:210px}}
+</style>
+<style id="pb-r16">
+/* №71: поки нормалізатор виставляє радіуси/відступи, transition вимкнений — без «доїзду» значень на очах */
+html.pb-ds-run *,html.pb-ds-run *::before,html.pb-ds-run *::after{transition:none !important}
+/* №75: випадаюче меню лише з'являється (fade), без зсуву зверху */
+header nav div.absolute.top-full.z-50:not(#_):not(#__){--tw-enter-translate-y:0 !important;--tw-enter-translate-x:0 !important;animation-duration:.14s !important}
 </style>
 <style id="pb-r5">/* service cards: description + bullets are as wide as the heading text */
 html body .sv3-copy > .sv3-desc:not(#_):not(#__),html body .sv3-copy > .sv3-list:not(#_):not(#__){max-width:var(--pb-tw,none)}
