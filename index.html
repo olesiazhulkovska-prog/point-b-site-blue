@@ -3358,6 +3358,18 @@ html body #hero-dark > div.relative:not(#_):not(#__):not(#___){transform:transla
 @media (min-width:1024px){html body header > div:not(#_):not(#__):not(#___){height:92px !important;padding-top:12px !important}}
 @media (max-width:1023px){html body header > div:not(#_):not(#__):not(#___){height:88px !important;padding-top:24px !important}}
 </style>
+<style id="pb-r14">
+/* №77: без галочок у картках «12 причин», текст на всю ширину картки */
+html body div.grid.lg\:grid-cols-3 > div.p-6.rounded-2xl > div.flex.items-center.gap-2.mb-2 > div.w-5.h-5.rounded-full:not(#_):not(#__){display:none !important}
+html body div.grid.lg\:grid-cols-3 > div.p-6.rounded-2xl > p.pl-7:not(#_):not(#__){padding-left:0 !important}
+/* №74: контраст тексту футера */
+html body #site-footer [class*="var(--ink)]/"]:not(#_):not(#__){color:#F6F5F4 !important}
+html body #site-footer [class*="var(--ink)]/60"]:not(#_):not(#__){color:#CDD2EB !important}
+html body #site-footer :is(.text-\[14px\]):not([class*="font-mono"]):not(#_):not(#__){color:#CDD2EB !important}
+/* №73: менший відступ під фільтром кейсів */
+html body section:has(> div.flex.flex-wrap.gap-2\.5.items-center):not(#_):not(#__):not(#___){padding-bottom:0 !important}
+html body section:has(> div.flex.flex-wrap.gap-2\.5.items-center):not(#_):not(#__):not(#___) + section:not(#_):not(#__):not(#___){padding-top:48px !important}
+</style>
 <style id="pb-r5">/* service cards: description + bullets are as wide as the heading text */
 html body .sv3-copy > .sv3-desc:not(#_):not(#__),html body .sv3-copy > .sv3-list:not(#_):not(#__){max-width:var(--pb-tw,none)}
 </style>
