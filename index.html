@@ -3352,6 +3352,12 @@ new MutationObserver(function(){clearTimeout(m.t);m.t=setTimeout(m,80)}).observe
 m();
 })();
 </script>
+<style id="pb-r13">
+/* Hero: текст і кнопки вище; хедер трохи нижче */
+html body #hero-dark > div.relative:not(#_):not(#__):not(#___){transform:translate3d(0,calc(-1 * clamp(24px,8vh,96px)),0)}
+@media (min-width:1024px){html body header > div:not(#_):not(#__):not(#___){height:92px !important;padding-top:12px !important}}
+@media (max-width:1023px){html body header > div:not(#_):not(#__):not(#___){height:88px !important;padding-top:24px !important}}
+</style>
 <style id="pb-r5">/* service cards: description + bullets are as wide as the heading text */
 html body .sv3-copy > .sv3-desc:not(#_):not(#__),html body .sv3-copy > .sv3-list:not(#_):not(#__){max-width:var(--pb-tw,none)}
 </style>
