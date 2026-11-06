@@ -9,7 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Manrope:wght@300;400;500;600;700;800&display=swap">
+    <link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Manrope:wght@300;400;500;600;700;800&display=swap">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Manrope:wght@300;400;500;600;700;800&display=swap"></noscript>
     <link rel="icon" type="image/png" sizes="192x192" href="./favicon.png" />
     <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
     <title>Point B Group — впровадження keyCRM, AI-боти та автоматизація бізнесу</title>
@@ -2532,9 +2533,10 @@ window.__pbxTick=function(f){fns.push(f);sched();setTimeout(f,0)};})();
 
   var lastT = 0;
   var scrAt = 0; if (window.__pbSafari) addEventListener('scroll', function () { scrAt = performance.now(); }, { passive: true });
-  function loop(t) { if (window.__pbSafari && performance.now() - scrAt < 160) { raf = requestAnimationFrame(loop); return; } if (!t || t - lastT >= 30) { lastT = t || 0; fc += 1; sync(); draw(); } raf = requestAnimationFrame(loop); }
+  var dispChk = 0;
+  function loop(t) { if (!dispChk && cv.isConnected && document.readyState === 'complete') { dispChk = 1; if (getComputedStyle(cv).display === 'none') { raf = 0; running = false; return; } } if (window.__pbSafari && performance.now() - scrAt < 160) { raf = requestAnimationFrame(loop); return; } if (!t || t - lastT >= 30) { lastT = t || 0; fc += 1; sync(); draw(); } raf = requestAnimationFrame(loop); }
   var bgSeen = true;
-  function startLoop() { if (reduce || running || document.hidden || !bgSeen) return; running = true; raf = requestAnimationFrame(loop); }
+  function startLoop() { if (reduce || running || document.hidden || !bgSeen) return; if (cv && getComputedStyle(cv).display === 'none') return; /* #69: canvas прихований назавжди — не малюємо вхолосту */ running = true; raf = requestAnimationFrame(loop); }
   function stopLoop() { if (raf) cancelAnimationFrame(raf); raf = 0; running = false; }
 
   /* ================= scroll scene ================= */
@@ -2771,6 +2773,8 @@ function mount(foot){
     var c=document.querySelector('#cta-section'),f=document.querySelector('footer');
     if(!c||!f||!window.PBXVortex)return;
     if(st.w&&c.contains(st.w)){size();return}
+    /* #69: WebGL-фон CTA/футера створюємо лише коли до нього лишилось ≤ 1.5 екрана прокрутки */
+    if(c.getBoundingClientRect().top>innerHeight*1.5)return;
     var w=document.createElement('div');w.className='pbx-vortex';w.setAttribute('aria-hidden','true');
     var cv=document.createElement('canvas');w.appendChild(cv);c.insertBefore(w,c.firstChild);
     st.w=w;size();
@@ -2784,6 +2788,7 @@ function mount(foot){
     }catch(e){console.error(e)}
   }
   __pbxTick(mount);
+  addEventListener('scroll',function(){if(!st.w)mount()},{passive:true});
 })();
 
 /* partners marquee in footer */
@@ -3109,7 +3114,7 @@ function mount(foot){
       if(hide)continue;
       p.n.style.transform='translate3d('+p.x.toFixed(1)+'px,'+p.y.toFixed(1)+'px,0) translate(-50%,-50%) scale('+sc.toFixed(3)+')';
       p.n.style.opacity=op.toFixed(3)}
-    if(inside||activity>0)raf=requestAnimationFrame(frame);else raf=0}
+    if(activity>0)raf=requestAnimationFrame(frame);else raf=0}
   addEventListener('pointermove',function(e){
     if(e.pointerType&&e.pointerType!=='mouse')return;
     mount();
@@ -3125,7 +3130,7 @@ function mount(foot){
 
     </script>
     <script src="horizon.js" defer></script>
-<script src="vortex.js"></script>
+<script src="vortex.js" defer></script>
   <style id="pb-rev-photo">#reviews-section figure figcaption>div:first-child{overflow:hidden}#reviews-section figure figcaption>div:first-child:has(.pb-rev-photo){width:48px;height:48px;min-width:48px}.pb-rev-photo{display:block;border-radius:50%}</style>
 <style id="pb-admin-login">/* admin login: the global h1 size (display) must not hit this small form title */
 html body h1.text-2xl.font-black.text-white:not(#_):not(#__):not(#___){font-size:28px !important;line-height:1.15 !important;letter-spacing:-.01em !important;hyphens:none !important;overflow-wrap:normal !important;word-break:normal !important;max-width:none !important}
@@ -3503,7 +3508,8 @@ function run(){raf=0;
 function q(){if(!raf)raf=requestAnimationFrame(run)}
 addEventListener('resize',q);
 if(document.fonts&&document.fonts.ready)document.fonts.ready.then(q);
-new MutationObserver(q).observe(document.documentElement,{childList:true,subtree:true,attributes:true,attributeFilter:['class','data-active','data-closed','style']});
+/* #69: реагуємо лише на зміни всередині карток послуг, а не на кожну анімацію на сторінці */
+new MutationObserver(function(ms){for(var i=0;i<ms.length;i++){var t=ms[i].target;if(t&&t.closest&&(t.closest('.sv3-card')||t.id==='root')){q();return}}}).observe(document.documentElement,{childList:true,subtree:true,attributes:true,attributeFilter:['class','data-active','data-closed','style']});
 if(window.ResizeObserver){var ro=new ResizeObserver(q);var wire=function(){document.querySelectorAll('.sv3-h3,.sv3-copy').forEach(function(e){if(!e.__pbro){e.__pbro=1;ro.observe(e)}})};new MutationObserver(wire).observe(document.documentElement,{childList:true,subtree:true});wire()}
 q();
 })();</script>

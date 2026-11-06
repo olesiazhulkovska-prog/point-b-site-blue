@@ -38,9 +38,9 @@ const RIM_SPREAD = 0.035;
  */
 const REF_ASPECT = 1314 / 2860;
 /* Quality tiers, not design controls (rule 10) — picked, not exposed. */
-const MAX_DPR = 2;
+const MAX_DPR = 1.25;
 /** Everything here is a soft gradient, so under-rendering costs nothing visible. */
-const RENDER_SCALE = 0.6;
+const RENDER_SCALE = 0.5;
 /** Ceiling on the 26-step march: a 2560-wide retina frame would else cost 5.3M px. */
 const PIXEL_BUDGET = 2200000;
 const VERT = `
@@ -374,7 +374,7 @@ function mountHorizon(root, canvas, props) {
         const dpr = Math.min(typeof window !== "undefined" ? window.devicePixelRatio || 1 : 1, MAX_DPR);
         // Never below 1 device px per CSS px — the rim is a thin feature and a
         // 0.6x buffer on a non-retina phone aliases it away.
-        const scale = Math.min(Math.max(RENDER_SCALE * dpr, 1), MAX_DPR);
+        const scale = Math.min(Math.max(RENDER_SCALE * dpr, 0.75), MAX_DPR);
         let nw = Math.max(2, Math.round(cssW * scale));
         let nh = Math.max(2, Math.round(cssH * scale));
         // Area budget rather than a per-axis cap: a 26-step march over a 2560px
