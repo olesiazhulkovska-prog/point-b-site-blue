@@ -3524,6 +3524,36 @@ html body :is(#why-us-section,#cases-section,#cta-section) :is(div.flex.items-ce
 html body main #reviews-section:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______){padding-top:var(--sec-y) !important}
 html body main #cta-section:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______){padding-top:calc(var(--sec-y) + var(--arc)) !important}
 </style>
+<style id="pb-r39">/* tablet portrait (768-1099): taller hero graph; compact service cards; "why us" cards sized by content and bleeding to the screen edge; reviews in one scrolling row; header lower. Footer: off-white text, no decorative lines (all widths) */
+@media (min-width:768px) and (max-width:1099px){
+html{--pb-gx:48px}
+@media (min-width:1024px){html{--pb-gx:64px}}
+html body .hero-graph-in > div > div.md\:block:not(#_):not(#__):not(#___){aspect-ratio:760 / 640 !important}
+html body header.fixed:not(#_):not(#__){padding-top:calc(env(safe-area-inset-top,0px) + 22px) !important}
+html body .sv3-card:not(#_):not(#__):not(#___):not(#____){display:grid !important;grid-template-columns:auto minmax(0,1fr) !important;grid-template-rows:auto auto auto auto !important;column-gap:0 !important;row-gap:0 !important;align-items:start !important;padding:clamp(24px,3.6vw,32px) !important}
+html body .sv3-card .sv3-copy:not(#_):not(#__):not(#___):not(#____){display:contents !important}
+html body .sv3-card .sv3-num:not(#_):not(#__):not(#___):not(#____){--fs-h2:30px;grid-column:1;grid-row:1;align-self:start !important;font-size:30px !important;line-height:1.1 !important;margin:0 14px 0 0 !important}
+html body .sv3-card .sv3-h3:not(#_):not(#__):not(#___):not(#____){grid-column:2;grid-row:1;align-self:start !important;font-size:30px !important;line-height:1.1 !important;margin:0 !important}
+html body .sv3-card .sv3-desc:not(#_):not(#__):not(#___):not(#____){grid-column:2;grid-row:2;margin:16px 0 0 !important;max-width:56ch !important}
+html body .sv3-card .sv3-list:not(#_):not(#__):not(#___):not(#____){grid-column:2;grid-row:3}
+html body .sv3-card .sv3-cta:not(#_):not(#__):not(#___):not(#____){grid-column:2;grid-row:4;justify-self:start !important;width:max-content !important;max-width:100% !important;margin-top:20px !important}
+html body .sv3-card .sv3-viz.svc-viz:not(#_):not(#__):not(#___):not(#____){grid-column:1 / -1 !important;grid-row:5 !important;margin:24px 0 0 !important;padding:clamp(12px,1.8vw,20px) !important;border-radius:20px !important;--radius:20px;background:rgba(8,10,52,.42) !important;box-shadow:inset 0 0 0 1px rgba(143,163,255,.22) !important}
+/* why-us: scroller runs edge to edge, cards as tall as their content, a bit wider so text wraps less */
+html body #why-us-section .overflow-x-auto:not(#_):not(#__){margin-left:calc(-1 * var(--pb-gx,24px)) !important;margin-right:calc(-1 * var(--pb-gx,24px)) !important;padding-left:var(--pb-gx,24px) !important;padding-right:var(--pb-gx,24px) !important;scroll-padding-left:var(--pb-gx,24px) !important}
+html body #why-us-section .overflow-x-auto > div:not(#_):not(#__){width:min(440px,62vw) !important;min-height:0 !important}
+html body #why-us-section .overflow-x-auto .theme-light:not(#_):not(#__){min-height:0 !important}
+html body #why-us-section .overflow-x-auto .theme-light span.font-mono:not(#_):not(#__){white-space:nowrap !important}
+/* reviews: one scrolling row like on mobile */
+html body #reviews-section [class*="max-md:flex"]:not(#_):not(#__){display:flex !important;overflow-x:auto !important;scroll-snap-type:x mandatory !important;gap:20px !important;margin-left:calc(-1 * var(--pb-gx,24px)) !important;margin-right:calc(-1 * var(--pb-gx,24px)) !important;padding:0 var(--pb-gx,24px) 8px !important;scroll-padding-left:var(--pb-gx,24px) !important;scrollbar-width:none !important}
+html body #reviews-section [class*="max-md:flex"]::-webkit-scrollbar{display:none}
+html body #reviews-section [class*="max-md:flex"] > *:not(#_):not(#__){flex:0 0 min(400px,56vw) !important;width:min(400px,56vw) !important;scroll-snap-align:start !important}
+}
+/* footer: readable text on the dark navy, no decorative lines */
+html body #site-footer:not(#_):not(#__):not(#___){border-top:0 !important;background:linear-gradient(to bottom,rgba(17,17,68,0),#111144 110px) !important}
+html body #site-footer div.grid.grid-cols-1:not(#_):not(#__):not(#___):not(#____){border-bottom-style:none !important;border-bottom-width:0 !important}
+html body #site-footer .pt-8:not(#_):not(#__):not(#___), html body #site-footer .pt-8 *:not(#_):not(#__):not(#___){color:#F6F5F4 !important;opacity:1 !important;border-top-style:none !important}
+html body #site-footer :is(p,span,a,li,button):not(#_):not(#__):not(#___):not(#____):not([class*="accent"]){opacity:1}
+</style>
 <style id="pb-r5">/* service cards: description + bullets are as wide as the heading text */
 html body .sv3-copy > .sv3-desc:not(#_):not(#__),html body .sv3-copy > .sv3-list:not(#_):not(#__){max-width:var(--pb-tw,none)}
 </style>
