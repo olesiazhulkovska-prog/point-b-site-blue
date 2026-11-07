@@ -499,7 +499,7 @@ window.__mountHorizon = mountHorizon;
       if(t<1)requestAnimationFrame(introTick);else{introOn=false;ik=0;io=1;upd()}
     }
     function upd(){
-      var hero=document.getElementById('hero-dark'),vh=window.innerHeight||800,y=window.scrollY||0,P=Math.min(1,Math.max(0,y/(vh*1.5)));
+      var hero=document.getElementById('hero-dark'),vh=(function(){var ih=window.innerHeight||800;if(!matchMedia('(pointer: coarse)').matches)return ih;if(window.__pbVHw!==innerWidth){window.__pbVHw=innerWidth;window.__pbVH=0}return(window.__pbVH=Math.max(window.__pbVH,ih))})(),y=window.scrollY||0,P=Math.min(1,Math.max(0,y/(vh*1.5)));
       var on=!!hero&&P<1;
       root.style.display=on?'block':'none';
       if(on){root.style.opacity=(Math.pow(1-P,1.4)*(introOn?io*io:1)).toFixed(3);root.style.transform='translate3d(0,'+((introOn?ik*vh*.32:0)-(y*.35)).toFixed(1)+'px,0)';}

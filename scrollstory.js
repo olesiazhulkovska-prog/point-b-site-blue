@@ -5,6 +5,9 @@
   var de = document.documentElement;
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
+  var coarse = matchMedia('(pointer: coarse)').matches;
+  var VH = Math.max(innerHeight, document.documentElement.clientHeight), VW = innerWidth;
+  function vhs() { return coarse ? VH : innerHeight; } // on phones the URL bar resizes the viewport while scrolling; keep the layout stable
   var S = null; // поточний стан (перестворюється, коли React перемальовує блок)
   var raf = 0;
   var clamp = function (v, a, b) { return Math.min(b === undefined ? 1 : b, Math.max(a === undefined ? 0 : a, v)); };
@@ -98,7 +101,7 @@
 
   function layout() {
     if (!S) return;
-    var vh = innerHeight, vw = innerWidth;
+    var vh = vhs(), vw = innerWidth;
     clearItems();
     S.gin.style.scale = '';
     var c = collect();
@@ -155,7 +158,7 @@
   function update() {
     raf = 0;
     if (!S || !S.sec.isConnected) return;
-    var vh = innerHeight;
+    var vh = vhs();
     // 1) текст
     var r = S.sec.getBoundingClientRect();
     var total = S.tsecH - vh + vh * 0.25;
@@ -205,7 +208,13 @@
   function tick() { if (!raf) raf = requestAnimationFrame(update); }
 
   addEventListener('scroll', tick, { passive: true });
-  addEventListener('resize', function () { if (S) { clearTimeout(S.rt); S.rt = setTimeout(layout, 120); } });
+  addEventListener('resize', function () {
+    if (coarse) {
+      if (innerWidth === VW) { VH = Math.max(VH, innerHeight); return; } // only the URL bar moved
+      VW = innerWidth; VH = Math.max(innerHeight, document.documentElement.clientHeight);
+    }
+    if (S) { clearTimeout(S.rt); S.rt = setTimeout(layout, 120); }
+  });
 
   var tries = 0;
   setInterval(function () {
