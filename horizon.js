@@ -490,10 +490,10 @@ window.__mountHorizon = mountHorizon;
     try{ok=window.__mountHorizon(root,cv,window.__pbHorizonProps)}catch(e){ok=false}
     if(!ok){root.remove();document.documentElement.classList.add('pb-sunrise-go');return}
     /* інтро «схід сонця»: світіння піднімається знизу, потім з'являється текст */
-    var de=document.documentElement,introOn=de.classList.contains('pb-sunrise'),I0=0,ID=window.__pbIntroMs||1800,ik=introOn?1:0,io=introOn?0:1;
+    var de=document.documentElement,introOn=de.classList.contains('pb-sunrise'),I0=0,LT=0,AC=0,ID=window.__pbIntroMs||2400,ik=introOn?1:0,io=introOn?0:1;
     function go(){de.classList.add('pb-sunrise-go')}
     function introTick(now){
-      if(!I0)I0=now;var t=Math.min(1,(now-I0)/ID),e=1-Math.pow(1-t,3);
+      if(!I0){I0=now;LT=now}var dt=Math.min(40,now-LT);LT=now;AC+=dt;var t=Math.min(1,AC/ID),e=1-Math.pow(1-t,3);
       ik=1-e;io=Math.min(1,t*2.2);upd();
       if(t>.15&&!de.classList.contains('pb-sunrise-go'))go();
       if(t<1)requestAnimationFrame(introTick);else{introOn=false;ik=0;io=1;upd()}
@@ -513,7 +513,7 @@ window.__mountHorizon = mountHorizon;
       if(root.__setRunning)root.__setRunning(on);
     }
     addEventListener('scroll',upd,{passive:true});addEventListener('resize',upd);setInterval(upd,400);upd();
-    var tries=0;(function start(){if(!introOn){go();return}if(document.getElementById('hero-dark')){requestAnimationFrame(introTick)}else if(tries++<80){setTimeout(start,50)}else{introOn=false;go()}})();
+    var tries=0;(function start(){if(!introOn){go();return}if(document.readyState!=='complete'&&tries++<200){setTimeout(start,50);return}if(document.getElementById('hero-dark')){requestAnimationFrame(introTick)}else if(tries++<80){setTimeout(start,50)}else{introOn=false;go()}})();
   }
   window.__pbHorizonProps={background:'#111144',coreColor:'#F6F5F4',midColor:'#2431A4',deepColor:'#111144',brightness:2.4,coreSize:.02,coreHover:.04,haze:3,speed:1,parallax:3,fit:50,horizonY:.82,horizonRadius:1.867,rimSpread:.035};
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot();
