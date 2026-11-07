@@ -490,12 +490,12 @@ window.__mountHorizon = mountHorizon;
     try{ok=window.__mountHorizon(root,cv,window.__pbHorizonProps)}catch(e){ok=false}
     if(!ok){root.remove();document.documentElement.classList.add('pb-sunrise-go');return}
     /* інтро «схід сонця»: світіння піднімається знизу, потім з'являється текст */
-    var de=document.documentElement,introOn=de.classList.contains('pb-sunrise'),I0=0,ID=window.__pbIntroMs||2600,ik=0,io=1;
+    var de=document.documentElement,introOn=de.classList.contains('pb-sunrise'),I0=0,ID=window.__pbIntroMs||1800,ik=introOn?1:0,io=introOn?0:1;
     function go(){de.classList.add('pb-sunrise-go')}
     function introTick(now){
       if(!I0)I0=now;var t=Math.min(1,(now-I0)/ID),e=1-Math.pow(1-t,3);
       ik=1-e;io=Math.min(1,t*2.2);upd();
-      if(t>.62&&!de.classList.contains('pb-sunrise-go'))go();
+      if(t>.15&&!de.classList.contains('pb-sunrise-go'))go();
       if(t<1)requestAnimationFrame(introTick);else{introOn=false;ik=0;io=1;upd()}
     }
     function upd(){
