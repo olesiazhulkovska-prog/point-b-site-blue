@@ -3494,6 +3494,9 @@ html body .sv3-card .sv3-cta:not(#_):not(#__):not(#___):not(#____){grid-column:2
 html body .sv3-card .sv3-viz:not(#_):not(#__):not(#___):not(#____){grid-column:3;grid-row:2 / 5;margin:32px 0 0 clamp(32px,3.6vw,64px) !important;align-self:start}
 }
 </style>
+<style id="pb-r36">/* word-reveal masks clipped the overhanging dots of "ї"/"й" (tight tracking): widen the mask on the right, keep the layout unchanged */
+html body .pbx-w:not(#_):not(#__):not(#___){padding-right:.2em !important;margin-right:-.2em !important}
+</style>
 <style id="pb-r5">/* service cards: description + bullets are as wide as the heading text */
 html body .sv3-copy > .sv3-desc:not(#_):not(#__),html body .sv3-copy > .sv3-list:not(#_):not(#__){max-width:var(--pb-tw,none)}
 </style>
