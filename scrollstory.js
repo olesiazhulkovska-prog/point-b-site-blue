@@ -241,6 +241,14 @@
     var w = Math.ceil(m.getBoundingClientRect().width) + 2;
     m.remove();
     if (w > 100) document.documentElement.style.setProperty('--sv3-tw', w + 'px');
+    // all three cards get the height of the tallest one (measured at natural height, no visible flicker: set and reset in one frame)
+    var cs3 = document.querySelectorAll('.sv3-card'), root = document.documentElement.style;
+    if (cs3.length) {
+      root.setProperty('--sv3-eq', '0px');
+      var mh = 0;
+      for (var i = 0; i < cs3.length; i++) mh = Math.max(mh, cs3[i].offsetHeight);
+      root.setProperty('--sv3-eq', mh + 'px');
+    }
   }
   var svcI = setInterval(svcWidth, 700);
   addEventListener('resize', svcWidth);
