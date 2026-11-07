@@ -2737,6 +2737,7 @@ function mount(foot){
           if(innerWidth>=1100&&e.closest('.hero-note')){sn=['clamp(30px,4.45vw,64px)','1.156']}
           else if(innerWidth<1100&&e.closest('.hero-graph .hero-note')){sn=['clamp(26px,6.8vw,40px)','1.22']}
           else if(innerWidth>=1360&&e.closest('.hero-graph-in')){sn=fs>=15?['18px','1.4']:['16px','1.4']}
+          if(e.parentElement&&e.parentElement.matches(':is(#services-section,#why-us-section,#cases-section,#reviews-section,#cta-section) :is(div[class*="font-mono"],.cta-col > div.inline-flex):has(+ h2)'))sn=['16px','1.4'];
           setp(e,'font-size',sn[0]);setp(e,'line-height',sn[1]);
         }
       }
@@ -3513,6 +3514,15 @@ html body .sv3-card[data-n="1"] .sv3-h3 .pbx-w:is(:nth-of-type(4),:nth-of-type(5
 html body .sv3-card[data-n="1"] .sv3-h3 .pbx-w:is(:nth-of-type(5),:nth-of-type(8)):not(#_):not(#__):not(#___):not(#____)::after{content:"\A";white-space:pre}
 
 }
+</style>
+<style id="pb-r38">/* section markers: "( ТЕКСТ )" — plain tracked caps, 16px, parentheses; spacing fixes around the curved blocks */
+html body :is(#services-section,#why-us-section,#cases-section,#reviews-section,#cta-section) :is(div.flex.items-center.gap-2.font-mono,.cta-col > div.inline-flex):has(+ h2):not(#_):not(#__):not(#___):not(#____):not(#_____){background:none !important;border:0 !important;border-radius:0 !important;padding:0 !important;margin:0 0 20px !important;display:inline-flex !important;align-items:center;gap:8px !important;width:fit-content;font-family:Manrope,sans-serif !important;font-size:16px !important;line-height:1.4 !important;font-weight:500 !important;letter-spacing:.14em !important;text-transform:uppercase !important;color:#111144 !important}
+html body :is(#services-section,#why-us-section,#cases-section,#reviews-section,#cta-section) :is(div.flex.items-center.gap-2.font-mono,.cta-col > div.inline-flex):has(+ h2) *:not(#_):not(#__):not(#___):not(#____):not(#_____){font-size:16px !important;line-height:1.4 !important;font-weight:500 !important;letter-spacing:.14em !important;text-transform:uppercase !important;color:inherit !important}
+html body :is(#services-section,#why-us-section,#cases-section,#reviews-section,#cta-section) :is(div.flex.items-center.gap-2.font-mono,.cta-col > div.inline-flex):has(+ h2):not(#_):not(#__):not(#___):not(#____):not(#_____)::before{content:"("}
+html body :is(#services-section,#why-us-section,#cases-section,#reviews-section,#cta-section) :is(div.flex.items-center.gap-2.font-mono,.cta-col > div.inline-flex):has(+ h2):not(#_):not(#__):not(#___):not(#____):not(#_____)::after{content:")"}
+html body :is(#why-us-section,#cases-section,#cta-section) :is(div.flex.items-center.gap-2.font-mono,.cta-col > div.inline-flex):has(+ h2):not(#_):not(#__):not(#___):not(#____):not(#_____){color:#C9D3FF !important}
+html body main #reviews-section:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______){padding-top:var(--sec-y) !important}
+html body main #cta-section:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______){padding-top:calc(var(--sec-y) + var(--arc)) !important}
 </style>
 <style id="pb-r5">/* service cards: description + bullets are as wide as the heading text */
 html body .sv3-copy > .sv3-desc:not(#_):not(#__),html body .sv3-copy > .sv3-list:not(#_):not(#__){max-width:var(--pb-tw,none)}
