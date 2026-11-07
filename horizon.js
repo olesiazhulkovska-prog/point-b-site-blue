@@ -502,7 +502,7 @@ window.__mountHorizon = mountHorizon;
       var hero=document.getElementById('hero-dark'),vh=(function(){var ih=window.innerHeight||800;if(!matchMedia('(pointer: coarse)').matches)return ih;if(window.__pbVHw!==innerWidth){window.__pbVHw=innerWidth;window.__pbVH=0}return(window.__pbVH=Math.max(window.__pbVH,ih))})(),y=window.scrollY||0,P=Math.min(1,Math.max(0,y/(vh*1.5)));
       var on=!!hero&&P<1;
       root.style.display=on?'block':'none';
-      if(on){root.style.opacity=(Math.pow(1-P,1.4)*(introOn?io*io:1)).toFixed(3);root.style.transform='translate3d(0,'+((introOn?ik*vh*.32:0)-(y*.35)).toFixed(1)+'px,0)';}
+      if(on){root.style.opacity=(Math.pow(1-P,1.4)*(introOn?io*io:1)).toFixed(3);root.style.transform='translate3d(0,'+((introOn?ik*vh*(innerWidth<768?.75:.32):0)-(y*.35)).toFixed(1)+'px,0)';}
       /* другий блок піднімається назустріч світінню */
       var nx=hero&&hero.nextElementSibling;
       if(nx&&!matchMedia('(prefers-reduced-motion: reduce)').matches){
@@ -515,6 +515,6 @@ window.__mountHorizon = mountHorizon;
     addEventListener('scroll',upd,{passive:true});addEventListener('resize',upd);setInterval(upd,400);upd();
     var tries=0;(function start(){if(!introOn){go();return}if(document.getElementById('hero-dark')){requestAnimationFrame(introTick)}else if(tries++<80){setTimeout(start,50)}else{introOn=false;go()}})();
   }
-  window.__pbHorizonProps={background:'#111144',coreColor:'#F6F5F4',midColor:'#2431A4',deepColor:'#111144',brightness:2.4,coreSize:.02,coreHover:.04,haze:3,speed:1,parallax:3,fit:50,horizonY:.82,horizonRadius:1.867,rimSpread:.035};
+  window.__pbHorizonProps={background:'#111144',coreColor:'#F6F5F4',midColor:'#2431A4',deepColor:'#111144',brightness:2.4,coreSize:(innerWidth<768?.03:.02),coreHover:.04,haze:3,speed:1,parallax:3,fit:50,horizonY:(innerWidth<768?(window.__pbMY||.255):.82),horizonRadius:(innerWidth<768?(window.__pbMR||2.3):1.867),rimSpread:.035};
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot();
 })();
