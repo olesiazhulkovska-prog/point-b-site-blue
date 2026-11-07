@@ -105,7 +105,7 @@
     S.items = c.items;
     S.deskOn = c.deskOn;
     // текстова секція: закріплений блок + запас скролу
-    S.tsecH = Math.round(vh * (vw >= 1024 ? 2.4 : 2.1));
+    S.tsecH = Math.round(vh * (vw >= 1024 ? 2.3 : 2.1));
     S.sec.style.setProperty('height', S.tsecH + 'px', 'important');
     S.sec.style.setProperty('margin-bottom', '0', 'important');
     S.note.style.cssText = 'position:sticky;top:' + Math.round(vh * 0.15) + 'px;height:' + Math.round(vh * 0.7) + 'px;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:0 !important;';
@@ -178,7 +178,7 @@
     var g;
     if (S.pinG) {
       var sr = S.spacer.getBoundingClientRect();
-      var ex = 0;
+      var ex = vh * 0.16;
       g = clamp(((S.gtop + S.gH * S.gscale + ex) - sr.top) / (S.spH * 0.92 + ex));
       var k = S.items;
       var cards = k.filter(function (x) { return x.kind === 'card'; });
