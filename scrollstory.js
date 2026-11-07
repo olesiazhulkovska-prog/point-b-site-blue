@@ -229,4 +229,20 @@
     }
   }, 500);
   document.fonts && document.fonts.ready && document.fonts.ready.then(function () { if (S) layout(); });
+
+  // service cards: the text column is exactly as wide as the first card title ("Впровадження keyCRM"), so every card lines up
+  function svcWidth() {
+    var h3 = document.querySelector('.sv3-card .sv3-h3');
+    if (!h3 || innerWidth < 1100) return;
+    var m = document.createElement('span'), cs = getComputedStyle(h3);
+    m.textContent = h3.textContent.trim();
+    m.style.cssText = 'position:absolute;visibility:hidden;white-space:nowrap;left:-9999px;top:0;font:' + cs.font + ';letter-spacing:' + cs.letterSpacing + ';text-transform:' + cs.textTransform;
+    document.body.appendChild(m);
+    var w = Math.ceil(m.getBoundingClientRect().width) + 2;
+    m.remove();
+    if (w > 100) document.documentElement.style.setProperty('--sv3-tw', w + 'px');
+  }
+  var svcI = setInterval(svcWidth, 700);
+  addEventListener('resize', svcWidth);
+  document.fonts && document.fonts.ready && document.fonts.ready.then(svcWidth);
 })();
