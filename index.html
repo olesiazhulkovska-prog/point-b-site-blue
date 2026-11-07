@@ -3595,6 +3595,19 @@ html body .sv3-card .sv3-dgi:not(#_):not(#__):not(#___):not(#____){zoom:.84 !imp
 @media (min-width:1100px) and (max-height:900px){html body .sv3-card .sv3-dgi span.font-manrope.font-bold.leading-tight:not(#_):not(#__):not(#___):not(#____){zoom:.8}}
 @media (min-width:1100px) and (max-height:900px){html body .sv3-card[data-n="2"] .sv3-dgi:not(#_):not(#__):not(#___):not(#____){zoom:.68 !important}}
 </style>
+<style id="pb-r41">/* round 4: mobile graph closer to the text above, one-line "Кероване зростання", more air above the timeline, no "all cases" button on phones; timeline also on short tablet screens */
+html body #home-all-cases-btn:not(#_):not(#__){display:none !important}
+@media (max-width:767px){
+html body .hero-graph-in > div > div.md\:hidden:not(#_):not(#__):not(#___){margin-top:-190px !important}
+html body .hero-graph-in div[class*="min-height:740px"]:not(#_):not(#__){margin-top:32px !important;padding-bottom:8px !important}
+html body .hero-graph-in div[class*="min-height:740px"] > div:last-child:not(#_):not(#__){font-size:13px !important;gap:6px}
+html body .hero-graph-in div[class*="min-height:740px"] > div:last-child > div:not(#_):not(#__){max-width:32% !important}
+html body .hero-graph-in div[class*="min-height:740px"] > div:last-child > div:last-child:not(#_):not(#__){max-width:none !important;white-space:nowrap !important}
+}
+@media (min-width:768px){
+html body .hero-graph-in div[class*="min-height:740px"]:not(#_):not(#__){display:block !important}
+}
+</style>
 <style id="pb-r5">/* service cards: description + bullets are as wide as the heading text */
 html body .sv3-copy > .sv3-desc:not(#_):not(#__),html body .sv3-copy > .sv3-list:not(#_):not(#__){max-width:var(--pb-tw,none)}
 </style>
