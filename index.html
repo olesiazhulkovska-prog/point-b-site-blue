@@ -3620,7 +3620,7 @@ html body .sv3-card .sv3-dgi:not(#_):not(#__):not(#___):not(#____){transform:sca
 @media (hover:none) and (pointer:coarse){html body #home-all-cases-btn:not(#_):not(#__){display:none !important}}
 @media (max-width:767px){
 html body .hero-graph-in > div > div.md\:hidden:not(#_):not(#__):not(#___){margin-top:-140px !important}
-html body #hero-dark h1:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______):not(#_______){font-size:clamp(24px,7.6vw,40px) !important;letter-spacing:-.035em !important}
+html body #hero-dark h1:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______):not(#_______){font-size:clamp(24px,8vw,40px) !important;letter-spacing:-.035em !important}
 html body #hero-dark h1 > span.block:not(#_):not(#__){white-space:nowrap !important}
 html body .hero-graph-in > div > div.md\:hidden > div.grid-cols-2:not(#_):not(#__):not(#___){grid-template-columns:minmax(0,1fr) !important}
 html body .hero-graph-in div[class*="min-height:740px"]:not(#_):not(#__){margin-top:32px !important;padding-bottom:8px !important}
@@ -3648,6 +3648,19 @@ html body :is(#services-section,#why-us-section,#cases-section,#reviews-section,
 /* service diagrams: drop duplicated "100% ownership" chip (already in the list) */
 html body .sv3-card[data-n="2"] .sv3-viz div.mt-2.inline-flex.rounded-full:not(#_):not(#__):not(#___){display:none !important}
 html body :is(#services-section,#why-us-section,#cases-section,#reviews-section,#cta-section) :is(div.flex.items-center.gap-2.font-mono,.cta-col > div.inline-flex):has(+ h2) *:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______){text-transform:none !important;letter-spacing:0 !important;font-family:inherit !important}
+</style>
+<style id="pb-r43">/* tablet landscape / small desktop: identical paddings in all three service cards */
+@media (min-width:1100px){
+html body .sv3-card .sv3-num:not(#_):not(#__):not(#___):not(#____):not(#_____){min-width:54px !important}
+}
+@media (min-width:1100px) and (max-height:900px){
+html body .sv3-card:not(#_):not(#__):not(#___):not(#____):not(#_____){align-content:start !important;grid-template-rows:auto auto auto 1fr !important}
+html body .sv3-card .sv3-cta:not(#_):not(#__):not(#___):not(#____):not(#_____){align-self:end !important;margin-top:18px !important}
+html body .sv3-card .sv3-viz.svc-viz:not(#_):not(#__):not(#___):not(#____):not(#_____){align-self:stretch !important;display:flex !important;flex-direction:column !important;justify-content:center !important}
+}
+@media (min-width:1100px) and (max-height:800px){
+html body .sv3-card:not(#_):not(#__):not(#___):not(#____):not(#_____){height:494px !important}
+}
 </style>
 <style id="pb-r5">/* service cards: description + bullets are as wide as the heading text */
 html body .sv3-copy > .sv3-desc:not(#_):not(#__),html body .sv3-copy > .sv3-list:not(#_):not(#__){max-width:var(--pb-tw,none)}
