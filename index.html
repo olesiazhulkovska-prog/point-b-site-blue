@@ -2734,7 +2734,7 @@ function mount(foot){
         if(hasText&&!/^(Point|B|POINT)$/.test(e.textContent.trim())&&!e.closest('[data-hero-title]')){
           var fs=parseFloat(cs.fontSize),sn=snapFs(fs);
           /* v95: text inside the hero scheme reads one step larger on desktop (14->16, 16->18) */
-          if(innerWidth>=1100&&e.closest('.hero-note')){sn=['clamp(24px,2.3vw,38px)','1.4']}
+          if(innerWidth>=1100&&e.closest('.hero-note')){sn=['clamp(30px,4.45vw,64px)','1.156']}
           else if(innerWidth>=1360&&e.closest('.hero-graph-in')){sn=fs>=15?['18px','1.4']:['16px','1.4']}
           setp(e,'font-size',sn[0]);setp(e,'line-height',sn[1]);
         }
@@ -3416,7 +3416,7 @@ html.pb-sunrise.pb-sunrise-go body #hero-dark > div.relative:not(#_):not(#__){op
 .pb-words{display:block}
 .pb-pill{--pa:0;background:rgba(246,245,244,var(--pa));color:color-mix(in srgb,#111144 calc(var(--pa) * 100%),#F6F5F4);border-radius:8px;padding:.06em .3em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
 .pb-gspacer{width:100%;flex:none}
-@media (min-width:1100px){.pb-words,.pb-pill{font-size:clamp(24px,2.3vw,38px);line-height:1.4}}
+@media (min-width:1100px){.pb-words,.pb-pill{font-size:clamp(30px,4.45vw,64px);line-height:1.156}}
 .pb-pill:not(#_){display:inline-block;white-space:nowrap;padding:.1em .7em .14em;border-radius:999px;background:rgba(255,255,255,var(--pa));border:2px solid rgba(143,163,255,var(--pa));box-shadow:0 6px 20px rgba(143,163,255,calc(var(--pa) * .18));transform:scale(calc(.94 + var(--pa) * .06));margin-left:.15em}
 </style>
 <style id="pb-r23">/* hero → story: shorter dead space, wider text, no seam under the glow */
@@ -3436,6 +3436,17 @@ html body .hero-track[data-static="1"] .hero-L-bg:not(#_):not(#__):not(#___){bac
 :root,html body{--font-body:'Manrope',system-ui,sans-serif;--font-display:'Manrope',system-ui,sans-serif;--font-sans:'Manrope',system-ui,sans-serif;--font-mono:'Manrope',system-ui,sans-serif}
 html body *:not(#_):not(#__):not(#___):not(#____):not(#nav-logo-btn *):not(footer [aria-label="Point B"]):not(svg *){font-family:'Manrope',system-ui,sans-serif !important;text-transform:none !important;font-variant-caps:normal !important}
 html body *:not(#_):not(#__):not(#___):not(#____)::before,html body *:not(#_):not(#__):not(#___):not(#____)::after{text-transform:none !important;font-family:'Manrope',system-ui,sans-serif !important}
+</style>
+<style id="pb-r27">/* hero H1: Manrope 500, 96px / 89px, tracking -0.03em (reference); scales down with the window */
+html body #hero-dark h1:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______):not(#_______){font-family:'Manrope',system-ui,sans-serif !important;font-weight:500 !important;font-size:clamp(34px,6.67vw,96px) !important;line-height:.927 !important;letter-spacing:-.03em !important}
+html body #hero-dark h1:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______):not(#_______) *{font-weight:inherit !important;letter-spacing:inherit !important}
+</style>
+<style id="pb-r28">/* story text: Manrope 500, 64px / 74px, tracking -0.02em (reference) */
+@media (min-width:1100px){
+html body .hero-graph .hero-note:not(#_):not(#__){max-width:1400px}
+html body .hero-graph .hero-note-p:not(#_):not(#__):not(#___):not(#____){font-weight:500 !important;letter-spacing:-.02em !important;max-width:none !important}
+html body .hero-graph .hero-note-p:not(#_):not(#__):not(#___):not(#____) *{font-weight:500 !important;letter-spacing:-.02em !important}
+}
 </style>
 <style id="pb-r5">/* service cards: description + bullets are as wide as the heading text */
 html body .sv3-copy > .sv3-desc:not(#_):not(#__),html body .sv3-copy > .sv3-list:not(#_):not(#__){max-width:var(--pb-tw,none)}
