@@ -3632,6 +3632,17 @@ html body .hero-graph-in div[class*="min-height:740px"] > div:last-child > div:l
 html body .hero-graph-in div[class*="min-height:740px"]:not(#_):not(#__){display:block !important}
 }
 </style>
+<style id="pb-r42">/* round 5 polish: cleaner header edge, tighter section gaps, equal hero buttons, richer review cards */
+@media (min-width:1100px){
+html body header.fixed:not(#_):not(#__)::before{height:104px !important;background:linear-gradient(180deg,rgba(17,17,68,.98) 0,rgba(17,17,68,.98) calc(100% - 16px),rgba(17,17,68,0) 100%) !important}
+html body{--sec-y:112px;--section-py:112px}
+html body #hero-dark button.group:not(#_):not(#__):not(#___){min-width:260px !important}
+}
+html body #reviews-section figure:not(#_):not(#__):not(#___){padding:32px !important;gap:24px}
+html body #reviews-section figure blockquote:not(#_):not(#__),html body #reviews-section figure > p:not(#_):not(#__){font-size:17px !important;line-height:1.55 !important}
+html body #reviews-section figure figcaption img:not(#_):not(#__){width:60px !important;height:60px !important;min-width:60px !important;border-radius:50% !important;object-fit:cover;box-shadow:0 0 0 2px rgba(249,133,19,.55)}
+html body #reviews-section figure figcaption .font-bold:not(#_):not(#__){font-size:15px !important}
+</style>
 <style id="pb-r5">/* service cards: description + bullets are as wide as the heading text */
 html body .sv3-copy > .sv3-desc:not(#_):not(#__),html body .sv3-copy > .sv3-list:not(#_):not(#__){max-width:var(--pb-tw,none)}
 </style>
