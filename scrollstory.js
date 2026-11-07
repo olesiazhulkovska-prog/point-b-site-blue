@@ -105,7 +105,7 @@
     S.items = c.items;
     S.deskOn = c.deskOn;
     // текстова секція: закріплений блок + запас скролу
-    S.tsecH = Math.round(vh * (vw >= 1024 ? 2.2 : 2));
+    S.tsecH = Math.round(vh * (vw >= 1024 ? 2.4 : 2.1));
     S.sec.style.setProperty('height', S.tsecH + 'px', 'important');
     S.sec.style.setProperty('margin-bottom', '0', 'important');
     S.note.style.cssText = 'position:sticky;top:' + Math.round(vh * 0.15) + 'px;height:' + Math.round(vh * 0.7) + 'px;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:0 !important;';
@@ -120,7 +120,7 @@
       var top = Math.max(topPad, Math.round((vh - vis) / 2));
       S.gtop = top;
       S.gH = H;
-      S.gin.style.cssText = 'position:sticky;top:' + top + 'px;margin-top:' + (-Math.round(vh * 0.5)) + 'px;transform-origin:50% 0;' + (sc < 1 ? 'scale:' + sc + ';' : '');
+      S.gin.style.cssText = 'position:sticky;top:' + top + 'px;margin-top:0;transform-origin:50% 0;' + (sc < 1 ? 'scale:' + sc + ';' : '');
       var sp = Math.round(vh * 1.5);
       S.spacer.style.height = sp + 'px';
       S.spH = sp;
@@ -163,22 +163,22 @@
     var h = clamp(p / 0.08);
     S.head.style.opacity = h.toFixed(3);
     S.head.style.translate = '0 ' + ((1 - ease(h)) * 18).toFixed(1) + 'px';
-    var n = S.nodes.length, f0 = 0.1, f1 = 0.74, win = Math.max(2.2 / n, 0.12);
+    var n = S.nodes.length, f0 = 0.1, f1 = 0.66, win = Math.max(2.2 / n, 0.12);
     for (var i = 0; i < n; i++) {
       var t = f0 + (i / Math.max(1, n - 1)) * (f1 - f0 - win * (f1 - f0));
       var a = clamp((p - t) / (win * (f1 - f0)));
       S.nodes[i].style.opacity = (0.16 + 0.84 * ease(a)).toFixed(3);
     }
-    var pa = clamp((p - 0.8) / 0.12);
+    var pa = clamp((p - 0.7) / 0.12);
     S.pill.style.setProperty('--pa', ease(pa).toFixed(3));
-    var fo = clamp((p - 0.9) / 0.1);
+    var fo = clamp((p - 0.86) / 0.12);
     S.p.style.opacity = (1 - ease(fo)).toFixed(3);
     S.p.style.translate = '0 ' + (-ease(fo) * 40).toFixed(1) + 'px';
     // 2) графік
     var g;
     if (S.pinG) {
       var sr = S.spacer.getBoundingClientRect();
-      var ex = vh * 0.3;
+      var ex = 0;
       g = clamp(((S.gtop + S.gH * S.gscale + ex) - sr.top) / (S.spH * 0.92 + ex));
       var k = S.items;
       var cards = k.filter(function (x) { return x.kind === 'card'; });
