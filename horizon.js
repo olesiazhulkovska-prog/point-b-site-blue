@@ -498,13 +498,13 @@ window.__mountHorizon = mountHorizon;
     function introTick(now){
       if(!I0){I0=now;LT=now}var dt=Math.min(100,now-LT);LT=now;AC+=dt;var t=Math.min(1,AC/ID),e=1-Math.pow(1-t,3);
       ik=1-e;io=Math.min(1,t*(innerWidth<768?7:2.2));
-      if(innerWidth<768){var s=t*t*t*(t*(t*6-15)+10);window.__pbLift=.67*s}
+      if(innerWidth<768){var s=t*t*t*(t*(t*6-15)+10);window.__pbLift=.62*s}
       upd();
       if(t>.45&&!de.classList.contains('pb-sunrise-go'))go();
-      if(t<1)requestAnimationFrame(introTick);else{introOn=false;ik=0;io=1;if(innerWidth<768)window.__pbLift=.67;upd()}
+      if(t<1)requestAnimationFrame(introTick);else{introOn=false;ik=0;io=1;if(innerWidth<768)window.__pbLift=.62;upd()}
     }
     function upd(){
-      if(innerWidth<768&&!introOn&&window.__pbLift==null)window.__pbLift=.67;
+      if(innerWidth<768&&!introOn&&window.__pbLift==null)window.__pbLift=.62;
       var hero=document.getElementById('hero-dark'),vh=(function(){var ih=window.innerHeight||800;if(!matchMedia('(pointer: coarse)').matches)return ih;if(window.__pbVHw!==innerWidth){window.__pbVHw=innerWidth;window.__pbVH=0}return(window.__pbVH=Math.max(window.__pbVH,ih))})(),y=window.scrollY||0,P=Math.min(1,Math.max(0,y/(vh*1.5)));
       var on=!!hero&&P<1;
       root.style.display=on?'block':'none';
