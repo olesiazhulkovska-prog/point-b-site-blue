@@ -68,6 +68,7 @@ uniform float uHover;      // 0..1 eased presence
 uniform float uBright;
 uniform float uHorizonY;
 uniform float uHorizonR;
+uniform float uLift;       // sun lifted above the horizon, fraction of frame height
 uniform float uHaze;
 uniform float uCoreSize;
 uniform float uCoreHover;
@@ -190,7 +191,7 @@ void main() {
 
   // ---- L1: the core. brightness = radius / distance, per their point light.
   // The positional term is deliberately small — see the measurement above.
-  vec2 corePos = vec2(m.x * 0.015, m.y * 0.007);
+  vec2 corePos = vec2(m.x * 0.015, m.y * 0.007 - uLift * aspect * inv);
   float d = length(P - corePos);
   float g = coreSize / max(d, 0.0009);
   g = mix(g, g * g, 0.55);          // tightens the falloff toward the centre
@@ -253,6 +254,7 @@ void main() {
   // Shared base: how far the spilled light reaches to either side of the core.
   float rimBase = exp(-rimDx / max(rimSpread, 0.001));
   rimBase *= mix(1.0, smoothstep(0.40, 0.26, rimDx), hv);
+  rimBase *= exp(-uLift * 7.0);   // the arc dims as the sun leaves it
   // The rim proper is an annulus — weaker under the core, brightest further
   // out. Softened to 0.38 rather than zeroed: zeroing punched a visible dark
   // notch straight through the middle of the arc, which the reference has not.
@@ -351,7 +353,7 @@ function mountHorizon(root, canvas, props) {
     const U = (n) => gl.getUniformLocation(prog, n);
     const u = {
         res: U("uRes"), time: U("uTime"), mouse: U("uMouse"), hover: U("uHover"),
-        bright: U("uBright"), horizonY: U("uHorizonY"), horizonR: U("uHorizonR"),
+        bright: U("uBright"), horizonY: U("uHorizonY"), horizonR: U("uHorizonR"), lift: U("uLift"),
         haze: U("uHaze"), coreSize: U("uCoreSize"), coreHover: U("uCoreHover"),
         rimSpread: U("uRimSpread"), parallax: U("uParallax"), fit: U("uFit"),
         bg: U("uBg"), core: U("uCore"), mid: U("uMid"), deep: U("uDeep"),
@@ -404,6 +406,7 @@ function mountHorizon(root, canvas, props) {
         gl.uniform1f(u.bright, L.brightness);
         gl.uniform1f(u.horizonY, L.horizonY);
         gl.uniform1f(u.horizonR, L.horizonRadius);
+        gl.uniform1f(u.lift, window.__pbLift || 0);
         gl.uniform1f(u.haze, L.haze);
         gl.uniform1f(u.coreSize, L.coreSize);
         gl.uniform1f(u.coreHover, L.coreHover);
@@ -490,19 +493,22 @@ window.__mountHorizon = mountHorizon;
     try{ok=window.__mountHorizon(root,cv,window.__pbHorizonProps)}catch(e){ok=false}
     if(!ok){root.remove();document.documentElement.classList.add('pb-sunrise-go');return}
     /* інтро «схід сонця»: світіння піднімається знизу, потім з'являється текст */
-    var de=document.documentElement,introOn=de.classList.contains('pb-sunrise'),I0=0,LT=0,AC=0,ID=window.__pbIntroMs||2400,ik=introOn?1:0,io=introOn?0:1;
+    var de=document.documentElement,introOn=de.classList.contains('pb-sunrise'),I0=0,LT=0,AC=0,ID=window.__pbIntroMs||(innerWidth<768?5200:2400),ik=introOn?1:0,io=introOn?0:1;
     function go(){de.classList.add('pb-sunrise-go')}
     function introTick(now){
       if(!I0){I0=now;LT=now}var dt=Math.min(100,now-LT);LT=now;AC+=dt;var t=Math.min(1,AC/ID),e=1-Math.pow(1-t,3);
-      ik=1-e;io=Math.min(1,t*2.2);upd();
-      if(t>.5&&!de.classList.contains('pb-sunrise-go'))go();
-      if(t<1)requestAnimationFrame(introTick);else{introOn=false;ik=0;io=1;upd()}
+      ik=1-e;io=Math.min(1,t*(innerWidth<768?7:2.2));
+      if(innerWidth<768){var s=t*t*t*(t*(t*6-15)+10);window.__pbLift=.67*s}
+      upd();
+      if(t>.45&&!de.classList.contains('pb-sunrise-go'))go();
+      if(t<1)requestAnimationFrame(introTick);else{introOn=false;ik=0;io=1;if(innerWidth<768)window.__pbLift=.67;upd()}
     }
     function upd(){
+      if(innerWidth<768&&!introOn&&window.__pbLift==null)window.__pbLift=.67;
       var hero=document.getElementById('hero-dark'),vh=(function(){var ih=window.innerHeight||800;if(!matchMedia('(pointer: coarse)').matches)return ih;if(window.__pbVHw!==innerWidth){window.__pbVHw=innerWidth;window.__pbVH=0}return(window.__pbVH=Math.max(window.__pbVH,ih))})(),y=window.scrollY||0,P=Math.min(1,Math.max(0,y/(vh*1.5)));
       var on=!!hero&&P<1;
       root.style.display=on?'block':'none';
-      if(on){root.style.opacity=(Math.pow(1-P,1.4)*(introOn?io*io:1)).toFixed(3);root.style.transform='translate3d(0,'+((introOn?ik*vh*(innerWidth<768?.75:.32):0)-(y*.35)).toFixed(1)+'px,0)';}
+      if(on){root.style.opacity=(Math.pow(1-P,1.4)*(introOn?io*io:1)).toFixed(3);root.style.transform='translate3d(0,'+((introOn&&innerWidth>=768?ik*vh*.32:0)-(y*.35)).toFixed(1)+'px,0)';}
       /* другий блок піднімається назустріч світінню */
       var nx=hero&&hero.nextElementSibling;
       if(nx&&!matchMedia('(prefers-reduced-motion: reduce)').matches){
@@ -515,6 +521,6 @@ window.__mountHorizon = mountHorizon;
     addEventListener('scroll',upd,{passive:true});addEventListener('resize',upd);setInterval(upd,400);upd();
     var tries=0;(function start(){if(!introOn){go();return}if(document.getElementById('hero-dark')){requestAnimationFrame(introTick)}else if(tries++<80){setTimeout(start,50)}else{introOn=false;go()}})();
   }
-  window.__pbHorizonProps={background:'#111144',coreColor:'#F6F5F4',midColor:'#2431A4',deepColor:'#111144',brightness:2.4,coreSize:(innerWidth<768?.03:.02),coreHover:.04,haze:3,speed:1,parallax:3,fit:50,horizonY:(innerWidth<768?(window.__pbMY||.255):.82),horizonRadius:(innerWidth<768?(window.__pbMR||2.3):1.867),rimSpread:.035};
+  window.__pbHorizonProps={background:'#111144',coreColor:'#F6F5F4',midColor:'#2431A4',deepColor:'#111144',brightness:2.4,coreSize:(innerWidth<768?.03:.02),coreHover:.04,haze:3,speed:1,parallax:3,fit:50,horizonY:.82,horizonRadius:(innerWidth<768?(window.__pbMR||2.3):1.867),rimSpread:.035};
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot();
 })();
