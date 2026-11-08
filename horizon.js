@@ -493,22 +493,38 @@ window.__mountHorizon = mountHorizon;
     try{ok=window.__mountHorizon(root,cv,window.__pbHorizonProps)}catch(e){ok=false}
     if(!ok){root.remove();document.documentElement.classList.add('pb-sunrise-go');return}
     /* інтро «схід сонця»: світіння піднімається знизу, потім з'являється текст */
-    var de=document.documentElement,introOn=de.classList.contains('pb-sunrise'),I0=0,LT=0,AC=0,ID=window.__pbIntroMs||(innerWidth<768?5200:2400),ik=introOn?1:0,io=introOn?0:1;
+    var de=document.documentElement,introOn=de.classList.contains('pb-sunrise'),I0=0,LT=0,AC=0,LM=0,ID=window.__pbIntroMs||(innerWidth<768?5200:4200),ik=introOn?1:0,io=introOn?0:1;
     function go(){de.classList.add('pb-sunrise-go')}
     function introTick(now){
-      if(!I0){I0=now;LT=now}var dt=Math.min(100,now-LT);LT=now;AC+=dt;var t=Math.min(1,AC/ID),e=1-Math.pow(1-t,3);
-      ik=1-e;io=Math.min(1,t*(innerWidth<768?7:2.2));
-      if(innerWidth<768){var s=t*t*t*(t*(t*6-15)+10);window.__pbLift=.62*s}
+      if(!I0){I0=now;LT=now;LM=liftMax()}var dt=Math.min(100,now-LT);LT=now;AC+=dt;var t=Math.min(1,AC/ID),e=1-Math.pow(1-t,3);
+      ik=1-e;io=Math.min(1,t*7);
+      var s=t*t*t*(t*(t*6-15)+10);window.__pbLift=LM*s;
       upd();
       if(t>.45&&!de.classList.contains('pb-sunrise-go'))go();
-      if(t<1)requestAnimationFrame(introTick);else{introOn=false;ik=0;io=1;if(innerWidth<768)window.__pbLift=.62;upd()}
+      if(t<1)requestAnimationFrame(introTick);else{introOn=false;ik=0;io=1;LM=liftMax();window.__pbLift=LM;upd()}
+    }
+    function liftMax(){
+      /* sun target: between the header and the badge, never under the header */
+      try{
+        var hd=document.querySelector('header'),hero=document.getElementById('hero-dark'),bd=null;
+        if(hero){var all=hero.getElementsByTagName('*');for(var i=0;i<all.length;i++){var el=all[i];if(el.textContent.length<40&&/Офіційний партнер/.test(el.textContent)){bd=el}}}
+        var rh=root.offsetHeight||innerHeight,sy=window.scrollY||0;
+        var hb=hd?hd.offsetHeight:0;
+        var bt=bd?bd.getBoundingClientRect().top+sy:rh*.3;
+        var r=rh*.058;
+        var cy=hb+(bt-hb)*.42;
+        cy=Math.min(cy,bt-r-8);
+        cy=Math.max(cy,hb+r+4);
+        var hy=.82;
+        return Math.max(0,Math.min(.75,hy-cy/rh));
+      }catch(e){return .55}
     }
     function upd(){
-      if(innerWidth<768&&!introOn&&window.__pbLift==null)window.__pbLift=.62;
+      if(!introOn&&window.__pbLift==null)window.__pbLift=liftMax();
       var hero=document.getElementById('hero-dark'),vh=(function(){var ih=window.innerHeight||800;if(!matchMedia('(pointer: coarse)').matches)return ih;if(window.__pbVHw!==innerWidth){window.__pbVHw=innerWidth;window.__pbVH=0}return(window.__pbVH=Math.max(window.__pbVH,ih))})(),y=window.scrollY||0,P=Math.min(1,Math.max(0,y/(vh*1.5)));
       var on=!!hero&&P<1;
       root.style.display=on?'block':'none';
-      if(on){root.style.opacity=(Math.pow(1-P,1.4)*(introOn?io*io:1)).toFixed(3);root.style.transform='translate3d(0,'+((introOn&&innerWidth>=768?ik*vh*.32:0)-(y*.35)).toFixed(1)+'px,0)';}
+      if(on){root.style.opacity=(Math.pow(1-P,1.4)*(introOn?io*io:1)).toFixed(3);root.style.transform='translate3d(0,'+(0-(y*.35)).toFixed(1)+'px,0)';}
       /* другий блок піднімається назустріч світінню */
       var nx=hero&&hero.nextElementSibling;
       if(nx&&!matchMedia('(prefers-reduced-motion: reduce)').matches){
@@ -518,7 +534,7 @@ window.__mountHorizon = mountHorizon;
       }
       if(root.__setRunning)root.__setRunning(on);
     }
-    addEventListener('scroll',upd,{passive:true});addEventListener('resize',upd);setInterval(upd,400);upd();
+    addEventListener('scroll',upd,{passive:true});addEventListener('resize',function(){if(!introOn&&(window.scrollY||0)<4)window.__pbLift=liftMax();upd()});setInterval(upd,400);upd();
     var tries=0;(function start(){if(!introOn){go();return}if(document.getElementById('hero-dark')){requestAnimationFrame(introTick)}else if(tries++<80){setTimeout(start,50)}else{introOn=false;go()}})();
   }
   window.__pbHorizonProps={background:'#111144',coreColor:'#F6F5F4',midColor:'#2431A4',deepColor:'#111144',brightness:2.4,coreSize:(innerWidth<768?.03:.02),coreHover:.04,haze:3,speed:1,parallax:3,fit:50,horizonY:.82,horizonRadius:(innerWidth<768?(window.__pbMR||2.3):1.867),rimSpread:.035};
