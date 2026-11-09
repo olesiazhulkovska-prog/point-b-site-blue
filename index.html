@@ -1676,7 +1676,6 @@ div.md\:hidden.fixed.inset-0:not(#_):not(#__) { background: rgba(17,17,68,.6) !i
   background:
     radial-gradient(900px 420px at 18% 0%, rgba(143,163,255,.22), transparent 70%),
     radial-gradient(700px 360px at 85% 12%, rgba(249,133,19,.10), transparent 70%),
-    repeating-linear-gradient(100deg, rgba(143,163,255,.05) 0 1px, transparent 1px 64px),
     linear-gradient(180deg, #111144 0%, #111144 100%) !important;
   overflow: clip !important; isolation: isolate !important; }
 
@@ -1704,7 +1703,6 @@ div.md\:hidden.fixed.inset-0:not(#_):not(#__) { background: rgba(17,17,68,.6) !i
 #why-us-section:not(#_):not(#__):not(#___) { background:
     radial-gradient(900px 420px at 18% 0%, rgba(47,75,255,.30), transparent 70%),
     radial-gradient(700px 360px at 85% 12%, rgba(249,133,19,.10), transparent 70%),
-    repeating-linear-gradient(100deg, rgba(143,163,255,.05) 0 1px, transparent 1px 64px),
     linear-gradient(180deg, #1B2E8C 0%, #111144 100%) !important; }
 
 /* v36: text on white blocks = hero navy */
@@ -3684,6 +3682,9 @@ html body .pb-hero-float:not(#_):not(#__):not(#___){animation:none !important;tr
 html body .scene-bg:not(#_):not(#__)::before,html body .scene-bg:not(#_):not(#__)::after,html body .scene-tint:not(#_):not(#__)::before,html body .scene-tint:not(#_):not(#__)::after,html body #why-us-section:not(#_):not(#__):not(#___)::before,html body #why-us-section:not(#_):not(#__):not(#___)::after{animation:none !important;will-change:auto !important}
 html body #why-us-section:not(#_):not(#__):not(#___)::after{opacity:.6 !important}
 }
+</style>
+<style id="pb-r49">/* no line backgrounds anywhere: only the footer vortex stays */
+html body canvas.footer-ribbon:not(#_):not(#__),html body canvas#flow:not(#_):not(#__){display:none !important}
 </style>
 <style id="pb-r5">/* service cards: description + bullets are as wide as the heading text */
 html body .sv3-copy > .sv3-desc:not(#_):not(#__),html body .sv3-copy > .sv3-list:not(#_):not(#__){max-width:var(--pb-tw,none)}
