@@ -3688,6 +3688,8 @@ html body #why-us-section:not(#_):not(#__):not(#___)::after{opacity:.6 !importan
 </style>
 <style id="pb-r49">/* no line backgrounds anywhere: only the footer vortex stays */
 html body canvas.footer-ribbon:not(#_):not(#__),html body canvas#flow:not(#_):not(#__){display:none !important}
+/* #76: the logo button shrinks (210->119px) when the header becomes compact, and the nav is centred between logo and CTA, so it slid ~45px left. Reserve the logo's full width so the nav never moves. */
+@media (min-width:1024px){html body header.fixed > div > button:first-child:not(#_):not(#__){min-width:210px !important}html.pb-logo-min body header #nav-logo-btn:not(#_):not(#__):not(#___){min-width:210px !important}}
 </style>
 <style id="pb-r5">/* service cards: description + bullets are as wide as the heading text */
 html body .sv3-copy > .sv3-desc:not(#_):not(#__),html body .sv3-copy > .sv3-list:not(#_):not(#__){max-width:var(--pb-tw,none)}
