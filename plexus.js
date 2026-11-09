@@ -2,7 +2,7 @@
    Points start scattered and gather into a connected network (chaos -> system).
    Behind the content, above the Horizon glow; fades out as the first screen scrolls away. */
 (function () {
-  var ADV = { seed: 7, coreShare: 16, coreSpread: 4, coreBreath: 120, strandCount: 16, strandStep: 11, strandTurn: 45, siblingShare: 55, siblingSpread: 4, loneShare: 12, cloudRadius: 88, slab: 50, maxLinks: 6, cycle: 1760, wobble: 3, linkPulse: 70, tilt: 4, centerX: 50, centerY: 50, lineWidth: 10, lineAlpha: 70, longAlpha: 30, backFade: 40, nodeSize: 2, nodeAlpha: 38, whiteShare: 8, specks: 40, speckAlpha: 55, pointerTilt: 20, glowRadius: 22, glowBoost: 120, hover: 24 };
+  var ADV = { seed: 7, coreShare: 16, coreSpread: 4, coreBreath: 120, strandCount: 16, strandStep: 11, strandTurn: 45, siblingShare: 55, siblingSpread: 4, loneShare: 12, cloudRadius: 88, slab: 50, maxLinks: 6, cycle: 1760, wobble: 3, linkPulse: 70, tilt: 4, centerX: 50, centerY: 50, lineWidth: 10, lineAlpha: 70, longAlpha: 30, backFade: 40, nodeSize: 2, nodeAlpha: 38, whiteShare: 8, specks: 40, speckAlpha: 55, pointerTilt: 28, glowRadius: 26, glowBoost: 220, hover: 50 };
   var COL = { line: '#3F52E8', node: '#CDD2EB', accent: '#F98513' };
   var ASSEMBLE = 3.4; // seconds for the whole gathering
 
@@ -88,6 +88,8 @@
     var onMove = function (e) { if (e.pointerType && e.pointerType !== 'mouse') return; ptr.tx = e.clientX / (W || 1); ptr.ty = e.clientY / (H || 1); ptr.inside = 1; };
     var onOut = function () { ptr.inside = 0; };
     window.addEventListener('pointermove', onMove, { passive: true }); document.addEventListener('pointerleave', onOut);
+    var tt = 0, onTouch = function (e) { var t = e.touches && e.touches[0]; if (!t) return; ptr.tx = t.clientX / (W || 1); ptr.ty = t.clientY / (H || 1); ptr.inside = 1; clearTimeout(tt); }, onTouchEnd = function () { clearTimeout(tt); tt = setTimeout(function () { ptr.inside = 0; }, 500); };
+    window.addEventListener('touchstart', onTouch, { passive: true }); window.addEventListener('touchmove', onTouch, { passive: true }); window.addEventListener('touchend', onTouchEnd, { passive: true });
 
     var cloud = buildCloud(small ? 420 : 1100, 22), n = cloud.n;
     var wx = new Float32Array(n), wy = new Float32Array(n), wz = new Float32Array(n), sx = new Float32Array(n), sy = new Float32Array(n), sf = new Float32Array(n), ss = new Float32Array(n);
@@ -101,7 +103,7 @@
       var scrollY = window.pageYOffset || 0, vis = c01(1 - scrollY / (H * 0.85));
       canvas.style.opacity = String(vis * c01((now - born) / 500));
       if (vis <= 0 || document.hidden) return;
-      var A = ADV, R = Math.min(H * 0.46, W * 0.75), xMax = (W * 0.55) / R, yMax = (H * 0.48) / R;
+      var A = ADV, land = W > H, R = land ? H * 0.46 : Math.min(H * 0.46, W * 0.75), kx = land ? Math.min(2.4, W / (H * 0.9)) : 1, xMax = (W * 0.55) / (R * kx), yMax = (H * 0.48) / R;
       var sk = xMax.toFixed(2) + '|' + yMax.toFixed(2);
       if (!specks || sk !== speckKey) { specks = buildSpecks(A.specks, xMax, yMax); speckKey = sk; }
       var hoverK = A.hover / 50, ease = 1 - Math.exp(-dt * 6);
@@ -127,7 +129,8 @@
         }
         wx[i] = x; wy[i] = y; wz[i] = z;
         var x1 = x * cy0 + z * sy0, z1 = -x * sy0 + z * cy0, y1 = y * cp - z1 * sp, z2 = y * sp + z1 * cp, den = f + z2, s = den > 0.3 ? f / den : 0;
-        ss[i] = s; sx[i] = cx + x1 * s * R; sy[i] = cyc + y1 * s * R; sf[i] = backFade + (1 - backFade) * c01(0.5 - z2 * 0.7);
+        ss[i] = s; sx[i] = cx + x1 * s * R * kx; sy[i] = cyc + y1 * s * R;
+        if (ptr.over > 0.01) { var qx = sx[i] - ptr.x * W, qy = sy[i] - ptr.y * H, qd = Math.hypot(qx, qy), rr0 = Math.min(W, H) * 0.24; if (qd < rr0 * 2.2 && qd > 0.5) { var ff = Math.exp(-(qd * qd) / (rr0 * rr0)) * rr0 * 0.55 * ptr.over; sx[i] += (qx / qd) * ff; sy[i] += (qy / qd) * ff; } } sf[i] = backFade + (1 - backFade) * c01(0.5 - z2 * 0.7);
       }
       ctx.globalCompositeOperation = 'lighter'; ctx.strokeStyle = COL.line; ctx.lineWidth = Math.max(0.1, A.lineWidth / 10); ctx.lineCap = 'round';
       var lineA = A.lineAlpha / 100, longA = c01(A.longAlpha / 100), pulseK = c01(A.linkPulse / 100), glowR = Math.max(1, (H * A.glowRadius) / 100), glowK = (A.glowBoost / 100) * ptr.over * hoverK;
@@ -152,14 +155,14 @@
       ctx.fillStyle = COL.node;
       for (i = 0; i < specks.n; i++) {
         var x0 = specks.x[i], y0 = specks.y[i], z0 = specks.z[i], xa = x0 * cy0 + z0 * sy0, za = -x0 * sy0 + z0 * cy0, ya = y0 * cp - za * sp, zb = (y0 * sp + za * cp) * 0.3, dn = f + zb; if (dn <= 0.3) continue;
-        var sc = f / dn, px = cx + xa * sc * R, py = cyc + ya * sc * R; if (px < -4 || px > W + 4 || py < -4 || py > H + 4) continue;
+        var sc = f / dn, px = cx + xa * sc * R * kx, py = cyc + ya * sc * R; if (px < -4 || px > W + 4 || py < -4 || py > H + 4) continue;
         var fade = backFade + (1 - backFade) * c01(0.5 - zb * 0.7), rr = unit * 0.7 * sc; ctx.globalAlpha = speckA * fade; ctx.fillRect(px - rr / 2, py - rr / 2, rr, rr);
       }
       ctx.globalAlpha = 1;
       window.__pbPlexusMs = (window.__pbPlexusMs || 0) * 0.9 + (performance.now() - t0) * 0.1;
     };
     raf = requestAnimationFrame(tick);
-    stop = function () { cancelAnimationFrame(raf); window.removeEventListener('resize', resize); window.removeEventListener('pointermove', onMove); document.removeEventListener('pointerleave', onOut); canvas.remove(); cv = null; };
+    stop = function () { cancelAnimationFrame(raf); window.removeEventListener('resize', resize); window.removeEventListener('pointermove', onMove); document.removeEventListener('pointerleave', onOut); window.removeEventListener('touchstart', onTouch); window.removeEventListener('touchmove', onTouch); window.removeEventListener('touchend', onTouchEnd); canvas.remove(); cv = null; };
   }
 
   function sync() { if (isHome()) start(); else if (stop) { stop(); stop = null; } }

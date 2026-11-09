@@ -445,7 +445,7 @@ function mountHorizon(root, canvas, props) {
             return;
         pointer.tx = (e.clientX - r.left) / r.width - 0.5;
         pointer.ty = (e.clientY - r.top) / r.height - 0.5;
-        pointer.thover = 1;
+        pointer.thover = 0; /* the sun/haze reacting to the mouse is off: the network in the hero reacts instead */
     };
     const off = () => { pointer.tx = 0; pointer.ty = 0; pointer.thover = 0; touching = false; };
     document.addEventListener("pointermove", onMove);
@@ -537,6 +537,6 @@ window.__mountHorizon = mountHorizon;
     addEventListener('scroll',upd,{passive:true});addEventListener('resize',function(){if(!introOn&&(window.scrollY||0)<4)window.__pbLift=liftMax();upd()});setInterval(upd,400);upd();
     var tries=0;(function start(){if(!introOn){go();return}if(document.getElementById('hero-dark')){requestAnimationFrame(introTick)}else if(tries++<80){setTimeout(start,50)}else{introOn=false;go()}})();
   }
-  window.__pbHorizonProps={background:'#111144',coreColor:'#F6F5F4',midColor:'#2431A4',deepColor:'#111144',brightness:2.4,coreSize:(innerWidth<768?.03:.02),coreHover:.04,haze:3,speed:1,parallax:3,fit:50,horizonY:.82,horizonRadius:(innerWidth<768?(window.__pbMR||2.3):1.867),rimSpread:.035};
+  window.__pbHorizonProps={background:'#111144',coreColor:'#F6F5F4',midColor:'#2431A4',deepColor:'#111144',brightness:2.4,coreSize:0,coreHover:0,haze:0,speed:1,parallax:3,fit:50,horizonY:.82,horizonRadius:(innerWidth<768?(window.__pbMR||2.3):1.867),rimSpread:.035};
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot();
 })();
