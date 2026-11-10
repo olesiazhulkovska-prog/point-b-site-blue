@@ -2805,6 +2805,17 @@ function mount(foot){
       var api=window.PBXVortex(w,cv,{small:innerWidth<760,reduced:rm,noRepel:true});
       api.setRunning(false);
       new IntersectionObserver(function(e){api.setRunning(e[0].isIntersecting&&!rm)},{threshold:0}).observe(w);
+      /* cursor interaction: wrapper is pointer-events:none, so forward window pointer moves to the vortex */
+      if(!rm&&matchMedia('(hover:hover) and (pointer:fine)').matches){
+        var inside=false;
+        addEventListener('pointermove',function(ev){
+          var r=w.getBoundingClientRect();
+          var inn=ev.clientY>=r.top&&ev.clientY<=r.bottom&&ev.clientX>=r.left&&ev.clientX<=r.right;
+          if(inn){w.dispatchEvent(new PointerEvent('pointermove',{clientX:ev.clientX,clientY:ev.clientY}));inside=true}
+          else if(inside){w.dispatchEvent(new PointerEvent('pointerleave'));inside=false}
+        },{passive:true});
+        document.addEventListener('mouseleave',function(){if(inside){w.dispatchEvent(new PointerEvent('pointerleave'));inside=false}});
+      }
       if(window.ResizeObserver){var ro=new ResizeObserver(size);ro.observe(c);ro.observe(f)}
       addEventListener('resize',size);
     }catch(e){console.error(e)}
