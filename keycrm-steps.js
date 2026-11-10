@@ -4,10 +4,10 @@
   var FALL = [
     'radial-gradient(120% 90% at 20% 10%,#2431A4 0,transparent 60%),linear-gradient(160deg,#1a2170,#111144)',
     'radial-gradient(120% 90% at 80% 15%,#F98513 0,transparent 55%),linear-gradient(160deg,#2431A4,#111144)',
-    'radial-gradient(110% 90% at 30% 90%,#CDD2EB 0,transparent 55%),linear-gradient(160deg,#2431A4,#111144)',
-    'radial-gradient(120% 90% at 70% 20%,#8FA3FF 0,transparent 55%),linear-gradient(160deg,#1a2170,#111144)',
+    'radial-gradient(110% 90% at 30% 90%,#C9D3FF 0,transparent 55%),linear-gradient(160deg,#2431A4,#111144)',
+    'radial-gradient(120% 90% at 70% 20%,#C9D3FF 0,transparent 55%),linear-gradient(160deg,#1a2170,#111144)',
     'radial-gradient(120% 90% at 20% 80%,#F98513 0,transparent 55%),linear-gradient(160deg,#2431A4,#111144)',
-    'radial-gradient(120% 90% at 80% 80%,#CDD2EB 0,transparent 55%),linear-gradient(160deg,#1a2170,#111144)'
+    'radial-gradient(120% 90% at 80% 80%,#C9D3FF 0,transparent 55%),linear-gradient(160deg,#1a2170,#111144)'
   ];
   var CSS = '' +
     '.pbm{position:relative;width:100%;overflow:visible;-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none}' +

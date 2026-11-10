@@ -3,7 +3,7 @@
    Behind the content, above the Horizon glow; fades out as the first screen scrolls away. */
 (function () {
   var ADV = { seed: 7, coreShare: 16, coreSpread: 4, coreBreath: 120, strandCount: 16, strandStep: 11, strandTurn: 45, siblingShare: 55, siblingSpread: 4, loneShare: 12, cloudRadius: 88, slab: 50, maxLinks: 6, cycle: 1760, wobble: 3, linkPulse: 70, tilt: 4, centerX: 50, centerY: 50, lineWidth: 10, lineAlpha: 70, longAlpha: 30, backFade: 40, nodeSize: 2, nodeAlpha: 38, whiteShare: 8, specks: 40, speckAlpha: 55, pointerTilt: 28, glowRadius: 26, glowBoost: 220, hover: 50 };
-  var COL = { line: '#3F52E8', node: '#CDD2EB', accent: '#F98513' };
+  var COL = { line: '#3F52E8', node: '#C9D3FF', accent: '#F98513' };
   var ASSEMBLE = 3.4; // seconds for the whole gathering
 
   function mulberry32(a) { return function () { a |= 0; a = (a + 0x6d2b79f5) | 0; var t = Math.imul(a ^ (a >>> 15), 1 | a); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; }; }
