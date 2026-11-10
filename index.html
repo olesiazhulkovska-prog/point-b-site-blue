@@ -9,8 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Manrope:wght@300;400;500;600;700;800&display=swap">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Manrope:wght@300;400;500;600;700;800&display=swap"></noscript>
+    <link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap"></noscript>
     <link rel="icon" type="image/png" sizes="192x192" href="./favicon.png" />
     <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
     <title>Point B Group — впровадження keyCRM, AI-боти та автоматизація бізнесу</title>
@@ -2987,12 +2987,12 @@ __pbxTick(fit);addEventListener('resize',function(){last='';setTimeout(fit,60)})
 })();
 
 /* v55 hero backdrop fade */
-(function(){var L=null,t=false;function u(){t=false;L=L||document.querySelector('.hero-L');if(!L)return;
+(function(){var L=null,t=false;function u(){t=false;if(!L||!L.isConnected)L=document.querySelector('.hero-L');if(!L)return;
  var cp=L.style.clipPath||getComputedStyle(L).clipPath;var m=/inset\(([\d.]+)px ([\d.]+)px/.exec(cp);var p=1;
  if(m){var w=innerWidth;p=1-parseFloat(m[2])/w}else if(/inset\(0(px)?\)/.test(cp)){p=1}
  L.style.setProperty('--pbx-o',Math.max(0,Math.min(1,(p-.45)/.4)).toFixed(3))}
  function r(){if(!t){t=true;requestAnimationFrame(u)}}
- addEventListener('scroll',r,{passive:true});addEventListener('resize',r);setTimeout(u,300);setTimeout(u,1200)})();
+ addEventListener('scroll',r,{passive:true});addEventListener('resize',r);setTimeout(u,300);setTimeout(u,1200);if(window.__pbxTick)window.__pbxTick(u)})();
 
 /* v58 chat simulator loop */
 (function(){
