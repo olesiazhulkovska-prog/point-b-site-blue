@@ -2347,15 +2347,15 @@ html body .hero-track[data-static="1"] .hero-L:not(#_){z-index:6}
 <style id="pb-r56">
 /* services stack on laptop windows: cards stack over each other at any height, roomier padding, list + CTA sit together at the bottom, short divider */
 @media (min-width:1100px){
-  html body .sv3-stack:not(#_):not(#__):not(#___):not(#____):not(#_____){--sv3-h:clamp(470px,calc(100svh - 220px),530px)}
-  html body .sv3-card:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______){position:sticky !important;top:calc(96px + var(--i) * 14px) !important;height:var(--sv3-h) !important;min-height:0 !important}
+  html body .sv3-stack:not(#_):not(#__):not(#___):not(#____):not(#_____){--sv3-h:clamp(540px,calc(100svh - 170px),590px)}
+  html body .sv3-card:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______){position:sticky !important;top:calc(96px + var(--i) * 14px) !important;height:var(--sv3-h) !important;min-height:0 !important;padding:64px 56px !important}
   html body .sv3-card:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______){grid-template-rows:auto auto 1fr auto !important}
   html body .sv3-card .sv3-desc:not(#_):not(#__):not(#___):not(#____):not(#_____){margin-top:22px !important}
   html body .sv3-card .sv3-list:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______){align-self:end !important;margin:0 0 26px !important;width:fit-content !important;max-width:100% !important;min-width:320px;padding-top:16px !important}
   html body .sv3-card .sv3-cta:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______){margin-top:0 !important;align-self:end !important}
   html body .sv3-card .sv3-viz:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______){margin:0 0 0 24px !important;align-self:stretch !important}
   html body .sv3-card:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______){grid-template-columns:auto min(var(--sv3-tw,440px),44%) minmax(0,1fr) !important}
-  html body .sv3-card .sv3-dg:not(#_):not(#__):not(#___):not(#____):not(#_____){height:calc(var(--sv3-h) - 104px) !important}
+  html body .sv3-card .sv3-dg:not(#_):not(#__):not(#___):not(#____):not(#_____){height:calc(var(--sv3-h) - 140px) !important}
 }
 </style>
 </head>
@@ -2756,7 +2756,7 @@ function mount(foot){
         }
       }
       /* 3. spacing (padding + gap), not on sections / graphs */
-      if(tag!=='SECTION'&&tag!=='FOOTER'&&tag!=='HEADER'&&tag!=='MAIN'&&tag!=='BODY'&&!e.closest('.sv3-viz')&&!e.closest('.sv3-dg')){
+      if(tag!=='SECTION'&&tag!=='FOOTER'&&tag!=='HEADER'&&tag!=='MAIN'&&tag!=='BODY'&&!e.classList.contains('sv3-card')&&!e.closest('.sv3-viz')&&!e.closest('.sv3-dg')){
         for(var k=0;k<4;k++){var pv=parseFloat(cs[PROPS[k]]);if(pv>=6){var sp=snapSp(pv);if(sp!==Math.round(pv))setp(e,CP[k],sp+'px')}}
         var g1=parseFloat(cs.rowGap),g2=parseFloat(cs.columnGap);
         if(g1>=6){var s1=snapSp(g1);if(s1!==Math.round(g1))setp(e,'row-gap',s1+'px')}
