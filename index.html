@@ -3718,9 +3718,20 @@ html body .pbx-hc.pbx-on:not(#_):not(#__):not(#___){box-shadow:none !important;b
 html body .hero-fan .hero-fan-card:hover:not(#_):not(#__):not(#___),html body .hero-fan .hero-fan-card:focus-visible:not(#_):not(#__):not(#___){box-shadow:none !important}
 </style>
 <style id="pb-r53">
-html body #site-footer:not(#_):not(#__){padding-bottom:0 !important}
-html body #site-footer:not(#_):not(#__)::after{content:"POINT B GROUP";display:block;position:relative;z-index:1;box-sizing:border-box;width:100%;padding:0 0 0 calc(5.55vw - .075em);margin:3vw 0 0;font-family:"Inter Variable",Inter,system-ui,sans-serif;font-weight:600;font-size:12.3vw;line-height:.8;letter-spacing:-.04em;white-space:nowrap;color:#F4F7FF;text-align:left;overflow:hidden;height:.7em;pointer-events:none;user-select:none}
+html body #site-footer:not(#_):not(#__){padding-bottom:0 !important;container-type:inline-size;--g:24px}
+@media (min-width:640px){html body #site-footer:not(#_):not(#__){--g:32px}}
+@media (min-width:1024px){html body #site-footer:not(#_):not(#__){--g:64px}}
+@media (min-width:1280px){html body #site-footer:not(#_):not(#__){--g:80px}}
+html body #site-footer:not(#_):not(#__)::after{--w:min(100cqw,1840px);content:"POINT B GROUP";display:block;position:relative;z-index:1;box-sizing:border-box;width:100%;padding:0 0 0 calc((100cqw - var(--w))/2 + var(--g) - .075em);margin:clamp(56px,7vw,120px) 0 0;font-family:"Inter Variable",Inter,system-ui,sans-serif;font-weight:600;font-size:calc((var(--w) - 2*var(--g))*.1383);line-height:.8;letter-spacing:-.04em;white-space:nowrap;color:#F4F7FF;text-align:left;overflow:hidden;height:.7em;pointer-events:none;user-select:none}
+/* footer spacing */
+html body #site-footer:not(#_):not(#__)>[class*="py-5"][class*="border-b"]{padding-top:clamp(36px,4vw,64px) !important;padding-bottom:clamp(36px,4vw,64px) !important}
+html body #site-footer:not(#_):not(#__)>[class*="pt-14"]{padding-top:clamp(72px,8vw,130px) !important;padding-bottom:clamp(48px,4vw,72px) !important}
+html body #site-footer:not(#_):not(#__) [class*="md:grid-cols-12"]{row-gap:56px !important;column-gap:clamp(40px,5vw,96px) !important;padding-bottom:clamp(56px,6vw,96px) !important}
+html body #site-footer:not(#_):not(#__) [class*="md:col-span-"]>*+*{margin-top:1.6rem !important}
+html body #site-footer:not(#_):not(#__) [class*="md:col-span-3"]>*+*,html body #site-footer:not(#_):not(#__) [class*="md:col-span-4"]>*+*{margin-top:1.25rem !important}
+html body #site-footer:not(#_):not(#__) [class*="sm:flex-row"][class*="pt-8"]{padding-top:clamp(40px,4vw,64px) !important;row-gap:20px !important}
 </style>
+
 <style id="pb-r5">/* service cards: description + bullets are as wide as the heading text */
 html body .sv3-copy > .sv3-desc:not(#_):not(#__),html body .sv3-copy > .sv3-list:not(#_):not(#__){max-width:var(--pb-tw,none)}
 </style>
