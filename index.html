@@ -2423,7 +2423,9 @@ window.__pbCases={
 /* v65 central scheduler: DOM-mutation driven (debounced, idle) instead of setInterval polling */
 (function(){var fns=[],t=0,idle=window.requestIdleCallback||function(c){return setTimeout(c,1)};
 function run(){t=0;for(var i=0;i<fns.length;i++){try{fns[i]()}catch(e){}}}
-function sched(){if(t)return;t=setTimeout(function(){idle(run,{timeout:600})},180)}
+var ls=0;addEventListener('scroll',function(){ls=Date.now()},{passive:true});
+function go(){if(Date.now()-ls<350){t=setTimeout(go,350);return}idle(run,{timeout:600})}
+function sched(){if(t)return;t=setTimeout(go,180)}
 try{new MutationObserver(sched).observe(document.documentElement,{childList:true,subtree:true})}catch(e){}
 addEventListener('resize',sched);addEventListener('load',sched);
 window.__pbxTick=function(f){fns.push(f);sched();setTimeout(f,0)};})();
@@ -2776,7 +2778,7 @@ function mount(foot){
   function restore(e){if(!e.__ds)return;for(var p in e.__ds){var o=e.__ds[p];if(o[0])e.style.setProperty(p,o[0],o[1]);else e.style.removeProperty(p)}e.__ds=null}
   var PROPS=['paddingTop','paddingRight','paddingBottom','paddingLeft'];
   var CP=['padding-top','padding-right','padding-bottom','padding-left'];
-  function run(root){var de=document.documentElement;de.classList.add('pb-ds-run');try{run0(root)}finally{void de.offsetHeight;de.classList.remove('pb-ds-run')}}
+  function run(root){var host=(!root||root===document.body)?document.documentElement:root;if(host.classList.contains('pb-ds-run'))return run0(root);host.classList.add('pb-ds-run');try{run0(root)}finally{void getComputedStyle(host).transitionDuration;host.classList.remove('pb-ds-run')}}
   function run0(root){
     var small=matchMedia('(max-width:480px)').matches,mobile=matchMedia('(max-width:767px)').matches;
     var key=(small?'s':'')+(mobile?'m':'')+innerWidth;
@@ -3103,7 +3105,7 @@ __pbxTick(fit);addEventListener('resize',function(){last='';setTimeout(fit,60)})
   function inHScroll(el){for(var p=el.parentElement;p&&p!==document.body;p=p.parentElement){var o=getComputedStyle(p).overflowX;if((o==='auto'||o==='scroll')&&p.scrollWidth>p.clientWidth+1)return true}return false}
   function sync(){
     document.querySelectorAll(CARDS).forEach(function(el){
-      var want=!inHScroll(el);
+      var kw=innerWidth+':'+el.parentElement.children.length;if(el.__pbxHk!==kw){el.__pbxHk=kw;el.__pbxHv=inHScroll(el)}var want=!el.__pbxHv;
       if(want&&!el.__pbxSd){el.__pbxSd=1;var i=[].indexOf.call(el.parentElement.children,el);el.style.setProperty('--c',String(i%3));el.classList.add('pbx-sd');if(cio)cio.observe(el)}
       else if(!want&&el.__pbxSd){el.__pbxSd=0;el.classList.remove('pbx-sd','pbx-sd-in');el.style.removeProperty('--c');if(cio)cio.unobserve(el)}
     })}
@@ -3517,7 +3519,7 @@ html body section:has(> div.flex.flex-wrap.gap-2\.5.items-center):not(#_):not(#_
 </style>
 <style id="pb-r16">
 /* №71: поки нормалізатор виставляє радіуси/відступи, transition вимкнений — без «доїзду» значень на очах */
-html.pb-ds-run *,html.pb-ds-run *::before,html.pb-ds-run *::after{transition:none !important}
+html.pb-ds-run *,html.pb-ds-run *::before,html.pb-ds-run *::after,body .pb-ds-run,body .pb-ds-run *,body .pb-ds-run *::before,body .pb-ds-run *::after{transition:none !important}
 /* №75: випадаюче меню лише з'являється (fade), без зсуву зверху */
 header nav div.absolute.top-full.z-50:not(#_):not(#__){--tw-enter-translate-y:0 !important;--tw-enter-translate-x:0 !important;animation-duration:.14s !important}
 </style>

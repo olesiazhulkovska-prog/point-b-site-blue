@@ -240,7 +240,8 @@
     document.body.appendChild(m);
     var w = Math.ceil(m.getBoundingClientRect().width) + 2;
     m.remove();
-    if (w > 100) document.documentElement.style.setProperty('--sv3-tw', w + 'px');
+    var rs = document.documentElement.style;
+    if (w > 100 && rs.getPropertyValue('--sv3-tw') !== w + 'px') rs.setProperty('--sv3-tw', w + 'px');
     // all three cards get the height of the tallest one (measured at natural height, no visible flicker: set and reset in one frame)
     var cs3 = document.querySelectorAll('.sv3-card'), root = document.documentElement.style;
     if (cs3.length) {
@@ -250,7 +251,8 @@
       root.setProperty('--sv3-eq', mh + 'px');
     }
   }
-  var svcI = setInterval(svcWidth, 700);
+  // no endless polling: it forced a full-page reflow + DOM mutation every 700ms; measure a few times after load, on resize and when fonts are ready
+  [300, 1200, 3000].forEach(function (d) { setTimeout(svcWidth, d); });
   addEventListener('resize', svcWidth);
   document.fonts && document.fonts.ready && document.fonts.ready.then(svcWidth);
 })();
