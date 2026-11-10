@@ -2344,6 +2344,18 @@ html body .hero-track[data-static="1"] .hero-L:not(#_){z-index:6}
 </style>
   <script>(function(){var u=navigator.userAgent;if(/safari/i.test(u)&&!/chrome|chromium|crios|fxios|edg|android/i.test(u)){document.documentElement.classList.add("is-safari");window.__pbSafari=1}})();</script>
 <script id="pb-ref">(function(){try{var K="pointb_ref",m=/^[A-Za-z0-9_-]{2,40}$/;var q=new URLSearchParams(location.search),r=q.get("ref"),d=parseInt(q.get("disc"),10);if(!(d>0&&d<=100))d=0;if(r&&m.test(r)){localStorage.setItem(K,JSON.stringify({c:r,d:d,t:Date.now()}))}var o=JSON.parse(localStorage.getItem(K)||"null");if(o&&o.c&&m.test(o.c)){window.__pbRef=o.c;window.__pbDisc=o.d||0}else if(o){localStorage.removeItem(K)}}catch(e){}})();</script>
+<style id="pb-r56">
+/* services stack on laptop windows: cards stack over each other at any height, roomier padding, list + CTA sit together at the bottom, short divider */
+@media (min-width:1100px){
+  html body .sv3-stack:not(#_):not(#__):not(#___):not(#____):not(#_____){--sv3-h:clamp(560px,calc(100svh - 110px),660px)}
+  html body .sv3-card:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______){position:sticky !important;top:calc(96px + var(--i) * 14px) !important;height:var(--sv3-h) !important;min-height:0 !important}
+  html body .sv3-card:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______){grid-template-rows:auto auto 1fr auto !important}
+  html body .sv3-card .sv3-desc:not(#_):not(#__):not(#___):not(#____):not(#_____){margin-top:22px !important}
+  html body .sv3-card .sv3-list:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______){align-self:end !important;margin:0 0 26px !important;width:fit-content !important;max-width:100% !important;min-width:320px;padding-top:16px !important}
+  html body .sv3-card .sv3-cta:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______){margin-top:0 !important;align-self:end !important}
+  html body .sv3-card .sv3-viz:not(#_):not(#__):not(#___):not(#____):not(#_____){margin-top:0 !important;align-self:stretch !important}
+}
+</style>
 </head>
   <body>
     <div class="scene-bg" aria-hidden="true"></div>
@@ -3759,6 +3771,7 @@ html body #site-footer:not(#_):not(#__) [class*="sm:flex-row"][class*="pt-8"]{pa
   html body .hero-graph-in:not(#_):not(#__):not(#___) svg[viewBox="0 0 760 450"] path{vector-effect:non-scaling-stroke}
 }
 </style>
+
 <style id="pb-r5">/* service cards: description + bullets are as wide as the heading text */
 html body .sv3-copy > .sv3-desc:not(#_):not(#__),html body .sv3-copy > .sv3-list:not(#_):not(#__){max-width:var(--pb-tw,none)}
 </style>
