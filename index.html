@@ -2844,6 +2844,10 @@ function mount(foot){
   __pbxTick(build);
 })();
 
+/* hero scheme svg stretches with its (wider) box on short windows */
+(function(){function f(){document.querySelectorAll('.hero-graph-in svg[viewBox="0 0 760 450"]').forEach(function(v){if(v.getAttribute('preserveAspectRatio')!=='none')v.setAttribute('preserveAspectRatio','none')})}
+if(window.__pbxTick)window.__pbxTick(f);else setInterval(f,800)})();
+
 /* pbx: freeze hero graph rendering while it is off-screen (its JS animation keeps mutating hundreds of nodes per second) */
 (function(){
   function init(){
@@ -3747,6 +3751,13 @@ html body #site-footer:not(#_):not(#__) [class*="sm:flex-row"][class*="pt-8"]{pa
 <style id="pb-r54">
 /* inner-page H1 (about / contacts / cases / privacy): scale with window height too, so it never outgrows short laptop windows */
 @media (min-width:1025px){html:root:not(#_):not(#__){--fs-h1:clamp(44px,min(7vw,9.6vh),96px)}}
+</style>
+<style id="pb-r55">
+/* hero scheme on short laptop windows: wider canvas (same height) so card text never spills out of its card */
+@media (min-width:1025px) and (max-height:830px){
+  html body .hero-graph-in:not(#_):not(#__):not(#___) > div > div.md\:block{aspect-ratio:1000 / 450 !important;max-width:min(1310px,max(780px,calc((-405.333px + 168.889svh) * 1.316))) !important}
+  html body .hero-graph-in:not(#_):not(#__):not(#___) svg[viewBox="0 0 760 450"] path{vector-effect:non-scaling-stroke}
+}
 </style>
 <style id="pb-r5">/* service cards: description + bullets are as wide as the heading text */
 html body .sv3-copy > .sv3-desc:not(#_):not(#__),html body .sv3-copy > .sv3-list:not(#_):not(#__){max-width:var(--pb-tw,none)}
