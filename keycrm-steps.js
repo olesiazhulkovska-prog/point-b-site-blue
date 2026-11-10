@@ -158,8 +158,19 @@
     window.__pbStepsOpen = setOpen;
   }
 
+  // the page component is reused between service routes: never leave the carousel (or the hidden grid) behind
+  function cleanup() {
+    Array.prototype.slice.call(document.querySelectorAll('.pbm')).forEach(function (r) { r.parentNode && r.parentNode.removeChild(r); });
+    Array.prototype.slice.call(document.querySelectorAll('[data-pb-steps]')).forEach(function (g) { g.removeAttribute('data-pb-steps'); });
+  }
+
   function mount() {
-    if (location.hash.indexOf('#/keycrm') !== 0) return;
+    if (location.hash.indexOf('#/keycrm') !== 0) { if (document.querySelector('.pbm,[data-pb-steps]')) cleanup(); return; }
+    var stale = document.querySelector('.pbm');
+    if (stale) {
+      var hh = stale.closest('section') && stale.closest('section').querySelector('h2');
+      if (!hh || !/Що ми робимо/.test(hh.textContent)) cleanup();
+    }
     var h = Array.prototype.slice.call(document.querySelectorAll('h2')).filter(function (e) { return /Що ми робимо/.test(e.textContent); })[0];
     if (!h) return;
     var sec = h.closest('section');
