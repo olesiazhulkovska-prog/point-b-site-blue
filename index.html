@@ -2735,6 +2735,7 @@ function mount(foot){
           if(innerWidth>=1100&&e.closest('.hero-note')){sn=['clamp(30px,4.45vw,64px)','1.156']}
           else if(innerWidth<1100&&e.closest('.hero-graph .hero-note')){sn=['clamp(26px,6.8vw,40px)','1.22']}
           else if(e.closest('.sv3-viz')&&((innerWidth>=768&&innerWidth<1100)||(innerWidth>=1100&&innerHeight<=900))){sn=e.matches('.font-bold.leading-tight')?['12px','1.3']:(fs>=15?['14px','1.4']:['13px','1.35'])}
+          else if(innerWidth>=1360&&innerHeight<=830&&e.closest('.hero-graph-in')){sn=fs>=15?['14px','1.3']:['12.5px','1.28']}
           else if(innerWidth>=1360&&e.closest('.hero-graph-in')){sn=fs>=15?['18px','1.4']:['16px','1.4']}
           if(e.parentElement&&e.parentElement.matches(':is(#services-section,#why-us-section,#cases-section,#reviews-section,#cta-section) :is(div[class*="font-mono"],.cta-col > div.inline-flex):has(+ h2)'))sn=['16px','1.4'];
           setp(e,'font-size',sn[0]);setp(e,'line-height',sn[1]);
@@ -3743,6 +3744,10 @@ html body #site-footer:not(#_):not(#__) [class*="md:col-span-3"]>*+*,html body #
 html body #site-footer:not(#_):not(#__) [class*="sm:flex-row"][class*="pt-8"]{padding-top:clamp(40px,4vw,64px) !important;row-gap:20px !important}
 </style>
 
+<style id="pb-r54">
+/* inner-page H1 (about / contacts / cases / privacy): scale with window height too, so it never outgrows short laptop windows */
+@media (min-width:1025px){html:root:not(#_):not(#__){--fs-h1:clamp(44px,min(7vw,9.6vh),96px)}}
+</style>
 <style id="pb-r5">/* service cards: description + bullets are as wide as the heading text */
 html body .sv3-copy > .sv3-desc:not(#_):not(#__),html body .sv3-copy > .sv3-list:not(#_):not(#__){max-width:var(--pb-tw,none)}
 </style>
