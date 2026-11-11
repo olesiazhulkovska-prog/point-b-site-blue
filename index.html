@@ -2411,6 +2411,19 @@ html body:has(#case-back-to-list-btn) header:not(#_):not(#__):not(#___){border-b
 html body div.sticky:has(> div > #case-back-to-list-btn):not(#_):not(#__):not(#___):not(#____):not(#_____){top:76px !important}
 @media (min-width:768px){html body div.sticky:has(> div > #case-back-to-list-btn):not(#_):not(#__):not(#___):not(#____):not(#_____){top:92px !important}}
 html body div.fixed.z-50.backdrop-blur-md:has(a[href*="privacy"],a[href*="polic"],button):has(> div.md\:hidden):not(#_):not(#__):not(#___){background:#141C4F !important;backdrop-filter:none !important;-webkit-backdrop-filter:none !important}
+/* pb-r62: stats centred; services cards spacing / chat fit / CRM labels (no :has — it stalls the normaliser) */
+html body #stats-section .grid > div:not(#_):not(#__):not(#___):not(#____){align-items:center !important;text-align:center !important}
+html body #stats-section .grid > div > div:not(#_):not(#__):not(#___):not(#____){text-align:center !important;width:100%}
+html body .sv3-dgi .grid[style*="13%"]:not(#_):not(#__):not(#___):not(#____){padding:20px 14px 16px !important}
+@media (max-width:1099px){html body article.sv3-card:nth-of-type(1) .sv3-dg:not(#_):not(#__):not(#___):not(#____){height:auto !important}}
+html body article.sv3-card:nth-of-type(2) .sv3-dg:not(#_):not(#__):not(#___):not(#____){overflow:hidden !important}
+@media (max-width:1099px){html body article.sv3-card:nth-of-type(2) .sv3-dg:not(#_):not(#__):not(#___):not(#____){height:auto !important}html body article.sv3-card:nth-of-type(2) .sv3-dgi div.hidden.md\:grid:not(#_):not(#__):not(#___):not(#____){height:450px !important}}
+@media (min-width:1100px){html body article.sv3-card:nth-of-type(2) .sv3-dgi:not(#_):not(#__):not(#___):not(#____){height:100% !important}}
+html body article.sv3-card:nth-of-type(2) .sv3-dgi div.rounded-3xl.overflow-hidden:not(#_):not(#__):not(#___):not(#____){height:100% !important;max-height:100% !important;min-height:0 !important}
+@media (min-width:1100px){html body article.sv3-card:nth-of-type(2) .sv3-dgi div.hidden.md\:grid:not(#_):not(#__):not(#___):not(#____){height:100% !important;max-height:100% !important;min-height:0 !important}}
+html body .sv3-dg .grid.md\:grid-cols-2 > div:first-child > div.mb-2 > span:first-child:not(#_):not(#__):not(#___):not(#____){background:#2431A4 !important;color:#F6F5F4 !important;border:0 !important;border-radius:999px !important;padding:6px 14px !important;line-height:1.1 !important}
+html body .sv3-dg .grid.md\:grid-cols-2 > div > p:not(#_):not(#__):not(#___):not(#____){text-align:center !important}
+html body .sv3-dg .grid.md\:grid-cols-2 > div > div.inline-flex:not(#_):not(#__):not(#___):not(#____){display:flex !important;width:fit-content !important;margin-left:auto !important;margin-right:auto !important}
 </style>
 </head>
   <body>
@@ -3441,7 +3454,7 @@ body:has(#admin-logout-btn) main :is(h2,h3)[class*="text-neutral-9"]{color:#fff 
 body:has(#admin-logout-btn) main span.bg-emerald-100{color:#FFD9A8 !important}
 html body:has(#close-lead-modal-btn) nav.fixed.bottom-0,html body:has(main form) nav.fixed.bottom-0,html body:has(input:focus,textarea:focus,select:focus) nav.fixed.bottom-0{display:none !important}
 /* v96: нове лого-слово POINT B GROUP (SVG) замість POINT .B */
-html body [aria-label="Point B"]:not(#_):not(#__):not(#___):not(#____){display:inline-block !important;width:calc(var(--pbl-h,34px)*2.497) !important;height:var(--pbl-h,34px) !important;padding:0 !important;border:0 !important;border-radius:0 !important;font-size:0 !important;line-height:0 !important;color:transparent !important;background:#fff !important;-webkit-mask:url(/assets/logo.svg) left center/contain no-repeat !important;mask:url(/assets/logo.svg) left center/contain no-repeat !important;transition:none !important;overflow:hidden}
+html body [aria-label="Point B"]:not(#_):not(#__):not(#___):not(#____){display:inline-block !important;width:calc(var(--pbl-h,34px)*2.497) !important;height:var(--pbl-h,34px) !important;padding:0 !important;border:0 !important;border-radius:0 !important;font-size:0 !important;line-height:0 !important;color:transparent !important;background:#fff !important;-webkit-mask:url(/assets/logo-v2.svg) left center/contain no-repeat !important;mask:url(/assets/logo-v2.svg) left center/contain no-repeat !important;transition:none !important;overflow:hidden}
 html body [aria-label="Point B"] > span:not(#_):not(#__):not(#___):not(#____){display:none !important}
 html body #nav-logo-btn:not(#_):not(#__):not(#___):not(#____){--pbl-h:46px}
 html body footer:not(#_):not(#__):not(#___):not(#____){--pbl-h:50px}
@@ -3841,7 +3854,7 @@ html body #site-footer:not(#_):not(#__){padding-bottom:0 !important;container-ty
 @media (min-width:640px){html body #site-footer:not(#_):not(#__){--g:32px}}
 @media (min-width:1024px){html body #site-footer:not(#_):not(#__){--g:64px}}
 @media (min-width:1280px){html body #site-footer:not(#_):not(#__){--g:80px}}
-html body #site-footer:not(#_):not(#__)::after{--w:min(100cqw,1840px);content:"POINT B GROUP";display:block;position:relative;z-index:1;box-sizing:border-box;width:100%;padding:0 0 0 calc((100cqw - var(--w))/2 + var(--g) - .075em);margin:clamp(56px,7vw,120px) 0 0;font-family:"Inter Variable",Inter,system-ui,sans-serif;font-weight:600;font-size:calc((var(--w) - 2*var(--g))*.1383);line-height:.8;letter-spacing:-.04em;white-space:nowrap;color:#F4F7FF;text-align:left;overflow:hidden;height:.7em;pointer-events:none;user-select:none}
+html body #site-footer:not(#_):not(#__)::after{content:"";display:block;position:relative;z-index:1;box-sizing:border-box;width:calc(min(100cqw,1840px) - 2*var(--g));aspect-ratio:12.74/1;height:auto;margin:clamp(56px,7vw,120px) auto clamp(28px,4vw,56px);background:#F98513;-webkit-mask:url(/assets/footer-word.svg) center/100% 100% no-repeat;mask:url(/assets/footer-word.svg) center/100% 100% no-repeat;pointer-events:none;user-select:none;overflow:visible;padding:0}
 /* footer spacing */
 html body #site-footer:not(#_):not(#__)>[class*="py-5"][class*="border-b"]{padding-top:clamp(36px,4vw,64px) !important;padding-bottom:clamp(36px,4vw,64px) !important}
 html body #site-footer:not(#_):not(#__)>[class*="pt-14"]{padding-top:clamp(72px,8vw,130px) !important;padding-bottom:clamp(48px,4vw,72px) !important}
