@@ -1892,6 +1892,7 @@ html body :focus-visible{outline:2px solid #F98513;outline-offset:3px;border-rad
 #pbx-progress-off{position:fixed;left:0;top:0;height:3px;width:100%;z-index:9999;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,#F98513,#FFB45E 60%,#C9D3FF);pointer-events:none;will-change:transform}
 /* heading reveal (one-shot) */
 /* cursor spotlight on cards */
+#reviews-section figure{position:relative}
 .pbx-glow{position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .4s;background:radial-gradient(380px circle at var(--mx,50%) var(--my,50%),rgba(249,133,19,.16),transparent 62%);z-index:0}
 .pbx-spot:hover>.pbx-glow{opacity:1}
 @media(hover:none){.pbx-glow{display:none}}
@@ -3021,12 +3022,6 @@ __pbxTick(fit);addEventListener('resize',function(){last='';setTimeout(fit,60)})
     var m=document.querySelector('main');if(m){m.id='pbx-main';m.setAttribute('tabindex','-1')}
     if(reduce)return;
     if(!fine)return;
-    /* card spotlight */
-    function scanC(){document.querySelectorAll('#reviews-section figure, #why-us-section .snap-start').forEach(function(c){
-      if(!c.classList.contains('pbx-spot')){c.classList.add('pbx-spot');if(getComputedStyle(c).position==='static')c.style.position='relative';
-        c.addEventListener('pointermove',function(e){var q=c.getBoundingClientRect();c.style.setProperty('--mx',(e.clientX-q.left)+'px');c.style.setProperty('--my',(e.clientY-q.top)+'px')})}
-      if(!c.querySelector(':scope>.pbx-glow')){var g=document.createElement('div');g.className='pbx-glow';g.setAttribute('aria-hidden','true');c.insertBefore(g,c.firstChild)}})}
-    __pbxTick(scanC);
   });
 })();
 
