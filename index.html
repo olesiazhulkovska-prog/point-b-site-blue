@@ -2467,7 +2467,8 @@ window.__pbCases={
     <script>
 /* v65 central scheduler: DOM-mutation driven (debounced, idle) instead of setInterval polling */
 (function(){var fns=[],t=0,idle=window.requestIdleCallback||function(c){return setTimeout(c,1)};
-function run(){t=0;for(var i=0;i<fns.length;i++){try{fns[i]()}catch(e){}}}
+var busy=0,again=0;
+function run(){if(busy){again=1;return}busy=1;t=0;var i=0;(function step(){var t0=performance.now();while(i<fns.length){try{fns[i++]()}catch(e){}if(performance.now()-t0>20)break}if(i<fns.length)setTimeout(step,0);else{busy=0;if(again){again=0;sched()}}})()}
 var ls=0;addEventListener('scroll',function(){ls=Date.now()},{passive:true});
 function go(){if(Date.now()-ls<350){t=setTimeout(go,350);return}idle(run,{timeout:600})}
 function sched(){if(t)return;t=setTimeout(go,180)}
@@ -2827,19 +2828,28 @@ function mount(foot){
   function run0(root){
     var small=matchMedia('(max-width:480px)').matches,mobile=matchMedia('(max-width:767px)').matches;
     var key=(small?'s':'')+(mobile?'m':'')+innerWidth;
-    var all=(root||document.body).querySelectorAll('*');
-    if(root&&root!==document.body){var _l=[root];for(var q=0;q<all.length;q++)_l.push(all[q]);all=_l}
-    for(var n=0;n<all.length;n++){var e=all[n],tag=e.tagName;
-      if(tag==='SCRIPT'||tag==='STYLE'||tag==='CANVAS'||tag==='svg'||tag==='path'||tag==='VIDEO'||e.closest('svg'))continue;
-      if(seen.get(e)===key)continue;restore(e);seen.set(e,key);
+    var all;
+    if(Array.isArray(root)){all=[];for(var ri=0;ri<root.length;ri++){all.push(root[ri]);var dd=root[ri].querySelectorAll('*');for(var q2=0;q2<dd.length;q2++)all.push(dd[q2])}}
+    else{all=(root||document.body).querySelectorAll('*');
+    if(root&&root!==document.body){var _l=[root];for(var q=0;q<all.length;q++)_l.push(all[q]);all=_l}}
+    /* perf: phase 0 restores, phase 1 only READS styles, phase 2 WRITES - one style recalc instead of one per element */
+    var todo=[];
+    for(var n0=0;n0<all.length;n0++){var e0=all[n0],t0=e0.tagName;
+      if(t0==='SCRIPT'||t0==='STYLE'||t0==='CANVAS'||t0==='svg'||t0==='path'||t0==='VIDEO'||e0.closest('svg'))continue;
+      if(seen.get(e0)===key)continue;restore(e0);seen.set(e0,key);todo.push(e0)}
+    var list=todo,guard=0;
+    while(list.length&&guard++<8){var ops=[],fsSet=new Set(),def=[];
+    for(var n=0;n<list.length;n++){var e=list[n],tag=e.tagName;
+      /* inherited font-size: if an ancestor gets a new size in this pass, re-read this node in the next pass */
+      if(fsSet.size){var anc=false;for(var pp=e.parentElement;pp;pp=pp.parentElement)if(fsSet.has(pp)){anc=true;break}if(anc){def.push(e);fsSet.add(e);continue}}
       var cs=getComputedStyle(e),r=cs.borderTopLeftRadius;
       /* 1. radius */
       var rv=parseFloat(r);
       if(rv>0&&!e.dataset.dsRound){
         var w=e.offsetWidth,h=e.offsetHeight;
-        if(Math.abs(w-h)<=2&&w<=64&&w>0)setp(e,'border-radius','50%');
-        else if(r.indexOf('%')<0)setp(e,'border-radius','var(--radius)');
-        else if(rv===50&&Math.abs(w-h)>2)setp(e,'border-radius','var(--radius)');
+        if(Math.abs(w-h)<=2&&w<=64&&w>0)ops.push(e,'border-radius','50%');
+        else if(r.indexOf('%')<0)ops.push(e,'border-radius','var(--radius)');
+        else if(rv===50&&Math.abs(w-h)>2)ops.push(e,'border-radius','var(--radius)');
       }
       var isHead=/^H[1-4]$/.test(tag),inHeader=e.closest('header,nav.fixed,#cookie-consent-banner');
       /* 2. font size */
@@ -2854,22 +2864,30 @@ function mount(foot){
           else if(innerWidth>=1360&&innerHeight<=830&&e.closest('.hero-graph-in')){sn=fs>=15?['14px','1.3']:['12.5px','1.28']}
           else if(innerWidth>=1360&&e.closest('.hero-graph-in')){sn=fs>=15?['18px','1.4']:['16px','1.4']}
           if(e.parentElement&&e.parentElement.matches(':is(#services-section,#why-us-section,#cases-section,#reviews-section,#cta-section) :is(div[class*="font-mono"],.cta-col > div.inline-flex):has(+ h2)'))sn=['16px','1.4'];
-          setp(e,'font-size',sn[0]);setp(e,'line-height',sn[1]);
+          ops.push(e,'font-size',sn[0]);ops.push(e,'line-height',sn[1]);fsSet.add(e);
         }
       }
       /* 3. spacing (padding + gap), not on sections / graphs */
       if(tag!=='SECTION'&&tag!=='FOOTER'&&tag!=='HEADER'&&tag!=='MAIN'&&tag!=='BODY'&&!e.classList.contains('sv3-card')&&!e.closest('.sv3-viz')&&!e.closest('.sv3-dg')){
-        for(var k=0;k<4;k++){var pv=parseFloat(cs[PROPS[k]]);if(pv>=6){var sp=snapSp(pv);if(sp!==Math.round(pv))setp(e,CP[k],sp+'px')}}
+        for(var k=0;k<4;k++){var pv=parseFloat(cs[PROPS[k]]);if(pv>=6){var sp=snapSp(pv);if(sp!==Math.round(pv))ops.push(e,CP[k],sp+'px')}}
         var g1=parseFloat(cs.rowGap),g2=parseFloat(cs.columnGap);
-        if(g1>=6){var s1=snapSp(g1);if(s1!==Math.round(g1))setp(e,'row-gap',s1+'px')}
-        if(g2>=6){var s2=snapSp(g2);if(s2!==Math.round(g2))setp(e,'column-gap',s2+'px')}
+        if(g1>=6){var s1=snapSp(g1);if(s1!==Math.round(g1))ops.push(e,'row-gap',s1+'px')}
+        if(g2>=6){var s2=snapSp(g2);if(s2!==Math.round(g2))ops.push(e,'column-gap',s2+'px')}
       }
     }
+    for(var z=0;z<ops.length;z+=3)setp(ops[z],ops[z+1],ops[z+2]);
+    list=def}
   }
   var t=0;function sched(){clearTimeout(t);t=setTimeout(function(){run()},120)}
   /* #71: новододані вузли (модалки, картки) нормалізуємо синхронно в мікротаску, до першого кадру, а не через 120мс — щоб не було стрибка радіусів і відступів */
   new MutationObserver(function(ms){
-    for(var i=0;i<ms.length;i++){var ad=ms[i].addedNodes;for(var j=0;j<ad.length;j++){var nd=ad[j];if(nd.nodeType===1&&nd.isConnected)run(nd)}}
+    var nodes=[];
+    for(var i=0;i<ms.length;i++){var ad=ms[i].addedNodes;for(var j=0;j<ad.length;j++){var nd=ad[j];if(nd.nodeType===1&&nd.isConnected)nodes.push(nd)}}
+    if(!nodes.length)return;
+    /* one batched pass for all nodes added in this tick (React mounts hundreds): skip nodes inside another added node */
+    var set=new Set(nodes),roots=nodes.filter(function(n){for(var p=n.parentElement;p;p=p.parentElement)if(set.has(p))return false;return true});
+    roots.forEach(function(r){r.classList.add('pb-ds-run')});
+    try{run0(roots)}finally{void getComputedStyle(document.documentElement).transitionDuration;roots.forEach(function(r){r.classList.remove('pb-ds-run')})}
   }).observe(document.documentElement,{childList:true,subtree:true});
   addEventListener('resize',sched);
   setTimeout(function(){run()},300);
@@ -3143,8 +3161,10 @@ __pbxTick(fit);addEventListener('resize',function(){last='';setTimeout(fit,60)})
   if(!sda&&'IntersectionObserver' in window)cio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('pbx-sd-in');cio.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px',threshold:.08});
   function inHScroll(el){for(var p=el.parentElement;p&&p!==document.body;p=p.parentElement){var o=getComputedStyle(p).overflowX;if((o==='auto'||o==='scroll')&&p.scrollWidth>p.clientWidth+1)return true}return false}
   function sync(){
-    document.querySelectorAll(CARDS).forEach(function(el){
-      var kw=innerWidth+':'+el.parentElement.children.length;if(el.__pbxHk!==kw){el.__pbxHk=kw;el.__pbxHv=inHScroll(el)}var want=!el.__pbxHv;
+    var els=[].slice.call(document.querySelectorAll(CARDS));
+    /* read phase first (scrollWidth/getComputedStyle), then writes: avoids a forced layout per card */
+    els.forEach(function(el){var kw=innerWidth+':'+el.parentElement.children.length;if(el.__pbxHk!==kw){el.__pbxHk=kw;el.__pbxHv=inHScroll(el)}});
+    els.forEach(function(el){var want=!el.__pbxHv;
       if(want&&!el.__pbxSd){el.__pbxSd=1;var i=[].indexOf.call(el.parentElement.children,el);el.style.setProperty('--c',String(i%3));el.classList.add('pbx-sd');if(cio)cio.observe(el)}
       else if(!want&&el.__pbxSd){el.__pbxSd=0;el.classList.remove('pbx-sd','pbx-sd-in');el.style.removeProperty('--c');if(cio)cio.unobserve(el)}
     })}
@@ -3224,9 +3244,11 @@ __pbxTick(fit);addEventListener('resize',function(){last='';setTimeout(fit,60)})
       '.hero-graph .hidden.md\\:block > .absolute.inset-0 > div.absolute > div,'+
       '.hero-graph .hidden.md\\:block > .absolute.inset-0 > button.absolute > .pb-hero-float > div > div,'+
       '.hero-L .\\32xl\\:block .rounded-2xl.p-4'));
-    q.forEach(function(el){
-      if(el.__pbxHc)return;el.__pbxHc=1;cards.push(el);el.classList.add('pbx-hc');
-      if(getComputedStyle(el).position==='static')el.style.position='relative';
+    var fresh=q.filter(function(el){return !el.__pbxHc});
+    fresh.forEach(function(el){el.__pbxHc=1;cards.push(el);el.classList.add('pbx-hc')});
+    var stat=fresh.map(function(el){return getComputedStyle(el).position==='static'});
+    fresh.forEach(function(el,i){
+      if(stat[i])el.style.position='relative';
       var g=document.createElement('i');g.className='pbx-hg';g.setAttribute('aria-hidden','true');el.insertBefore(g,el.firstChild)});
     cards=cards.filter(function(e){return document.contains(e)})}
   function off(el){el.classList.remove('pbx-on');el.style.transform=''}
