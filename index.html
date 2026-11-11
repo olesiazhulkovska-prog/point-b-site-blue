@@ -3271,6 +3271,9 @@ __pbxTick(fit);addEventListener('resize',function(){last='';setTimeout(fit,60)})
     if(activity>0||moving)raf=requestAnimationFrame(frame);else raf=0}
   addEventListener('pointermove',function(e){
     if(e.pointerType&&e.pointerType!=='mouse')return;
+    /* admin panel: no orange trail — it covers the fields while typing */
+    if(document.getElementById('admin-logout-btn')){host.style.display='none';return}
+    host.style.display='';
     mount();
     var x=e.clientX,y=e.clientY;
     if(Math.hypot(x-cur.x,y-cur.y)>.5)lastMove=performance.now();
