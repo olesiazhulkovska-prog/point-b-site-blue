@@ -329,6 +329,19 @@ function mountHorizon(root, canvas, props) {
     const gl = canvas.getContext("webgl", { antialias: false, alpha: false, powerPreference: "high-performance" });
     if (!gl)
         return false;
+    /* Adaptive quality. Without a GPU (software GL: SwiftShader/llvmpipe, e.g. Lighthouse/PageSpeed
+       and some low-end machines) the full-res shader saturates the main thread. There we draw one
+       low-res still frame; on real GPUs that run slowly the buffer is shrunk, then frozen. */
+    let quality = 1;
+    let software = false;
+    try {
+        const dbg = gl.getExtension("WEBGL_debug_renderer_info");
+        const rn = String(dbg ? gl.getParameter(dbg.UNMASKED_RENDERER_WEBGL) : gl.getParameter(gl.RENDERER));
+        software = /swiftshader|llvmpipe|softpipe|software|basic render/i.test(rn);
+    }
+    catch (e) { }
+    if (software)
+        quality = 0.35;
     const vs = compile(gl, gl.VERTEX_SHADER, VERT);
     const fs = compile(gl, gl.FRAGMENT_SHADER, FRAG);
     if (!vs || !fs)
@@ -376,7 +389,7 @@ function mountHorizon(root, canvas, props) {
         const dpr = Math.min(typeof window !== "undefined" ? window.devicePixelRatio || 1 : 1, MAX_DPR);
         // Never below 1 device px per CSS px — the rim is a thin feature and a
         // 0.6x buffer on a non-retina phone aliases it away.
-        const scale = Math.min(Math.max(RENDER_SCALE * dpr, 0.75), MAX_DPR);
+        const scale = Math.min(Math.max(RENDER_SCALE * dpr, 0.75), MAX_DPR) * quality;
         let nw = Math.max(2, Math.round(cssW * scale));
         let nh = Math.max(2, Math.round(cssH * scale));
         // Area budget rather than a per-axis cap: a 26-step march over a 2560px
@@ -455,11 +468,33 @@ function mountHorizon(root, canvas, props) {
     document.documentElement.addEventListener("pointerleave", off);
     document.addEventListener("mouseleave", off);
     let running = true;
+    let fpsLast = 0, fpsN = 0, fpsSum = 0, slowRounds = 0;
     const loop = (now) => {
         if (!running)
             return;
         if (!start)
             start = now;
+        if (fpsLast) {
+            const dt = now - fpsLast;
+            if (dt < 1000) { fpsSum += dt; fpsN++; }
+            if (fpsN >= 20) {
+                const avg = fpsSum / fpsN;
+                fpsN = 0; fpsSum = 0;
+                if (avg > 55) {
+                    slowRounds++;
+                    if (slowRounds >= 3) {
+                        running = false;
+                        return;
+                    }
+                    quality = Math.max(0.3, quality * 0.6);
+                    if (resize())
+                        draw(lastT);
+                }
+                else
+                    slowRounds = 0;
+            }
+        }
+        fpsLast = now;
         lastT = (now - start) / 1000;
         pointer.x += (pointer.tx - pointer.x) * 0.06;
         pointer.y += (pointer.ty - pointer.y) * 0.06;
@@ -467,8 +502,15 @@ function mountHorizon(root, canvas, props) {
         draw(lastT);
         raf = requestAnimationFrame(loop);
     };
-    raf = requestAnimationFrame(loop);
-    root.__setRunning = (v) => { if (v === running)
+    if (software) {
+        running = false; /* no animation loop: redraw the low-res still only when the scroll "lift" changes */
+        let lastLift = window.__pbLift || 0;
+        setInterval(() => { const l = window.__pbLift || 0; if (l !== lastLift) { lastLift = l; draw(lastT); } }, 250);
+    }
+    else
+        raf = requestAnimationFrame(loop);
+    root.__setRunning = (v) => { if (v && software)
+        return; if (v === running)
         return; running = v; if (v) {
         raf = requestAnimationFrame(loop);
     }
