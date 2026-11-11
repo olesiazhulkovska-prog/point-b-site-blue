@@ -3310,7 +3310,7 @@ __pbxTick(fit);addEventListener('resize',function(){last='';setTimeout(fit,60)})
 <script src="keycrm-steps.js" defer></script>
     <script src="horizon.js?v=2" defer></script>
     <script src="scrollstory.js" defer></script>
-<script>(function(){var d=0;function go(){if(d)return;d=1;var s=document.createElement('script');s.src='vortex.js?v=2';document.head.appendChild(s)}addEventListener('scroll',go,{passive:true,once:true});addEventListener('load',function(){(window.requestIdleCallback||function(f){setTimeout(f,2500)})(go,{timeout:4000})})})()</script>
+<script>(function(){var d=0;function go(){if(d)return;d=1;var s=document.createElement('script');s.src='vortex.js?v=2';s.onload=function(){try{dispatchEvent(new Event('scroll'))}catch(e){}};document.head.appendChild(s)}function chk(){if(d)return;var c=document.getElementById('cta-section');if(c&&c.getBoundingClientRect().top<innerHeight*2.5)go()}addEventListener('scroll',chk,{passive:true});addEventListener('resize',chk,{passive:true});addEventListener('load',chk);addEventListener('hashchange',function(){setTimeout(chk,300)})})()</script>
   <style id="pb-rev-photo">#reviews-section figure figcaption>div:first-child{overflow:hidden}#reviews-section figure figcaption>div:first-child:has(.pb-rev-photo){width:48px;height:48px;min-width:48px}.pb-rev-photo{display:block;border-radius:50%}</style>
 <style id="pb-admin-login">/* admin login: the global h1 size (display) must not hit this small form title */
 html body h1.text-2xl.font-black.text-white:not(#_):not(#__):not(#___){font-size:28px !important;line-height:1.15 !important;letter-spacing:-.01em !important;hyphens:none !important;overflow-wrap:normal !important;word-break:normal !important;max-width:none !important}
