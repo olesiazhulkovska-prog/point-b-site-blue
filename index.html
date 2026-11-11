@@ -3021,8 +3021,8 @@ if(window.__pbxTick)window.__pbxTick(f);else setInterval(f,800)})();
 
 /* pbx: keep the dash with the previous word in service titles */
 (function(){/* pb-fit: hero scheme + progress line always fit the visible viewport (laptop windows) */
-var last='';
-function fit(){var W=document.querySelector('.hero-graph-in > div');if(!W)return;
+var last='',lastW=null;
+function fit(){var W=document.querySelector('.hero-graph-in > div');if(!W)return;if(W!==lastW){lastW=W;last=''}
 var g=document.querySelector('.hero-graph');
 if(innerWidth<1025){W.style.removeProperty('scale');W.style.removeProperty('translate');W.style.removeProperty('transform-origin');return}
 var key=innerWidth+'x'+innerHeight+'|'+W.scrollHeight;if(key===last)return;
@@ -3033,12 +3033,12 @@ var tops=[].map.call(box.querySelectorAll('button'),function(b){return b.getBoun
 var cardTop=Math.min.apply(null,tops.concat([box.getBoundingClientRect().top]))-gt;
 var kids=W.children,lb=0;for(var i=0;i<kids.length;i++){lb=Math.max(lb,kids[i].getBoundingClientRect().bottom-gt)}
 var topLim=100,botLim=innerHeight-22,need=lb-cardTop,avail=botLim-topLim;
-var k=Math.min(1,avail/need),dy=0;
-if(k<1){dy=topLim-cardTop}else if(cardTop<topLim){dy=topLim-cardTop;if(lb+dy>botLim){k=Math.min(1,avail/need);dy=topLim-cardTop}}
+var k=Math.max(.55,Math.min(1,avail/need)),dy=0;
+if(k<1){dy=topLim-cardTop}else if(cardTop<topLim){dy=topLim-cardTop;if(lb+dy>botLim){k=Math.max(.55,Math.min(1,avail/need));dy=topLim-cardTop}}
 if(k<.999||dy>.5){W.style.setProperty('transform-origin','50% '+(cardTop+gt-wr.top)+'px');W.style.setProperty('translate','0 '+Math.round(dy)+'px');W.style.setProperty('scale',String(+k.toFixed(4)))}
 else{W.style.removeProperty('scale');W.style.removeProperty('translate');W.style.removeProperty('transform-origin')}
 last=key}
-__pbxTick(fit);addEventListener('resize',function(){last='';setTimeout(fit,60)})})();
+__pbxTick(fit);addEventListener('resize',function(){last='';setTimeout(fit,60);setTimeout(function(){last='';fit()},350);setTimeout(function(){last='';fit()},1000)})})();
 (function(){function fix(){document.querySelectorAll('.sv3-h3').forEach(function(h){var w=document.createTreeWalker(h,NodeFilter.SHOW_TEXT),n;while(n=w.nextNode()){if(n.nodeValue.indexOf(' — ')>-1)n.nodeValue=n.nodeValue.replace(/ — /g,' — ')}})}__pbxTick(fix)})();
 
 /* v54 premium motion + a11y */
