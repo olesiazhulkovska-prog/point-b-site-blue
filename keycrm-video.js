@@ -68,6 +68,6 @@ function start(root){
 var st=document.createElement('style');
 st.textContent='[data-pb-kv]{padding:0 !important;border:0 !important;box-shadow:none !important;background:transparent !important;overflow:visible !important}[data-pb-kv]>div:not(.pb-kv-host){display:none !important}';
 document.head.appendChild(st);
-new MutationObserver(mount).observe(document.documentElement,{childList:true,subtree:true});
+new MutationObserver(function(){if(location.hash.indexOf('#/keycrm')===0)mount()}).observe(document.documentElement,{childList:true,subtree:true});
 window.addEventListener('hashchange',mount);mount();
 })();

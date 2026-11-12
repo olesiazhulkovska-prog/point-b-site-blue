@@ -184,7 +184,7 @@
   }
 
   var pending = 0;
-  function sched() { if (pending) return; pending = requestAnimationFrame(function () { pending = 0; mount(); }); }
+  function sched() { if (pending) return; if (location.hash.indexOf('#/keycrm') !== 0 && !document.querySelector('.pbm,[data-pb-steps]')) return; pending = requestAnimationFrame(function () { pending = 0; mount(); }); }
   new MutationObserver(sched).observe(document.documentElement, { childList: true, subtree: true });
   window.addEventListener('hashchange', sched);
   sched();
