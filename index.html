@@ -2440,8 +2440,8 @@ html body .pb-logos .pb-wm-sh:not(#_):not(#__):not(#___){font-style:italic !impo
 html body .pb-logos:not(#_):not(#__):not(#___){gap:5px 10px !important;align-items:center !important}
 html body span.pb-sub-logos:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______):not(#_______){opacity:1 !important;-webkit-line-clamp:unset !important;display:block !important;overflow:visible !important}
 html body .pb-logos img.pb-wm:not(#_):not(#__):not(#___){display:inline-block !important;height:14px !important;width:auto !important;max-width:none !important;opacity:1 !important;vertical-align:middle}
-html body .pb-logos img.pb-wm-hr:not(#_):not(#__):not(#___){height:12px !important}
-html body .pb-logos img.pb-wm-sh:not(#_):not(#__):not(#___){height:clamp(16px,1.8cqw,20px) !important}
+html body .pb-logos img.pb-wm-hr:not(#_):not(#__):not(#___){height:clamp(9.5px,1.15cqw,12px) !important}
+html body .pb-logos img.pb-wm-sh:not(#_):not(#__):not(#___){height:clamp(14px,1.8cqw,20px) !important}
 /* perf: skip style/layout/paint of below-the-fold sections until they approach the viewport (they already clip their overflow). Intrinsic sizes = measured content height (padding excluded) */
 #why-us-section,#cases-section,#reviews-section{content-visibility:auto}
 #why-us-section{contain-intrinsic-size:auto 850px}
@@ -3937,7 +3937,8 @@ html body .pb-hero-desc:not(#_):not(#__):not(#___):not(#____){display:none}
 html body .hero-graph:not(#_):not(#__):not(#___):not(#____):not(#_____){padding-top:84px}
 html body .hero-graph-in:not(#_):not(#__):not(#___):not(#____):not(#_____) div[class*="min-height:740px"]{margin-top:16px !important}}
 @media (min-width:1025px){html body .hero-graph-in:not(#_):not(#__):not(#___):not(#____):not(#_____) > div > div.md\:block{max-width:min(1310px,max(780px,148svh)) !important}}
-@media (min-width:1025px) and (max-height:830px){html body .hero-graph-in:not(#_):not(#__):not(#___):not(#____):not(#_____) > div > div.md\:block{aspect-ratio:1000 / 405 !important}html body .hero-graph-in:not(#_):not(#__):not(#___):not(#____):not(#_____) button.absolute:nth-of-type(2){top:0% !important;height:49% !important}html body .hero-graph-in:not(#_):not(#__):not(#___):not(#____):not(#_____) button.absolute:nth-of-type(3){top:54% !important;height:46% !important}}
+@media (min-width:1200px) and (max-height:830px){html body .hero-graph-in:not(#_):not(#__):not(#___):not(#____):not(#_____) > div > div.md\:block{aspect-ratio:1000 / 405 !important}}
+@media (min-width:1025px) and (max-height:830px){html body .hero-graph-in:not(#_):not(#__):not(#___):not(#____):not(#_____) button.absolute:nth-of-type(1){top:3% !important;height:94% !important}html body .hero-graph-in:not(#_):not(#__):not(#___):not(#____):not(#_____) button.absolute:nth-of-type(2){top:0% !important;height:49% !important}html body .hero-graph-in:not(#_):not(#__):not(#___):not(#____):not(#_____) button.absolute:nth-of-type(3){top:54% !important;height:46% !important}}
 @media (min-width:1025px){html body .hero-graph > .pb-hero-desc:not(#_):not(#__):not(#___):not(#____):not(#_____){max-width:min(1100px,max(780px,148svh));text-wrap:balance;position:relative;z-index:3}}
 </style>
 <style id="pb-r5">/* service cards: description + bullets are as wide as the heading text */
