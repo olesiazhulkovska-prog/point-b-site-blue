@@ -2451,6 +2451,15 @@ html body .pb-logos img.pb-wm-sh:not(#_):not(#__):not(#___){height:clamp(14px,1.
 @media(max-width:480px){#why-us-section{contain-intrinsic-size:auto 815px}#cases-section{contain-intrinsic-size:auto 1950px}#reviews-section{contain-intrinsic-size:auto 620px}}
 /* a11y: contrast on light cards */
 html body .\@container > .flex > .min-w-0 > .mb-1.font-mono[style*="accent-green"]:not(#_):not(#__):not(#___):not(#____){color:#A84300!important}
+/* static horizon arc (replaces WebGL) */
+html body #hero-dark{position:relative;overflow:hidden}
+html body #hero-dark::after{content:"";position:absolute;z-index:1;pointer-events:none;left:50%;top:80%;width:230%;aspect-ratio:1/1;transform:translateX(-50%);border-radius:50%;background:transparent;box-shadow:0 -1px 0 0 rgba(120,135,220,.38),0 -2px 12px 0 rgba(36,49,164,.5),0 -16px 56px -4px rgba(36,49,164,.3)}
+@media(max-width:767px){html body #hero-dark::after{width:420%;top:84%}}
+html body .hero-L-bg::after{--ga:.45}
+html body .hero-L-bg:not(#_):not(#__){background-image:linear-gradient(180deg,#111144 0%,#111144 80%,#171c6e 100%)!important}
+html body .hero-L-bg:not(#_):not(#__)::after{opacity:.35!important}
+html body :is(.scene-bg,.scene-tint):not(#_):not(#__):not(#___){background-image:linear-gradient(180deg,#111144 0%,#111144 72%,#1b2680 100%)!important}
+html body :is(.scene-bg,.scene-tint):not(#_):not(#__):not(#___)::before,html body :is(.scene-bg,.scene-tint):not(#_):not(#__):not(#___)::after{opacity:.5!important}
 </style>
 </head>
   <body>
@@ -3340,7 +3349,7 @@ __pbxTick(fit);addEventListener('resize',function(){last='';setTimeout(fit,60);s
     <script>(function(){document.addEventListener('pointerdown',function(e){if(matchMedia('(hover:hover)').matches)return;var b=document.getElementById('nav-services-dropdown-btn');if(!b)return;var w=b.parentElement;if(w.contains(e.target))return;var o=w.querySelector('button:not(#nav-services-dropdown-btn)');if(o&&o.offsetParent)b.click()},true)})();</script>
     <script src="keycrm-video.js" defer></script>
 <script src="keycrm-steps.js" defer></script>
-    <script src="horizon.js?v=2" defer></script>
+    
     <script src="scrollstory.js" defer></script>
 <script>(function(){var d=0;function go(){if(d)return;d=1;var s=document.createElement('script');s.src='vortex.js?v=2';s.onload=function(){try{dispatchEvent(new Event('scroll'))}catch(e){}};document.head.appendChild(s)}function chk(){if(d)return;var c=document.getElementById('cta-section');if(c&&c.getBoundingClientRect().top<innerHeight*2.5)go()}addEventListener('scroll',chk,{passive:true});addEventListener('resize',chk,{passive:true});addEventListener('load',chk);addEventListener('hashchange',function(){setTimeout(chk,300)})})()</script>
   <style id="pb-rev-photo">#reviews-section figure figcaption>div:first-child{overflow:hidden}#reviews-section figure figcaption>div:first-child:has(.pb-rev-photo){width:48px;height:48px;min-width:48px}.pb-rev-photo{display:block;border-radius:50%}</style>
