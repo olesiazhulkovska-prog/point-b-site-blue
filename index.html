@@ -2420,8 +2420,9 @@ html body .sv3-dgi .grid[style*="13%"]:not(#_):not(#__):not(#___):not(#____){pad
 /* AI-agent card: messages area has a fixed height and scrolls inside, so the card never grows (no overflow, right cards stay centred) */
 html body article.sv3-card:nth-of-type(2) .sv3-dgi div.rounded-3xl.overflow-hidden > div.overflow-y-auto:not(#_):not(#__):not(#___):not(#____){flex:none !important;height:190px !important;min-height:0 !important;max-height:190px !important}
 @media (min-width:1100px){html body article.sv3-card:nth-of-type(2) .sv3-dgi div.rounded-3xl.overflow-hidden > div.overflow-y-auto:not(#_):not(#__):not(#___):not(#____){height:76px !important;max-height:76px !important}
-html body article.sv3-card:nth-of-type(2) .sv3-dgi div.rounded-3xl.overflow-hidden > div.overflow-y-auto:not(#_):not(#__):not(#___):not(#____):not(#_____){flex:1 1 0 !important;height:auto !important;max-height:none !important;min-height:120px !important}
-@media (min-width:768px){html body .sv3-dg .grid.md\:grid-cols-2:not(#_):not(#__):not(#___):not(#____):not(#_____){margin-top:34px}}}
+html body article.sv3-card:nth-of-type(2) .sv3-dgi div.rounded-3xl.overflow-hidden > div.overflow-y-auto:not(#_):not(#__):not(#___):not(#____):not(#_____){flex:1 1 0 !important;height:auto !important;max-height:none !important;min-height:60px !important}
+@media (min-width:768px){html body .sv3-dg .grid.md\:grid-cols-2:not(#_):not(#__):not(#___):not(#____):not(#_____){margin-top:34px}}
+@media (min-width:768px){html body article.sv3-card:nth-of-type(2) .sv3-viz.svc-viz:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______){background:transparent !important;box-shadow:none !important;padding:0 !important}html body article.sv3-card:nth-of-type(2) .sv3-dgi div.rounded-3xl.overflow-hidden > div.px-3.pb-3.pt-2:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______){padding-top:6px !important;padding-bottom:10px !important;gap:6px !important}html body article.sv3-card:nth-of-type(2) .sv3-dgi div.rounded-3xl.overflow-hidden > div.px-3.pb-3.pt-2 button.rounded-full:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______){padding:8px 14px !important;font-size:13px !important;line-height:1.2 !important}}}
 html body .sv3-dg .grid.md\:grid-cols-2 > div:first-child > div.mb-2 > span:first-child:not(#_):not(#__):not(#___):not(#____){background:#2431A4 !important;color:#F6F5F4 !important;border:0 !important;border-radius:999px !important;padding:4px 10px !important;line-height:1.1 !important;white-space:nowrap !important}
 html body .sv3-dg .grid.md\:grid-cols-2 > div > p:not(#_):not(#__):not(#___):not(#____){text-align:center !important}
 html body .sv3-dg .grid.md\:grid-cols-2 > div > div.inline-flex:not(#_):not(#__):not(#___):not(#____){display:flex !important;width:fit-content !important;margin-left:auto !important;margin-right:auto !important}
@@ -2924,7 +2925,7 @@ function mount(foot){
     });
   }
   var n=0,iv=setInterval(function(){fit();if(++n>12)clearInterval(iv)},500);
-  addEventListener('resize',function(){setTimeout(fit,150)});
+  addEventListener('resize',function(){setTimeout(fit,150);setTimeout(fit,700);setTimeout(fit,1800)});
   addEventListener('orientationchange',function(){setTimeout(fit,300)});
   document.fonts&&document.fonts.ready&&document.fonts.ready.then(fit);
 })();
