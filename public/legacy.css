@@ -2665,3 +2665,8 @@ html body #nav-logo-btn:focus-visible:not(#_):not(#__){outline:none !important}
 /* №58 case cards: dark fade under the caption on the photo */
 html body div.absolute.left-0.top-0.w-full.overflow-hidden[class*="h-[202px]"]::after{content:"";position:absolute;left:0;right:0;bottom:0;height:84px;pointer-events:none;background:linear-gradient(to top,rgba(17,17,68,.9),rgba(17,17,68,0))}
 
+
+/* mobile hero: text and buttons sit higher, leaving room for a larger mascot above the bottom edge */
+@media (max-width:767px){
+  html body #hero-dark div.flex-col:has(> h1):not(#_):not(#__):not(#___):not(#____):not(#_____){top:-4px !important}
+}
