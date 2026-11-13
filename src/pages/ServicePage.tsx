@@ -666,7 +666,7 @@ export const ServicePage = ({ serviceType: n }) => {
           </div>
         </section>
       </Band>
-      <Band tone={tones[3]} arch={tones[3] === "blue" && tones[4] === "light"}>
+      <Band tone={tones[3]}>
         <section className="max-w-[1680px] mx-auto px-5 sm:px-8 lg:px-12 xl:px-16">
           <div className="p-8 sm:p-12 rounded-3xl bg-[color:var(--card)] border border-[color:var(--card-border)] shadow-xs">
             <div className="pb-head max-w-2xl">
