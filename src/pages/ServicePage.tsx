@@ -7,6 +7,7 @@ import { KeyCrmPainsDiagram } from "../shared/KeyCrmPainsDiagram";
 import { AiAgentFlowDiagram } from "../shared/AiAgentFlowDiagram";
 import { CustomCrmCompareDiagram } from "../shared/CustomCrmCompareDiagram";
 import { LeadForm } from "../components/LeadForm";
+import { KeyCrmStepsGallery } from "../components/KeyCrmStepsGallery";
 export const tc = "249,133,19";
 export const In = "143,163,255";
 export const ac = (n, s, o, i, d, x) => {
@@ -525,43 +526,47 @@ export const ServicePage = ({ serviceType: n }) => {
             {o.whatWeDoTitle}
           </h2>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {o.whatWeDoItems.map((i, d) => (
-            <div
-              key={d}
-              className="bg-[color:var(--card)] rounded-2xl border border-[color:var(--card-border)] p-7 shadow-xs hover:border-[color:var(--card-border)] transition-all flex flex-col justify-between"
-            >
-              <div>
-                <span className="text-[13px] font-bold px-2.5 py-1 rounded bg-[color:var(--tint)] text-[color:var(--ink-soft)] border border-[color:var(--card-border)] inline-block mb-4">
-                  {i.step ? `Крок ${i.step}` : `Модуль 0${d + 1}`}
-                </span>
-                <h3 className="text-lg font-bold text-[color:var(--ink)] mb-2">
-                  {i.title}
-                </h3>
-                {i.desc && (
-                  <p className="text-base text-[color:var(--ink-soft)] leading-relaxed mb-3">
-                    {i.desc}
-                  </p>
-                )}
-                {"bullets" in i && Array.isArray(i.bullets) && (
-                  <ul
-                    className={`space-y-2.5 ${i.desc ? "mt-3 pt-3 border-t border-[color:var(--card-border)]" : "mt-4"}`}
-                  >
-                    {i.bullets.map((x, p) => (
-                      <li
-                        key={p}
-                        className="flex items-start gap-2.5 text-base sm:text-base text-[color:var(--ink-soft)]"
-                      >
-                        <div className="w-1.5 h-1.5 rounded-full bg-[color:var(--accent-green)] shrink-0 mt-2" />
-                        <span className="leading-relaxed">{x}</span>
-                      </li>
-                    ))}
-                  </ul>
-                )}
+        {n === "keycrm" && o.whatWeDoItems.length === 6 ? (
+          <KeyCrmStepsGallery items={o.whatWeDoItems} />
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {o.whatWeDoItems.map((i, d) => (
+              <div
+                key={d}
+                className="bg-[color:var(--card)] rounded-2xl border border-[color:var(--card-border)] p-7 shadow-xs hover:border-[color:var(--card-border)] transition-all flex flex-col justify-between"
+              >
+                <div>
+                  <span className="text-[13px] font-bold px-2.5 py-1 rounded bg-[color:var(--tint)] text-[color:var(--ink-soft)] border border-[color:var(--card-border)] inline-block mb-4">
+                    {i.step ? `Крок ${i.step}` : `Модуль 0${d + 1}`}
+                  </span>
+                  <h3 className="text-lg font-bold text-[color:var(--ink)] mb-2">
+                    {i.title}
+                  </h3>
+                  {i.desc && (
+                    <p className="text-base text-[color:var(--ink-soft)] leading-relaxed mb-3">
+                      {i.desc}
+                    </p>
+                  )}
+                  {"bullets" in i && Array.isArray(i.bullets) && (
+                    <ul
+                      className={`space-y-2.5 ${i.desc ? "mt-3 pt-3 border-t border-[color:var(--card-border)]" : "mt-4"}`}
+                    >
+                      {i.bullets.map((x, p) => (
+                        <li
+                          key={p}
+                          className="flex items-start gap-2.5 text-base sm:text-base text-[color:var(--ink-soft)]"
+                        >
+                          <div className="w-1.5 h-1.5 rounded-full bg-[color:var(--accent-green)] shrink-0 mt-2" />
+                          <span className="leading-relaxed">{x}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
       </section>
       <section className="py-24 md:py-32 bg-[color:var(--card)] border-y border-[color:var(--card-border)]">
         <div className="max-w-[1680px] mx-auto px-5 sm:px-8 lg:px-12 xl:px-16">
