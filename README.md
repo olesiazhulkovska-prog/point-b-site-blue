@@ -1,18 +1,14 @@
-# Point B Group — сайт (синя версія)
+# Point B Group — сайт
 
-Статичний сайт + одна серверна функція для заявок.
+Vite + React 19 + TypeScript. Відновлено з прод-збірки (листопад 2026), тому код працює ідентично продові.
 
-- `index.html`, `assets/`, `fonts/`, `vortex.js`, іконки — готова збірка сайту (дизайн = синій артефакт).
-- `api/lead.js` — Vercel-функція: приймає заявку з форми й створює картку в keyCRM.
-- `vercel.json` — кеш для `assets/`.
+- `src/components`, `src/pages`, `src/context`, `src/data` — застосунок
+- `src/shared` — допоміжні шматки, імена яких ще мінфіковані (поступово перейменовуємо)
+- `public/legacy.css` і `public/*.js` — старі CSS/JS-латки, які ще треба перенести в компоненти й токени
+- `api/` — serverless-функції Vercel (`lead`, `cases`)
 
-Маршрути працюють через `#/…` (`#/keycrm`, `#/ai-bots`, `#/analytics`, `#/cases`, `#/about`, `#/contact`), серверних rewrite не потрібно.
-
-## Публікація
-1. GitHub: новий репозиторій → Add file → Upload files → перетягнути ВМІСТ папки (не сам зіп).
-2. Vercel: Add New → Project → імпорт репозиторію. Framework Preset — **Other**, Build Command і Output Directory залишити порожніми.
-3. Змінні середовища (Settings → Environment Variables): `KEYCRM_API_KEY` (обов'язково); `KEYCRM_PIPELINE_ID`, `KEYCRM_STATUS_ID`, `KEYCRM_SOURCE_ID` мають значення за замовчуванням 4 / 56 / 50. Після додавання — Redeploy.
-4. Домен: Settings → Domains → Add, далі прописати DNS-записи, які покаже Vercel.
-
-## Обмеження
-Це зібраний сайт, а не вихідний React-проєкт: вручну правити `index.html` незручно. Дизайн-правки робляться в чаті й додаються новою збіркою.
+```
+npm i
+npm run dev
+npm run build   # → dist
+```
