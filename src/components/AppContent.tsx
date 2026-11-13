@@ -1,5 +1,6 @@
 // @ts-nocheck
 /* Відновлено з прод-збірки; імена та типи доводяться вручну. */
+import React from "react";
 import { X } from "lucide-react";
 import { useSite } from "../context/SiteContext";
 import { LeadForm } from "./LeadForm";
@@ -8,11 +9,15 @@ import { AboutPage } from "../pages/AboutPage";
 import { ServicePage } from "../pages/ServicePage";
 import { CasesPage } from "../pages/CasesPage";
 import { ContactPage } from "../pages/ContactPage";
-import { PrivacyPage } from "../pages/PrivacyPage";
 import { ThankYouPage } from "../pages/ThankYouPage";
-import { AdminPage } from "../pages/AdminPage";
 import { CaseDetailPage } from "../pages/CaseDetailPage";
 import { NotFoundPage } from "../pages/NotFoundPage";
+const PrivacyPage = React.lazy(() =>
+  import("../pages/PrivacyPage").then((m) => ({ default: m.PrivacyPage })),
+);
+const AdminPage = React.lazy(() =>
+  import("../pages/AdminPage").then((m) => ({ default: m.AdminPage })),
+);
 import { PageBackground } from "./PageBackground";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
@@ -102,7 +107,9 @@ export const AppContent = () => {
     <div className="min-h-screen flex flex-col bg-transparent text-[color:var(--ink)] font-sans antialiased selection:bg-[#F98513] selection:text-[#1111a1] relative">
       <PageBackground hero={n === "index"} />
       {!d && <Header />}
-      <main className="flex-grow relative z-10">{i()}</main>
+      <main className="flex-grow relative z-10">
+        <React.Suspense fallback={null}>{i()}</React.Suspense>
+      </main>
       {!d && <Footer />}
       <C_tq />
       {!d && <MobileTabBar />}
