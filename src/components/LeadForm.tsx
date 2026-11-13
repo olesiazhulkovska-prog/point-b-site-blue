@@ -163,9 +163,6 @@ export const LeadForm = ({
         <div className="max-w-3xl mx-auto space-y-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-14">
             <div className="space-y-1">
-              <span className="text-[13px] font-bold text-[color:var(--accent-green)] uppercase tracking-wider block">
-                Обов'язково
-              </span>
               <input
                 id="lead-skalar-name"
                 type="text"
@@ -173,13 +170,10 @@ export const LeadForm = ({
                 value={j}
                 onChange={(Z) => h(Z.target.value)}
                 placeholder="Введіть своє ім'я*"
-                className="w-full bg-transparent border-b-2 border-[color:var(--card-border)] pb-2 text-sm sm:text-base text-[color:var(--ink)] placeholder:text-[color:var(--muted)] focus:outline-none focus:border-[color:var(--accent-green)] transition-colors"
+                className="w-full bg-transparent border-b-2 border-[color:var(--card-border)] py-2 text-sm sm:text-base text-[color:var(--ink)] placeholder:text-[color:var(--muted)] focus:outline-none focus:border-[color:var(--accent-green)] transition-colors"
               />
             </div>
             <div className="space-y-1">
-              <span className="text-[13px] font-bold text-[color:var(--accent-green)] uppercase tracking-wider block">
-                Обов'язково
-              </span>
               <input
                 id="lead-skalar-phone"
                 type="tel"
@@ -190,15 +184,12 @@ export const LeadForm = ({
                 maxLength={17}
                 onChange={(Z) => U(Qk(Z.target.value))}
                 placeholder="+380 00 000 00 00*"
-                className="w-full bg-transparent border-b-2 border-[color:var(--card-border)] pb-2 text-sm sm:text-base text-[color:var(--ink)] placeholder:text-[color:var(--muted)] focus:outline-none focus:border-[color:var(--accent-green)] transition-colors"
+                className="w-full bg-transparent border-b-2 border-[color:var(--card-border)] py-2 text-sm sm:text-base text-[color:var(--ink)] placeholder:text-[color:var(--muted)] focus:outline-none focus:border-[color:var(--accent-green)] transition-colors"
               />
             </div>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-14">
             <div className="space-y-1">
-              <span className="text-[13px] font-bold text-[color:var(--accent-green)] uppercase tracking-wider block">
-                Обов'язково
-              </span>
               <input
                 id="lead-skalar-role"
                 type="text"
@@ -206,20 +197,17 @@ export const LeadForm = ({
                 value={k}
                 onChange={(Z) => R(Z.target.value)}
                 placeholder="Ваша посада (напр. СЕО, Власник)*"
-                className="w-full bg-transparent border-b-2 border-[color:var(--card-border)] pb-2 text-sm sm:text-base text-[color:var(--ink)] placeholder:text-[color:var(--muted)] focus:outline-none focus:border-[color:var(--accent-green)] transition-colors"
+                className="w-full bg-transparent border-b-2 border-[color:var(--card-border)] py-2 text-sm sm:text-base text-[color:var(--ink)] placeholder:text-[color:var(--muted)] focus:outline-none focus:border-[color:var(--accent-green)] transition-colors"
               />
             </div>
             <div className="space-y-1">
-              <span className="text-[13px] font-medium text-[color:var(--muted)] uppercase tracking-wider block">
-                Опційно
-              </span>
               <input
                 id="lead-skalar-telegram"
                 type="text"
                 value={v}
                 onChange={(Z) => w(Z.target.value)}
                 placeholder="Ім’я користувача (@) в Телеграм"
-                className="w-full bg-transparent border-b-2 border-[color:var(--card-border)] pb-2 text-sm sm:text-base text-[color:var(--ink)] placeholder:text-[color:var(--muted)] focus:outline-none focus:border-[color:var(--accent-green)] transition-colors"
+                className="w-full bg-transparent border-b-2 border-[color:var(--card-border)] py-2 text-sm sm:text-base text-[color:var(--ink)] placeholder:text-[color:var(--muted)] focus:outline-none focus:border-[color:var(--accent-green)] transition-colors"
               />
             </div>
           </div>
@@ -291,7 +279,7 @@ export const LeadForm = ({
                   value={$}
                   onChange={(Z) => te(Z.target.value)}
                   placeholder="Вкажіть вашу сферу діяльності*"
-                  className="w-full bg-transparent border-b-2 border-[color:var(--card-border)] pb-1.5 text-[13px] sm:text-sm text-center text-[color:var(--ink)] placeholder:text-[color:var(--muted)] focus:outline-none focus:border-[color:var(--accent-green)] transition-colors"
+                  className="w-full bg-transparent border-b-2 border-[color:var(--card-border)] py-1.5 text-[13px] sm:text-sm text-center text-[color:var(--ink)] placeholder:text-[color:var(--muted)] focus:outline-none focus:border-[color:var(--accent-green)] transition-colors"
                 />
               </div>
             )}
@@ -397,7 +385,7 @@ export const LeadForm = ({
               value={se}
               onChange={(Z) => ne(Z.target.value)}
               placeholder="Вкажіть орієнтовний бюджет у євро / доларі"
-              className="w-full bg-transparent border-b-2 border-[color:var(--card-border)] pb-2 text-[13px] sm:text-base placeholder:text-[13px] sm:placeholder:text-base text-center text-[color:var(--ink)] placeholder:text-[color:var(--muted)] focus:outline-none focus:border-[color:var(--accent-green)] transition-colors font-medium px-2"
+              className="w-full bg-transparent border-b-2 border-[color:var(--card-border)] py-2 text-[13px] sm:text-base placeholder:text-[13px] sm:placeholder:text-base text-center text-[color:var(--ink)] placeholder:text-[color:var(--muted)] focus:outline-none focus:border-[color:var(--accent-green)] transition-colors font-medium px-2"
             />
           </div>
         </div>
@@ -445,7 +433,7 @@ export const LeadForm = ({
             value={Re}
             onChange={(Z) => G(Z.target.value.slice(0, 200))}
             placeholder="Наприклад, порадили «Назва компанії» або промокод партнера"
-            className="w-full bg-transparent border-b-2 border-[color:var(--card-border)] pb-2 text-sm sm:text-base text-center text-[color:var(--ink)] placeholder:text-[color:var(--muted)] focus:outline-none focus:border-[color:var(--accent-green)] transition-colors px-2"
+            className="w-full bg-transparent border-b-2 border-[color:var(--card-border)] py-2 text-sm sm:text-base text-center text-[color:var(--ink)] placeholder:text-[color:var(--muted)] focus:outline-none focus:border-[color:var(--accent-green)] transition-colors px-2"
           />
         </div>
         {O && (
