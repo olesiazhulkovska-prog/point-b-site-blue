@@ -1,28 +1,496 @@
 // @ts-nocheck
 /* Відновлено з прод-збірки; імена та типи доводяться вручну. */
-import { ArrowLeft, ArrowRight, Briefcase, CircleCheck, Clock, ExternalLink, Globe, Instagram, MapPin, TrendingUp, TriangleAlert, Users } from 'lucide-react';
-import { useSite } from '../context/SiteContext';
-import { ReviewCard } from '../components/ReviewCard';
-import { LeadForm } from '../components/LeadForm';
+import {
+  ArrowLeft,
+  ArrowRight,
+  Briefcase,
+  CircleCheck,
+  Clock,
+  ExternalLink,
+  Globe,
+  Instagram,
+  MapPin,
+  TrendingUp,
+  TriangleAlert,
+  Users,
+} from "lucide-react";
+import { useSite } from "../context/SiteContext";
+import { ReviewCard } from "../components/ReviewCard";
+import { LeadForm } from "../components/LeadForm";
 
-export const Ra = n => n ? n.replace(/\bKeyCRM\b/g, "keyCRM").replace(/\bКЕЙ СРМ\b/g, "кей СРМ").replace(/\bКейCRM\b/g, "кейCRM").replace(/\bКЕЙCRM\b/g, "кейCRM").replace(/\bКей СРМ\b/g, "кей СРМ").replace(/\bKey CRM\b/gi, "key CRM") : "";
+export const Ra = (n) =>
+  n
+    ? n
+        .replace(/\bKeyCRM\b/g, "keyCRM")
+        .replace(/\bКЕЙ СРМ\b/g, "кей СРМ")
+        .replace(/\bКейCRM\b/g, "кейCRM")
+        .replace(/\bКЕЙCRM\b/g, "кейCRM")
+        .replace(/\bКей СРМ\b/g, "кей СРМ")
+        .replace(/\bKey CRM\b/gi, "key CRM")
+    : "";
 
-export const CaseDetailPage = ({
-  slug: n
-}) => {
+export const CaseDetailPage = ({ slug: n }) => {
   var x;
-  const {
-      cases: s,
-      navigateTo: o,
-      openLeadModal: i
-    } = useSite(),
-    d = s.find(p => p.slug === n || p.id === n || p.slug === `case-${n}` || p.id === `case-${n}`);
-  return d ? <div className="bg-[color:var(--card)] min-h-screen text-[color:var(--ink)] selection:bg-[color:var(--tint)] selection:text-[color:var(--ink)] pb-20"><div className="bg-[color:var(--card)] border-b border-[color:var(--card-border)] sticky top-20 z-30 shadow-2xs"><div className="max-w-[1680px] mx-auto px-5 sm:px-8 lg:px-12 xl:px-16 py-3 flex flex-wrap items-center justify-between gap-3"><button id="case-back-to-list-btn" onClick={() => o("cases")} className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-[color:var(--ink-soft)] hover:text-[color:var(--ink)] transition-colors"><ArrowLeft className="w-4 h-4" /><span>Усі кейси</span></button><div className="flex items-center gap-1.5 overflow-x-auto py-0.5"><span className="text-[13px] font-semibold text-[color:var(--ink-soft)] uppercase tracking-wider mr-1 hidden sm:inline">Кейси:</span>{s.map(p => {
-            const f = p.id === d.id || p.slug === d.slug;
-            return <button key={p.id} id={`case-switch-btn-${p.slug}`} onClick={() => o(p.slug)} className={`px-3 py-1 rounded-full text-[13px] font-semibold transition-all whitespace-nowrap ${f ? "bg-[color:var(--btn-dark)] text-[color:var(--on-dark)] shadow-xs" : "bg-[color:var(--tint)] text-[color:var(--ink-soft)] hover:text-[color:var(--ink)] hover:bg-[color:var(--tint)]"}`}>{p.companyName}</button>;
-          })}</div></div></div><section className="bg-[color:var(--card)] border-b border-[color:var(--card-border)] py-12 md:py-16"><div className="max-w-[1680px] mx-auto px-5 sm:px-8 lg:px-12 xl:px-16 space-y-6"><div className="flex flex-wrap items-center justify-between gap-3"><div className="inline-block px-3 py-1 rounded-full text-[13px] font-semibold bg-[color:var(--tint)] text-[color:var(--ink)] border border-[color:var(--card-border)]">{d.heroSphereTag}</div><div className="flex items-center gap-2">{d.websiteUrl && <a href={d.websiteUrl} target="_blank" rel="noopener noreferrer" className="group/link inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[13px] font-medium text-[color:var(--ink-soft)] bg-[color:var(--tint)] hover:bg-[color:var(--accent-green)] hover:text-[color:var(--on-dark)] transition-all border border-[color:var(--card-border)] shadow-2xs"><Globe className="w-3.5 h-3.5 text-[color:var(--accent-green)] group-hover/link:text-[color:var(--ink)] transition-colors" /><span>Вебсайт компанії</span><ExternalLink className="w-2.5 h-2.5 opacity-60" /></a>}{d.instagramUrl && <a href={d.instagramUrl} target="_blank" rel="noopener noreferrer" className="group/link inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[13px] font-medium text-[color:var(--ink-soft)] bg-[color:var(--tint)] hover:bg-pink-600 hover:text-[color:var(--ink)] transition-all border border-[color:var(--card-border)] shadow-2xs"><Instagram className="w-3.5 h-3.5 text-pink-600 group-hover/link:text-[color:var(--ink)] transition-colors" /><span>Instagram</span><ExternalLink className="w-2.5 h-2.5 opacity-60" /></a>}</div></div><h1 className="pb-h2 text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[color:var(--ink)] sm:tracking-tight leading-tight">{Ra(d.companyName)}</h1><p className="text-base sm:text-lg text-[color:var(--ink-soft)] leading-relaxed max-w-3xl">{Ra(d.companyDescription)}</p>{d.coverImageUrl && <div className="relative rounded-2xl overflow-hidden h-56 sm:h-72 border border-[color:var(--card-border)] shadow-xs mt-4"><img src={d.coverImageUrl} alt={d.companyName} referrerPolicy="no-referrer" className="w-full h-full object-cover" /><div className="absolute inset-0 bg-gradient-to-t from-[#F4F7a1]/70 via-[#F4F7a1]/15 to-transparent" /><div className="absolute bottom-4 left-5 right-5 flex items-center justify-between text-[color:var(--ink)] text-[13px] font-medium"><span className="bg-white/80 backdrop-blur-md px-3 py-1 rounded-full border border-[color:var(--card-border)]">{d.companyName}{" · Реалізований проєкт"}</span><span className="text-[color:var(--muted)] hidden sm:inline">{(x = d.integratedSystems) == null ? undefined : x.map(p => p.replace(/\bKeyCRM\b/g, "keyCRM").replace(/\bКЕЙ СРМ\b/g, "кей СРМ")).slice(0, 3).join(" · ")}</span></div></div>}{d.businessValues && d.businessValues.length > 0 && <div id="case-top-business-values" className="pt-4"><div className="text-[13px] font-bold uppercase tracking-widest text-[color:var(--accent-green)] mb-3">Ключова цінність для бізнесу</div><div className="grid grid-cols-1 sm:grid-cols-3 gap-4">{d.businessValues.map((p, f) => <div key={f} className="p-5 rounded-xl bg-[color:var(--tint)] border border-[color:var(--card-border)] text-base sm:text-lg font-bold text-[color:var(--ink)] leading-snug">{Ra(p)}</div>)}</div></div>}<div className="pt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"><div className="p-4 rounded-xl bg-[color:var(--card)] border border-[color:var(--card-border)]"><div className="flex items-center gap-1.5 text-[13px] font-semibold text-[color:var(--ink-soft)] uppercase tracking-wider mb-1"><Briefcase className="w-3.5 h-3.5 text-[color:var(--ink-soft)]" /><span>Сфера</span></div><div className="text-base font-bold text-[color:var(--ink)] leading-snug">{d.metadata.sphere}</div></div><div className="p-4 rounded-xl bg-[color:var(--card)] border border-[color:var(--card-border)]"><div className="flex items-center gap-1.5 text-[13px] font-semibold text-[color:var(--ink-soft)] uppercase tracking-wider mb-1"><Users className="w-3.5 h-3.5 text-[color:var(--ink-soft)]" /><span>Співробітники</span></div><div className="text-base font-bold text-[color:var(--ink)] leading-snug">{d.metadata.employees}</div></div><div className="p-4 rounded-xl bg-[color:var(--card)] border border-[color:var(--card-border)]"><div className="flex items-center gap-1.5 text-[13px] font-semibold text-[color:var(--ink-soft)] uppercase tracking-wider mb-1"><MapPin className="w-3.5 h-3.5 text-[color:var(--ink-soft)]" /><span>Географія</span></div><div className="text-base font-bold text-[color:var(--ink)] leading-snug">{d.metadata.geography}</div></div><div className="p-4 rounded-xl bg-[color:var(--card)] border border-[color:var(--card-border)]"><div className="flex items-center gap-1.5 text-[13px] font-semibold text-[color:var(--ink-soft)] uppercase tracking-wider mb-1"><Clock className="w-3.5 h-3.5 text-[color:var(--ink-soft)]" /><span>Час впровадження</span></div><div className="text-base font-bold text-[color:var(--ink)] leading-snug">{d.metadata.implementationTime}</div></div></div></div></section><div className="max-w-[1680px] mx-auto px-5 sm:px-8 lg:px-12 xl:px-16 py-14 space-y-16">{d.hasClientRequest && d.clientRequestItems && d.clientRequestItems.length > 0 && <section id="section-client-request" className="bg-[color:var(--card)] rounded-2xl border border-[color:var(--card-border)] p-8 sm:p-10 shadow-xs"><div className="mb-6"><span className="text-[13px] font-bold uppercase tracking-widest text-[color:var(--accent-green)]">Вихідні цілі</span><h2 className="text-2xl font-bold text-[color:var(--ink)] mt-1">Запит клієнта</h2></div><ul className="space-y-3.5">{d.clientRequestItems.map((p, f) => <li key={f} className="flex items-start gap-3.5 text-base sm:text-base text-[color:var(--ink)]"><div className="w-5 h-5 rounded-full bg-[color:var(--tint)] text-[color:var(--accent-green)] flex items-center justify-center shrink-0 mt-0.5"><CircleCheck className="w-4 h-4" /></div><span className="leading-relaxed">{Ra(p)}</span></li>)}</ul></section>}{d.hasSituationBefore && d.situationBeforeItems && d.situationBeforeItems.length > 0 && <section id="section-situation-before" className="bg-amber-50/40 rounded-2xl border border-amber-200/80 p-8 sm:p-10"><div className="mb-6"><span className="text-[13px] font-bold uppercase tracking-widest text-amber-900 block">Точка А</span><div className="flex items-center gap-2.5 mt-0.5"><TriangleAlert className="w-6 h-6 text-amber-700 shrink-0" /><h2 className="text-2xl font-bold text-[color:var(--ink)]">Ситуація до впровадження</h2></div></div><ul className="space-y-3.5">{d.situationBeforeItems.map((p, f) => <li key={f} className="flex items-start gap-3.5 text-base sm:text-base text-[color:var(--ink)]"><span className="w-2 h-2 rounded-full bg-amber-600 mt-2 shrink-0" /><span className="leading-relaxed">{Ra(p)}</span></li>)}</ul></section>}<section id="section-what-we-did" className="bg-[color:var(--card)] rounded-2xl border border-[color:var(--card-border)] p-8 sm:p-10 shadow-xs"><div className="mb-8"><span className="text-[13px] font-bold uppercase tracking-widest text-[color:var(--accent-green)]">Реалізація</span><h2 className="text-2xl font-bold text-[color:var(--ink)] mt-1">Що ми зробили</h2></div><div className="space-y-6">{d.whatWeDidSteps.map((p, f) => <div key={f} className="flex items-start gap-4 p-4 rounded-xl hover:bg-[color:var(--card)] border border-transparent hover:border-[color:var(--card-border)] transition-colors"><div className="w-8 h-8 rounded-lg bg-[color:var(--btn-dark)] text-[color:var(--on-dark)] flex items-center justify-center font-bold text-[13px] shrink-0 mt-0.5">{f + 1}</div><div className="space-y-1"><h3 className="text-base font-bold text-[color:var(--ink)]">{Ra(p.title)}</h3><p className="text-base text-[color:var(--ink-soft)] leading-relaxed">{Ra(p.description)}</p></div></div>)}</div></section><section id="section-mid-cta" className="rounded-3xl bg-[color:var(--card)] border border-[color:var(--card-border)] p-8 sm:p-10 flex flex-col sm:flex-row sm:items-center justify-between gap-6"><div className="space-y-2 max-w-2xl"><h3 className="text-xl sm:text-2xl font-extrabold text-[color:var(--ink)]">Такий результат — і для вашого бізнесу</h3><p className="text-base text-[color:var(--ink-soft)] leading-relaxed">{d.companyName + ": " + (d.businessValues || []).slice(0, 2).join(" · ")}</p></div><button id="case-mid-cta-btn" onClick={() => i(`Хочу так само, як у кейсі: ${d.companyName}`)} className="w-full sm:w-auto shrink-0 px-7 py-3.5 rounded-full bg-[color:var(--btn-dark)] text-[color:var(--on-dark)] font-bold text-sm hover:bg-[color:var(--btn-dark-hover)] transition-all flex items-center justify-center gap-2"><span>Хочу так само</span><ArrowRight className="w-4 h-4 text-[color:var(--accent-green)]" /></button></section><section id="section-result" className="rounded-3xl bg-[color:var(--card)] text-[color:var(--ink)] p-8 sm:p-12 border border-[color:var(--card-border)] space-y-10"><div><span className="text-[13px] font-bold uppercase tracking-widest text-[color:var(--accent-green)]">Точка B</span><h2 className="pb-h2 text-2xl sm:text-3xl font-extrabold text-[color:var(--ink)] mt-1 sm:tracking-tight">Результати впровадження</h2>{d.resultIntro && <p className="text-[color:var(--muted)] text-base sm:text-base mt-2 leading-relaxed max-w-3xl">{Ra(d.resultIntro)}</p>}</div><div className="grid grid-cols-1 sm:grid-cols-2 gap-4">{d.resultItems.map((p, f) => <div key={f} className="p-5 rounded-2xl bg-[color:var(--card)] border border-[color:var(--card-border)] flex items-start gap-3"><div className="w-5 h-5 rounded-full bg-[color:var(--btn-dark)] text-[color:var(--lime)] border border-[color:var(--accent-green)] flex items-center justify-center shrink-0 mt-0.5"><CircleCheck className="w-3.5 h-3.5" /></div><span className="text-base text-[color:var(--ink)] leading-relaxed font-medium">{Ra(p)}</span></div>)}</div><ReviewCard review={d.clientQuote ? {
-          ...d.clientQuote,
-          text: Ra(d.clientQuote.text)
-        } : undefined} /><div className="pt-2 border-t border-[color:var(--card-border)]"><h3 className="text-sm font-bold uppercase tracking-wider text-[color:var(--accent-green)] mb-4 flex items-center gap-2"><TrendingUp className="w-4 h-4" /><span>Ключова цінність для бізнесу</span></h3><div className="grid grid-cols-1 sm:grid-cols-3 gap-4">{d.businessValues.map((p, f) => <div key={f} className="p-4 rounded-xl bg-[color:var(--card)] border border-[color:var(--card-border)] text-[13px] font-mono font-normal tracking-wider text-[color:var(--accent-green)] leading-relaxed">{Ra(p)}</div>)}</div></div></section><section id="section-systems-cta" className="bg-[color:var(--card)] rounded-3xl border border-[color:var(--card-border)] p-8 sm:p-12 shadow-xs"><div className="space-y-6"><div><span className="text-[13px] font-bold uppercase tracking-widest text-[color:var(--accent-green)]">Технологічний стек</span><h3 className="text-xl font-bold text-[color:var(--ink)] mt-1">Системи, які інтегрували</h3></div><div className="p-4 rounded-xl bg-[color:var(--card)] border border-[color:var(--card-border)] text-base font-medium text-[color:var(--ink)] leading-relaxed">{d.integratedSystems.map(p => p.replace(/\bKeyCRM\b/g, "keyCRM").replace(/\bКЕЙ СРМ\b/g, "кей СРМ")).join(" · ")}</div><div className="pt-4 flex flex-col sm:flex-row items-center gap-4"><button id="case-cta-same-result-btn" onClick={() => i(`Хочу так само, як у кейсі: ${d.companyName}`)} className="w-full sm:w-auto px-7 py-3.5 rounded-full bg-[color:var(--btn-dark)] text-[color:var(--on-dark)] font-bold text-sm hover:bg-[color:var(--btn-dark-hover)] transition-all flex items-center justify-center gap-2"><span>Хочу так само</span><ArrowRight className="w-4 h-4 text-[color:var(--accent-green)]" /></button><button id="case-cta-all-cases-btn" onClick={() => o("cases")} className="w-full sm:w-auto px-7 py-3.5 rounded-full border border-[color:var(--card-border)] text-[color:var(--ink-soft)] font-semibold text-sm hover:bg-[color:var(--card)] transition-all">Усі кейси</button></div></div></section><section id="case-skalar-form-section" className="pt-8 pb-4"><LeadForm title="Заявка на консультацію" defaultService={d.serviceType || "Впровадження keyCRM"} sourcePage={`case-${d.slug}`} /></section>{s.filter(p => p.id !== d.id).length > 0 && <section className="pt-4 space-y-6"><div className="flex items-center justify-between"><div><span className="text-[13px] font-bold uppercase tracking-widest text-[color:var(--accent-green)]">Більше досвіду</span><h3 className="text-2xl font-bold text-[color:var(--ink)] mt-0.5">Інші кейси впровадження</h3></div><button onClick={() => o("cases")} className="text-[13px] font-semibold text-[color:var(--ink-soft)] hover:text-[color:var(--ink)] flex items-center gap-1"><span>Каталог</span><ArrowRight className="w-3.5 h-3.5" /></button></div><div className="grid grid-cols-1 sm:grid-cols-3 gap-5">{s.filter(p => p.id !== d.id).slice(0, 3).map(p => <div key={p.id} onClick={() => o(p.slug)} className="p-5 rounded-2xl bg-[color:var(--card)] border border-[color:var(--card-border)] hover:border-[color:var(--card-border)] hover:shadow-xs transition-all cursor-pointer flex flex-col justify-between group"><div><div className="text-[13px] font-semibold text-[color:var(--ink-soft)] mb-2">{p.industryTag}</div><h4 className="text-base font-bold text-[color:var(--ink)] group-hover:text-[color:var(--accent-green)] transition-colors mb-2">{p.companyName}</h4><div className="text-lg font-extrabold text-[color:var(--accent-green)]">{p.shortResultMetric}</div><div className="text-[13px] text-[color:var(--ink-soft)] mt-0.5 line-clamp-1">{p.shortResultCaption}</div></div><div className="pt-4 mt-3 border-t border-[color:var(--card-border)] flex items-center justify-between text-[13px] font-semibold text-[color:var(--ink-soft)] group-hover:text-[color:var(--accent-green)]"><span>Переглянути</span><ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" /></div></div>)}</div></section>}</div></div> : <div className="min-h-screen bg-[color:var(--card)] flex items-center justify-center p-6 text-center"><div className="bg-[color:var(--card)] p-10 rounded-3xl border border-[color:var(--card-border)] shadow-sm max-w-md"><h2 className="text-xl font-bold text-[color:var(--ink)] mb-2">Кейс не знайдено</h2><p className="text-base text-[color:var(--ink-soft)] mb-6">Запитаний матеріал відсутній або був переміщений.</p><button onClick={() => o("cases")} className="px-5 py-2.5 rounded-full bg-[color:var(--btn-dark)] text-[color:var(--on-dark)] text-sm font-semibold hover:bg-[color:var(--btn-dark-hover)]">Повернутися до списку кейсів</button></div></div>;
+  const { cases: s, navigateTo: o, openLeadModal: i } = useSite(),
+    d = s.find(
+      (p) =>
+        p.slug === n ||
+        p.id === n ||
+        p.slug === `case-${n}` ||
+        p.id === `case-${n}`,
+    );
+  return d ? (
+    <div className="bg-[color:var(--card)] min-h-screen text-[color:var(--ink)] selection:bg-[color:var(--tint)] selection:text-[color:var(--ink)] pb-20">
+      <div className="bg-[color:var(--card)] border-b border-[color:var(--card-border)] sticky top-20 z-30 shadow-2xs">
+        <div className="max-w-[1680px] mx-auto px-5 sm:px-8 lg:px-12 xl:px-16 py-3 flex flex-wrap items-center justify-between gap-3">
+          <button
+            id="case-back-to-list-btn"
+            onClick={() => o("cases")}
+            className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-[color:var(--ink-soft)] hover:text-[color:var(--ink)] transition-colors"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            <span>Усі кейси</span>
+          </button>
+          <div className="flex items-center gap-1.5 overflow-x-auto py-0.5">
+            <span className="text-[13px] font-semibold text-[color:var(--ink-soft)] uppercase tracking-wider mr-1 hidden sm:inline">
+              Кейси:
+            </span>
+            {s.map((p) => {
+              const f = p.id === d.id || p.slug === d.slug;
+              return (
+                <button
+                  key={p.id}
+                  id={`case-switch-btn-${p.slug}`}
+                  onClick={() => o(p.slug)}
+                  className={`px-3 py-1 rounded-full text-[13px] font-semibold transition-all whitespace-nowrap ${f ? "bg-[color:var(--btn-dark)] text-[color:var(--on-dark)] shadow-xs" : "bg-[color:var(--tint)] text-[color:var(--ink-soft)] hover:text-[color:var(--ink)] hover:bg-[color:var(--tint)]"}`}
+                >
+                  {p.companyName}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+      <section className="bg-[color:var(--card)] border-b border-[color:var(--card-border)] py-12 md:py-16">
+        <div className="max-w-[1680px] mx-auto px-5 sm:px-8 lg:px-12 xl:px-16 space-y-6">
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <div className="inline-block px-3 py-1 rounded-full text-[13px] font-semibold bg-[color:var(--tint)] text-[color:var(--ink)] border border-[color:var(--card-border)]">
+              {d.heroSphereTag}
+            </div>
+            <div className="flex items-center gap-2">
+              {d.websiteUrl && (
+                <a
+                  href={d.websiteUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group/link inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[13px] font-medium text-[color:var(--ink-soft)] bg-[color:var(--tint)] hover:bg-[color:var(--accent-green)] hover:text-[color:var(--on-dark)] transition-all border border-[color:var(--card-border)] shadow-2xs"
+                >
+                  <Globe className="w-3.5 h-3.5 text-[color:var(--accent-green)] group-hover/link:text-[color:var(--ink)] transition-colors" />
+                  <span>Вебсайт компанії</span>
+                  <ExternalLink className="w-2.5 h-2.5 opacity-60" />
+                </a>
+              )}
+              {d.instagramUrl && (
+                <a
+                  href={d.instagramUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group/link inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[13px] font-medium text-[color:var(--ink-soft)] bg-[color:var(--tint)] hover:bg-pink-600 hover:text-[color:var(--ink)] transition-all border border-[color:var(--card-border)] shadow-2xs"
+                >
+                  <Instagram className="w-3.5 h-3.5 text-pink-600 group-hover/link:text-[color:var(--ink)] transition-colors" />
+                  <span>Instagram</span>
+                  <ExternalLink className="w-2.5 h-2.5 opacity-60" />
+                </a>
+              )}
+            </div>
+          </div>
+          <h1 className="pb-h2 text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[color:var(--ink)] sm:tracking-tight leading-tight">
+            {Ra(d.companyName)}
+          </h1>
+          <p className="text-base sm:text-lg text-[color:var(--ink-soft)] leading-relaxed max-w-3xl">
+            {Ra(d.companyDescription)}
+          </p>
+          {d.coverImageUrl && (
+            <div className="relative rounded-2xl overflow-hidden h-56 sm:h-72 border border-[color:var(--card-border)] shadow-xs mt-4">
+              <img
+                src={d.coverImageUrl}
+                alt={d.companyName}
+                referrerPolicy="no-referrer"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#F4F7a1]/70 via-[#F4F7a1]/15 to-transparent" />
+              <div className="absolute bottom-4 left-5 right-5 flex items-center justify-between text-[color:var(--ink)] text-[13px] font-medium">
+                <span className="bg-white/80 backdrop-blur-md px-3 py-1 rounded-full border border-[color:var(--card-border)]">
+                  {d.companyName}
+                  {" · Реалізований проєкт"}
+                </span>
+                <span className="text-[color:var(--muted)] hidden sm:inline">
+                  {(x = d.integratedSystems) == null
+                    ? undefined
+                    : x
+                        .map((p) =>
+                          p
+                            .replace(/\bKeyCRM\b/g, "keyCRM")
+                            .replace(/\bКЕЙ СРМ\b/g, "кей СРМ"),
+                        )
+                        .slice(0, 3)
+                        .join(" · ")}
+                </span>
+              </div>
+            </div>
+          )}
+          {d.businessValues && d.businessValues.length > 0 && (
+            <div id="case-top-business-values" className="pt-4">
+              <div className="text-[13px] font-bold uppercase tracking-widest text-[color:var(--accent-green)] mb-3">
+                Ключова цінність для бізнесу
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                {d.businessValues.map((p, f) => (
+                  <div
+                    key={f}
+                    className="p-5 rounded-xl bg-[color:var(--tint)] border border-[color:var(--card-border)] text-base sm:text-lg font-bold text-[color:var(--ink)] leading-snug"
+                  >
+                    {Ra(p)}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+          <div className="pt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="p-4 rounded-xl bg-[color:var(--card)] border border-[color:var(--card-border)]">
+              <div className="flex items-center gap-1.5 text-[13px] font-semibold text-[color:var(--ink-soft)] uppercase tracking-wider mb-1">
+                <Briefcase className="w-3.5 h-3.5 text-[color:var(--ink-soft)]" />
+                <span>Сфера</span>
+              </div>
+              <div className="text-base font-bold text-[color:var(--ink)] leading-snug">
+                {d.metadata.sphere}
+              </div>
+            </div>
+            <div className="p-4 rounded-xl bg-[color:var(--card)] border border-[color:var(--card-border)]">
+              <div className="flex items-center gap-1.5 text-[13px] font-semibold text-[color:var(--ink-soft)] uppercase tracking-wider mb-1">
+                <Users className="w-3.5 h-3.5 text-[color:var(--ink-soft)]" />
+                <span>Співробітники</span>
+              </div>
+              <div className="text-base font-bold text-[color:var(--ink)] leading-snug">
+                {d.metadata.employees}
+              </div>
+            </div>
+            <div className="p-4 rounded-xl bg-[color:var(--card)] border border-[color:var(--card-border)]">
+              <div className="flex items-center gap-1.5 text-[13px] font-semibold text-[color:var(--ink-soft)] uppercase tracking-wider mb-1">
+                <MapPin className="w-3.5 h-3.5 text-[color:var(--ink-soft)]" />
+                <span>Географія</span>
+              </div>
+              <div className="text-base font-bold text-[color:var(--ink)] leading-snug">
+                {d.metadata.geography}
+              </div>
+            </div>
+            <div className="p-4 rounded-xl bg-[color:var(--card)] border border-[color:var(--card-border)]">
+              <div className="flex items-center gap-1.5 text-[13px] font-semibold text-[color:var(--ink-soft)] uppercase tracking-wider mb-1">
+                <Clock className="w-3.5 h-3.5 text-[color:var(--ink-soft)]" />
+                <span>Час впровадження</span>
+              </div>
+              <div className="text-base font-bold text-[color:var(--ink)] leading-snug">
+                {d.metadata.implementationTime}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div className="max-w-[1680px] mx-auto px-5 sm:px-8 lg:px-12 xl:px-16 py-14 space-y-16">
+        {d.hasClientRequest &&
+          d.clientRequestItems &&
+          d.clientRequestItems.length > 0 && (
+            <section
+              id="section-client-request"
+              className="bg-[color:var(--card)] rounded-2xl border border-[color:var(--card-border)] p-8 sm:p-10 shadow-xs"
+            >
+              <div className="mb-6">
+                <span className="text-[13px] font-bold uppercase tracking-widest text-[color:var(--accent-green)]">
+                  Вихідні цілі
+                </span>
+                <h2 className="text-2xl font-bold text-[color:var(--ink)] mt-1">
+                  Запит клієнта
+                </h2>
+              </div>
+              <ul className="space-y-3.5">
+                {d.clientRequestItems.map((p, f) => (
+                  <li
+                    key={f}
+                    className="flex items-start gap-3.5 text-base sm:text-base text-[color:var(--ink)]"
+                  >
+                    <div className="w-5 h-5 rounded-full bg-[color:var(--tint)] text-[color:var(--accent-green)] flex items-center justify-center shrink-0 mt-0.5">
+                      <CircleCheck className="w-4 h-4" />
+                    </div>
+                    <span className="leading-relaxed">{Ra(p)}</span>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
+        {d.hasSituationBefore &&
+          d.situationBeforeItems &&
+          d.situationBeforeItems.length > 0 && (
+            <section
+              id="section-situation-before"
+              className="bg-amber-50/40 rounded-2xl border border-amber-200/80 p-8 sm:p-10"
+            >
+              <div className="mb-6">
+                <span className="text-[13px] font-bold uppercase tracking-widest text-amber-900 block">
+                  Точка А
+                </span>
+                <div className="flex items-center gap-2.5 mt-0.5">
+                  <TriangleAlert className="w-6 h-6 text-amber-700 shrink-0" />
+                  <h2 className="text-2xl font-bold text-[color:var(--ink)]">
+                    Ситуація до впровадження
+                  </h2>
+                </div>
+              </div>
+              <ul className="space-y-3.5">
+                {d.situationBeforeItems.map((p, f) => (
+                  <li
+                    key={f}
+                    className="flex items-start gap-3.5 text-base sm:text-base text-[color:var(--ink)]"
+                  >
+                    <span className="w-2 h-2 rounded-full bg-amber-600 mt-2 shrink-0" />
+                    <span className="leading-relaxed">{Ra(p)}</span>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
+        <section
+          id="section-what-we-did"
+          className="bg-[color:var(--card)] rounded-2xl border border-[color:var(--card-border)] p-8 sm:p-10 shadow-xs"
+        >
+          <div className="mb-8">
+            <span className="text-[13px] font-bold uppercase tracking-widest text-[color:var(--accent-green)]">
+              Реалізація
+            </span>
+            <h2 className="text-2xl font-bold text-[color:var(--ink)] mt-1">
+              Що ми зробили
+            </h2>
+          </div>
+          <div className="space-y-6">
+            {d.whatWeDidSteps.map((p, f) => (
+              <div
+                key={f}
+                className="flex items-start gap-4 p-4 rounded-xl hover:bg-[color:var(--card)] border border-transparent hover:border-[color:var(--card-border)] transition-colors"
+              >
+                <div className="w-8 h-8 rounded-lg bg-[color:var(--btn-dark)] text-[color:var(--on-dark)] flex items-center justify-center font-bold text-[13px] shrink-0 mt-0.5">
+                  {f + 1}
+                </div>
+                <div className="space-y-1">
+                  <h3 className="text-base font-bold text-[color:var(--ink)]">
+                    {Ra(p.title)}
+                  </h3>
+                  <p className="text-base text-[color:var(--ink-soft)] leading-relaxed">
+                    {Ra(p.description)}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+        <section
+          id="section-mid-cta"
+          className="rounded-3xl bg-[color:var(--card)] border border-[color:var(--card-border)] p-8 sm:p-10 flex flex-col sm:flex-row sm:items-center justify-between gap-6"
+        >
+          <div className="space-y-2 max-w-2xl">
+            <h3 className="text-xl sm:text-2xl font-extrabold text-[color:var(--ink)]">
+              Такий результат — і для вашого бізнесу
+            </h3>
+            <p className="text-base text-[color:var(--ink-soft)] leading-relaxed">
+              {d.companyName +
+                ": " +
+                (d.businessValues || []).slice(0, 2).join(" · ")}
+            </p>
+          </div>
+          <button
+            id="case-mid-cta-btn"
+            onClick={() => i(`Хочу так само, як у кейсі: ${d.companyName}`)}
+            className="w-full sm:w-auto shrink-0 px-7 py-3.5 rounded-full bg-[color:var(--btn-dark)] text-[color:var(--on-dark)] font-bold text-sm hover:bg-[color:var(--btn-dark-hover)] transition-all flex items-center justify-center gap-2"
+          >
+            <span>Хочу так само</span>
+            <ArrowRight className="w-4 h-4 text-[color:var(--accent-green)]" />
+          </button>
+        </section>
+        <section
+          id="section-result"
+          className="rounded-3xl bg-[color:var(--card)] text-[color:var(--ink)] p-8 sm:p-12 border border-[color:var(--card-border)] space-y-10"
+        >
+          <div>
+            <span className="text-[13px] font-bold uppercase tracking-widest text-[color:var(--accent-green)]">
+              Точка B
+            </span>
+            <h2 className="pb-h2 text-2xl sm:text-3xl font-extrabold text-[color:var(--ink)] mt-1 sm:tracking-tight">
+              Результати впровадження
+            </h2>
+            {d.resultIntro && (
+              <p className="text-[color:var(--muted)] text-base sm:text-base mt-2 leading-relaxed max-w-3xl">
+                {Ra(d.resultIntro)}
+              </p>
+            )}
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {d.resultItems.map((p, f) => (
+              <div
+                key={f}
+                className="p-5 rounded-2xl bg-[color:var(--card)] border border-[color:var(--card-border)] flex items-start gap-3"
+              >
+                <div className="w-5 h-5 rounded-full bg-[color:var(--btn-dark)] text-[color:var(--lime)] border border-[color:var(--accent-green)] flex items-center justify-center shrink-0 mt-0.5">
+                  <CircleCheck className="w-3.5 h-3.5" />
+                </div>
+                <span className="text-base text-[color:var(--ink)] leading-relaxed font-medium">
+                  {Ra(p)}
+                </span>
+              </div>
+            ))}
+          </div>
+          <ReviewCard
+            review={
+              d.clientQuote
+                ? {
+                    ...d.clientQuote,
+                    text: Ra(d.clientQuote.text),
+                  }
+                : undefined
+            }
+          />
+          <div className="pt-2 border-t border-[color:var(--card-border)]">
+            <h3 className="text-sm font-bold uppercase tracking-wider text-[color:var(--accent-green)] mb-4 flex items-center gap-2">
+              <TrendingUp className="w-4 h-4" />
+              <span>Ключова цінність для бізнесу</span>
+            </h3>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              {d.businessValues.map((p, f) => (
+                <div
+                  key={f}
+                  className="p-4 rounded-xl bg-[color:var(--card)] border border-[color:var(--card-border)] text-[13px] font-mono font-normal tracking-wider text-[color:var(--accent-green)] leading-relaxed"
+                >
+                  {Ra(p)}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+        <section
+          id="section-systems-cta"
+          className="bg-[color:var(--card)] rounded-3xl border border-[color:var(--card-border)] p-8 sm:p-12 shadow-xs"
+        >
+          <div className="space-y-6">
+            <div>
+              <span className="text-[13px] font-bold uppercase tracking-widest text-[color:var(--accent-green)]">
+                Технологічний стек
+              </span>
+              <h3 className="text-xl font-bold text-[color:var(--ink)] mt-1">
+                Системи, які інтегрували
+              </h3>
+            </div>
+            <div className="p-4 rounded-xl bg-[color:var(--card)] border border-[color:var(--card-border)] text-base font-medium text-[color:var(--ink)] leading-relaxed">
+              {d.integratedSystems
+                .map((p) =>
+                  p
+                    .replace(/\bKeyCRM\b/g, "keyCRM")
+                    .replace(/\bКЕЙ СРМ\b/g, "кей СРМ"),
+                )
+                .join(" · ")}
+            </div>
+            <div className="pt-4 flex flex-col sm:flex-row items-center gap-4">
+              <button
+                id="case-cta-same-result-btn"
+                onClick={() => i(`Хочу так само, як у кейсі: ${d.companyName}`)}
+                className="w-full sm:w-auto px-7 py-3.5 rounded-full bg-[color:var(--btn-dark)] text-[color:var(--on-dark)] font-bold text-sm hover:bg-[color:var(--btn-dark-hover)] transition-all flex items-center justify-center gap-2"
+              >
+                <span>Хочу так само</span>
+                <ArrowRight className="w-4 h-4 text-[color:var(--accent-green)]" />
+              </button>
+              <button
+                id="case-cta-all-cases-btn"
+                onClick={() => o("cases")}
+                className="w-full sm:w-auto px-7 py-3.5 rounded-full border border-[color:var(--card-border)] text-[color:var(--ink-soft)] font-semibold text-sm hover:bg-[color:var(--card)] transition-all"
+              >
+                Усі кейси
+              </button>
+            </div>
+          </div>
+        </section>
+        <section id="case-skalar-form-section" className="pt-8 pb-4">
+          <LeadForm
+            title="Заявка на консультацію"
+            defaultService={d.serviceType || "Впровадження keyCRM"}
+            sourcePage={`case-${d.slug}`}
+          />
+        </section>
+        {s.filter((p) => p.id !== d.id).length > 0 && (
+          <section className="pt-4 space-y-6">
+            <div className="flex items-center justify-between">
+              <div>
+                <span className="text-[13px] font-bold uppercase tracking-widest text-[color:var(--accent-green)]">
+                  Більше досвіду
+                </span>
+                <h3 className="text-2xl font-bold text-[color:var(--ink)] mt-0.5">
+                  Інші кейси впровадження
+                </h3>
+              </div>
+              <button
+                onClick={() => o("cases")}
+                className="text-[13px] font-semibold text-[color:var(--ink-soft)] hover:text-[color:var(--ink)] flex items-center gap-1"
+              >
+                <span>Каталог</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </button>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+              {s
+                .filter((p) => p.id !== d.id)
+                .slice(0, 3)
+                .map((p) => (
+                  <div
+                    key={p.id}
+                    onClick={() => o(p.slug)}
+                    className="p-5 rounded-2xl bg-[color:var(--card)] border border-[color:var(--card-border)] hover:border-[color:var(--card-border)] hover:shadow-xs transition-all cursor-pointer flex flex-col justify-between group"
+                  >
+                    <div>
+                      <div className="text-[13px] font-semibold text-[color:var(--ink-soft)] mb-2">
+                        {p.industryTag}
+                      </div>
+                      <h4 className="text-base font-bold text-[color:var(--ink)] group-hover:text-[color:var(--accent-green)] transition-colors mb-2">
+                        {p.companyName}
+                      </h4>
+                      <div className="text-lg font-extrabold text-[color:var(--accent-green)]">
+                        {p.shortResultMetric}
+                      </div>
+                      <div className="text-[13px] text-[color:var(--ink-soft)] mt-0.5 line-clamp-1">
+                        {p.shortResultCaption}
+                      </div>
+                    </div>
+                    <div className="pt-4 mt-3 border-t border-[color:var(--card-border)] flex items-center justify-between text-[13px] font-semibold text-[color:var(--ink-soft)] group-hover:text-[color:var(--accent-green)]">
+                      <span>Переглянути</span>
+                      <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                    </div>
+                  </div>
+                ))}
+            </div>
+          </section>
+        )}
+      </div>
+    </div>
+  ) : (
+    <div className="min-h-screen bg-[color:var(--card)] flex items-center justify-center p-6 text-center">
+      <div className="bg-[color:var(--card)] p-10 rounded-3xl border border-[color:var(--card-border)] shadow-sm max-w-md">
+        <h2 className="text-xl font-bold text-[color:var(--ink)] mb-2">
+          Кейс не знайдено
+        </h2>
+        <p className="text-base text-[color:var(--ink-soft)] mb-6">
+          Запитаний матеріал відсутній або був переміщений.
+        </p>
+        <button
+          onClick={() => o("cases")}
+          className="px-5 py-2.5 rounded-full bg-[color:var(--btn-dark)] text-[color:var(--on-dark)] text-sm font-semibold hover:bg-[color:var(--btn-dark-hover)]"
+        >
+          Повернутися до списку кейсів
+        </button>
+      </div>
+    </div>
+  );
 };
-

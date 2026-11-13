@@ -1,11 +1,10 @@
 // @ts-nocheck
 /* Відновлено з прод-збірки; імена та типи доводяться вручну. */
 
-export const Vs = {
+export const diagramPalette = {
   cream: "var(--ink)",
   gold: "var(--accent-green)",
   patina: "var(--accent-green)",
   amber: "var(--accent-green)",
-  bar: "var(--bar)"
+  bar: "var(--bar)",
 };
-
