@@ -270,11 +270,11 @@ export const ServicePage = ({ serviceType: n }) => {
   const { navigateTo: s } = useSite(),
     o = {
       keycrm: {
-        tag: "Послуга · CRM/ERP Системи",
+        tag: "Послуга · CRM/ERP-системи",
         title: "Впровадження keyCRM під ключ",
         shortDescription:
           "Ми допомагаємо бізнесам перейти від хаосу до зрозумілої та автоматизованої системи продажів, обліку та спілкування із клієнтами.",
-        whatWeDoTitle: "Що ми робимо:",
+        whatWeDoTitle: "Що ми робимо",
         whatWeDoItems: [
           {
             step: "01",
@@ -341,7 +341,7 @@ export const ServicePage = ({ serviceType: n }) => {
         leadServicePreset: "Впровадження keyCRM",
       },
       "ai-bots": {
-        tag: "Послуга · AI & Автоматизація",
+        tag: "Послуга · AI та автоматизація",
         title: "Рішення на базі ботів та AI",
         shortDescription:
           "Ми створюємо кастомні чат-боти, які автоматизують ключові бізнес-процеси, спрощують комунікацію з клієнтами та інтегрують штучний інтелект для ще більш ефективної взаємодії.",
@@ -413,7 +413,7 @@ export const ServicePage = ({ serviceType: n }) => {
             desc: "Можливість передавати переписку у Telegram або CRM для аудиту та контролю стандартів обслуговування.",
           },
         ],
-        resultTitle: "Результати для бізнесу",
+        resultTitle: "Результат для вашого бізнесу",
         resultSubtitle:
           "Чіткі вигоди від автоматизації комунікацій для компанії та команди",
         resultItems: [
@@ -503,48 +503,50 @@ export const ServicePage = ({ serviceType: n }) => {
     }[n];
   const tones = bandTones("comparison" in o && o.comparison ? 6 : 5);
   return (
-    <div className="bg-[color:var(--card)] min-h-screen text-[color:var(--ink)] selection:bg-[color:var(--tint)] selection:text-[color:var(--ink)] pb-20">
-      <section className="relative overflow-hidden bg-transparent border-b border-[color:var(--card-border)] py-24 md:py-32">
-        <Cq mode={n} />
-        <div className="relative z-10 max-w-[1680px] mx-auto px-5 sm:px-8 lg:px-12 xl:px-16 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
-          <div className="space-y-4">
-            <span className="inline-block px-3 py-1 rounded-full text-[13px] font-semibold bg-[color:var(--lime)]/15 text-[color:var(--accent-green)] border border-[color:var(--lime)]/40">
-              {o.tag}
-            </span>
-            <h1 className="pb-h2 text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[color:var(--ink)] sm:tracking-tight leading-tight">
-              {String(o.title)
-                .split(/(keyCRM)/)
-                .map((t, i) =>
-                  t === "keyCRM" ? (
-                    <span key={i} className="normal-case">
-                      {t}
-                    </span>
-                  ) : (
-                    t
-                  ),
-                )}
-            </h1>
-            <p className="text-base sm:text-lg text-[color:var(--ink)]/85 leading-relaxed font-normal pt-2">
-              {o.shortDescription}
-            </p>
-          </div>
-          <div
-            className="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-[color:var(--card-border)] shadow-[0_24px_60px_-20px_rgba(17,17,68,0.25)] p-4 sm:p-6 flex items-center justify-center"
-            style={{
-              backgroundImage: "var(--panel-gradient)",
-            }}
-          >
-            <div className="w-full max-w-[720px] flex items-center justify-center">
-              {n === "keycrm" && <KeyCrmPainsDiagram />}
-              {n === "ai-bots" && <AiAgentFlowDiagram svc />}
-              {n === "analytics" && <CustomCrmCompareDiagram svc />}
+    <div className="bg-[color:var(--card)] min-h-screen text-[color:var(--ink)] selection:bg-[color:var(--tint)] selection:text-[color:var(--ink)]">
+      <Band tone="blue" arch={tones[0] === "light"}>
+        <section className="pb-hero relative overflow-hidden bg-transparent py-24 md:py-32">
+          <Cq mode={n} />
+          <div className="relative z-10 max-w-[1680px] mx-auto px-5 sm:px-8 lg:px-12 xl:px-16 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+            <div className="space-y-4">
+              <span className="inline-block px-3 py-1 rounded-full text-[13px] font-semibold bg-[color:var(--lime)]/15 text-[color:var(--accent-green)] border border-[color:var(--lime)]/40">
+                {o.tag}
+              </span>
+              <h1 className="pb-h2 text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[color:var(--ink)] sm:tracking-tight leading-tight">
+                {String(o.title)
+                  .split(/(keyCRM)/)
+                  .map((t, i) =>
+                    t === "keyCRM" ? (
+                      <span key={i} className="normal-case">
+                        {t}
+                      </span>
+                    ) : (
+                      t
+                    ),
+                  )}
+              </h1>
+              <p className="text-base sm:text-lg text-[color:var(--ink)]/85 leading-relaxed font-normal pt-2">
+                {o.shortDescription}
+              </p>
+            </div>
+            <div
+              className="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-[color:var(--card-border)] shadow-[0_24px_60px_-20px_rgba(17,17,68,0.25)] p-4 sm:p-6 flex items-center justify-center"
+              style={{
+                backgroundImage: "var(--panel-gradient)",
+              }}
+            >
+              <div className="w-full max-w-[720px] flex items-center justify-center">
+                {n === "keycrm" && <KeyCrmPainsDiagram />}
+                {n === "ai-bots" && <AiAgentFlowDiagram svc />}
+                {n === "analytics" && <CustomCrmCompareDiagram svc />}
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </Band>
       <Band tone={tones[0]} arch={tones[0] === "blue" && tones[1] === "light"}>
-        <section className="py-24 md:py-32 md:py-20 max-w-[1680px] mx-auto px-5 sm:px-8 lg:px-12 xl:px-16">
-          <div className="mb-12 max-w-2xl">
+        <section className="max-w-[1680px] mx-auto px-5 sm:px-8 lg:px-12 xl:px-16">
+          <div className="pb-head max-w-2xl">
             <span className="text-[13px] font-bold uppercase tracking-widest text-[color:var(--accent-green)]">
               Методологія
             </span>
@@ -596,9 +598,9 @@ export const ServicePage = ({ serviceType: n }) => {
         </section>
       </Band>
       <Band tone={tones[1]} arch={tones[1] === "blue" && tones[2] === "light"}>
-        <section className="py-24 md:py-32">
+        <section>
           <div className="max-w-[1680px] mx-auto px-5 sm:px-8 lg:px-12 xl:px-16">
-            <div className="mb-10 max-w-3xl">
+            <div className="pb-head max-w-3xl">
               <span className="text-[13px] font-bold uppercase tracking-widest text-[color:var(--accent-green)]">
                 Цінність
               </span>
@@ -633,9 +635,9 @@ export const ServicePage = ({ serviceType: n }) => {
         </section>
       </Band>
       <Band tone={tones[2]} arch={tones[2] === "blue" && tones[3] === "light"}>
-        <section className="py-28 md:py-36 text-[color:var(--ink)]">
+        <section className="text-[color:var(--ink)]">
           <div className="max-w-[1680px] mx-auto px-5 sm:px-8 lg:px-12 xl:px-16">
-            <div className="max-w-3xl mb-12">
+            <div className="pb-head max-w-3xl">
               <span className="text-[13px] font-bold uppercase tracking-widest text-[color:var(--accent-green)]">
                 Фінансовий та операційний ефект
               </span>
@@ -665,9 +667,9 @@ export const ServicePage = ({ serviceType: n }) => {
         </section>
       </Band>
       <Band tone={tones[3]} arch={tones[3] === "blue" && tones[4] === "light"}>
-        <section className="py-24 md:py-32 max-w-[1680px] mx-auto px-5 sm:px-8 lg:px-12 xl:px-16">
+        <section className="max-w-[1680px] mx-auto px-5 sm:px-8 lg:px-12 xl:px-16">
           <div className="p-8 sm:p-12 rounded-3xl bg-[color:var(--card)] border border-[color:var(--card-border)] shadow-xs">
-            <div className="max-w-2xl mb-8">
+            <div className="pb-head max-w-2xl">
               <h2 className="pb-h2 text-2xl sm:text-3xl font-extrabold text-[color:var(--ink)] sm:tracking-tight">
                 {o.extraBlockTitle}
               </h2>
@@ -693,9 +695,9 @@ export const ServicePage = ({ serviceType: n }) => {
           tone={tones[4]}
           arch={tones[4] === "blue" && tones[5] === "light"}
         >
-          <section className="py-20 md:py-28 max-w-[1680px] mx-auto px-5 sm:px-8 lg:px-12 xl:px-16">
+          <section className="max-w-[1680px] mx-auto px-5 sm:px-8 lg:px-12 xl:px-16">
             <div className="p-8 sm:p-12 rounded-3xl bg-[color:var(--card)] text-[color:var(--ink)] border border-[color:var(--card-border)] shadow-sm">
-              <div className="max-w-2xl mb-8">
+              <div className="pb-head max-w-2xl">
                 <h2 className="pb-h2 text-2xl sm:text-3xl font-extrabold text-[color:var(--ink)] sm:tracking-tight">
                   {o.comparison.title}
                 </h2>
@@ -729,8 +731,8 @@ export const ServicePage = ({ serviceType: n }) => {
         </Band>
       )}
       <Band tone={tones[tones.length - 1]}>
-        <section className="mt-8 max-w-6xl mx-auto px-5 sm:px-6 lg:px-8">
-          <div className="text-center mb-8">
+        <section className="max-w-6xl mx-auto px-5 sm:px-6 lg:px-8">
+          <div className="pb-head text-center">
             <span className="text-[13px] font-bold uppercase tracking-widest text-[color:var(--accent-green)]">
               Готові почати?
             </span>

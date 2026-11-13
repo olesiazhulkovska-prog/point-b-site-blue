@@ -44,3 +44,12 @@
 html body:not(:has(#hero-dark)) main .pb-band--light h2 + p:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______):not(#_______):not(#________) {
   color: var(--muted) !important;
 }
+
+/* one rhythm for every band: section padding and head gap come from the design-system tokens */
+.pb-band > section:not(.pb-hero) {
+  padding-block: var(--sec-y);
+}
+
+.pb-head {
+  margin-bottom: var(--head-gap);
+}
