@@ -1,0 +1,46 @@
+/* Service pages: section backgrounds alternate blue / white like the home page.
+   Blue bands end in the same arch as the home stats block; light bands tuck under it. */
+.pb-band {
+  position: relative;
+}
+
+.pb-band--blue {
+  background: var(--sec-blue);
+  z-index: 2;
+}
+
+.pb-band--arch {
+  border-radius: 0 0 50% 50% / 0 0 var(--arc) var(--arc);
+  margin-bottom: calc(var(--arc) * -1);
+  padding-bottom: var(--arc);
+}
+
+.pb-band--light {
+  z-index: 1;
+  background: var(--sec-white);
+  color: #111144;
+  --ink: #111144;
+  --ink-soft: #1b2e8c;
+  --muted: #1b2e8c;
+  --accent-green: #a84300;
+  --bar: #1b2e8c;
+  --card: var(--paper, #f4f7ff);
+  --surface: #ffffff;
+  --card-border: var(--line-light, #c9d3ff);
+  --line: var(--line-light, #c9d3ff);
+  --track: #c9d3ff;
+  --tint: var(--paper, #f4f7ff);
+  --chip-bg: var(--paper, #f4f7ff);
+  --chip-bg-soft: var(--paper, #f4f7ff);
+  --focus: #1b2e8c;
+}
+
+/* the first light band after an arched blue band needs room for the arch */
+.pb-band--arch + .pb-band--light {
+  padding-top: var(--arc);
+}
+
+/* inner-page rule in legacy.css paints every "h2 + p" pale lavender; on light bands it must follow the token */
+html body:not(:has(#hero-dark)) main .pb-band--light h2 + p:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______):not(#_______):not(#________) {
+  color: var(--muted) !important;
+}

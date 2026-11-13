@@ -8,6 +8,30 @@ import { AiAgentFlowDiagram } from "../shared/AiAgentFlowDiagram";
 import { CustomCrmCompareDiagram } from "../shared/CustomCrmCompareDiagram";
 import { LeadForm } from "../components/LeadForm";
 import { KeyCrmStepsGallery } from "../components/KeyCrmStepsGallery";
+import "./ServicePage.css";
+
+type BandTone = "blue" | "light";
+
+/** Full-width section background; tone alternates blue / light down the page. */
+const Band = ({
+  tone,
+  arch,
+  children,
+}: {
+  tone: BandTone;
+  arch?: boolean;
+  children: React.ReactNode;
+}) => (
+  <div className={`pb-band pb-band--${tone}${arch ? " pb-band--arch" : ""}`}>
+    {children}
+  </div>
+);
+
+/** Tones for the sections below the hero: light first, then alternating; the form band is always blue. */
+const bandTones = (count: number): BandTone[] =>
+  Array.from({ length: count }, (_, i) =>
+    i === count - 1 || i % 2 === 1 ? "blue" : "light",
+  );
 export const tc = "249,133,19";
 export const In = "143,163,255";
 export const ac = (n, s, o, i, d, x) => {
@@ -477,6 +501,7 @@ export const ServicePage = ({ serviceType: n }) => {
         leadServicePreset: "Власна CRM-система",
       },
     }[n];
+  const tones = bandTones("comparison" in o && o.comparison ? 6 : 5);
   return (
     <div className="bg-[color:var(--card)] min-h-screen text-[color:var(--ink)] selection:bg-[color:var(--tint)] selection:text-[color:var(--ink)] pb-20">
       <section className="relative overflow-hidden bg-transparent border-b border-[color:var(--card-border)] py-24 md:py-32">
@@ -517,222 +542,237 @@ export const ServicePage = ({ serviceType: n }) => {
           </div>
         </div>
       </section>
-      <section className="py-24 md:py-32 md:py-20 max-w-[1680px] mx-auto px-5 sm:px-8 lg:px-12 xl:px-16">
-        <div className="mb-12 max-w-2xl">
-          <span className="text-[13px] font-bold uppercase tracking-widest text-[color:var(--accent-green)]">
-            Методологія
-          </span>
-          <h2 className="pb-h2 text-2xl sm:text-3xl font-extrabold text-[color:var(--ink)] mt-1 sm:tracking-tight">
-            {o.whatWeDoTitle}
-          </h2>
-        </div>
-        {n === "keycrm" && o.whatWeDoItems.length === 6 ? (
-          <KeyCrmStepsGallery items={o.whatWeDoItems} />
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {o.whatWeDoItems.map((i, d) => (
-              <div
-                key={d}
-                className="bg-[color:var(--card)] rounded-2xl border border-[color:var(--card-border)] p-7 shadow-xs hover:border-[color:var(--card-border)] transition-all flex flex-col justify-between"
-              >
-                <div>
-                  <span className="text-[13px] font-bold px-2.5 py-1 rounded bg-[color:var(--tint)] text-[color:var(--ink-soft)] border border-[color:var(--card-border)] inline-block mb-4">
-                    {i.step ? `Крок ${i.step}` : `Модуль 0${d + 1}`}
-                  </span>
-                  <h3 className="text-lg font-bold text-[color:var(--ink)] mb-2">
-                    {i.title}
-                  </h3>
-                  {i.desc && (
-                    <p className="text-base text-[color:var(--ink-soft)] leading-relaxed mb-3">
-                      {i.desc}
-                    </p>
-                  )}
-                  {"bullets" in i && Array.isArray(i.bullets) && (
-                    <ul
-                      className={`space-y-2.5 ${i.desc ? "mt-3 pt-3 border-t border-[color:var(--card-border)]" : "mt-4"}`}
-                    >
-                      {i.bullets.map((x, p) => (
-                        <li
-                          key={p}
-                          className="flex items-start gap-2.5 text-base sm:text-base text-[color:var(--ink-soft)]"
-                        >
-                          <div className="w-1.5 h-1.5 rounded-full bg-[color:var(--accent-green)] shrink-0 mt-2" />
-                          <span className="leading-relaxed">{x}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
-      </section>
-      <section className="py-24 md:py-32 bg-[color:var(--card)] border-y border-[color:var(--card-border)]">
-        <div className="max-w-[1680px] mx-auto px-5 sm:px-8 lg:px-12 xl:px-16">
-          <div className="mb-10 max-w-3xl">
+      <Band tone={tones[0]} arch={tones[0] === "blue" && tones[1] === "light"}>
+        <section className="py-24 md:py-32 md:py-20 max-w-[1680px] mx-auto px-5 sm:px-8 lg:px-12 xl:px-16">
+          <div className="mb-12 max-w-2xl">
             <span className="text-[13px] font-bold uppercase tracking-widest text-[color:var(--accent-green)]">
-              Цінність
+              Методологія
             </span>
             <h2 className="pb-h2 text-2xl sm:text-3xl font-extrabold text-[color:var(--ink)] mt-1 sm:tracking-tight">
-              {o.secondBlockTitle}
+              {o.whatWeDoTitle}
             </h2>
-            {"secondBlockSubtitle" in o && o.secondBlockSubtitle && (
-              <p className="text-base sm:text-base text-[color:var(--ink-soft)] mt-2 font-normal">
-                {o.secondBlockSubtitle}
-              </p>
-            )}
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {o.secondBlockItems.map((i, d) => (
-              <div
-                key={d}
-                className="p-7 rounded-2xl bg-[color:var(--card)] border border-[color:var(--card-border)]"
-              >
-                <div className="w-10 h-10 rounded-xl bg-[color:var(--btn-dark)] text-[color:var(--lime)] flex items-center justify-center font-bold text-sm mb-4">
-                  {d + 1}
+          {n === "keycrm" && o.whatWeDoItems.length === 6 ? (
+            <KeyCrmStepsGallery items={o.whatWeDoItems} />
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {o.whatWeDoItems.map((i, d) => (
+                <div
+                  key={d}
+                  className="bg-[color:var(--card)] rounded-2xl border border-[color:var(--card-border)] p-7 shadow-xs hover:border-[color:var(--card-border)] transition-all flex flex-col justify-between"
+                >
+                  <div>
+                    <span className="text-[13px] font-bold px-2.5 py-1 rounded bg-[color:var(--tint)] text-[color:var(--ink-soft)] border border-[color:var(--card-border)] inline-block mb-4">
+                      {i.step ? `Крок ${i.step}` : `Модуль 0${d + 1}`}
+                    </span>
+                    <h3 className="text-lg font-bold text-[color:var(--ink)] mb-2">
+                      {i.title}
+                    </h3>
+                    {i.desc && (
+                      <p className="text-base text-[color:var(--ink-soft)] leading-relaxed mb-3">
+                        {i.desc}
+                      </p>
+                    )}
+                    {"bullets" in i && Array.isArray(i.bullets) && (
+                      <ul
+                        className={`space-y-2.5 ${i.desc ? "mt-3 pt-3 border-t border-[color:var(--card-border)]" : "mt-4"}`}
+                      >
+                        {i.bullets.map((x, p) => (
+                          <li
+                            key={p}
+                            className="flex items-start gap-2.5 text-base sm:text-base text-[color:var(--ink-soft)]"
+                          >
+                            <div className="w-1.5 h-1.5 rounded-full bg-[color:var(--accent-green)] shrink-0 mt-2" />
+                            <span className="leading-relaxed">{x}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
                 </div>
-                <h3 className="text-base font-bold text-[color:var(--ink)] mb-2">
-                  {i.title}
-                </h3>
-                <p className="text-base text-[color:var(--ink-soft)] leading-relaxed">
-                  {i.desc}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-      <section className="py-28 md:py-36 bg-[color:var(--card)] text-[color:var(--ink)]">
-        <div className="max-w-[1680px] mx-auto px-5 sm:px-8 lg:px-12 xl:px-16">
-          <div className="max-w-3xl mb-12">
-            <span className="text-[13px] font-bold uppercase tracking-widest text-[color:var(--accent-green)]">
-              Фінансовий та операційний ефект
-            </span>
-            <h2 className="pb-h2 text-3xl sm:text-4xl font-extrabold text-[color:var(--ink)] mt-1 sm:tracking-tight">
-              {o.resultTitle}
-            </h2>
-            <p className="text-[color:var(--muted)] text-base mt-1">
-              {o.resultSubtitle}
-            </p>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {o.resultItems.map((i, d) => (
-              <div
-                key={d}
-                className="p-6 rounded-2xl bg-[color:var(--card)] border border-[color:var(--card-border)] flex items-start gap-4"
-              >
-                <div className="w-6 h-6 rounded-full bg-[color:var(--btn-dark)] text-[color:var(--lime)] border border-[color:var(--accent-green)] flex items-center justify-center shrink-0 mt-0.5">
-                  <CircleCheck className="w-4 h-4" />
-                </div>
-                <span className="text-[color:var(--ink)] text-base sm:text-base leading-relaxed font-medium">
-                  {i}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-      <section className="py-24 md:py-32 max-w-[1680px] mx-auto px-5 sm:px-8 lg:px-12 xl:px-16">
-        <div className="p-8 sm:p-12 rounded-3xl bg-[color:var(--card)] border border-[color:var(--card-border)] shadow-xs">
-          <div className="max-w-2xl mb-8">
-            <h2 className="pb-h2 text-2xl sm:text-3xl font-extrabold text-[color:var(--ink)] sm:tracking-tight">
-              {o.extraBlockTitle}
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {o.extraBlockItems.map((i, d) => (
-              <div
-                key={d}
-                className="p-4 rounded-xl bg-[color:var(--card)] border border-[color:var(--card-border)] flex items-center gap-3"
-              >
-                <div className="w-2 h-2 rounded-full bg-[color:var(--accent-green)] shrink-0" />
-                <span className="text-base text-[color:var(--ink)] font-medium">
-                  {i}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-      {"comparison" in o && o.comparison && (
-        <section className="py-20 md:py-28 max-w-[1680px] mx-auto px-5 sm:px-8 lg:px-12 xl:px-16">
-          <div className="p-8 sm:p-12 rounded-3xl bg-[color:var(--card)] text-[color:var(--ink)] border border-[color:var(--card-border)] shadow-sm">
-            <div className="max-w-2xl mb-8">
-              <h2 className="pb-h2 text-2xl sm:text-3xl font-extrabold text-[color:var(--ink)] sm:tracking-tight">
-                {o.comparison.title}
-              </h2>
+              ))}
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="p-6 rounded-2xl bg-[color:var(--card)] border border-[color:var(--card-border)] space-y-2">
-                <span className="text-[13px] font-bold uppercase tracking-wider text-[color:var(--muted)]">
-                  Готова платформа
-                </span>
-                <h3 className="text-lg font-bold text-[color:var(--ink)]">
-                  Впровадження keyCRM
-                </h3>
-                <p className="text-base text-[color:var(--muted)] leading-relaxed">
-                  {o.comparison.keycrm}
+          )}
+        </section>
+      </Band>
+      <Band tone={tones[1]} arch={tones[1] === "blue" && tones[2] === "light"}>
+        <section className="py-24 md:py-32">
+          <div className="max-w-[1680px] mx-auto px-5 sm:px-8 lg:px-12 xl:px-16">
+            <div className="mb-10 max-w-3xl">
+              <span className="text-[13px] font-bold uppercase tracking-widest text-[color:var(--accent-green)]">
+                Цінність
+              </span>
+              <h2 className="pb-h2 text-2xl sm:text-3xl font-extrabold text-[color:var(--ink)] mt-1 sm:tracking-tight">
+                {o.secondBlockTitle}
+              </h2>
+              {"secondBlockSubtitle" in o && o.secondBlockSubtitle && (
+                <p className="text-base sm:text-base text-[color:var(--ink-soft)] mt-2 font-normal">
+                  {o.secondBlockSubtitle}
                 </p>
-              </div>
-              <div className="p-6 rounded-2xl bg-[color:var(--card)] border border-[color:var(--lime)]/40 space-y-2 relative overflow-hidden">
-                <span className="text-[13px] font-bold uppercase tracking-wider text-[color:var(--accent-green)]">
-                  Власна розробка з нуля
-                </span>
-                <h3 className="text-lg font-bold text-[color:var(--ink)]">
-                  Власна CRM-система
-                </h3>
-                <p className="text-base text-[color:var(--ink)] leading-relaxed">
-                  {o.comparison.custom}
-                </p>
-              </div>
+              )}
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {o.secondBlockItems.map((i, d) => (
+                <div
+                  key={d}
+                  className="p-7 rounded-2xl bg-[color:var(--card)] border border-[color:var(--card-border)]"
+                >
+                  <div className="w-10 h-10 rounded-xl bg-[color:var(--btn-dark)] text-[color:var(--lime)] flex items-center justify-center font-bold text-sm mb-4">
+                    {d + 1}
+                  </div>
+                  <h3 className="text-base font-bold text-[color:var(--ink)] mb-2">
+                    {i.title}
+                  </h3>
+                  <p className="text-base text-[color:var(--ink-soft)] leading-relaxed">
+                    {i.desc}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
         </section>
-      )}
-      <section className="mt-8 max-w-6xl mx-auto px-5 sm:px-6 lg:px-8">
-        <div className="text-center mb-8">
-          <span className="text-[13px] font-bold uppercase tracking-widest text-[color:var(--accent-green)]">
-            Готові почати?
-          </span>
-          <h2 className="pb-h2 text-2xl sm:text-3xl font-extrabold text-[color:var(--ink)] mt-1 sm:tracking-tight">
-            Обговоримо ваші процеси і оцінимо технічне завдання
-          </h2>
-          <p className="text-[color:var(--ink-soft)] text-base mt-1">
-            Заповніть заявку або зв'яжіться з нашою командою будь-яким зручним
-            способом
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 mt-5">
-            <a
-              href="mailto:point.b.here@gmail.com"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[color:var(--card)] border border-[color:var(--card-border)] text-[13px] sm:text-sm font-semibold text-[color:var(--ink)] hover:border-[color:var(--card-border)] hover:bg-[color:var(--card)] transition-all shadow-xs"
-            >
-              <Mail className="w-3.5 h-3.5 text-[color:var(--accent-green)]" />
-              <span>point.b.here@gmail.com</span>
-            </a>
-            <a
-              href="tel:+380737860040"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[color:var(--card)] border border-[color:var(--card-border)] text-[13px] sm:text-sm font-semibold text-[color:var(--ink)] hover:border-[color:var(--card-border)] hover:bg-[color:var(--card)] transition-all shadow-xs"
-            >
-              <Phone className="w-3.5 h-3.5 text-[color:var(--accent-green)]" />
-              <span>+380 73 78 600 40</span>
-            </a>
-            <a
-              href="https://t.me/pointb_valentyna"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#2F4BFF]/10 border border-[#2F4BFF]/30 text-[13px] sm:text-sm font-semibold text-[#1B2Ea1] hover:bg-[#2F4BFF]/20 transition-all shadow-xs"
-            >
-              <Send className="w-3.5 h-3.5 text-[#2F4BFF]" />
-              <span>Telegram: Відкрити чат</span>
-            </a>
+      </Band>
+      <Band tone={tones[2]} arch={tones[2] === "blue" && tones[3] === "light"}>
+        <section className="py-28 md:py-36 text-[color:var(--ink)]">
+          <div className="max-w-[1680px] mx-auto px-5 sm:px-8 lg:px-12 xl:px-16">
+            <div className="max-w-3xl mb-12">
+              <span className="text-[13px] font-bold uppercase tracking-widest text-[color:var(--accent-green)]">
+                Фінансовий та операційний ефект
+              </span>
+              <h2 className="pb-h2 text-3xl sm:text-4xl font-extrabold text-[color:var(--ink)] mt-1 sm:tracking-tight">
+                {o.resultTitle}
+              </h2>
+              <p className="text-[color:var(--muted)] text-base mt-1">
+                {o.resultSubtitle}
+              </p>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {o.resultItems.map((i, d) => (
+                <div
+                  key={d}
+                  className="p-6 rounded-2xl bg-[color:var(--card)] border border-[color:var(--card-border)] flex items-start gap-4"
+                >
+                  <div className="w-6 h-6 rounded-full bg-[color:var(--btn-dark)] text-[color:var(--lime)] border border-[color:var(--accent-green)] flex items-center justify-center shrink-0 mt-0.5">
+                    <CircleCheck className="w-4 h-4" />
+                  </div>
+                  <span className="text-[color:var(--ink)] text-base sm:text-base leading-relaxed font-medium">
+                    {i}
+                  </span>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-        <LeadForm
-          defaultService={o.leadServicePreset}
-          sourcePage={`service-${n}`}
-        />
-      </section>
+        </section>
+      </Band>
+      <Band tone={tones[3]} arch={tones[3] === "blue" && tones[4] === "light"}>
+        <section className="py-24 md:py-32 max-w-[1680px] mx-auto px-5 sm:px-8 lg:px-12 xl:px-16">
+          <div className="p-8 sm:p-12 rounded-3xl bg-[color:var(--card)] border border-[color:var(--card-border)] shadow-xs">
+            <div className="max-w-2xl mb-8">
+              <h2 className="pb-h2 text-2xl sm:text-3xl font-extrabold text-[color:var(--ink)] sm:tracking-tight">
+                {o.extraBlockTitle}
+              </h2>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {o.extraBlockItems.map((i, d) => (
+                <div
+                  key={d}
+                  className="p-4 rounded-xl bg-[color:var(--card)] border border-[color:var(--card-border)] flex items-center gap-3"
+                >
+                  <div className="w-2 h-2 rounded-full bg-[color:var(--accent-green)] shrink-0" />
+                  <span className="text-base text-[color:var(--ink)] font-medium">
+                    {i}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      </Band>
+      {"comparison" in o && o.comparison && (
+        <Band
+          tone={tones[4]}
+          arch={tones[4] === "blue" && tones[5] === "light"}
+        >
+          <section className="py-20 md:py-28 max-w-[1680px] mx-auto px-5 sm:px-8 lg:px-12 xl:px-16">
+            <div className="p-8 sm:p-12 rounded-3xl bg-[color:var(--card)] text-[color:var(--ink)] border border-[color:var(--card-border)] shadow-sm">
+              <div className="max-w-2xl mb-8">
+                <h2 className="pb-h2 text-2xl sm:text-3xl font-extrabold text-[color:var(--ink)] sm:tracking-tight">
+                  {o.comparison.title}
+                </h2>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="p-6 rounded-2xl bg-[color:var(--card)] border border-[color:var(--card-border)] space-y-2">
+                  <span className="text-[13px] font-bold uppercase tracking-wider text-[color:var(--muted)]">
+                    Готова платформа
+                  </span>
+                  <h3 className="text-lg font-bold text-[color:var(--ink)]">
+                    Впровадження keyCRM
+                  </h3>
+                  <p className="text-base text-[color:var(--muted)] leading-relaxed">
+                    {o.comparison.keycrm}
+                  </p>
+                </div>
+                <div className="p-6 rounded-2xl bg-[color:var(--card)] border border-[color:var(--lime)]/40 space-y-2 relative overflow-hidden">
+                  <span className="text-[13px] font-bold uppercase tracking-wider text-[color:var(--accent-green)]">
+                    Власна розробка з нуля
+                  </span>
+                  <h3 className="text-lg font-bold text-[color:var(--ink)]">
+                    Власна CRM-система
+                  </h3>
+                  <p className="text-base text-[color:var(--ink)] leading-relaxed">
+                    {o.comparison.custom}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+        </Band>
+      )}
+      <Band tone={tones[tones.length - 1]}>
+        <section className="mt-8 max-w-6xl mx-auto px-5 sm:px-6 lg:px-8">
+          <div className="text-center mb-8">
+            <span className="text-[13px] font-bold uppercase tracking-widest text-[color:var(--accent-green)]">
+              Готові почати?
+            </span>
+            <h2 className="pb-h2 text-2xl sm:text-3xl font-extrabold text-[color:var(--ink)] mt-1 sm:tracking-tight">
+              Обговоримо ваші процеси і оцінимо технічне завдання
+            </h2>
+            <p className="text-[color:var(--ink-soft)] text-base mt-1">
+              Заповніть заявку або зв'яжіться з нашою командою будь-яким зручним
+              способом
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 mt-5">
+              <a
+                href="mailto:point.b.here@gmail.com"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[color:var(--card)] border border-[color:var(--card-border)] text-[13px] sm:text-sm font-semibold text-[color:var(--ink)] hover:border-[color:var(--card-border)] hover:bg-[color:var(--card)] transition-all shadow-xs"
+              >
+                <Mail className="w-3.5 h-3.5 text-[color:var(--accent-green)]" />
+                <span>point.b.here@gmail.com</span>
+              </a>
+              <a
+                href="tel:+380737860040"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[color:var(--card)] border border-[color:var(--card-border)] text-[13px] sm:text-sm font-semibold text-[color:var(--ink)] hover:border-[color:var(--card-border)] hover:bg-[color:var(--card)] transition-all shadow-xs"
+              >
+                <Phone className="w-3.5 h-3.5 text-[color:var(--accent-green)]" />
+                <span>+380 73 78 600 40</span>
+              </a>
+              <a
+                href="https://t.me/pointb_valentyna"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#2F4BFF]/10 border border-[#2F4BFF]/30 text-[13px] sm:text-sm font-semibold text-[#1B2Ea1] hover:bg-[#2F4BFF]/20 transition-all shadow-xs"
+              >
+                <Send className="w-3.5 h-3.5 text-[#2F4BFF]" />
+                <span>Telegram: Відкрити чат</span>
+              </a>
+            </div>
+          </div>
+          <LeadForm
+            defaultService={o.leadServicePreset}
+            sourcePage={`service-${n}`}
+          />
+        </section>
+      </Band>
     </div>
   );
 };
