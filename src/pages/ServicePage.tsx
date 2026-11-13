@@ -544,7 +544,7 @@ export const ServicePage = ({ serviceType: n }) => {
           </div>
         </section>
       </Band>
-      <Band tone={tones[0]} arch={tones[0] === "blue" && tones[1] === "light"}>
+      <Band tone={tones[0]}>
         <section className="max-w-[1680px] mx-auto px-5 sm:px-8 lg:px-12 xl:px-16">
           <div className="pb-head max-w-2xl">
             <span className="text-[13px] font-bold uppercase tracking-widest text-[color:var(--accent-green)]">
@@ -597,7 +597,7 @@ export const ServicePage = ({ serviceType: n }) => {
           )}
         </section>
       </Band>
-      <Band tone={tones[1]} arch={tones[1] === "blue" && tones[2] === "light"}>
+      <Band tone={tones[1]}>
         <section>
           <div className="max-w-[1680px] mx-auto px-5 sm:px-8 lg:px-12 xl:px-16">
             <div className="pb-head max-w-3xl">
@@ -634,7 +634,7 @@ export const ServicePage = ({ serviceType: n }) => {
           </div>
         </section>
       </Band>
-      <Band tone={tones[2]} arch={tones[2] === "blue" && tones[3] === "light"}>
+      <Band tone={tones[2]}>
         <section className="text-[color:var(--ink)]">
           <div className="max-w-[1680px] mx-auto px-5 sm:px-8 lg:px-12 xl:px-16">
             <div className="pb-head max-w-3xl">
@@ -691,10 +691,7 @@ export const ServicePage = ({ serviceType: n }) => {
         </section>
       </Band>
       {"comparison" in o && o.comparison && (
-        <Band
-          tone={tones[4]}
-          arch={tones[4] === "blue" && tones[5] === "light"}
-        >
+        <Band tone={tones[4]}>
           <section className="max-w-[1680px] mx-auto px-5 sm:px-8 lg:px-12 xl:px-16">
             <div className="p-8 sm:p-12 rounded-3xl bg-[color:var(--card)] text-[color:var(--ink)] border border-[color:var(--card-border)] shadow-sm">
               <div className="pb-head max-w-2xl">
