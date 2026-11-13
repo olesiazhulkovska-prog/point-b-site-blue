@@ -2,32 +2,20 @@
    its row and column grow, the others give way, the description fades up.
    Hover, focus (Tab + arrows) and tap. Replaces the six narrow bars. */
 !function(){
-var BG=["radial-gradient(120% 90% at 20% 10%,#2431A4 0,transparent 60%),linear-gradient(160deg,#1a2170,#111144)",
-"radial-gradient(120% 90% at 80% 15%,#F98513 0,transparent 55%),linear-gradient(160deg,#2431A4,#111144)",
-"radial-gradient(110% 90% at 30% 90%,#C9D3FF 0,transparent 55%),linear-gradient(160deg,#2431A4,#111144)",
-"radial-gradient(120% 90% at 70% 20%,#C9D3FF 0,transparent 55%),linear-gradient(160deg,#1a2170,#111144)",
-"radial-gradient(120% 90% at 20% 80%,#F98513 0,transparent 55%),linear-gradient(160deg,#2431A4,#111144)",
-"radial-gradient(120% 90% at 80% 80%,#C9D3FF 0,transparent 55%),linear-gradient(160deg,#1a2170,#111144)"];
 var EXPAND=1.95,SHRINK=.9;
 var CSS='.pbg{position:relative;width:100%;-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none}'
-+'.pbg-grid{display:grid;width:100%;gap:12px;transition:grid-template-columns .5s cubic-bezier(.25,1,.5,1),grid-template-rows .5s cubic-bezier(.25,1,.5,1)}'
-+'.pbg-tile{position:relative;min-width:0;min-height:0;overflow:hidden;border-radius:20px;cursor:pointer;color:#fff;background:#111144;outline:none;contain:layout paint}'
-+'.pbg-tile:focus-visible{box-shadow:inset 0 0 0 3px #F98513}'
-+'.pbg-bg{position:absolute;inset:0;transition:transform .7s cubic-bezier(.25,1,.5,1)}'
-+'.pbg-tile.on .pbg-bg{transform:scale(1.05)}'
-+'.pbg-shade{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(17,17,68,.35) 0,rgba(17,17,68,.12) 40%,rgba(17,17,68,.78) 100%);transition:opacity .4s}'
-+'.pbg-shade.s2{background:linear-gradient(180deg,rgba(17,17,68,.3) 0,rgba(17,17,68,.35) 30%,rgba(17,17,68,.92) 100%);opacity:0}'
-+'.pbg-tile.on .pbg-shade.s2{opacity:1}'
-+'.pbg-num{position:absolute;left:20px;top:18px;font:800 28px/1 Manrope,"Inter Variable",system-ui,sans-serif;color:#F98513;letter-spacing:-.01em}'
-+'.pbg-foot{position:absolute;left:20px;right:20px;bottom:20px}'
-+'.pbg-cap{font:800 18px/1.25 Manrope,"Inter Variable",system-ui,sans-serif;color:#fff;margin:0;text-wrap:balance;transition:font-size .4s}'
-+'.pbg-tile.on .pbg-cap{font-size:22px}'
-+'.pbg-desc{font:500 15px/1.5 Manrope,"Inter Variable",system-ui,sans-serif;color:#E9ECF8;margin:0;max-height:0;opacity:0;overflow:hidden;transform:translateY(6px);transition:max-height .4s cubic-bezier(.25,1,.5,1),opacity .3s,transform .4s cubic-bezier(.25,1,.5,1),margin .4s}'
-+'.pbg-tile.on .pbg-desc{max-height:240px;opacity:1;transform:none;margin-top:10px}'
-+'.pbg.m1 .pbg-num{font-size:22px;left:16px;top:14px}.pbg.m1 .pbg-foot{left:16px;right:16px;bottom:14px}.pbg.m1 .pbg-cap{font-size:17px}.pbg.m1 .pbg-tile.on .pbg-cap{font-size:19px}'
-+'@media (prefers-reduced-motion:reduce){.pbg-grid,.pbg-bg,.pbg-shade,.pbg-cap,.pbg-desc{transition:none}.pbg-tile.on .pbg-bg{transform:none}}'
++'.pbg-grid{display:grid;width:100%;gap:16px;transition:grid-template-columns .5s cubic-bezier(.25,1,.5,1),grid-template-rows .5s cubic-bezier(.25,1,.5,1)}'
++'.pbg-tile{position:relative;min-width:0;min-height:0;overflow:hidden;border-radius:24px;cursor:pointer;color:#111144;background:#fff;border:1px solid rgba(17,17,68,.1);box-shadow:0 22px 44px -28px rgba(5,9,40,.6);outline:none;contain:layout paint}'
++'.pbg-tile:focus-visible{box-shadow:0 0 0 3px #2431A4}'
++'.pbg-num{position:absolute;left:24px;top:24px;display:inline-block;font:700 14px/1 Manrope,"Inter Variable",system-ui,sans-serif;color:#1B2E8C;background:#EEF2FF;border:1px solid #DCE3F8;border-radius:6px;padding:6px 10px}'
++'.pbg-foot{position:absolute;left:24px;right:24px;bottom:24px}'
++'.pbg-cap{font:600 22px/1.25 Manrope,"Inter Variable",system-ui,sans-serif;color:#111144;margin:0;text-wrap:balance;transition:font-size .4s}'
++'.pbg-tile.on .pbg-cap{font-size:26px}'
++'.pbg-desc{font:400 16px/1.55 Manrope,"Inter Variable",system-ui,sans-serif;color:#1B2E8C;margin:0;max-height:0;opacity:0;overflow:hidden;transform:translateY(6px);transition:max-height .4s cubic-bezier(.25,1,.5,1),opacity .3s,transform .4s cubic-bezier(.25,1,.5,1),margin .4s}'
++'.pbg-tile.on .pbg-desc{max-height:260px;opacity:1;transform:none;margin-top:12px}'
++'.pbg.m1 .pbg-num{left:18px;top:16px;font-size:13px;padding:5px 9px}.pbg.m1 .pbg-foot{left:18px;right:18px;bottom:16px}.pbg.m1 .pbg-cap{font-size:18px}.pbg.m1 .pbg-tile.on .pbg-cap{font-size:20px}'
++'@media (prefers-reduced-motion:reduce){.pbg-grid,.pbg-cap,.pbg-desc{transition:none}}'
 +'[data-pb-steps]{display:none !important}';
-
 function build(src){
   var items=Array.prototype.slice.call(src.children).map(function(e,t){
     var n=e.querySelector("span"),h=e.querySelector("h3"),p=e.querySelector("p"),m=n&&n.textContent.match(/\d+/);
@@ -38,9 +26,8 @@ function build(src){
     var el=document.createElement("div");
     el.className="pbg-tile";el.tabIndex=0;el.setAttribute("role","listitem");
     el.setAttribute("aria-label","Крок "+it.n+": "+it.t);
-    el.innerHTML='<div class="pbg-bg"></div><div class="pbg-shade"></div><div class="pbg-shade s2"></div><div class="pbg-num"></div><div class="pbg-foot"><p class="pbg-cap"></p><p class="pbg-desc"></p></div>';
-    el.querySelector(".pbg-bg").style.background=BG[i%BG.length];
-    el.querySelector(".pbg-num").textContent=it.n;
+    el.innerHTML='<div class="pbg-num"></div><div class="pbg-foot"><div class="pbg-cap"></div><p class="pbg-desc"></p></div>';
+    el.querySelector(".pbg-num").textContent="Крок "+it.n;
     el.querySelector(".pbg-cap").textContent=it.t;
     el.querySelector(".pbg-desc").textContent=it.d;
     grid.appendChild(el);return el});
@@ -49,7 +36,7 @@ function build(src){
     var w=root.clientWidth||1000;
     mode=w>=900?3:w>=560?2:1;cols=mode===3?3:mode===2?2:1;rows=Math.ceil(items.length/cols);
     root.classList.toggle("m1",mode===1);
-    var gap=mode===3?12:10;grid.style.gap=gap+"px";
+    var gap=mode===3?16:12;grid.style.gap=gap+"px";
     if(mode===1){
       var ch=92,oh=Math.min(340,Math.round(w*.95)),ar=active;
       var r=[];for(var i=0;i<items.length;i++)r.push((ar===i?oh:ch)+"px");
