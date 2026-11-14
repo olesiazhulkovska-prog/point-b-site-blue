@@ -1903,7 +1903,7 @@ export const Mc = ({ diff: n, idx: s, active: o, flat: i }) => (
           </span>
         )}
       </div>
-      <h3 className="mb-2 font-manrope text-xl font-bold leading-snug sm:tracking-tight text-[color:var(--ink)] sm:text-[22px]">
+      <h3 className="pb-why-card-title mb-2 font-manrope text-xl font-bold leading-snug sm:tracking-tight text-[color:var(--ink)] sm:text-[22px]">
         <KeyCrmText text={n.title} />
       </h3>
       <p className="font-manrope text-base leading-[1.5] text-[color:var(--ink)]">

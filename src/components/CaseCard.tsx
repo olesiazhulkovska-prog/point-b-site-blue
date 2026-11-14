@@ -185,7 +185,7 @@ export const CaseCard = ({
                     <div className="text-2xl font-extrabold font-namu text-[color:var(--ink)] sm:tracking-tight leading-none">
                       {C.value}
                     </div>
-                    <div className="text-base text-[color:var(--ink)] leading-snug mt-1.5 font-manrope font-medium">
+                    <div className="pb-case-metric-label text-base text-[color:var(--ink)] leading-snug mt-1.5 font-manrope font-medium">
                       {Jp(C.label)}
                     </div>
                   </div>

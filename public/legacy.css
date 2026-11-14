@@ -2681,3 +2681,9 @@ html body div.absolute.left-0.top-0.w-full.overflow-hidden[class*="h-[202px]"]::
 /* Chrome iOS "Text Zoom" injects an inline -webkit-text-size-adjust on <html>/<body>;
    !important in the stylesheet beats a non-important inline value, so layout stays as designed. */
 html, body, html *, body * { -webkit-text-size-adjust: 100% !important; text-size-adjust: 100% !important; }
+
+/* Mobile type tuning: bigger "Чому обирають" card titles, calmer case metric captions */
+@media (max-width:767px){
+  html body #why-us-section .pb-why-card-title:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______):not(#_______):not(#________){font-size:26px !important;line-height:1.2 !important}
+  html body .pb-case-metric-label:not(#_):not(#__):not(#___){font-size:14px !important;line-height:1.35 !important}
+}
