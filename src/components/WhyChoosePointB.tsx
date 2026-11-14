@@ -1465,7 +1465,7 @@ export const Es = () => {
 export const Zs = ({ children: n, caption: s, onRef: o }) => (
   <div
     ref={o}
-    className="flex h-[252px] sm:h-[240px] w-full flex-col justify-between rounded-xl border p-3.5"
+    className="pb-diagram flex w-full flex-col justify-between rounded-xl border p-3.5"
     style={{
       background: "var(--panel-gradient)",
       borderColor: "var(--card-border)",
@@ -1910,7 +1910,7 @@ export const Mc = ({ diff: n, idx: s, active: o, flat: i }) => (
         {n.description}
       </p>
     </div>
-    <div className="mt-3 w-full sm:mt-5">
+    <div className="pb-diagram-wrap mt-3 w-full sm:mt-5">
       <Tq index={n.ill ?? s} />
     </div>
   </div>

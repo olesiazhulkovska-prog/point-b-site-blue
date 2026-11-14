@@ -2684,6 +2684,11 @@ html, body, html *, body * { -webkit-text-size-adjust: 100% !important; text-siz
 
 /* Mobile type tuning: bigger "Чому обирають" card titles, calmer case metric captions */
 @media (max-width:767px){
-  html body #why-us-section .pb-why-card-title:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______):not(#_______):not(#________){font-size:26px !important;line-height:1.2 !important}
+  html body #why-us-section .pb-why-card-title:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______):not(#_______):not(#________){font-size:26px !important;line-height:1.2 !important;min-height:0 !important}
   html body .pb-case-metric-label:not(#_):not(#__):not(#___){font-size:14px !important;line-height:1.35 !important}
 }
+
+/* "Чому обирають" cards: the illustration panel absorbs spare height, so short-text cards have no empty gap */
+html body #why-us-section .theme-light .pb-diagram-wrap:not(#_):not(#__):not(#___){display:flex !important;flex-direction:column !important;flex:1 1 auto !important}
+html body #why-us-section .theme-light .pb-diagram:not(#_):not(#__):not(#___){min-height:252px;flex:1 1 auto !important;height:auto !important}
+@media (min-width:640px){html body #why-us-section .theme-light .pb-diagram:not(#_):not(#__):not(#___){min-height:240px}}
