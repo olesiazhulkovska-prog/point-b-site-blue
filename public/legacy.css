@@ -2677,3 +2677,7 @@ html body div.absolute.left-0.top-0.w-full.overflow-hidden[class*="h-[202px]"]::
   html body textarea:not(#_):not(#__),
   html body select:not(#_):not(#__){font-size:16px !important}
 }
+
+/* Chrome iOS "Text Zoom" injects an inline -webkit-text-size-adjust on <html>/<body>;
+   !important in the stylesheet beats a non-important inline value, so layout stays as designed. */
+html, body, html *, body * { -webkit-text-size-adjust: 100% !important; text-size-adjust: 100% !important; }
