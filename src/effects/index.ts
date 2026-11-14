@@ -36,3 +36,4 @@ import "./ariaHiddenFocus";
 import "./botLoader";
 import "./keycrmVideo";
 import "./heroScrollStory";
+import "./debugInfo";
