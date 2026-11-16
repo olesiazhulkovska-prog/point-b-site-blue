@@ -35,7 +35,7 @@
     if (d || !home() || weak()) return;
     d = 1;
     var s = document.createElement("script");
-    s.src = "point-b-bot.js?v=15";
+    s.src = "point-b-bot.js?v=16";
     s.async = true;
     document.head.appendChild(s);
   }
