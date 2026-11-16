@@ -6,6 +6,7 @@ export interface StepItem {
   step?: string;
   title: string;
   desc?: string;
+  badge?: string;
 }
 
 const EXPAND = 1.95;
@@ -127,7 +128,10 @@ export function KeyCrmStepsGallery({ items }: { items: StepItem[] }) {
               }}
               onKeyDown={(e) => onKeyDown(e, i)}
             >
-              <div className="pbg-num">Крок {num}</div>
+              <div className="pbg-top">
+                <span className="pbg-n">{num}</span>
+                {it.badge && <span className="pbg-badge">{it.badge}</span>}
+              </div>
               <div className="pbg-art">
                 <KeyCrmStepArt index={i} />
               </div>
