@@ -159,30 +159,30 @@ const Docs = () => (
 const Learn = () => (
   <Svg>
     <Panel />
-    <g transform="translate(18 18)">
-      <rect width="150" height="96" rx="14" fill={ORG} />
-      <circle cx="75" cy="42" r="21" fill="#fff" />
-      <path d="M69 32v20l17-10z" fill={ORG} />
-      <rect x="14" y="78" width="122" height="6" rx="3" fill="rgba(255,255,255,.45)" />
-      <rect x="14" y="78" width="52" height="6" rx="3" fill="#fff" />
+    <g transform="translate(22 20)">
+      <rect width="130" height="92" rx="14" fill={ORG} />
+      <circle cx="65" cy="40" r="20" fill="#fff" />
+      <path d="M59 30.5v19l16-9.5z" fill={ORG} />
+      <rect x="14" y="74" width="102" height="6" rx="3" fill="rgba(255,255,255,.45)" />
+      <rect x="14" y="74" width="44" height="6" rx="3" fill="#fff" />
     </g>
-    <T x={18} y={138} size={13} weight={700}>Відеоінструкції</T>
-    <T x={18} y={154} size={11} weight={500} fill={MUTED}>по всіх сценаріях роботи</T>
-    <Pill x={18} y={166} w={78} h={22} fill="#fff"><T x={39} y={15} size={11} weight={600} anchor="middle">Урок 1</T></Pill>
-    <Pill x={102} y={166} w={66} h={22} fill="#fff"><T x={33} y={15} size={11} weight={600} anchor="middle">Урок 2</T></Pill>
-    <g transform="translate(172 36)">
-      <rect width="94" height="64" rx="14" fill="#fff" stroke={LINE} />
-      <path d="M26 64l-4 12 14-12z" fill="#fff" stroke={LINE} />
-      <path d="M24 63h14" stroke="#fff" strokeWidth="3" />
-      <circle cx="22" cy="22" r="11" fill={SOFT} stroke={LINE} />
-      <path d="M17.5 18.5c0 6 4 10 9 10l2-3-3.5-2-1.5 1.2c-1.8-.8-3-2-3.8-3.8l1.2-1.5-2-3.5z" fill={IND} />
-      <T x={38} y={20} size={11} weight={700}>Дзвінок</T>
-      <T x={38} y={34} size={11} weight={500} fill={MUTED}>навчання</T>
-      <rect x="12" y="47" width="70" height="5" rx="2.5" fill={LINE} />
+    <T x={22} y={136} size={13} weight={600}>Відеоінструкції</T>
+    <T x={22} y={152} size={11} weight={500} fill={MUTED}>по всіх сценаріях роботи</T>
+    <Pill x={22} y={162} w={72} h={22} fill="#fff"><T x={36} y={15} size={11} weight={600} anchor="middle">Урок 1</T></Pill>
+    <Pill x={100} y={162} w={72} h={22} fill="#fff"><T x={36} y={15} size={11} weight={600} anchor="middle">Урок 2</T></Pill>
+    <g transform="translate(160 20)">
+      <rect width="92" height="64" rx="14" fill="#fff" stroke={LINE} />
+      <path d="M22 63l-4 12 14-12z" fill="#fff" stroke={LINE} />
+      <path d="M20 63h14" stroke="#fff" strokeWidth="3" />
+      <circle cx="21" cy="21" r="11" fill={SOFT} stroke={LINE} />
+      <path d="M16.5 17.5c0 6 4 10 9 10l2-3-3.5-2-1.5 1.2c-1.8-.8-3-2-3.8-3.8l1.2-1.5-2-3.5z" fill={IND} />
+      <T x={38} y={19} size={11} weight={600}>Дзвінок</T>
+      <T x={38} y={33} size={10} weight={500} fill={MUTED}>навчання</T>
+      <rect x="12" y="46" width="68" height="5" rx="2.5" fill={LINE} />
     </g>
-    <g transform="translate(172 116)">
-      <rect width="94" height="30" rx="10" fill="#fff" stroke={LINE} />
-      <T x={47} y={19.5} size={11} weight={600} fill={IND} anchor="middle">Консультація</T>
+    <g transform="translate(160 98)">
+      <rect width="92" height="30" rx="10" fill="#fff" stroke={LINE} />
+      <T x={46} y={19.5} size={11} weight={600} fill={IND} anchor="middle">Консультація</T>
     </g>
   </Svg>
 );
@@ -205,7 +205,7 @@ const Audit = () => (
     <Pill x={18} y={156} w={172} h={28} fill={ORG} stroke={ORG}>
       <T x={86} y={19} size={12} weight={600} fill="#fff" anchor="middle">Супровід після запуску</T>
     </Pill>
-    <g transform="translate(206 154)">
+    <g transform="translate(212 152) scale(.72)">
       <path d="M26 0l24 8v16c0 14-10 22-24 28C12 46 2 38 2 24V8z" fill="#fff" stroke={LINE} />
       <path d="M14 26l8 8 16-18" fill="none" stroke={ORG} strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
     </g>
