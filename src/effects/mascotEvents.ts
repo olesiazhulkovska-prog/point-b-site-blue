@@ -74,7 +74,7 @@
     timer = setTimeout(function () {
       idle = true;
       emit("idle");
-    }, 8000);
+    }, 4000);
   }
   function act() {
     if (idle) {
