@@ -1894,11 +1894,11 @@ export const Mc = ({ diff: n, idx: s, active: o, flat: i }) => (
   >
     <div>
       <div className="mb-3 flex items-center justify-between sm:mb-5">
-        <span className="font-namu text-4xl font-extrabold text-[color:var(--accent-green)]">
+        <span className="pb-why-num font-namu text-4xl font-extrabold">
           {n.number}
         </span>
         {n.badge && (
-          <span className="font-mono text-[14px] font-normal uppercase tracking-wider text-[color:var(--accent-green)]">
+          <span className="pb-why-badge">
             {n.badge}
           </span>
         )}

@@ -138,6 +138,7 @@
           !e.matches("h2 + p") &&
           !e.closest(".hero-fan") &&
           !e.matches('#why-us-section [class*="text-[44px]"]') &&
+          !e.matches(".pb-why-num, .pb-why-badge") &&
           !(small && e.closest(".sv3-viz"))
         ) {
           var hasText = false;
