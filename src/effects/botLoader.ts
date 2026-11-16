@@ -32,10 +32,10 @@
     return 0;
   }
   function go() {
-    if (d || !home() || weak()) return;
+    if (d || !(home() || /^#\/(keycrm|ai-bots|analytics)/.test(location.hash)) || weak()) return;
     d = 1;
     var s = document.createElement("script");
-    s.src = "point-b-bot.js?v=16";
+    s.src = "point-b-bot.js?v=17";
     s.async = true;
     document.head.appendChild(s);
   }

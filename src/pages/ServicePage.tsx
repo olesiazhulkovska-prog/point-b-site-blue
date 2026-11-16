@@ -625,11 +625,11 @@ export const ServicePage = ({ serviceType: n }) => {
                 </p>
               )}
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div id={o.secondBlockTitle === "Чому обирають нас" ? "pb-why-cards" : undefined} className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {o.secondBlockItems.map((i, d) => (
                 <div
                   key={d}
-                  className="p-7 rounded-2xl bg-[color:var(--card)] border border-[color:var(--card-border)]"
+                  className={`${o.secondBlockTitle === "Чому обирають нас" ? "pbw-card " : ""}p-7 rounded-2xl bg-[color:var(--card)] border border-[color:var(--card-border)]`}
                 >
                   <div className="w-10 h-10 rounded-xl bg-[color:var(--btn-dark)] text-[color:var(--lime)] flex items-center justify-center font-bold text-sm mb-4">
                     {d + 1}

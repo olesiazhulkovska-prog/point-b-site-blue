@@ -2706,3 +2706,9 @@ html body #why-us-section .theme-light .pb-why-badge:not(#_):not(#__){font-size:
 
 /* CTA vortex: light indigo glow at the top over the dark base */
 #cta-section > .pbx-vortex:not(#_):not(#__):not(#___):not(#____){background:radial-gradient(90% 38% at 50% 0%,rgba(76,72,206,.38) 0%,rgba(60,58,170,.16) 55%,rgba(60,58,170,0) 100%),linear-gradient(180deg,#131564 0%,#0E0E44 30%,#0C0C3A 60%) !important}
+
+/* "Чому обирають нас": білі картки */
+.pbw-card:not(#_):not(#__):not(#___){background:#fff !important;border:1px solid #C9D3FF !important;box-shadow:0 22px 40px -24px rgba(17,17,68,.5) !important;backdrop-filter:none !important}
+.pbw-card:not(#_):not(#__):not(#___) h3{color:#111144 !important}
+.pbw-card:not(#_):not(#__):not(#___) p{color:#4A538F !important}
+.pbw-card:not(#_):not(#__):not(#___)>div:first-child{background:#EEF2FF !important;color:#F98513 !important;border:1px solid #C9D3FF}
