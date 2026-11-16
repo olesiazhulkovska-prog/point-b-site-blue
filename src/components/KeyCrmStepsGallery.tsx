@@ -29,6 +29,7 @@ export function KeyCrmStepsGallery({ items }: { items: StepItem[] }) {
   const touch = React.useRef(false);
   const [active, setActive] = React.useState<number | null>(null);
   const [width, setWidth] = React.useState(1000);
+  const [footH, setFootH] = React.useState(170);
   const [vh, setVh] = React.useState(typeof window !== "undefined" ? window.innerHeight : 900);
   React.useEffect(() => {
     const f = () => setVh(window.innerHeight);
@@ -51,13 +52,20 @@ export function KeyCrmStepsGallery({ items }: { items: StepItem[] }) {
   }, []);
 
   const mode = width >= 900 ? 3 : width >= 560 ? 2 : 1;
+  React.useLayoutEffect(() => {
+    if (mode !== 1 || active === null) return;
+    const el = tileRefs.current[active];
+    const cap = el?.querySelector(".pbg-cap") as HTMLElement | null;
+    const desc = el?.querySelector(".pbg-desc") as HTMLElement | null;
+    if (cap && desc) setFootH(Math.ceil(cap.offsetHeight + desc.scrollHeight + 12 + 16));
+  }, [active, width, mode]);
   const cols = mode;
   const rows = Math.ceil(items.length / cols);
 
   const gridStyle: React.CSSProperties = { gap: mode === 3 ? 16 : 12 };
   if (mode === 1) {
     const closed = 92;
-    const open = Math.min(470, Math.round(width * 1.3));
+    const open = 52 + Math.round(Math.max(120, (width - 36) * 0.717)) + 14 + footH;
     gridStyle.height = "auto";
     gridStyle.gridTemplateColumns = "1fr";
     gridStyle.gridTemplateRows = items
@@ -74,6 +82,7 @@ export function KeyCrmStepsGallery({ items }: { items: StepItem[] }) {
     gridStyle.gridTemplateRows = tracks(rows, ar);
   }
 
+  const artBottom = footH + 14;
   const onKeyDown = (e: React.KeyboardEvent, i: number) => {
     if (e.key === "Escape") return setActive(null);
     if (e.key === "Enter" || e.key === " ") {
@@ -98,6 +107,7 @@ export function KeyCrmStepsGallery({ items }: { items: StepItem[] }) {
   return (
     <div
       ref={rootRef}
+      style={mode === 1 ? ({ "--artb": `${artBottom}px` } as React.CSSProperties) : undefined}
       className={`pbg${mode === 1 ? " m1" : mode === 2 ? " m2" : ""}${mode === 3 && ((gridStyle.height as number) - 16) / 2 < 290 ? " pbg-s" : ""}`}
       onBlur={(e) => {
         if (

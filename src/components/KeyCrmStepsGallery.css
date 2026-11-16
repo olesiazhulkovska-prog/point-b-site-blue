@@ -57,7 +57,7 @@
 
 /* мобільні: ілюстрація показується в розкритій картці */
 .pbg.m1 .pbg-art{display:none;left:18px;right:18px;top:52px;bottom:184px}
-.pbg.m1 .pbg-tile.on .pbg-art{display:flex;left:18px;right:18px;top:52px;bottom:184px}
+.pbg.m1 .pbg-tile.on .pbg-art{display:flex;left:18px;right:18px;top:52px;bottom:var(--artb,184px)}
 .pbg.m2 .pbg-art{display:flex;left:84px;right:16px;top:14px;bottom:70px}
 .pbg.m2 .pbg-tile.on .pbg-art{bottom:150px}
 .pbg.m2 .pbg-res{display:none}
