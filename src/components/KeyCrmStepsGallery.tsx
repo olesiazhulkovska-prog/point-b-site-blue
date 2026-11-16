@@ -29,6 +29,12 @@ export function KeyCrmStepsGallery({ items }: { items: StepItem[] }) {
   const touch = React.useRef(false);
   const [active, setActive] = React.useState<number | null>(null);
   const [width, setWidth] = React.useState(1000);
+  const [vh, setVh] = React.useState(typeof window !== "undefined" ? window.innerHeight : 900);
+  React.useEffect(() => {
+    const f = () => setVh(window.innerHeight);
+    window.addEventListener("resize", f);
+    return () => window.removeEventListener("resize", f);
+  }, []);
 
   React.useLayoutEffect(() => {
     const el = rootRef.current;
@@ -60,7 +66,7 @@ export function KeyCrmStepsGallery({ items }: { items: StepItem[] }) {
   } else {
     gridStyle.height =
       mode === 3
-        ? Math.max(580, Math.min(700, Math.round(width * 0.52)))
+        ? Math.max(420, Math.min(700, Math.round(width * 0.52), vh - 200))
         : Math.round(rows * Math.max(190, width * 0.32));
     const ac = active === null ? null : active % cols;
     const ar = active === null ? null : Math.floor(active / cols);
@@ -92,7 +98,7 @@ export function KeyCrmStepsGallery({ items }: { items: StepItem[] }) {
   return (
     <div
       ref={rootRef}
-      className={`pbg${mode === 1 ? " m1" : mode === 2 ? " m2" : ""}`}
+      className={`pbg${mode === 1 ? " m1" : mode === 2 ? " m2" : ""}${mode === 3 && ((gridStyle.height as number) - 16) / 2 < 290 ? " pbg-s" : ""}`}
       onBlur={(e) => {
         if (
           !touch.current &&

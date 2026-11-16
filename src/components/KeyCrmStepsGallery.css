@@ -47,3 +47,10 @@
 .pbg-tile:focus{outline:none}
 .pbg-tile:focus-visible{box-shadow:0 22px 40px -24px rgba(17,17,68,.5);border-color:#2431A4}
 .pbg-tile.on .pbg-art svg{transform:none;animation:none}
+/* невисокий екран: блок має вміщатися по висоті */
+.pbg-s .pbg-res{display:none}
+.pbg.pbg-s .pbg-art{bottom:66px;top:16px}
+.pbg.pbg-s .pbg-tile.on .pbg-art{bottom:190px}
+.pbg.pbg-s:not(.m1):not(.m2) .pbg-grid:has(.pbg-tile.on) .pbg-tile:not(.on) .pbg-art{bottom:60px}
+.pbg-s .pbg-n{font-size:34px}
+.pbg-s .pbg-foot{bottom:18px}
