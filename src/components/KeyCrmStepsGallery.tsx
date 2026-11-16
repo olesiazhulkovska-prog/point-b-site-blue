@@ -130,7 +130,6 @@ export function KeyCrmStepsGallery({ items }: { items: StepItem[] }) {
             >
               <div className="pbg-top">
                 <span className="pbg-n">{num}</span>
-                {it.badge && <span className="pbg-badge">{it.badge}</span>}
               </div>
               <div className="pbg-art">
                 <KeyCrmStepArt index={i} />
