@@ -157,7 +157,7 @@
   }
   var n = document.createElement("style");
   ((n.textContent =
-    "[data-pb-kv]{padding:0 !important;border:0 !important;box-shadow:none !important;background:transparent !important;overflow:visible !important}[data-pb-kv]>div:not(.pb-kv-host){display:none !important}"),
+    "html body [data-pb-kv]:not(#_):not(#__):not(#___){box-shadow:none !important;filter:none !important;background:transparent !important}[data-pb-kv]{padding:0 !important;border:0 !important;box-shadow:none !important;background:transparent !important;overflow:visible !important}[data-pb-kv]>div:not(.pb-kv-host){display:none !important}"),
     document.head.appendChild(n),
     new MutationObserver(function () {
       0 === location.hash.indexOf("#/keycrm") && a();
