@@ -44,3 +44,6 @@
 .pbg-tile.on .pbg-res{max-height:0;opacity:0;margin-top:0}
 .pbg.m1 .pbg-res{display:none}
 .pbg:not(.m1):not(.m2) .pbg-grid:has(.pbg-tile.on) .pbg-tile:not(.on) .pbg-art{opacity:.5}
+.pbg-tile:focus{outline:none}
+.pbg-tile:focus-visible{box-shadow:0 22px 40px -24px rgba(17,17,68,.5);border-color:#2431A4}
+.pbg-tile.on .pbg-art svg{transform:none;animation:none}
