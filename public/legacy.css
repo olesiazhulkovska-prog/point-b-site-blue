@@ -2718,3 +2718,5 @@ html body .pb-logos img.pb-wm:not(#_):not(#__):not(#___){height:clamp(9px,.72cqw
 html body .pb-logos img.pb-wm-hr:not(#_):not(#__):not(#___){height:clamp(7.5px,.58cqw,10px) !important}
 html body .pb-logos img.pb-wm-sh:not(#_):not(#__):not(#___){height:clamp(11px,1.1cqw,17px) !important}
 html body .pb-logos:not(#_):not(#__):not(#___){gap:4px 8px !important;flex-wrap:nowrap !important}
+html body .pb-logos:not(#_):not(#__):not(#___){flex-wrap:wrap !important}
+html body .pb-logos img.pb-wm-sh:not(#_):not(#__):not(#___){height:clamp(16px,1.6cqw,24px) !important;flex:0 0 100% !important;width:100% !important;object-fit:contain !important;object-position:left center !important;margin-top:2px}
