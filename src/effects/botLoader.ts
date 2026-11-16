@@ -3,7 +3,7 @@
   var d = 0;
   function home() {
     var h = location.hash;
-    return !h || h === "#" || h === "#/" || h === "#/home";
+    return !h || h === "#" || h === "#/" || h === "#/home" || h === "#/index";
   }
   function why(r) {
     window.__pbBotWhy = r;
@@ -45,7 +45,7 @@
     if (d || !(home() || /^#\/(keycrm|ai-bots|analytics)/.test(location.hash)) || weak()) return;
     d = 1;
     var s = document.createElement("script");
-    s.src = "point-b-bot.js?v=19";
+    s.src = "point-b-bot.js?v=20";
     s.async = true;
     s.onerror = function () {
       why("script load failed");
