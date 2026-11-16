@@ -34,4 +34,3 @@
 @media (prefers-reduced-motion:reduce){.pbg-tile.on .pbg-art svg{animation:none;transform:none}}
 .pbg-art{transition:top .5s cubic-bezier(.25,1,.5,1),bottom .5s cubic-bezier(.25,1,.5,1),left .5s cubic-bezier(.25,1,.5,1),opacity .3s}
 .pbg:not(.m1) .pbg-grid:has(.pbg-tile.on) .pbg-tile:not(.on) .pbg-art{top:14px;bottom:72px;left:96px;justify-content:flex-end}
-.pbg-art svg{filter:drop-shadow(0 0 1px rgba(36,49,164,.4)) drop-shadow(0 6px 12px rgba(17,17,68,.14))}

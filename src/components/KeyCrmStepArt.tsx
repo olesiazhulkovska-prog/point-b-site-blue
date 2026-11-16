@@ -54,27 +54,39 @@ const Brief = () => (
   </Svg>
 );
 
-/* 02 Налаштування системи: воронка зі стадіями */
+/* 02 Налаштування системи: панель налаштувань з перемикачами і шестірнею */
 const Setup = () => (
   <Svg vb="0 0 240 190">
-    {[0, 1, 2].map((i) => (
-      <g key={i}>
-        <rect x={i * 82} y="6" width="72" height="22" rx="8" fill={i === 1 ? BLUE : SOFT} stroke={i === 1 ? BLUE : LINE} />
-        <rect x={i * 82 + 14} y="14" width="40" height="6" rx="3" fill={i === 1 ? "#fff" : MID} />
-        {[0, 1, 2].slice(0, 3 - i).map((j) => (
-          <g key={j}>
-            <rect x={i * 82} y={38 + j * 46} width="72" height="38" rx="10" fill="#fff" stroke={LINE} />
-            <rect x={i * 82 + 10} y={48 + j * 46} width="38" height="6" rx="3" fill={INK} opacity=".8" />
-            <rect x={i * 82 + 10} y={60 + j * 46} width="24" height="5" rx="2.5" fill={j === 0 && i === 1 ? ACC : MID} />
-          </g>
-        ))}
-      </g>
-    ))}
-    <g transform="translate(150 140)">
-      <rect width="84" height="42" rx="21" fill="#fff" stroke={LINE} />
-      <rect x="10" y="12" width="40" height="18" rx="9" fill={BLUE} />
-      <circle cx="41" cy="21" r="6" fill="#fff" />
-      <circle cx="66" cy="21" r="5" fill={MID} />
+    <rect x="0" y="8" width="232" height="176" rx="18" fill={SOFT} stroke={LINE} />
+    {[0, 1, 2].map((j) => {
+      const on = j !== 2;
+      return (
+        <g key={j} transform={`translate(14 ${38 + j * 46})`}>
+          <rect width="204" height="38" rx="12" fill="#fff" stroke={LINE} />
+          <circle cx="24" cy="19" r="12" fill={SOFT} />
+          {j === 0 && <path d="M18 14h12l-4.5 6v6l-3-2v-4z" fill={INK} opacity=".85" />}
+          {j === 1 && (
+            <g fill="none" stroke={INK} strokeWidth="2" strokeLinecap="round" opacity=".85">
+              <rect x="16" y="15" width="10" height="8" rx="4" />
+              <rect x="22" y="15" width="10" height="8" rx="4" />
+            </g>
+          )}
+          {j === 2 && (
+            <g fill="none" stroke={INK} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" opacity=".85">
+              <path d="M18 24h12M20 24v-5a4 4 0 018 0v5M22.5 27h3" />
+            </g>
+          )}
+          <rect x="46" y="11" width={[78, 62, 70][j]} height="8" rx="4" fill={INK} opacity=".85" />
+          <rect x="46" y="24" width={[46, 54, 40][j]} height="5" rx="2.5" fill={MID} />
+          <rect x="160" y="9" width="32" height="20" rx="10" fill={on ? BLUE : LINE} />
+          <circle cx={on ? 182 : 170} cy="19" r="7" fill="#fff" />
+        </g>
+      );
+    })}
+    <g transform="translate(206 20) scale(.85)">
+      <circle r="17" fill="none" stroke={BLUE} strokeWidth="6" strokeDasharray="5.3 5.3" />
+      <circle r="13" fill={BLUE} />
+      <circle r="5.5" fill="#fff" />
     </g>
   </Svg>
 );
