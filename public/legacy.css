@@ -2735,3 +2735,5 @@ html body .pbx-group img[alt="dntrade"]:not(#_):not(#__):not(#___){width:100px !
 html body .pbx-group img[alt="Finmap"]:not(#_):not(#___):not(#__){width:116px !important;height:36px !important}
 html body .pbx-group img[alt="keyCRM"]:not(#_):not(#__):not(#___),html body .pbx-group img[alt="KeyCRM"]:not(#_):not(#__):not(#___){width:130px !important;height:40px !important}
 @media (max-width:760px){html body .pbx-group img:not(#_):not(#__):not(#___){zoom:.78}}
+html body .pbx-group img:not(#_):not(#__):not(#___):not(#____){margin:0 30px !important}
+@media (max-width:760px){html body .pbx-group img:not(#_):not(#__):not(#___):not(#____){margin:0 20px !important}}
