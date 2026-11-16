@@ -2722,3 +2722,16 @@ html body .pb-logos:not(#_):not(#__):not(#___){flex-wrap:wrap !important}
 html body .pb-logos img.pb-wm-sh:not(#_):not(#__):not(#___){height:clamp(16px,1.6cqw,24px) !important;flex:0 0 100% !important;width:100% !important;object-fit:contain !important;object-position:left center !important;margin-top:2px}
 html body .pb-logos img.pb-wm-wp:not(#_):not(#__):not(#___){height:clamp(11px,.95cqw,15px) !important}
 html body .pb-logos img.pb-wm-hr:not(#_):not(#__):not(#___){height:clamp(9px,.78cqw,12.5px) !important}
+
+/* партнери: усі логотипи в однакових боксах, візуально одного розміру */
+html body .pbx-group img:not(#_):not(#__):not(#___){width:124px !important;height:38px !important;max-width:none !important;object-fit:contain !important;object-position:center !important;margin:0 18px !important}
+@media (max-width:760px){html body .pbx-group img:not(#_):not(#__):not(#___){width:96px !important;height:30px !important;margin:0 12px !important}}
+html body .pbx-group img[alt="nomi"]:not(#_):not(#__):not(#___){width:108px !important;height:34px !important}
+html body .pbx-group img[alt="Holaris Marketing"]:not(#_):not(#__):not(#___){width:104px !important;height:34px !important}
+html body .pbx-group img[alt="Ringostat"]:not(#_):not(#__):not(#___){width:150px !important;height:34px !important}
+html body .pbx-group img[alt="Dilovod"]:not(#_):not(#__):not(#___){width:150px !important;height:34px !important}
+html body .pbx-group img[alt="Svitli Digital Agency"]:not(#_):not(#__):not(#___){width:96px !important;height:42px !important}
+html body .pbx-group img[alt="dntrade"]:not(#_):not(#__):not(#___){width:100px !important;height:34px !important}
+html body .pbx-group img[alt="Finmap"]:not(#_):not(#___):not(#__){width:116px !important;height:36px !important}
+html body .pbx-group img[alt="keyCRM"]:not(#_):not(#__):not(#___),html body .pbx-group img[alt="KeyCRM"]:not(#_):not(#__):not(#___){width:130px !important;height:40px !important}
+@media (max-width:760px){html body .pbx-group img:not(#_):not(#__):not(#___){zoom:.78}}
