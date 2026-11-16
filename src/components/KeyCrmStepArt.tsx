@@ -1,11 +1,11 @@
 import React from "react";
 
 const INK = "#111144";
-const BLUE = "#2431A4";
-const SOFT = "#EEF2FF";
+const BLUE = "#F98A1B";
+const SOFT = "#E8EDFF";
 const LINE = "#DCE3F8";
 const MID = "#B9C4F0";
-const ACC = "#FFB45E";
+const ACC = "#C9D3FF";
 
 const Svg = ({ vb, children }: { vb: string; children: React.ReactNode }) => (
   <svg
@@ -23,7 +23,7 @@ const Svg = ({ vb, children }: { vb: string; children: React.ReactNode }) => (
 const Check = ({ x, y, on = true }: { x: number; y: number; on?: boolean }) => (
   <g transform={`translate(${x} ${y})`}>
     <rect width="22" height="22" rx="7" fill={on ? BLUE : "#fff"} stroke={on ? BLUE : MID} strokeWidth="1.5" strokeDasharray={on ? "0" : "3 3"} />
-    {on && <path d="M6 11.5l3.4 3.4L16 8" fill="none" stroke="#fff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />}
+    {on && <path d="M6 11.5l3.4 3.4L16 8" fill="none" stroke={INK} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />}
   </g>
 );
 
@@ -169,8 +169,8 @@ const Audit = () => (
     {[0, 1, 2, 3, 4].map((i) => (
       <rect key={i} x={20 + i * 27} y={104 - [24, 40, 34, 62, 78][i]} width="16" height={[24, 40, 34, 62, 78][i]} rx="5" fill={i === 4 ? BLUE : MID} />
     ))}
-    <path d="M20 84 L58 62 L85 70 L112 40 L140 24" fill="none" stroke={ACC} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-    <circle cx="140" cy="24" r="5" fill="#fff" stroke={ACC} strokeWidth="3" />
+    <path d="M20 84 L58 62 L85 70 L112 40 L140 24" fill="none" stroke="#1B2E8C" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+    <circle cx="140" cy="24" r="5" fill="#fff" stroke="#1B2E8C" strokeWidth="3" />
     <g transform="translate(150 96)">
       <path d="M44 0l38 14v30c0 24-16 40-38 48C22 84 6 68 6 44V14z" fill="#fff" stroke={LINE} strokeWidth="1.5" transform="scale(.9)" />
       <path d="M26 46l11 11 20-22" fill="none" stroke={BLUE} strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
