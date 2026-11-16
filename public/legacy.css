@@ -2712,3 +2712,9 @@ html body #why-us-section .theme-light .pb-why-badge:not(#_):not(#__){font-size:
 .pbw-card:not(#_):not(#__):not(#___) h3{color:#111144 !important}
 .pbw-card:not(#_):not(#__):not(#___) p{color:#4A538F !important}
 .pbw-card:not(#_):not(#__):not(#___)>div:first-child{background:#EEF2FF !important;color:#F98513 !important;border:1px solid #C9D3FF}
+
+/* логотипи у картці «Сайт»: менші, щоб лишалися в один рядок */
+html body .pb-logos img.pb-wm:not(#_):not(#__):not(#___){height:clamp(9px,.72cqw,13px) !important}
+html body .pb-logos img.pb-wm-hr:not(#_):not(#__):not(#___){height:clamp(7.5px,.58cqw,10px) !important}
+html body .pb-logos img.pb-wm-sh:not(#_):not(#__):not(#___){height:clamp(11px,1.1cqw,17px) !important}
+html body .pb-logos:not(#_):not(#__):not(#___){gap:4px 8px !important;flex-wrap:nowrap !important}
