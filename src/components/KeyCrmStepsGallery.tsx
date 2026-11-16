@@ -1,5 +1,6 @@
 import React from "react";
 import "./KeyCrmStepsGallery.css";
+import { KeyCrmStepArt } from "./KeyCrmStepArt";
 
 export interface StepItem {
   step?: string;
@@ -127,6 +128,9 @@ export function KeyCrmStepsGallery({ items }: { items: StepItem[] }) {
               onKeyDown={(e) => onKeyDown(e, i)}
             >
               <div className="pbg-num">Крок {num}</div>
+              <div className="pbg-art">
+                <KeyCrmStepArt index={i} />
+              </div>
               <div className="pbg-foot">
                 <div className="pbg-cap">{it.title}</div>
                 <p className="pbg-desc">{it.desc}</p>

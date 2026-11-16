@@ -14,3 +14,8 @@
 .pbg.m1 .pbg-tile.on .pbg-cap{font-size:20px}
 @media (prefers-reduced-motion:reduce){.pbg-grid,.pbg-cap,.pbg-desc{transition:none}
 }
+.pbg-art{position:absolute;left:24px;right:24px;top:62px;bottom:84px;display:flex;align-items:center;justify-content:center;pointer-events:none;transition:bottom .5s cubic-bezier(.25,1,.5,1)}
+.pbg-art svg{display:block;max-width:100%;max-height:100%}
+.pbg-tile.on .pbg-art{bottom:200px}
+.pbg.m1 .pbg-art{display:none}
+@media (prefers-reduced-motion:reduce){.pbg-art{transition:none}}
