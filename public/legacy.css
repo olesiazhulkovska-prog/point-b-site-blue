@@ -2700,3 +2700,6 @@ html body #why-us-section .theme-light .pb-why-badge:not(#_):not(#__){display:in
 html body #why-us-section .theme-light .pb-why-num:not(#_):not(#__):not(#___):not(#____):not(#_____){font-size:34px !important}
 html body #why-us-section .theme-light .pb-why-badge:not(#_):not(#__){font-size:13px !important;padding:7px 13px !important}
 }
+
+/* CTA vortex: solid darker base (no gradient wash) */
+#cta-section > .pbx-vortex:not(#_):not(#__):not(#___){background:#0C0C3A !important}
