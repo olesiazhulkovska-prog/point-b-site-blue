@@ -49,6 +49,11 @@
   }
   if (document.readyState !== "loading") idle();
   else addEventListener("DOMContentLoaded", idle);
+  // навігація через pushState не викликає hashchange — перевіряємо маршрут раз на секунду
+  var poll = setInterval(function () {
+    if (d) return clearInterval(poll);
+    if (document.readyState === "complete" && !document.hidden) go();
+  }, 1000);
   addEventListener("hashchange", function () {
     if (!d && document.readyState === "complete") idle();
   });
