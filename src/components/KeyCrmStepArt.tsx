@@ -1,194 +1,214 @@
 import React from "react";
 
+/* Ілюстрації кроків «Що ми робимо» (keyCRM): міні-інтерфейси з підписами,
+   щоб з картинки було зрозуміло, що саме робиться на кроці. Простір 276 × 198. */
 const INK = "#111144";
-const BLUE = "#F98A1B";
-const SOFT = "#E8EDFF";
-const LINE = "#DCE3F8";
+const ORG = "#F98A1B";
+const IND = "#2431A4";
+const SOFT = "#EEF2FF";
+const LINE = "#D5DDFA";
 const MID = "#B9C4F0";
-const ACC = "#C9D3FF";
+const GRN = "#1FA971";
+const MUTED = "#5B6499";
+const FONT = 'Manrope, "Inter Variable", system-ui, sans-serif';
 
-const Svg = ({ vb, children }: { vb: string; children: React.ReactNode }) => (
-  <svg
-    viewBox={vb}
-    width="100%"
-    height="100%"
-    preserveAspectRatio="xMidYMid meet"
-    aria-hidden="true"
-    focusable="false"
-  >
+const Svg = ({ children }: { children: React.ReactNode }) => (
+  <svg viewBox="0 0 276 198" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false" fontFamily={FONT}>
     {children}
   </svg>
 );
 
-const Check = ({ x, y, on = true }: { x: number; y: number; on?: boolean }) => (
+const T = ({ x, y, size = 13, weight = 600, fill = INK, anchor, children }: { x: number; y: number; size?: number; weight?: number; fill?: string; anchor?: "start" | "middle" | "end"; children: React.ReactNode }) => (
+  <text x={x} y={y} fontSize={size} fontWeight={weight} fill={fill} textAnchor={anchor}>{children}</text>
+);
+
+const Panel = ({ w = 268, h = 186 }: { w?: number; h?: number }) => (
+  <rect x="4" y="6" width={w} height={h} rx="18" fill={SOFT} stroke={LINE} />
+);
+
+const Tick = ({ x, y, color = ORG, r = 9 }: { x: number; y: number; color?: string; r?: number }) => (
   <g transform={`translate(${x} ${y})`}>
-    <rect width="22" height="22" rx="7" fill={on ? BLUE : "#fff"} stroke={on ? BLUE : MID} strokeWidth="1.5" strokeDasharray={on ? "0" : "3 3"} />
-    {on && <path d="M6 11.5l3.4 3.4L16 8" fill="none" stroke={INK} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />}
+    <circle r={r} fill={color} />
+    <path d={`M${-r * 0.45} ${r * 0.05}l${r * 0.33} ${r * 0.35} ${r * 0.62}-${r * 0.75}`} fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
   </g>
 );
 
-/* 01 Аналіз і брифінг: чекліст + схема процесу */
+const Pill = ({ x, y, w, h = 22, fill = "#fff", stroke = LINE, children }: { x: number; y: number; w: number; h?: number; fill?: string; stroke?: string; children?: React.ReactNode }) => (
+  <g transform={`translate(${x} ${y})`}>
+    <rect width={w} height={h} rx={h / 2} fill={fill} stroke={stroke} />
+    {children}
+  </g>
+);
+
+/* 01 Аналіз і брифінг: технічне завдання з чеклістом */
 const Brief = () => (
-  <Svg vb="0 0 560 190">
-    <rect x="0" y="6" width="250" height="178" rx="18" fill={SOFT} stroke={LINE} />
-    {[0, 1, 2].map((i) => (
-      <g key={i}>
-        <Check x={22} y={26 + i * 50} on={i < 2} />
-        <rect x="54" y={31 + i * 50} width={[150, 120, 96][i]} height="8" rx="4" fill={i < 2 ? INK : MID} opacity={i < 2 ? 0.85 : 1} />
-        <rect x="54" y={45 + i * 50} width={[100, 140, 70][i]} height="6" rx="3" fill={MID} opacity=".7" />
+  <Svg>
+    <Panel />
+    <Pill x={20} y={20} w={34} h={22} fill={ORG} stroke={ORG}>
+      <T x={17} y={15} size={12} weight={800} fill="#fff" anchor="middle">ТЗ</T>
+    </Pill>
+    <T x={64} y={36} size={15} weight={800}>Технічне завдання</T>
+    {["Бізнес-процеси", "Ролі співробітників", "Модель продажів", "Очікування"].map((l, i) => (
+      <g key={l} transform={`translate(18 ${58 + i * 33})`}>
+        <rect width="240" height="27" rx="10" fill="#fff" stroke={LINE} />
+        {i < 3 ? <Tick x={17} y={13.5} /> : <circle cx="17" cy="13.5" r="8.5" fill="#fff" stroke={MID} strokeWidth="1.6" strokeDasharray="3 3" />}
+        <T x={34} y={18} size={13}>{l}</T>
+        {i === 3 && <T x={230} y={18} size={11} weight={700} fill={ORG} anchor="end">узгоджуємо</T>}
       </g>
     ))}
-    <g fill="none" stroke={MID} strokeWidth="2" strokeLinecap="round">
-      <path d="M290 54h34M290 54l-6-5M290 54l-6 5" opacity="0" />
-      <path d="M392 56v28M392 126v-16" strokeDasharray="4 5" />
-      <path d="M338 96h-0M452 96h30" strokeDasharray="4 5" />
-    </g>
-    <rect x="300" y="24" width="92" height="42" rx="12" fill="#fff" stroke={LINE} />
-    <rect x="316" y="40" width="44" height="8" rx="4" fill={BLUE} />
-    <rect x="300" y="126" width="92" height="42" rx="12" fill="#fff" stroke={LINE} />
-    <rect x="316" y="142" width="58" height="8" rx="4" fill={MID} />
-    <rect x="426" y="75" width="120" height="42" rx="12" fill={BLUE} />
-    <rect x="442" y="91" width="64" height="8" rx="4" fill="#fff" />
-    <circle cx="526" cy="96" r="5" fill={ACC} />
-    <path d="M392 45h18q16 0 16 20v10M392 147h18q16 0 16-20v-10" fill="none" stroke={MID} strokeWidth="2" strokeLinecap="round" />
   </Svg>
 );
 
-/* 02 Налаштування системи: панель налаштувань з перемикачами і шестірнею */
+/* 02 Налаштування системи: воронка + інтеграції */
 const Setup = () => (
-  <Svg vb="0 0 240 190">
-    <rect x="0" y="8" width="232" height="176" rx="18" fill={SOFT} stroke={LINE} />
-    {[0, 1, 2].map((j) => {
-      const on = j !== 2;
-      return (
-        <g key={j} transform={`translate(14 ${38 + j * 46})`}>
-          <rect width="204" height="38" rx="12" fill="#fff" stroke={LINE} />
-          <circle cx="24" cy="19" r="12" fill={SOFT} />
-          {j === 0 && <path d="M18 14h12l-4.5 6v6l-3-2v-4z" fill={INK} opacity=".85" />}
-          {j === 1 && (
-            <g fill="none" stroke={INK} strokeWidth="2" strokeLinecap="round" opacity=".85">
-              <rect x="16" y="15" width="10" height="8" rx="4" />
-              <rect x="22" y="15" width="10" height="8" rx="4" />
-            </g>
-          )}
-          {j === 2 && (
-            <g fill="none" stroke={INK} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" opacity=".85">
-              <path d="M18 24h12M20 24v-5a4 4 0 018 0v5M22.5 27h3" />
-            </g>
-          )}
-          <rect x="46" y="11" width={[78, 62, 70][j]} height="8" rx="4" fill={INK} opacity=".85" />
-          <rect x="46" y="24" width={[46, 54, 40][j]} height="5" rx="2.5" fill={MID} />
-          <rect x="160" y="9" width="32" height="20" rx="10" fill={on ? BLUE : LINE} />
-          <circle cx={on ? 182 : 170} cy="19" r="7" fill="#fff" />
-        </g>
-      );
-    })}
-    <g transform="translate(206 20) scale(.85)">
-      <circle r="17" fill="none" stroke={BLUE} strokeWidth="6" strokeDasharray="5.3 5.3" />
-      <circle r="13" fill={BLUE} />
-      <circle r="5.5" fill="#fff" />
-    </g>
-  </Svg>
-);
-
-/* 03 Фіскалізація: чек + QR + статус */
-const Fiscal = () => (
-  <Svg vb="0 0 240 190">
-    <path d="M30 4h110v170l-11-8-11 8-11-8-11 8-11-8-11 8-11-8-11 8-11-8z" fill="#fff" stroke={LINE} strokeWidth="1.5" />
-    <rect x="48" y="22" width="58" height="8" rx="4" fill={INK} opacity=".85" />
-    {[0, 1, 2].map((i) => (
-      <g key={i}>
-        <rect x="48" y={44 + i * 16} width={[64, 50, 58][i]} height="5" rx="2.5" fill={MID} />
-        <rect x="116" y={44 + i * 16} width="12" height="5" rx="2.5" fill={MID} />
+  <Svg>
+    <Panel />
+    <T x={20} y={32} size={14} weight={800}>Воронка продажів</T>
+    {[["Нова", 0], ["В роботі", 1], ["Оплата", 2]].map(([l, i]) => (
+      <g key={l as string} transform={`translate(${18 + (i as number) * 82} 44)`}>
+        <rect width="74" height="22" rx="8" fill={i === 1 ? ORG : "#fff"} stroke={i === 1 ? ORG : LINE} />
+        <T x={37} y={15} size={12} weight={700} fill={i === 1 ? "#fff" : INK} anchor="middle">{l}</T>
+        {[0, 1].slice(0, i === 2 ? 1 : 2).map((j) => (
+          <g key={j} transform={`translate(0 ${30 + j * 26})`}>
+            <rect width="74" height="20" rx="7" fill="#fff" stroke={LINE} />
+            <rect x="8" y="6" width={[44, 34, 52][(i as number) + j - (i === 2 ? 1 : 0)] ?? 40} height="5" rx="2.5" fill={MID} />
+            <rect x="8" y="13" width="20" height="3" rx="1.5" fill={LINE} />
+          </g>
+        ))}
       </g>
     ))}
-    <g fill={INK}>
-      {[[0,0],[1,0],[2,0],[4,0],[0,1],[2,1],[3,1],[0,2],[1,2],[2,2],[4,2],[1,3],[3,3],[4,3],[0,4],[2,4],[3,4]].map(([a, b], k) => (
-        <rect key={k} x={50 + a * 9} y={100 + b * 9} width="7" height="7" rx="1.5" />
-      ))}
-    </g>
-    <g transform="translate(150 104)">
-      <rect width="86" height="48" rx="14" fill={SOFT} stroke={LINE} />
-      <circle cx="24" cy="24" r="12" fill="#2BB673" />
-      <path d="M18 24.5l4.5 4.5 8-9" fill="none" stroke="#fff" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
-      <rect x="42" y="16" width="34" height="6" rx="3" fill={INK} opacity=".8" />
-      <rect x="42" y="28" width="24" height="5" rx="2.5" fill={MID} />
-    </g>
+    <T x={20} y={150} size={11} weight={700} fill={MUTED}>ІНТЕГРАЦІЇ</T>
+    {["Сайт", "Telegram", "1С"].map((l, i) => (
+      <Pill key={l} x={18 + [0, 62, 160][i]} y={158} w={[54, 90, 44][i]} h={24}>
+        <circle cx="13" cy="12" r="4.5" fill={GRN} />
+        <T x={24} y={16.5} size={12}>{l}</T>
+      </Pill>
+    ))}
   </Svg>
 );
 
-/* 04 Документи і регламенти: аркуші + матриця прав */
-const Docs = () => (
-  <Svg vb="0 0 560 190">
-    <g transform="rotate(-6 70 100)">
-      <rect x="22" y="22" width="120" height="152" rx="12" fill="#fff" stroke={LINE} />
-    </g>
-    <rect x="52" y="14" width="128" height="160" rx="12" fill="#fff" stroke={LINE} strokeWidth="1.5" />
-    <rect x="70" y="34" width="60" height="9" rx="4.5" fill={BLUE} />
-    {[0, 1, 2, 3, 4].map((i) => (
-      <rect key={i} x="70" y={58 + i * 17} width={[92, 80, 90, 62, 76][i]} height="6" rx="3" fill={MID} opacity={i % 2 ? 0.7 : 1} />
+/* 03 Фіскалізація: чек і статуси */
+const Fiscal = () => (
+  <Svg>
+    <path d="M18 8h118v170l-9.8-7-9.8 7-9.8-7-9.8 7-9.8-7-9.8 7-9.8-7-9.8 7-9.8-7-9.8 7-9.8-7-9.8 7z" transform="scale(1 1)" fill="#fff" stroke={LINE} />
+    <T x={30} y={30} size={13} weight={800}>Чек № 1024</T>
+    <T x={30} y={46} size={11} weight={600} fill={MUTED}>ПРРО</T>
+    {[["Товар", "1 890"], ["Доставка", "120"]].map(([a, b], i) => (
+      <g key={a}>
+        <T x={30} y={72 + i * 18} size={12}>{a}</T>
+        <T x={124} y={72 + i * 18} size={12} weight={700} anchor="end">{b} ₴</T>
+      </g>
     ))}
-    <circle cx="152" cy="146" r="10" fill={ACC} />
-    <path d="M147 146l3.4 3.4L157 142" fill="none" stroke={INK} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-    <g transform="translate(236 14)">
-      <rect width="310" height="160" rx="16" fill={SOFT} stroke={LINE} />
-      {["Перегляд", "Редагування", "Звіти", "Оплати"].map((t, c) => (
-        <rect key={t} x={118 + c * 46} y="16" width="34" height="6" rx="3" fill={INK} opacity=".7" />
+    <line x1="30" y1="106" x2="124" y2="106" stroke={LINE} strokeDasharray="3 3" />
+    <T x={30} y={124} size={12} weight={800}>Разом</T>
+    <T x={124} y={124} size={13} weight={800} anchor="end">2 010 ₴</T>
+    {Array.from({ length: 5 }).map((_, r) =>
+      Array.from({ length: 5 }).map((__, c) =>
+        ((r * 7 + c * 3 + r * c) % 3 !== 0 || (r + c) % 4 === 0) && (
+          <rect key={`${r}${c}`} x={30 + c * 8} y={136 + r * 6.5} width="6" height="5" rx="1" fill={INK} />
+        ),
+      ),
+    )}
+    <Pill x={150} y={30} w={118} h={44} fill={SOFT}>
+      <Tick x={20} y={22} color={GRN} r={10} />
+      <T x={37} y={19} size={12} weight={800}>ПРРО</T>
+      <T x={37} y={33} size={11} weight={600} fill={MUTED}>підключено</T>
+    </Pill>
+    <Pill x={150} y={86} w={118} h={44} fill={SOFT}>
+      <Tick x={20} y={22} color={GRN} r={10} />
+      <T x={37} y={19} size={12} weight={800}>Чек</T>
+      <T x={37} y={33} size={11} weight={600} fill={MUTED}>фіскалізовано</T>
+    </Pill>
+    <Pill x={150} y={142} w={118} h={36} fill="#fff">
+      <T x={59} y={22} size={11} weight={700} fill={IND} anchor="middle">з бухгалтером</T>
+    </Pill>
+  </Svg>
+);
+
+/* 04 Документи і регламенти: регламент + ролі */
+const Docs = () => (
+  <Svg>
+    <g transform="translate(6 8)">
+      <rect width="130" height="182" rx="14" fill="#fff" stroke={LINE} />
+      <rect x="14" y="14" width="76" height="20" rx="10" fill={ORG} />
+      <T x={52} y={28} size={11} weight={800} fill="#fff" anchor="middle">Регламент</T>
+      {["Заявка", "В роботу", "Оплата й чек", "Відправка"].map((l, i) => (
+        <g key={l} transform={`translate(14 ${46 + i * 31})`}>
+          <circle cx="9" cy="9" r="9" fill={SOFT} stroke={LINE} />
+          <T x={9} y={13.5} size={11} weight={800} fill={IND} anchor="middle">{i + 1}</T>
+          <T x={26} y={13.5} size={12}>{l}</T>
+        </g>
       ))}
-      {["Власник", "Менеджер", "Бухгалтер"].map((r, i) => (
-        <g key={r}>
-          <circle cx="26" cy={58 + i * 40} r="12" fill={i === 0 ? BLUE : "#fff"} stroke={i === 0 ? BLUE : MID} />
-          <rect x="46" y={54 + i * 40} width="46" height="7" rx="3.5" fill={INK} opacity=".8" />
-          {[0, 1, 2, 3].map((c) => {
-            const on = [[1,1,1,1],[1,1,0,0],[1,0,1,1]][i][c] === 1;
-            return <Check key={c} x={124 + c * 46} y={47 + i * 40} on={on} />;
-          })}
+    </g>
+    <g transform="translate(148 8)">
+      <rect width="124" height="182" rx="14" fill={SOFT} stroke={LINE} />
+      <T x={14} y={28} size={12} weight={800}>Права доступу</T>
+      {[["Менеджер", "заявки"], ["Бухгалтер", "оплати"], ["Адмін", "усе"]].map(([r, a], i) => (
+        <g key={r} transform={`translate(10 ${44 + i * 46})`}>
+          <rect width="104" height="38" rx="10" fill="#fff" stroke={LINE} />
+          <circle cx="17" cy="19" r="9" fill={i === 2 ? ORG : MID} />
+          <T x={32} y={16} size={12} weight={800}>{r}</T>
+          <T x={32} y={30} size={11} weight={600} fill={MUTED}>{a}</T>
         </g>
       ))}
     </g>
   </Svg>
 );
 
-/* 05 Навчання та супровід: відео + чат + прогрес */
+/* 05 Навчання та супровід: відеоінструкція + дзвінок */
 const Learn = () => (
-  <Svg vb="0 0 240 190">
-    <rect x="0" y="4" width="150" height="92" rx="14" fill={BLUE} />
-    <circle cx="75" cy="50" r="22" fill="#fff" />
-    <path d="M68 38l20 12-20 12z" fill={BLUE} />
-    <rect x="14" y="80" width="90" height="5" rx="2.5" fill="#fff" opacity=".35" />
-    <rect x="14" y="80" width="54" height="5" rx="2.5" fill={ACC} />
-    <g transform="translate(96 74)">
-      <path d="M12 0h112a12 12 0 0112 12v38a12 12 0 01-12 12H44l-14 14v-14H12A12 12 0 010 50V12A12 12 0 0112 0z" fill="#fff" stroke={LINE} />
-      <rect x="16" y="16" width="86" height="7" rx="3.5" fill={INK} opacity=".8" />
-      <rect x="16" y="32" width="60" height="6" rx="3" fill={MID} />
+  <Svg>
+    <Panel />
+    <g transform="translate(18 18)">
+      <rect width="150" height="96" rx="14" fill={ORG} />
+      <circle cx="75" cy="42" r="21" fill="#fff" />
+      <path d="M69 32v20l17-10z" fill={ORG} />
+      <rect x="14" y="78" width="122" height="6" rx="3" fill="rgba(255,255,255,.45)" />
+      <rect x="14" y="78" width="52" height="6" rx="3" fill="#fff" />
     </g>
-    <g transform="translate(0 150)">
-      {[0, 1, 2, 3, 4].map((i) => (
-        <rect key={i} x={i * 46} y="0" width="40" height="8" rx="4" fill={i < 3 ? BLUE : LINE} />
-      ))}
-      <rect x="0" y="18" width="70" height="6" rx="3" fill={MID} />
+    <T x={18} y={138} size={13} weight={800}>Відеоінструкції</T>
+    <T x={18} y={154} size={11} weight={600} fill={MUTED}>по всіх сценаріях роботи</T>
+    <Pill x={18} y={166} w={78} h={22} fill="#fff"><T x={39} y={15} size={11} weight={700} anchor="middle">Урок 1</T></Pill>
+    <Pill x={102} y={166} w={66} h={22} fill="#fff"><T x={33} y={15} size={11} weight={700} anchor="middle">Урок 2</T></Pill>
+    <g transform="translate(172 36)">
+      <rect width="94" height="64" rx="14" fill="#fff" stroke={LINE} />
+      <path d="M26 64l-4 12 14-12z" fill="#fff" stroke={LINE} />
+      <path d="M24 63h14" stroke="#fff" strokeWidth="3" />
+      <circle cx="22" cy="22" r="11" fill={SOFT} stroke={LINE} />
+      <path d="M17.5 18.5c0 6 4 10 9 10l2-3-3.5-2-1.5 1.2c-1.8-.8-3-2-3.8-3.8l1.2-1.5-2-3.5z" fill={IND} />
+      <T x={38} y={20} size={11} weight={800}>Дзвінок</T>
+      <T x={38} y={34} size={11} weight={600} fill={MUTED}>навчання</T>
+      <rect x="12" y="47" width="70" height="5" rx="2.5" fill={LINE} />
+    </g>
+    <g transform="translate(172 116)">
+      <rect width="94" height="30" rx="10" fill="#fff" stroke={LINE} />
+      <T x={47} y={19.5} size={11} weight={700} fill={IND} anchor="middle">Консультація</T>
     </g>
   </Svg>
 );
 
-/* 06 Аудит і підтримка: графік + щит */
+/* 06 Аудит і підтримка: перевірка після запуску */
 const Audit = () => (
-  <Svg vb="0 0 240 190">
-    <rect x="0" y="6" width="170" height="122" rx="16" fill={SOFT} stroke={LINE} />
-    {[0, 1, 2].map((i) => (
-      <path key={i} d={`M16 ${40 + i * 30}H154`} stroke={LINE} strokeWidth="1.5" />
+  <Svg>
+    <Panel />
+    <T x={20} y={32} size={14} weight={800}>Перевірка після запуску</T>
+    {["Інтеграції", "Автоматизації", "Права доступу"].map((l, i) => (
+      <g key={l} transform={`translate(18 ${46 + i * 36})`}>
+        <rect width="240" height="30" rx="10" fill="#fff" stroke={LINE} />
+        <T x={14} y={20} size={13}>{l}</T>
+        <Pill x={184} y={5} w={48} h={20} fill={SOFT} stroke={LINE}>
+          <circle cx="12" cy="10" r="4" fill={GRN} />
+          <T x={21} y={14.5} size={11} weight={800} fill={GRN}>OK</T>
+        </Pill>
+      </g>
     ))}
-    {[0, 1, 2, 3, 4].map((i) => (
-      <rect key={i} x={20 + i * 27} y={104 - [24, 40, 34, 62, 78][i]} width="16" height={[24, 40, 34, 62, 78][i]} rx="5" fill={i === 4 ? BLUE : MID} />
-    ))}
-    <path d="M20 84 L58 62 L85 70 L112 40 L140 24" fill="none" stroke="#1B2E8C" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-    <circle cx="140" cy="24" r="5" fill="#fff" stroke="#1B2E8C" strokeWidth="3" />
-    <g transform="translate(150 96)">
-      <path d="M44 0l38 14v30c0 24-16 40-38 48C22 84 6 68 6 44V14z" fill="#fff" stroke={LINE} strokeWidth="1.5" transform="scale(.9)" />
-      <path d="M26 46l11 11 20-22" fill="none" stroke={BLUE} strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
+    <Pill x={18} y={156} w={152} h={28} fill={ORG} stroke={ORG}>
+      <T x={76} y={19} size={12} weight={800} fill="#fff" anchor="middle">Супровід після запуску</T>
+    </Pill>
+    <g transform="translate(206 154)">
+      <path d="M26 0l24 8v16c0 14-10 22-24 28C12 46 2 38 2 24V8z" fill="#fff" stroke={LINE} />
+      <path d="M14 26l8 8 16-18" fill="none" stroke={ORG} strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
     </g>
-    <rect x="0" y="146" width="70" height="26" rx="13" fill={BLUE} />
-    <rect x="14" y="156" width="42" height="6" rx="3" fill="#fff" />
   </Svg>
 );
 

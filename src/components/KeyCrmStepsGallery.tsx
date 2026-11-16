@@ -7,6 +7,7 @@ export interface StepItem {
   title: string;
   desc?: string;
   badge?: string;
+  result?: string;
 }
 
 const EXPAND = 1.95;
@@ -59,7 +60,7 @@ export function KeyCrmStepsGallery({ items }: { items: StepItem[] }) {
   } else {
     gridStyle.height =
       mode === 3
-        ? Math.max(500, Math.min(620, Math.round(width * 0.46)))
+        ? Math.max(580, Math.min(700, Math.round(width * 0.52)))
         : Math.round(rows * Math.max(190, width * 0.32));
     const ac = active === null ? null : active % cols;
     const ar = active === null ? null : Math.floor(active / cols);
@@ -91,7 +92,7 @@ export function KeyCrmStepsGallery({ items }: { items: StepItem[] }) {
   return (
     <div
       ref={rootRef}
-      className={`pbg${mode === 1 ? " m1" : ""}`}
+      className={`pbg${mode === 1 ? " m1" : mode === 2 ? " m2" : ""}`}
       onBlur={(e) => {
         if (
           !touch.current &&
@@ -136,6 +137,7 @@ export function KeyCrmStepsGallery({ items }: { items: StepItem[] }) {
               </div>
               <div className="pbg-foot">
                 <div className="pbg-cap">{it.title}</div>
+                {it.result ? <p className="pbg-res">{it.result}</p> : null}
                 <p className="pbg-desc">{it.desc}</p>
               </div>
             </div>

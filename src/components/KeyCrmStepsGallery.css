@@ -34,3 +34,13 @@
 @media (prefers-reduced-motion:reduce){.pbg-tile.on .pbg-art svg{animation:none;transform:none}}
 .pbg-art{transition:top .5s cubic-bezier(.25,1,.5,1),bottom .5s cubic-bezier(.25,1,.5,1),left .5s cubic-bezier(.25,1,.5,1),opacity .3s}
 .pbg:not(.m1) .pbg-grid:has(.pbg-tile.on) .pbg-tile:not(.on) .pbg-art{top:14px;bottom:72px;left:96px;justify-content:flex-end}
+
+/* v2: ілюстрації-міні-інтерфейси праворуч від номера; рядок-результат у спокої */
+.pbg .pbg-art{left:104px;right:24px;top:20px;bottom:104px;justify-content:center;align-items:center}
+.pbg .pbg-tile.on .pbg-art{bottom:210px;top:20px;left:104px}
+.pbg:not(.m1):not(.m2) .pbg-grid:has(.pbg-tile.on) .pbg-tile:not(.on) .pbg-art{top:16px;bottom:96px;left:92px;justify-content:center}
+.pbg.m2 .pbg-art{display:none}
+.pbg-res{font:500 15px/1.35 Manrope,"Inter Variable",system-ui,sans-serif;color:#4A538F;margin:6px 0 0;max-height:44px;opacity:1;overflow:hidden;transition:max-height .3s,opacity .2s,margin .3s}
+.pbg-tile.on .pbg-res{max-height:0;opacity:0;margin-top:0}
+.pbg.m1 .pbg-res{display:none}
+.pbg:not(.m1):not(.m2) .pbg-grid:has(.pbg-tile.on) .pbg-tile:not(.on) .pbg-art{opacity:.5}
