@@ -54,3 +54,10 @@
 .pbg.pbg-s:not(.m1):not(.m2) .pbg-grid:has(.pbg-tile.on) .pbg-tile:not(.on) .pbg-art{bottom:60px}
 .pbg-s .pbg-n{font-size:34px}
 .pbg-s .pbg-foot{bottom:18px}
+
+/* мобільні: ілюстрація показується в розкритій картці */
+.pbg.m1 .pbg-art{display:none;left:18px;right:18px;top:52px;bottom:184px}
+.pbg.m1 .pbg-tile.on .pbg-art{display:flex;left:18px;right:18px;top:52px;bottom:184px}
+.pbg.m2 .pbg-art{display:flex;left:84px;right:16px;top:14px;bottom:70px}
+.pbg.m2 .pbg-tile.on .pbg-art{bottom:150px}
+.pbg.m2 .pbg-res{display:none}

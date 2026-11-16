@@ -57,7 +57,7 @@ export function KeyCrmStepsGallery({ items }: { items: StepItem[] }) {
   const gridStyle: React.CSSProperties = { gap: mode === 3 ? 16 : 12 };
   if (mode === 1) {
     const closed = 92;
-    const open = Math.min(340, Math.round(width * 0.95));
+    const open = Math.min(470, Math.round(width * 1.3));
     gridStyle.height = "auto";
     gridStyle.gridTemplateColumns = "1fr";
     gridStyle.gridTemplateRows = items
