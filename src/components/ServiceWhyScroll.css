@@ -6,7 +6,7 @@
 .sws__dot{position:relative;z-index:1;justify-self:center;width:56px;height:56px;border-radius:50%;display:grid;place-items:center;font:700 17px/1 Manrope,"Inter Variable",system-ui,sans-serif;color:#E9ECFF;background:#12123F;border:1px solid rgba(201,211,255,.28);transition:background .35s,color .35s,box-shadow .45s,transform .45s,border-color .35s}
 .pb-band--light .sws__dot{background:#111144;color:#fff;border-color:#111144}
 .sws__dot.is-done{border-color:rgba(249,133,19,.7)}
-.sws__dot.is-on{background:#F98513;color:#fff;border-color:#F98513;transform:scale(1.12);box-shadow:0 0 0 10px rgba(249,133,19,.12),0 0 38px 6px rgba(249,133,19,.45)}
+.sws__dot.is-on{background:#F98513;color:#111144;border-color:#F98513;transform:scale(1.12);box-shadow:0 0 0 10px rgba(249,133,19,.12),0 0 38px 6px rgba(249,133,19,.45)}
 .sws__line{position:absolute;left:calc(100% / 6);right:calc(100% / 6);top:50%;height:2px;margin-top:-1px;background:rgba(201,211,255,.22);border-radius:2px;overflow:hidden}
 .pb-band--light .sws__line{background:#C9D3FF}
 .sws__fill{height:100%;background:#F98513;transform-origin:left center;transform:scaleX(0);transition:transform .25s linear}

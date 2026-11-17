@@ -522,9 +522,6 @@ export const ServicePage = ({ serviceType: n }) => {
           <Cq mode={n} />
           <div className="relative z-10 max-w-[1680px] mx-auto px-5 sm:px-8 lg:px-12 xl:px-16 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
             <div className="space-y-4">
-              <span className="inline-block px-3 py-1 rounded-full text-[13px] font-semibold bg-[color:var(--lime)]/15 text-[color:var(--accent-green)] border border-[color:var(--lime)]/40">
-                {o.tag}
-              </span>
               <h1 className="pb-h2 text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[color:var(--ink)] sm:tracking-tight leading-tight">
                 {String(o.title)
                   .split(/(keyCRM)/)
