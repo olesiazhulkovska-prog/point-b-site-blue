@@ -1984,8 +1984,8 @@ html body .pb-logos img.pb-wm-sh:not(#_):not(#__):not(#___){height:clamp(14px,1.
 html body .\@container > .flex > .min-w-0 > .mb-1.font-mono[style*="accent-green"]:not(#_):not(#__):not(#___):not(#____){color:#A84300!important}
 /* static horizon arc (replaces WebGL) */
 html body #hero-dark{position:relative;overflow:hidden}
-html body #hero-dark::after{content:"";position:absolute;z-index:1;pointer-events:none;left:50%;top:86%;width:230%;aspect-ratio:1/1;transform:translateX(-50%);border-radius:50%;background:transparent;box-shadow:0 -1px 0 0 rgba(120,135,220,.38),0 -2px 12px 0 rgba(36,49,164,.5),0 -16px 56px -4px rgba(36,49,164,.3)}
-@media(max-width:767px){html body #hero-dark::after{width:420%;top:88%}}
+html body #hero-dark::after{content:"";position:absolute;z-index:1;pointer-events:none;left:50%;top:90%;width:320%;aspect-ratio:1/1;transform:translateX(-50%);border-radius:50%;background:transparent;box-shadow:0 -1px 0 0 rgba(120,135,220,.38),0 -2px 12px 0 rgba(36,49,164,.5),0 -16px 56px -4px rgba(36,49,164,.3)}
+@media(max-width:767px){html body #hero-dark::after{width:420%;top:92%}}
 html body .hero-L-bg::after{--ga:.45}
 html body .hero-L-bg:not(#_):not(#__){background-image:linear-gradient(180deg,#111144 0%,#111144 80%,#171c6e 100%)!important}
 html body .hero-L-bg:not(#_):not(#__)::after{opacity:.35!important}
