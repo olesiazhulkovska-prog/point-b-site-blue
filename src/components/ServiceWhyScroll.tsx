@@ -77,21 +77,21 @@ export function ServiceWhyScroll({
       className="sws"
       style={{ ["--n" as any]: n } as React.CSSProperties}
     >
+      {motionOk && (
+        <div className="sws__bg" aria-hidden="true">
+          <video
+            ref={videoRef}
+            src={BG_VIDEO}
+            muted
+            loop
+            playsInline
+            autoPlay
+            preload="metadata"
+            tabIndex={-1}
+          />
+        </div>
+      )}
       <div className="sws__stick">
-        {motionOk && (
-          <div className="sws__bg" aria-hidden="true">
-            <video
-              ref={videoRef}
-              src={BG_VIDEO}
-              muted
-              loop
-              playsInline
-              autoPlay
-              preload="metadata"
-              tabIndex={-1}
-            />
-          </div>
-        )}
         <div className="sws__in max-w-[1680px] mx-auto px-5 sm:px-8 lg:px-12 xl:px-16 w-full">
           <div className="pb-head max-w-3xl">
             {eyebrow && (

@@ -1,9 +1,9 @@
-.sws{position:relative;height:calc(100svh + var(--n,3) * 45svh)}
-.sws__stick{position:sticky;top:0;min-height:100svh;display:flex;align-items:flex-start;padding-block:max(124px,15svh) var(--sec-y,64px);box-sizing:border-box;isolation:isolate;overflow:hidden}
-.sws__in{position:relative;z-index:1}
+.sws{position:relative;overflow:clip;height:calc(min(100svh,640px) + var(--n,3) * 28svh)}
+.sws__stick{position:sticky;z-index:1;top:0;min-height:min(100svh,640px);display:flex;align-items:flex-start;padding-block:max(124px,15svh) var(--sec-y,64px);box-sizing:border-box}
+.sws__in{position:relative;z-index:1;padding-top:28px}
 /* background video: semi-transparent over the blue, fading out at the top and bottom edges */
 .sws__bg{position:absolute;inset:0;z-index:0;pointer-events:none;-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 22%,#000 78%,transparent 100%);mask-image:linear-gradient(to bottom,transparent 0,#000 22%,#000 78%,transparent 100%)}
-.sws__bg video{width:100%;height:100%;object-fit:cover;opacity:.32;mix-blend-mode:screen}
+.sws__bg video{width:100%;height:100%;object-fit:cover;opacity:.2;mix-blend-mode:screen}
 .pb-band--light .sws__bg{display:none}
 
 /* rail: three dots, centred over the three columns, joined by a line */
@@ -23,7 +23,7 @@
 .sws__card p{margin:0;color:#3B4580;font-size:16px;line-height:1.6}
 
 @media (max-width:767px){
-  .sws{height:calc(100svh + var(--n,3) * 55svh)}
+  .sws{height:calc(min(100svh,640px) + var(--n,3) * 36svh)}
   .sws__rail{grid-template-columns:repeat(3,1fr);gap:0;margin-bottom:18px}
   .sws__dot{width:48px;height:48px;font-size:15px}
   /* one card at a time, stacked in the same cell */
