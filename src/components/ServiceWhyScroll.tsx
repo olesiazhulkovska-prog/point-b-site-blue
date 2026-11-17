@@ -1,6 +1,9 @@
 import React from "react";
 import "./ServiceWhyScroll.css";
 
+const BG_VIDEO =
+  "https://res.cloudinary.com/dset5uqua/video/upload/v1794925372/gemini_generated_video_7d6945d7_ycmx24.webm";
+
 type Item = { title: string; desc: string };
 
 /** Scroll-driven steps: the block pins while the page scrolls, the numbered rail lights up step by step. */
@@ -16,6 +19,27 @@ export function ServiceWhyScroll({
   items: Item[];
 }) {
   const trackRef = React.useRef<HTMLDivElement>(null);
+  const videoRef = React.useRef<HTMLVideoElement>(null);
+  const [motionOk, setMotionOk] = React.useState(false);
+  React.useEffect(() => {
+    try {
+      setMotionOk(!matchMedia("(prefers-reduced-motion: reduce)").matches);
+    } catch {
+      setMotionOk(true);
+    }
+  }, []);
+  // play only while the block is on screen
+  React.useEffect(() => {
+    const v = videoRef.current;
+    const el = trackRef.current;
+    if (!v || !el || typeof IntersectionObserver === "undefined") return;
+    const io = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) v.play().catch(() => {});
+      else v.pause();
+    });
+    io.observe(el);
+    return () => io.disconnect();
+  }, [motionOk]);
   const [p, setP] = React.useState(0);
   const n = items.length;
 
@@ -54,7 +78,21 @@ export function ServiceWhyScroll({
       style={{ ["--n" as any]: n } as React.CSSProperties}
     >
       <div className="sws__stick">
-        <div className="max-w-[1680px] mx-auto px-5 sm:px-8 lg:px-12 xl:px-16 w-full">
+        {motionOk && (
+          <div className="sws__bg" aria-hidden="true">
+            <video
+              ref={videoRef}
+              src={BG_VIDEO}
+              muted
+              loop
+              playsInline
+              autoPlay
+              preload="metadata"
+              tabIndex={-1}
+            />
+          </div>
+        )}
+        <div className="sws__in max-w-[1680px] mx-auto px-5 sm:px-8 lg:px-12 xl:px-16 w-full">
           <div className="pb-head max-w-3xl">
             {eyebrow && (
               <span className="text-[13px] font-bold uppercase tracking-widest text-[color:var(--accent-green)]">
