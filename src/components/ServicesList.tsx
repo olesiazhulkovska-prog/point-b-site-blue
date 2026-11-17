@@ -69,13 +69,14 @@ export const J1 = ({
         {n.description}
       </p>
       {i ? (
-        <div className={d} style={x}>
+        <div className={d} style={x} data-ds-round="1">
           <span>{n.ctaText}</span>
         </div>
       ) : (
         <button
           type="button"
           id={`svc-cta-${n.number}`}
+          data-ds-round="1"
           data-cursor-label="Обговорити →"
           onClick={() => s(n.leadSource)}
           className={`${d} cursor-pointer`}
@@ -261,6 +262,7 @@ export const Sv3 = ({ services: n, openLeadModal: lead }) => {
                 "data-cursor-label": "Обговорити →",
                 onClick: () => lead(s.leadSource),
                 className: "sv3-cta",
+                "data-ds-round": "1",
               },
               E("span", null, s.ctaText),
               E(ArrowRight, {
