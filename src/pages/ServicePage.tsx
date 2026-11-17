@@ -1,3 +1,4 @@
+import { ServiceWhyScroll } from "../components/ServiceWhyScroll";
 // @ts-nocheck
 /* Відновлено з прод-збірки; імена та типи доводяться вручну. */
 import React from "react";
@@ -610,6 +611,13 @@ export const ServicePage = ({ serviceType: n }) => {
         </section>
       </Band>
       <Band tone={tones[1]}>
+        {o.secondBlockTitle === "Чому обирають нас" && o.secondBlockItems.length === 3 ? (
+          <ServiceWhyScroll
+            eyebrow="Цінність"
+            title={o.secondBlockTitle}
+            items={o.secondBlockItems}
+          />
+        ) : (
         <section>
           <div className="max-w-[1680px] mx-auto px-5 sm:px-8 lg:px-12 xl:px-16">
             <div className="pb-head max-w-3xl">
@@ -645,6 +653,7 @@ export const ServicePage = ({ serviceType: n }) => {
             </div>
           </div>
         </section>
+        )}
       </Band>
       <Band tone={tones[2]}>
         <section className="text-[color:var(--ink)]">
