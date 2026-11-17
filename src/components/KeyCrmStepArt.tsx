@@ -3,12 +3,12 @@ import React from "react";
 /* Ілюстрації кроків «Що ми робимо» (keyCRM): міні-інтерфейси з підписами,
    щоб з картинки було зрозуміло, що саме робиться на кроці. Простір 276 × 198. */
 const INK = "#111144";
-const ORG = "#F98A1B";
+const ORG = "#F98A1B"; /* єдиний акцент: лише дрібна деталь на ілюстрації */
 const IND = "#2431A4";
 const SOFT = "#EEF2FF";
 const LINE = "#D5DDFA";
 const MID = "#B9C4F0";
-const GRN = "#1FA971";
+const GRN = IND;
 const MUTED = "#5B6499";
 const FONT = 'Manrope, "Inter Variable", system-ui, sans-serif';
 
@@ -26,7 +26,7 @@ const Panel = ({ w = 268, h = 186 }: { w?: number; h?: number }) => (
   <rect x="4" y="6" width={w} height={h} rx="18" fill={SOFT} stroke={LINE} />
 );
 
-const Tick = ({ x, y, color = ORG, r = 9 }: { x: number; y: number; color?: string; r?: number }) => (
+const Tick = ({ x, y, color = IND, r = 9 }: { x: number; y: number; color?: string; r?: number }) => (
   <g transform={`translate(${x} ${y})`}>
     <circle r={r} fill={color} />
     <path d={`M${-r * 0.45} ${r * 0.05}l${r * 0.33} ${r * 0.35} ${r * 0.62}-${r * 0.75}`} fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -44,7 +44,7 @@ const Pill = ({ x, y, w, h = 22, fill = "#fff", stroke = LINE, children }: { x: 
 const Brief = () => (
   <Svg>
     <Panel />
-    <Pill x={20} y={20} w={34} h={22} fill={ORG} stroke={ORG}>
+    <Pill x={20} y={20} w={34} h={22} fill={IND} stroke={IND}>
       <T x={17} y={15} size={12} weight={700} fill="#fff" anchor="middle">ТЗ</T>
     </Pill>
     <T x={64} y={36} size={15} weight={700}>Технічне завдання</T>
@@ -53,7 +53,7 @@ const Brief = () => (
         <rect width="240" height="27" rx="10" fill="#fff" stroke={LINE} />
         {i < 3 ? <Tick x={17} y={13.5} /> : <circle cx="17" cy="13.5" r="8.5" fill="#fff" stroke={MID} strokeWidth="1.6" strokeDasharray="3 3" />}
         <T x={34} y={18} size={13}>{l}</T>
-        {i === 3 && <T x={230} y={18} size={11} weight={600} fill={ORG} anchor="end">узгоджуємо</T>}
+        {i === 3 && <T x={230} y={18} size={11} weight={600} fill={MUTED} anchor="end">узгоджуємо</T>}
       </g>
     ))}
   </Svg>
@@ -66,7 +66,7 @@ const Setup = () => (
     <T x={20} y={32} size={14} weight={700}>Воронка продажів</T>
     {[["Нова", 0], ["В роботі", 1], ["Оплата", 2]].map(([l, i]) => (
       <g key={l as string} transform={`translate(${18 + (i as number) * 82} 44)`}>
-        <rect width="74" height="22" rx="8" fill={i === 1 ? ORG : "#fff"} stroke={i === 1 ? ORG : LINE} />
+        <rect width="74" height="22" rx="8" fill={i === 1 ? IND : "#fff"} stroke={i === 1 ? IND : LINE} />
         <T x={37} y={15} size={12} weight={600} fill={i === 1 ? "#fff" : INK} anchor="middle">{l}</T>
         {[0, 1].slice(0, i === 2 ? 1 : 2).map((j) => (
           <g key={j} transform={`translate(0 ${30 + j * 26})`}>
@@ -130,7 +130,7 @@ const Docs = () => (
   <Svg>
     <g transform="translate(6 8)">
       <rect width="130" height="182" rx="14" fill="#fff" stroke={LINE} />
-      <rect x="14" y="14" width="76" height="20" rx="10" fill={ORG} />
+      <rect x="14" y="14" width="76" height="20" rx="10" fill={IND} />
       <T x={52} y={28} size={11} weight={700} fill="#fff" anchor="middle">Регламент</T>
       {["Заявка", "В роботу", "Оплата й чек", "Відправка"].map((l, i) => (
         <g key={l} transform={`translate(14 ${46 + i * 31})`}>
@@ -146,7 +146,7 @@ const Docs = () => (
       {[["Менеджер", "заявки"], ["Бухгалтер", "оплати"], ["Адмін", "усе"]].map(([r, a], i) => (
         <g key={r} transform={`translate(10 ${44 + i * 46})`}>
           <rect width="104" height="38" rx="10" fill="#fff" stroke={LINE} />
-          <circle cx="17" cy="19" r="9" fill={i === 2 ? ORG : MID} />
+          <circle cx="17" cy="19" r="9" fill={i === 2 ? IND : MID} />
           <T x={32} y={16} size={12} weight={700}>{r}</T>
           <T x={32} y={30} size={11} weight={500} fill={MUTED}>{a}</T>
         </g>
@@ -160,9 +160,9 @@ const Learn = () => (
   <Svg>
     <Panel />
     <g transform="translate(22 20)">
-      <rect width="130" height="92" rx="14" fill={ORG} />
+      <rect width="130" height="92" rx="14" fill={IND} />
       <circle cx="65" cy="40" r="20" fill="#fff" />
-      <path d="M59 30.5v19l16-9.5z" fill={ORG} />
+      <path d="M59 30.5v19l16-9.5z" fill={IND} />
       <rect x="14" y="74" width="102" height="6" rx="3" fill="rgba(255,255,255,.45)" />
       <rect x="14" y="74" width="44" height="6" rx="3" fill="#fff" />
     </g>
@@ -202,7 +202,7 @@ const Audit = () => (
         </Pill>
       </g>
     ))}
-    <Pill x={18} y={156} w={172} h={28} fill={ORG} stroke={ORG}>
+    <Pill x={18} y={156} w={172} h={28} fill={IND} stroke={IND}>
       <T x={86} y={19} size={12} weight={600} fill="#fff" anchor="middle">Супровід після запуску</T>
     </Pill>
     <g transform="translate(212 152) scale(.72)">
