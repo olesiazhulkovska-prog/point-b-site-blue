@@ -52,6 +52,14 @@ export function KeyCrmStepsGallery({ items }: { items: StepItem[] }) {
   }, []);
 
   const mode = width >= 900 ? 3 : width >= 560 ? 2 : 1;
+  // phone: the first card starts open, so it is clear the cards expand
+  const didInit = React.useRef(false);
+  React.useEffect(() => {
+    if (mode === 1 && !didInit.current) {
+      didInit.current = true;
+      setActive(0);
+    }
+  }, [mode]);
   React.useLayoutEffect(() => {
     if (mode !== 1 || active === null) return;
     const el = tileRefs.current[active];

@@ -61,3 +61,7 @@
 .pbg.m2 .pbg-art{display:flex;left:84px;right:16px;top:14px;bottom:70px}
 .pbg.m2 .pbg-tile.on .pbg-art{bottom:150px}
 .pbg.m2 .pbg-res{display:none}
+
+/* phone: chevron shows that a card opens on tap */
+.pbg.m1 .pbg-top::after{content:"";flex:none;width:9px;height:9px;margin-left:auto;margin-top:-4px;border-right:2.5px solid #2431A4;border-bottom:2.5px solid #2431A4;transform:rotate(45deg);transition:transform .35s,border-color .35s,margin .35s}
+.pbg.m1 .pbg-tile.on .pbg-top::after{transform:rotate(-135deg);margin-top:5px;border-color:#F98513}
