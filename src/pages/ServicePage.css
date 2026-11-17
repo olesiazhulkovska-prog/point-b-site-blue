@@ -53,3 +53,12 @@ html body:not(:has(#hero-dark)) main .pb-band--light h2 + p:not(#_):not(#__):not
 .pb-head {
   margin-bottom: var(--head-gap);
 }
+
+/* hero CTA + text aligned to the heading's optical left edge */
+.pb-hero .pb-hero-cta:not(#_):not(#__){display:inline-flex;align-items:center;gap:20px;margin-top:20px;padding:8px 8px 8px 28px;border-radius:999px;background:#F98513;color:#111144;font-weight:600;font-size:17px;line-height:1.2;text-decoration:none;transition:transform .2s,box-shadow .2s}
+.pb-hero .pb-hero-cta:not(#_):not(#__):hover{transform:translateY(-1px);box-shadow:0 10px 24px -10px rgba(249,133,19,.7)}
+.pb-hero .pb-hero-cta:not(#_):not(#__):focus-visible{outline:2px solid #fff;outline-offset:3px}
+.pb-hero-cta__ic{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:#fff;color:#111144;transition:transform .2s}
+.pb-hero-cta:hover .pb-hero-cta__ic{transform:translateX(3px)}
+.pb-hero h1:not(#_):not(#__){margin-left:-.045em}
+@media(max-width:480px){.pb-hero .pb-hero-cta:not(#_):not(#__){font-size:15px;padding-left:22px;gap:14px}.pb-hero-cta__ic{width:40px;height:40px}}

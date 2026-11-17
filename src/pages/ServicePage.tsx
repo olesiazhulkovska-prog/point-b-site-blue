@@ -2,7 +2,7 @@ import { ServiceWhyScroll } from "../components/ServiceWhyScroll";
 // @ts-nocheck
 /* Відновлено з прод-збірки; імена та типи доводяться вручну. */
 import React from "react";
-import { CircleCheck, Mail, Phone, Send } from "lucide-react";
+import { ArrowRight, CircleCheck, Mail, Phone, Send } from "lucide-react";
 import { useSite } from "../context/SiteContext";
 import { KeyCrmPainsDiagram } from "../shared/KeyCrmPainsDiagram";
 import { AiAgentFlowDiagram } from "../shared/AiAgentFlowDiagram";
@@ -539,6 +539,27 @@ export const ServicePage = ({ serviceType: n }) => {
               <p className="text-base sm:text-lg text-[color:var(--ink)]/85 leading-relaxed font-normal pt-2">
                 {o.shortDescription}
               </p>
+              <a
+                className="pb-hero-cta"
+                href="#lead-form"
+                onClick={(e) => {
+                  e.preventDefault();
+                  document
+                    .getElementById("lead-form")
+                    ?.scrollIntoView({ behavior: "smooth", block: "start" });
+                }}
+              >
+                <span>
+                  {n === "keycrm"
+                    ? "Замовити впровадження keyCRM"
+                    : n === "ai-bots"
+                      ? "Розробити AI-агента"
+                      : "Обговорити власну CRM"}
+                </span>
+                <span className="pb-hero-cta__ic" aria-hidden="true">
+                  <ArrowRight className="w-5 h-5" />
+                </span>
+              </a>
             </div>
             <div
               className="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-[color:var(--card-border)] shadow-[0_24px_60px_-20px_rgba(17,17,68,0.25)] p-4 sm:p-6 flex items-center justify-center"
@@ -771,10 +792,12 @@ export const ServicePage = ({ serviceType: n }) => {
               </a>
             </div>
           </div>
+          <div id="lead-form" style={{ scrollMarginTop: 96 }}>
           <LeadForm
             defaultService={o.leadServicePreset}
             sourcePage={`service-${n}`}
           />
+          </div>
         </section>
       </Band>
     </div>
