@@ -62,3 +62,11 @@ html body:not(:has(#hero-dark)) main .pb-band--light h2 + p:not(#_):not(#__):not
 .pb-hero-cta:hover .pb-hero-cta__ic{transform:translateX(3px)}
 .pb-hero h1:not(#_):not(#__){margin-left:-.045em}
 @media(max-width:480px){.pb-hero .pb-hero-cta:not(#_):not(#__){font-size:15px;padding-left:22px;gap:14px}.pb-hero-cta__ic{width:40px;height:40px}}
+
+/* phone: graphic first, then heading, text and button; tighter hero */
+@media(max-width:1023px){
+  .pb-hero:not(#_):not(#__){padding-top:4.5rem;padding-bottom:1.75rem}
+  .pb-hero > div:not(#_):not(#__){gap:1.25rem}
+  .pb-hero .pb-hero-media:not(#_):not(#__){order:-1}
+  .pb-hero .pb-hero-cta:not(#_):not(#__){margin-top:8px}
+}

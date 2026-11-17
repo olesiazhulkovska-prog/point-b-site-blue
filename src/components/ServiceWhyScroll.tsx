@@ -41,6 +41,8 @@ export function ServiceWhyScroll({
     return () => io.disconnect();
   }, [motionOk]);
   const [p, setP] = React.useState(0);
+  const listRef = React.useRef<HTMLOListElement>(null);
+  const [mAct, setMAct] = React.useState(0);
   const n = items.length;
 
   React.useEffect(() => {
@@ -49,6 +51,18 @@ export function ServiceWhyScroll({
       raf = 0;
       const el = trackRef.current;
       if (!el) return;
+      // phone: a vertical list, the step lights up when its card reaches the middle of the screen
+      if (window.matchMedia("(max-width:767px)").matches) {
+        const rows = listRef.current?.children;
+        if (rows) {
+          let a = 0;
+          for (let i = 0; i < rows.length; i++) {
+            if ((rows[i] as HTMLElement).getBoundingClientRect().top < window.innerHeight * 0.62) a = i;
+          }
+          setMAct((prev) => (prev === a ? prev : a));
+        }
+        return;
+      }
       const r = el.getBoundingClientRect();
       const span = r.height - window.innerHeight;
       const v = span > 0 ? Math.min(1, Math.max(0, -r.top / span)) : 1;
@@ -117,6 +131,20 @@ export function ServiceWhyScroll({
               </div>
             ))}
           </div>
+
+          <ol className="sws__m" ref={listRef}>
+            {items.map((it, i) => (
+              <li key={i} className={`sws__mrow${i < mAct ? " is-done" : ""}`}>
+                <div className={`sws__dot${i === mAct ? " is-on" : i < mAct ? " is-done" : ""}`}>
+                  <span>{String(i + 1).padStart(2, "0")}</span>
+                </div>
+                <div className={`sws__card${i === mAct ? " is-on" : ""}`}>
+                  <h3>{it.title}</h3>
+                  <p>{it.desc}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
 
           <div className="sws__cards">
             {items.map((it, i) => (

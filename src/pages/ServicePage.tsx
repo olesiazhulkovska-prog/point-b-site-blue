@@ -522,7 +522,7 @@ export const ServicePage = ({ serviceType: n }) => {
         <section className="pb-hero relative overflow-hidden bg-transparent py-24 md:py-32">
           <Cq mode={n} />
           <div className="relative z-10 max-w-[1680px] mx-auto px-5 sm:px-8 lg:px-12 xl:px-16 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
-            <div className="space-y-4">
+            <div className="pb-hero-copy space-y-4">
               <h1 className="pb-h2 text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[color:var(--ink)] sm:tracking-tight leading-tight">
                 {String(o.title)
                   .split(/(keyCRM)/)
@@ -563,7 +563,7 @@ export const ServicePage = ({ serviceType: n }) => {
               </a>
             </div>
             <div
-              className="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-[color:var(--card-border)] shadow-[0_24px_60px_-20px_rgba(17,17,68,0.25)] p-4 sm:p-6 flex items-center justify-center"
+              className="pb-hero-media relative rounded-2xl sm:rounded-3xl overflow-hidden border border-[color:var(--card-border)] shadow-[0_24px_60px_-20px_rgba(17,17,68,0.25)] p-4 sm:p-6 flex items-center justify-center"
               style={{
                 backgroundImage: "var(--panel-gradient)",
               }}
