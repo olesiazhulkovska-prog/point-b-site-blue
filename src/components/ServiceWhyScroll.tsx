@@ -7,9 +7,11 @@ type Item = { title: string; desc: string };
 export function ServiceWhyScroll({
   title,
   eyebrow,
+  subtitle,
   items,
 }: {
   title: string;
+  subtitle?: string;
   eyebrow?: string;
   items: Item[];
 }) {
@@ -62,6 +64,9 @@ export function ServiceWhyScroll({
             <h2 className="pb-h2 text-2xl sm:text-3xl font-extrabold text-[color:var(--ink)] mt-1 sm:tracking-tight">
               {title}
             </h2>
+            {subtitle && (
+              <p className="text-base text-[color:var(--ink-soft)] mt-2 font-normal">{subtitle}</p>
+            )}
           </div>
 
           <div className="sws__rail" aria-hidden="true">

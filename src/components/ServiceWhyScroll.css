@@ -12,10 +12,10 @@
 .sws__fill{height:100%;background:#F98513;transform-origin:left center;transform:scaleX(0);transition:transform .25s linear}
 
 .sws__cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-.sws__card{padding:28px;border-radius:20px;background:#fff;border:1px solid #C9D3FF;box-shadow:0 22px 40px -24px rgba(17,17,68,.5);opacity:.42;transform:scale(.97);transition:opacity .45s,transform .45s}
-.sws__card.is-on{opacity:1;transform:translateY(-4px) scale(1)}
+.sws__card{padding:28px;border-radius:20px;background:#fff;border:1px solid #C9D3FF;box-shadow:0 22px 40px -24px rgba(17,17,68,.5);background:#D9E0FF;border-color:#B9C4F0;transform:scale(.97);transition:background .45s,border-color .45s,transform .45s}
+.sws__card.is-on{background:#fff;border-color:#fff;transform:translateY(-4px) scale(1)}
 .sws__card h3{margin:0 0 10px;color:#111144;font-weight:700;font-size:20px;line-height:1.25}
-.sws__card p{margin:0;color:#4A538F;font-size:16px;line-height:1.6}
+.sws__card p{margin:0;color:#3B4580;font-size:16px;line-height:1.6}
 
 @media (max-width:767px){
   .sws{height:calc(100svh + var(--n,3) * 55svh)}

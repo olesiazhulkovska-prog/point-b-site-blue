@@ -10,6 +10,7 @@ import { CustomCrmCompareDiagram } from "../shared/CustomCrmCompareDiagram";
 import { LeadForm } from "../components/LeadForm";
 import { KeyCrmStepsGallery } from "../components/KeyCrmStepsGallery";
 import "./ServicePage.css";
+import "./ServiceCards.css";
 
 type BandTone = "blue" | "light";
 
@@ -567,40 +568,25 @@ export const ServicePage = ({ serviceType: n }) => {
           {n === "keycrm" && o.whatWeDoItems.length === 6 ? (
             <KeyCrmStepsGallery items={o.whatWeDoItems} />
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="pbs-grid" data-n={o.whatWeDoItems.length}>
               {o.whatWeDoItems.map((i, d) => (
-                <div
-                  key={d}
-                  className="bg-[color:var(--card)] rounded-2xl border border-[color:var(--card-border)] p-7 shadow-xs hover:border-[color:var(--card-border)] transition-all flex flex-col justify-between"
-                >
-                  <div>
-                    <span className="text-[13px] font-bold px-2.5 py-1 rounded bg-[color:var(--tint)] text-[color:var(--ink-soft)] border border-[color:var(--card-border)] inline-block mb-4">
-                      {i.step ? `Крок ${i.step}` : `Модуль 0${d + 1}`}
+                <div key={d} className="pbs-card">
+                  <div className="pbs-head">
+                    <h3 className="pbs-title">{i.title}</h3>
+                    <span className="pbs-n" aria-label={i.step ? `Крок ${i.step}` : `Модуль 0${d + 1}`}>
+                      <span aria-hidden="true">{i.step ? String(i.step).padStart(2, "0") : `0${d + 1}`}</span>
                     </span>
-                    <h3 className="text-lg font-bold text-[color:var(--ink)] mb-2">
-                      {i.title}
-                    </h3>
-                    {i.desc && (
-                      <p className="text-base text-[color:var(--ink-soft)] leading-relaxed mb-3">
-                        {i.desc}
-                      </p>
-                    )}
-                    {"bullets" in i && Array.isArray(i.bullets) && (
-                      <ul
-                        className={`space-y-2.5 ${i.desc ? "mt-3 pt-3 border-t border-[color:var(--card-border)]" : "mt-4"}`}
-                      >
-                        {i.bullets.map((x, p) => (
-                          <li
-                            key={p}
-                            className="flex items-start gap-2.5 text-base sm:text-base text-[color:var(--ink-soft)]"
-                          >
-                            <div className="w-1.5 h-1.5 rounded-full bg-[color:var(--accent-green)] shrink-0 mt-2" />
-                            <span className="leading-relaxed">{x}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
                   </div>
+                  {i.desc && <p className="pbs-desc">{i.desc}</p>}
+                  {"bullets" in i && Array.isArray(i.bullets) && (
+                    <ul className="pbs-list">
+                      {i.bullets.map((x, p) => (
+                        <li key={p}>
+                          <span>{x}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </div>
               ))}
             </div>
@@ -608,10 +594,11 @@ export const ServicePage = ({ serviceType: n }) => {
         </section>
       </Band>
       <Band tone={tones[1]}>
-        {o.secondBlockTitle === "Чому обирають нас" && o.secondBlockItems.length === 3 ? (
+        {o.secondBlockItems.length === 3 ? (
           <ServiceWhyScroll
             eyebrow="Цінність"
             title={o.secondBlockTitle}
+            subtitle={"secondBlockSubtitle" in o ? (o.secondBlockSubtitle as string) : undefined}
             items={o.secondBlockItems}
           />
         ) : (
@@ -666,11 +653,11 @@ export const ServicePage = ({ serviceType: n }) => {
                 {o.resultSubtitle}
               </p>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div className="pbs-check">
               {o.resultItems.map((i, d) => (
                 <div
                   key={d}
-                  className="p-6 rounded-2xl bg-[color:var(--card)] border border-[color:var(--card-border)] flex items-start gap-4"
+                  className="pbs-check__i flex items-start gap-4"
                 >
                   <div className="w-6 h-6 rounded-full bg-[color:var(--btn-dark)] text-[color:var(--lime)] border border-[color:var(--accent-green)] flex items-center justify-center shrink-0 mt-0.5">
                     <CircleCheck className="w-4 h-4" />
@@ -692,11 +679,11 @@ export const ServicePage = ({ serviceType: n }) => {
                 {o.extraBlockTitle}
               </h2>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="pbs-check pbs-check--flat">
               {o.extraBlockItems.map((i, d) => (
                 <div
                   key={d}
-                  className="p-4 rounded-xl bg-[color:var(--card)] border border-[color:var(--card-border)] flex items-center gap-3"
+                  className="pbs-check__i flex items-center gap-3"
                 >
                   <div className="w-2 h-2 rounded-full bg-[color:var(--accent-green)] shrink-0" />
                   <span className="text-base text-[color:var(--ink)] font-medium">
