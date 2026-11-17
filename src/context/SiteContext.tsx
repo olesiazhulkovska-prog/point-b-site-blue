@@ -212,10 +212,18 @@ export const SiteProvider = ({ children: n }) => {
                           ]
                         : []),
                     ];
+            const fixHours = (v: any) =>
+              typeof v === "string" && /19:00/.test(v) ? "Пн–Пт, 9:00–18:00" : v;
+            const chans = (I.length > 0 ? I : Pr.channels).map((c: any) =>
+              c && (c.type === "hours" || /графік|годин/i.test(c.label || ""))
+                ? { ...c, value: fixHours(c.value) }
+                : c,
+            );
             return {
               ...Pr,
               ...S,
-              channels: I.length > 0 ? I : Pr.channels,
+              workingHours: fixHours(S.workingHours ?? Pr.workingHours),
+              channels: chans,
               requisites: X.length > 0 ? X : Pr.requisites,
             };
           }
