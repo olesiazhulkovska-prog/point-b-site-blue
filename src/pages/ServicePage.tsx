@@ -663,7 +663,7 @@ export const ServicePage = ({ serviceType: n }) => {
         )}
       </Band>
       <Band tone={tones[2]}>
-        <section className="pb-result text-[color:var(--ink)]">
+        <section className="text-[color:var(--ink)]">
           <div className="max-w-[1680px] mx-auto px-5 sm:px-8 lg:px-12 xl:px-16">
             <div className="pb-head max-w-3xl">
               <span className="text-[13px] font-bold uppercase tracking-widest text-[color:var(--accent-green)]">
