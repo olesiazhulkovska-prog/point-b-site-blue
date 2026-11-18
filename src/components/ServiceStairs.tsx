@@ -123,8 +123,9 @@ export function ServiceStairs({ items }: { items: string[] }) {
       const mobile = window.matchMedia("(max-width:767px)").matches;
       const h = mobile ? 68 : 110;
       const r = el.getBoundingClientRect();
-      const lands = (el2: HTMLElement) => el2.getBoundingClientRect().left + el2.getBoundingClientRect().width * 0.34;
-      const launches = (el2: HTMLElement) => el2.getBoundingClientRect().left + el2.getBoundingClientRect().width * 0.74;
+      const lands = (el2: HTMLElement) =>
+        el2.getBoundingClientRect().left + el2.getBoundingClientRect().width * (activeRef.current === n - 1 ? 0.38 : 0.5);
+      const launches = (el2: HTMLElement) => el2.getBoundingClientRect().left + el2.getBoundingClientRect().width * 0.68;
       const idx = activeRef.current;
       const prev = idx > 0 ? stepRefs.current[idx - 1] : null;
       const x = mobile ? r.right - 14 - h * 0.3 : lands(el);
@@ -171,8 +172,8 @@ export function ServiceStairs({ items }: { items: string[] }) {
       const pts = stepRefs.current.map((el, i) => {
         if (!el) return null;
         return {
-          land: el.offsetLeft + el.offsetWidth * 0.34,
-          launch: el.offsetLeft + el.offsetWidth * 0.74,
+          land: el.offsetLeft + el.offsetWidth * (i === n - 1 ? 0.38 : 0.5),
+          launch: el.offsetLeft + el.offsetWidth * 0.68,
           y: el.offsetTop + 3,
         };
       });
@@ -182,7 +183,7 @@ export function ServiceStairs({ items }: { items: string[] }) {
         const b = pts[i + 1];
         if (!a || !b) continue;
         d.push(
-          `M${a.launch},${a.y} Q${(a.launch + b.land) / 2},${(a.y + b.y) / 2 - (Math.max(0, a.y - b.y) + 48)} ${b.land},${b.y}`,
+          `M${a.launch},${a.y} Q${(a.launch + b.land) / 2},${(a.y + b.y) / 2 - (Math.max(0, a.y - b.y) + 72)} ${b.land},${b.y}`,
         );
       }
       setTrail(d);
