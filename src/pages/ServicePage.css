@@ -75,3 +75,7 @@ html body:not(:has(#hero-dark)) main .pb-band--light h2 + p:not(#_):not(#__):not
 
 /* service pages end with the blue form band: the footer continues it as one plain blue field (no lighter fade at the seam) */
 html body:has(.pb-band--blue) footer.theme-dark:not(#_):not(#__):not(#___):not(#____){background:#111144 !important;background-image:none !important}
+
+/* cases: after the CTA card the page is plain blue, footer continues it (no gradient/seam) */
+.pb-cases-end:not(#_):not(#__){height:240px;margin:-80px 0 -80px !important;position:relative;z-index:5;background:#111144 !important}
+html body:has(.pb-cases-end) footer.theme-dark:not(#_):not(#__):not(#___):not(#____){background:#111144 !important;background-image:none !important;margin-top:0 !important}

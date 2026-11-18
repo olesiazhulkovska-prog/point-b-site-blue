@@ -116,6 +116,7 @@ export const CasesPage = () => {
           </div>
         </div>
       </section>
+      <div className="pb-cases-end" aria-hidden="true" />
     </div>
   );
 };
