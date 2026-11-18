@@ -1,5 +1,25 @@
 import React from "react";
+import {
+  CheckCircle2, Eye, Gauge, GraduationCap, Heart, ListChecks, Plug, Rocket, SlidersHorizontal, TrendingUp, Workflow, Zap,
+} from "lucide-react";
 import "./ServiceStairs.css";
+
+const RULES: [RegExp, React.ElementType][] = [
+  [/лояльн/i, Heart],
+  [/конверс/i, TrendingUp],
+  [/швидк|реакц/i, Zap],
+  [/навантаж/i, Gauge],
+  [/прозор/i, Eye],
+  [/навчаємо/i, GraduationCap],
+  [/excel|папер/i, ListChecks],
+  [/кастомн/i, SlidersHorizontal],
+  [/інтегру/i, Plug],
+  [/воронк/i, Workflow],
+  [/впроваджу|проєкту/i, Rocket],
+];
+const FALLBACK = [Rocket, Workflow, SlidersHorizontal, Plug, CheckCircle2];
+const iconFor = (t: string, i: number): React.ElementType =>
+  RULES.find(([re]) => re.test(t))?.[1] ?? FALLBACK[i % FALLBACK.length];
 
 /** Маленький маскот-спрайт: стоїть на активній сходинці й перестрибує на наступну. */
 const Sprite = () => (
@@ -46,28 +66,48 @@ export function ServiceStairs({ items }: { items: string[] }) {
     }
   }, []);
 
-  // який крок активний: залежить від того, наскільки блок прокручено в екран
+  // крок змінюється сам, лише коли блок уже доскролено в екран: спочатку стоїть на першому, далі йде по черзі
   React.useEffect(() => {
-    let raf = 0;
-    const calc = () => {
-      raf = 0;
+    let timer = 0;
+    let started = false;
+    const STEP_MS = 3400;
+    const stop = () => {
+      window.clearTimeout(timer);
+      window.clearInterval(timer);
+      started = false;
+    };
+    const check = () => {
       const el = rootRef.current;
       if (!el) return;
       const r = el.getBoundingClientRect();
-      const q = Math.min(1, Math.max(0, (window.innerHeight * 0.9 - r.top) / (r.height * 0.95)));
-      const a = Math.min(n - 1, Math.floor(q * n));
-      setActive((p) => (p === a ? p : a));
+      const vh = window.innerHeight;
+      const overlap = Math.min(r.bottom, vh) - Math.max(r.top, 0);
+      const need = Math.min(r.height * 0.85, vh * 0.7);
+      if (r.bottom < 0 || r.top > vh) {
+        if (started || timer) stop();
+        setActive(0);
+        return;
+      }
+      if (!started && overlap >= need) {
+        started = true;
+        timer = window.setTimeout(() => {
+          let k = 0;
+          const tick = () => {
+            k += 1;
+            setActive(k);
+            if (k < n - 1) timer = window.setTimeout(tick, STEP_MS);
+          };
+          tick();
+        }, 1200);
+      }
     };
-    const on = () => {
-      if (!raf) raf = requestAnimationFrame(calc);
-    };
-    calc();
-    window.addEventListener("scroll", on, { passive: true });
-    window.addEventListener("resize", on);
+    check();
+    window.addEventListener("scroll", check, { passive: true });
+    window.addEventListener("resize", check);
     return () => {
-      window.removeEventListener("scroll", on);
-      window.removeEventListener("resize", on);
-      if (raf) cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", check);
+      window.removeEventListener("resize", check);
+      stop();
     };
   }, [n]);
 
@@ -147,7 +187,9 @@ export function ServiceStairs({ items }: { items: string[] }) {
                 Результат
               </span>
             )}
-            <span className="pbst__n">{String(i + 1).padStart(2, "0")}</span>
+            <span className="pbst__n" aria-hidden="true">
+              {React.createElement(iconFor(t, i), { size: 38, strokeWidth: 1.6 })}
+            </span>
             <span className="pbst__t">{t}</span>
           </li>
         ))}

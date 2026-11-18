@@ -1,11 +1,11 @@
 .pbst{position:relative;padding-top:78px}
 .pbst__steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(var(--n,4),minmax(0,1fr));align-items:end}
 .pbst__step{position:relative;box-sizing:border-box;margin-right:-1px;padding:22px 22px 28px;border:1px solid rgba(201,211,255,.28);border-bottom:0;border-radius:18px 18px 0 0;background:rgba(255,255,255,.06);color:#E9ECFF;min-height:calc(150px + var(--i,0) * 62px);display:flex;flex-direction:column;gap:12px;transition:background .45s,border-color .45s}
-.pbst__n{font:800 40px/1 Manrope,"Inter Variable",system-ui,sans-serif;color:transparent;-webkit-text-stroke:1.6px rgba(201,211,255,.55);transition:-webkit-text-stroke-color .4s}
+.pbst__n{display:block;line-height:0;color:rgba(201,211,255,.7);transition:color .4s}
 .pbst__t{font-weight:600;font-size:16px;line-height:1.45}
 .pbst__step.is-on{background:rgba(255,255,255,.14);border-color:rgba(201,211,255,.55)}
-.pbst__step.is-on .pbst__n{-webkit-text-stroke-color:#F98513}
-.pbst__step.is-done .pbst__n{-webkit-text-stroke-color:#C9D3FF}
+.pbst__step.is-on .pbst__n{color:#F98513}
+.pbst__step.is-done .pbst__n{color:#C9D3FF}
 .pbst__ground{height:8px;border-radius:0 0 10px 10px;background:rgba(201,211,255,.35)}
 /* прапорець «Результат» над верхньою сходинкою — окремо від тексту */
 .pbst__flag{position:absolute;right:20px;bottom:calc(100% + 22px);padding:8px 14px;border-radius:999px;background:#2431A4;color:#fff;font:700 12px/1 Manrope,"Inter Variable",system-ui,sans-serif;letter-spacing:.02em}
@@ -19,9 +19,9 @@
 
 /* світла смуга */
 .pb-band--light .pbst__step{background:linear-gradient(#F3F5FF,#E4E9FF);border-color:#C9D3FF;color:#111144}
-.pb-band--light .pbst__n{-webkit-text-stroke-color:#9AA9F0}
+.pb-band--light .pbst__n{color:#9AA9F0}
 .pb-band--light .pbst__step.is-on{background:#fff;border-color:#9AA9F0;box-shadow:0 -10px 30px -18px rgba(17,17,68,.5)}
-.pb-band--light .pbst__step.is-done .pbst__n{-webkit-text-stroke-color:#2431A4}
+.pb-band--light .pbst__step.is-done .pbst__n{color:#2431A4}
 .pb-band--light .pbst__ground{background:#111144}
 
 /* телефон: сходинки йдуть вниз із відступом, маскот сидить на верхній грані активної картки */
@@ -30,7 +30,7 @@
   .pbst__steps{display:flex;flex-direction:column;gap:64px;align-items:stretch}
   .pbst__step{min-height:0;margin-right:0;border-bottom:1px solid rgba(201,211,255,.28);border-radius:16px;margin-left:calc(var(--i,0) * 14px);padding:20px 20px 22px}
   .pb-band--light .pbst__step{border-bottom-color:#C9D3FF}
-  .pbst__n{font-size:32px}
+  .pbst__n svg{width:32px;height:32px}
   .pbst__flag{right:16px;top:22px;bottom:auto}
   .pbst__flag::after{display:none}
   .pbst__ground{display:none}
