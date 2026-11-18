@@ -1,0 +1,5 @@
+/* inline form card = same deep-blue look as the modal */
+.pb-lead:not(#_):not(#__){background:linear-gradient(#1B2E8C 0%,#111144 100%);border-color:rgba(201,211,255,.2);box-shadow:0 24px 80px rgba(17,17,68,.5)}
+/* inside the modal the wrapper already carries the gradient */
+.pb-lead.bg-transparent:not(#_):not(#__){background:transparent;box-shadow:none}
+.pb-lead .pb-lead-sub:not(#_):not(#__){margin-left:auto!important;margin-right:auto!important;text-align:center;max-width:42rem}

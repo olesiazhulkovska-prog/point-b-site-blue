@@ -763,7 +763,7 @@ export const ServicePage = ({ serviceType: n }) => {
             <h2 className="pb-h2 text-2xl sm:text-3xl font-extrabold text-[color:var(--ink)] mt-1 sm:tracking-tight">
               Обговоримо ваші процеси і оцінимо технічне завдання
             </h2>
-            <p className="text-[color:var(--ink-soft)] text-base mt-1">
+            <p className="pb-center-p text-[color:var(--ink-soft)] text-base mt-1">
               Заповніть заявку або зв'яжіться з нашою командою будь-яким зручним
               способом
             </p>

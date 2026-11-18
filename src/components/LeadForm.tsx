@@ -1,6 +1,7 @@
 // @ts-nocheck
 /* Відновлено з прод-збірки; імена та типи доводяться вручну. */
 import * as l from "react/jsx-runtime";
+import "./LeadForm.css";
 import React from "react";
 import { LoaderCircle, Send, X } from "lucide-react";
 import { useSite } from "../context/SiteContext";
@@ -147,14 +148,14 @@ export const LeadForm = ({
     };
   return (
     <div
-      className={`w-full max-w-5xl lg:max-w-6xl mx-auto rounded-3xl bg-[color:var(--card)] p-4 sm:p-12 md:p-16 text-[color:var(--ink)] shadow-sm border border-[color:var(--card-border)] transition-all ${o}`}
+      className={`pb-lead w-full max-w-5xl lg:max-w-6xl mx-auto rounded-3xl bg-[color:var(--card)] p-4 sm:p-12 md:p-16 text-[color:var(--ink)] shadow-sm border border-[color:var(--card-border)] transition-all ${o}`}
     >
       <div className="text-center mb-10 sm:mb-14">
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[color:var(--ink)] sm:tracking-tight">
           {d}
         </h2>
         {x && (
-          <p className="text-base sm:text-base text-[color:var(--ink-soft)] font-normal mt-2.5 max-w-2xl mx-auto leading-relaxed">
+          <p className="pb-lead-sub text-base sm:text-base text-[color:var(--ink-soft)] font-normal mt-2.5 max-w-2xl mx-auto leading-relaxed">
             {x}
           </p>
         )}
