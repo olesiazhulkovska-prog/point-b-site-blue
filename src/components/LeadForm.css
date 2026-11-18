@@ -3,3 +3,5 @@
 /* inside the modal the wrapper already carries the gradient */
 .pb-lead.bg-transparent:not(#_):not(#__){background:transparent;box-shadow:none}
 .pb-lead .pb-lead-sub:not(#_):not(#__){margin-left:auto!important;margin-right:auto!important;text-align:center;max-width:42rem}
+/* active service tab: orange, same as in the modal */
+.pb-lead button[class*="btn-dark"]:not(#_):not(#__){background:#F98513;color:#111144;border-color:#F98513}
