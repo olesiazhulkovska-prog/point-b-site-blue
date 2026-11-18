@@ -1,3 +1,4 @@
+import { ServiceStairs } from "../components/ServiceStairs";
 import { ServiceWhyScroll } from "../components/ServiceWhyScroll";
 // @ts-nocheck
 /* Відновлено з прод-збірки; імена та типи доводяться вручну. */
@@ -341,9 +342,9 @@ export const ServicePage = ({ serviceType: n }) => {
           "Прозорі воронки, автоматизовані процеси, контроль кожного клієнта і команда, яка працює з CRM впевнено",
         resultItems: [
           "Впроваджуємо keyCRM під ключ",
-          "Інтегруємо CRM з 1С, сайтами, ботами, складською системою, фінансовим обліком",
-          "Налаштовуємо кастомні рішення під ваші потреби",
           "Будуємо воронки продажів з автоматизаціями (задачі, повідомлення, фіскалізація, контроль менеджерів)",
+          "Налаштовуємо кастомні рішення під ваші потреби",
+          "Інтегруємо CRM з 1С, сайтами, ботами, складською системою, фінансовим обліком",
         ],
         extraBlockTitle: "Навчання та супровід",
         extraBlockItems: [
@@ -675,21 +676,7 @@ export const ServicePage = ({ serviceType: n }) => {
                 {o.resultSubtitle}
               </p>
             </div>
-            <div className="pbs-check">
-              {o.resultItems.map((i, d) => (
-                <div
-                  key={d}
-                  className="pbs-check__i flex items-start gap-4"
-                >
-                  <div className="w-6 h-6 rounded-full bg-[color:var(--btn-dark)] text-[color:var(--lime)] border border-[color:var(--accent-green)] flex items-center justify-center shrink-0 mt-0.5">
-                    <CircleCheck className="w-4 h-4" />
-                  </div>
-                  <span className="text-[color:var(--ink)] text-base sm:text-base leading-relaxed font-medium">
-                    {i}
-                  </span>
-                </div>
-              ))}
-            </div>
+            <ServiceStairs items={o.resultItems} />
           </div>
         </section>
       </Band>
