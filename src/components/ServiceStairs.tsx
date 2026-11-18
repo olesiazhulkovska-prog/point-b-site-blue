@@ -28,7 +28,13 @@ export function ServiceStairs({ items }: { items: string[] }) {
   const [active, setActive] = React.useState(0);
   const [pos, setPos] = React.useState<{ x: number; y: number } | null>(null);
   const [calm, setCalm] = React.useState(false);
-  const [botOn, setBotOn] = React.useState(false);
+  const [botOn, setBotOn] = React.useState(() => {
+    try {
+      return /^#\/(keycrm|ai-bots|analytics)/.test(location.hash);
+    } catch {
+      return false;
+    }
+  });
   const activeRef = React.useRef(0);
   activeRef.current = active;
 
@@ -74,7 +80,7 @@ export function ServiceStairs({ items }: { items: string[] }) {
       const rr = root.getBoundingClientRect();
       const vis = rr.top < window.innerHeight * 0.82 && rr.bottom > window.innerHeight * 0.12;
       const mobile = window.matchMedia("(max-width:767px)").matches;
-      const h = mobile ? 78 : 110;
+      const h = mobile ? 68 : 110;
       const r = el.getBoundingClientRect();
       const last = activeRef.current === n - 1;
       const x = mobile ? r.right - 14 - h * 0.3 : r.left + r.width * (last ? 0.34 : 0.5);
@@ -90,7 +96,10 @@ export function ServiceStairs({ items }: { items: string[] }) {
     publish();
     const t = window.setInterval(() => {
       publish();
-      setBotOn(!!(window as any).__pbStairsBot);
+      setBotOn(
+        !!(window as any).__pbStairsBot ||
+          (/^#\/(keycrm|ai-bots|analytics)/.test(location.hash) && !(window as any).__pbBotWhy),
+      );
     }, 400);
     window.addEventListener("scroll", publish, { passive: true });
     window.addEventListener("resize", publish);
