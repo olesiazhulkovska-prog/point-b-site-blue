@@ -173,7 +173,7 @@ export function ServiceStairs({ items }: { items: string[] }) {
         const a = pts[i];
         const b = pts[i + 1];
         if (!a || !b) continue;
-        d.push(`M${a.x},${a.y} Q${(a.x + b.x) / 2},${(a.y + b.y) / 2 - 66} ${b.x},${b.y}`);
+        d.push(`M${a.x},${a.y} Q${(a.x + b.x) / 2},${(a.y + b.y) / 2 - (Math.max(0, a.y - b.y) + 48)} ${b.x},${b.y}`);
       }
       setTrail(d);
     };
