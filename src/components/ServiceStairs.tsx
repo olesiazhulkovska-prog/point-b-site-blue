@@ -28,6 +28,9 @@ export function ServiceStairs({ items }: { items: string[] }) {
   const [active, setActive] = React.useState(0);
   const [pos, setPos] = React.useState<{ x: number; y: number } | null>(null);
   const [calm, setCalm] = React.useState(false);
+  const [botOn, setBotOn] = React.useState(false);
+  const activeRef = React.useRef(0);
+  activeRef.current = active;
 
   React.useEffect(() => {
     try {
@@ -61,6 +64,44 @@ export function ServiceStairs({ items }: { items: string[] }) {
       if (raf) cancelAnimationFrame(raf);
     };
   }, [n]);
+
+  // справжній 3D-маскот (point-b-bot.js): віддаємо йому координати активної сходинки
+  React.useEffect(() => {
+    const publish = () => {
+      const el = stepRefs.current[activeRef.current];
+      const root = rootRef.current;
+      if (!el || !root) return;
+      const rr = root.getBoundingClientRect();
+      const vis = rr.top < window.innerHeight * 0.82 && rr.bottom > window.innerHeight * 0.12;
+      const mobile = window.matchMedia("(max-width:767px)").matches;
+      const h = mobile ? 78 : 110;
+      const r = el.getBoundingClientRect();
+      const last = activeRef.current === n - 1;
+      const x = mobile ? r.right - 14 - h * 0.3 : r.left + r.width * (last ? 0.34 : 0.5);
+      (window as any).__pbStairs = {
+        on: vis,
+        i: activeRef.current,
+        x: x + window.scrollX,
+        yDoc: r.top + window.scrollY + 3,
+        s: h / 3.3,
+      };
+      window.dispatchEvent(new Event("pb:stairs"));
+    };
+    publish();
+    const t = window.setInterval(() => {
+      publish();
+      setBotOn(!!(window as any).__pbStairsBot);
+    }, 400);
+    window.addEventListener("scroll", publish, { passive: true });
+    window.addEventListener("resize", publish);
+    return () => {
+      window.clearInterval(t);
+      window.removeEventListener("scroll", publish);
+      window.removeEventListener("resize", publish);
+      (window as any).__pbStairs = { on: false };
+      window.dispatchEvent(new Event("pb:stairs"));
+    };
+  }, [active, n]);
 
   // де стоїть маскот: на верхній грані активної сходинки
   const place = React.useCallback(() => {
@@ -105,7 +146,7 @@ export function ServiceStairs({ items }: { items: string[] }) {
       <div className="pbst__ground" aria-hidden="true" />
       {pos && (
         <div
-          className={`pbst__bot${calm ? " is-calm" : ""}`}
+          className={`pbst__bot${calm ? " is-calm" : ""}${botOn ? " is-hidden" : ""}`}
           style={{ transform: `translate(${pos.x}px, ${pos.y}px)` }}
           aria-hidden="true"
         >

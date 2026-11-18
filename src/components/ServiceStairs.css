@@ -11,8 +11,9 @@
 .pbst__flag{position:absolute;right:20px;bottom:calc(100% + 22px);padding:8px 14px;border-radius:999px;background:#2431A4;color:#fff;font:700 12px/1 Manrope,"Inter Variable",system-ui,sans-serif;letter-spacing:.02em}
 .pbst__flag::after{content:"";position:absolute;left:50%;top:100%;width:2px;height:14px;margin-left:-1px;background:#2431A4}
 /* маскот */
-.pbst__bot{position:absolute;left:0;top:0;z-index:2;width:56px;height:68px;pointer-events:none;transition:transform .65s cubic-bezier(.3,.7,.35,1)}
-.pbst__hop{animation:pbst-hop .65s cubic-bezier(.3,0,.4,1)}
+.pbst__bot{position:absolute;left:0;top:0;z-index:2;width:56px;height:68px;pointer-events:none;transition:transform 1.4s cubic-bezier(.45,.05,.3,1),opacity .35s}
+.pbst__bot.is-hidden{opacity:0}
+.pbst__hop{animation:pbst-hop 1.4s cubic-bezier(.3,0,.4,1)}
 @keyframes pbst-hop{0%{transform:translateY(0) scaleY(.92)}22%{transform:translateY(0) scaleY(.9)}55%{transform:translateY(-44px) scaleY(1.05)}100%{transform:translateY(0) scaleY(1)}}
 .pbst__bot.is-calm,.pbst__bot.is-calm .pbst__hop{transition:none;animation:none}
 
