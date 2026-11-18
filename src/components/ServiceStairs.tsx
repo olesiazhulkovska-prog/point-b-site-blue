@@ -130,6 +130,8 @@ export function ServiceStairs({ items }: { items: string[] }) {
         x: x + window.scrollX,
         yDoc: r.top + window.scrollY + 3,
         s: h / 3.3,
+        yMin: Math.min(...stepRefs.current.map((e) => (e ? e.getBoundingClientRect().top + window.scrollY + 3 : 1e9))),
+        yMax: Math.max(...stepRefs.current.map((e) => (e ? e.getBoundingClientRect().top + window.scrollY + 3 : 0))),
       };
       window.dispatchEvent(new Event("pb:stairs"));
     };

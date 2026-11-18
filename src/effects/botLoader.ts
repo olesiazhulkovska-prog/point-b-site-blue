@@ -45,7 +45,7 @@
     if (d || !(home() || /^#\/(keycrm|ai-bots|analytics)/.test(location.hash)) || weak()) return;
     d = 1;
     var s = document.createElement("script");
-    s.src = "point-b-bot.js?v=29";
+    s.src = "point-b-bot.js?v=30";
     s.async = true;
     s.onerror = function () {
       why("script load failed");
