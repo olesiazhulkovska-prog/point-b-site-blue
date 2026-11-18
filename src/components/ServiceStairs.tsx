@@ -213,7 +213,7 @@ export function ServiceStairs({ items }: { items: string[] }) {
               </span>
             )}
             <span className="pbst__n" aria-hidden="true">
-              {React.createElement(iconFor(t, i), { size: 38, strokeWidth: 1.6 })}
+              {React.createElement(iconFor(t, i), { size: 34, strokeWidth: 1.6 })}
             </span>
             <span className="pbst__t">{t}</span>
           </li>
