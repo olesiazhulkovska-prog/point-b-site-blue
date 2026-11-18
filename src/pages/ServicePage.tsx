@@ -4,6 +4,7 @@ import { ServiceWhyScroll } from "../components/ServiceWhyScroll";
 /* Відновлено з прод-збірки; імена та типи доводяться вручну. */
 import React from "react";
 import { ArrowRight, CircleCheck, Mail, Phone, Send } from "lucide-react";
+import ExtraTiles from "../components/ExtraTiles";
 import { useSite } from "../context/SiteContext";
 import { KeyCrmPainsDiagram } from "../shared/KeyCrmPainsDiagram";
 import { AiAgentFlowDiagram } from "../shared/AiAgentFlowDiagram";
@@ -688,19 +689,7 @@ export const ServicePage = ({ serviceType: n }) => {
                 {o.extraBlockTitle}
               </h2>
             </div>
-            <div className="pbs-check pbs-check--flat">
-              {o.extraBlockItems.map((i, d) => (
-                <div
-                  key={d}
-                  className="pbs-check__i flex items-center gap-3"
-                >
-                  <div className="w-2 h-2 rounded-full bg-[color:var(--accent-green)] shrink-0" />
-                  <span className="text-base text-[color:var(--ink)] font-medium">
-                    {i}
-                  </span>
-                </div>
-              ))}
-            </div>
+            <ExtraTiles items={o.extraBlockItems} />
           </div>
         </section>
       </Band>
