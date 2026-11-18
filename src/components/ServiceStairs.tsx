@@ -56,6 +56,7 @@ export function ServiceStairs({ items }: { items: string[] }) {
     }
   });
   const activeRef = React.useRef(0);
+  const publishRef = React.useRef<(() => void) | null>(null);
   activeRef.current = active;
 
   React.useEffect(() => {
@@ -70,7 +71,7 @@ export function ServiceStairs({ items }: { items: string[] }) {
   React.useEffect(() => {
     let timer = 0;
     let started = false;
-    const STEP_MS = 2700;
+    const STEP_MS = 3000;
     const stop = () => {
       window.clearTimeout(timer);
       window.clearInterval(timer);
@@ -135,6 +136,7 @@ export function ServiceStairs({ items }: { items: string[] }) {
       };
       window.dispatchEvent(new Event("pb:stairs"));
     };
+    publishRef.current = publish;
     publish();
     const t = window.setInterval(() => {
       publish();
@@ -152,7 +154,10 @@ export function ServiceStairs({ items }: { items: string[] }) {
       (window as any).__pbStairs = { on: false };
       window.dispatchEvent(new Event("pb:stairs"));
     };
-  }, [active, n]);
+  }, [n]);
+  React.useEffect(() => {
+    publishRef.current?.();
+  }, [active]);
 
   // пунктирна траєкторія стрибків (десктоп): від сходинки до сходинки по дузі
   const [trail, setTrail] = React.useState<string[]>([]);
