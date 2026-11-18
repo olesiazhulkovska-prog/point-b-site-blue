@@ -72,3 +72,6 @@ html body:not(:has(#hero-dark)) main .pb-band--light h2 + p:not(#_):not(#__):not
 }
 
 .pb-center-p:not(#_):not(#__){margin-left:auto!important;margin-right:auto!important;text-align:center;max-width:42rem}
+
+/* service pages end with the blue form band: the footer continues it as one plain blue field (no lighter fade at the seam) */
+html body:has(.pb-band--blue) footer.theme-dark:not(#_):not(#__):not(#___):not(#____){background:#111144 !important;background-image:none !important}
