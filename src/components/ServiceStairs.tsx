@@ -70,7 +70,7 @@ export function ServiceStairs({ items }: { items: string[] }) {
   React.useEffect(() => {
     let timer = 0;
     let started = false;
-    const STEP_MS = 3400;
+    const STEP_MS = 2700;
     const stop = () => {
       window.clearTimeout(timer);
       window.clearInterval(timer);
@@ -152,6 +152,29 @@ export function ServiceStairs({ items }: { items: string[] }) {
     };
   }, [active, n]);
 
+  // пунктирна траєкторія стрибків (десктоп): від сходинки до сходинки по дузі
+  const [trail, setTrail] = React.useState<string[]>([]);
+  React.useLayoutEffect(() => {
+    const calcTrail = () => {
+      const pts = stepRefs.current.map((el, i) => {
+        if (!el) return null;
+        const last = i === n - 1;
+        return { x: el.offsetLeft + el.offsetWidth * (last ? 0.34 : 0.5), y: el.offsetTop + 3 };
+      });
+      const d: string[] = [];
+      for (let i = 0; i < n - 1; i++) {
+        const a = pts[i];
+        const b = pts[i + 1];
+        if (!a || !b) continue;
+        d.push(`M${a.x},${a.y} Q${(a.x + b.x) / 2},${(a.y + b.y) / 2 - 66} ${b.x},${b.y}`);
+      }
+      setTrail(d);
+    };
+    calcTrail();
+    window.addEventListener("resize", calcTrail);
+    return () => window.removeEventListener("resize", calcTrail);
+  }, [n]);
+
   // де стоїть маскот: на верхній грані активної сходинки
   const place = React.useCallback(() => {
     const el = stepRefs.current[active];
@@ -194,6 +217,11 @@ export function ServiceStairs({ items }: { items: string[] }) {
           </li>
         ))}
       </ol>
+      <svg className="pbst__trail" aria-hidden="true">
+        {trail.map((d, i) => (
+          <path key={i} d={d} className={i < active ? "is-on" : ""} />
+        ))}
+      </svg>
       <div className="pbst__ground" aria-hidden="true" />
       {pos && (
         <div
