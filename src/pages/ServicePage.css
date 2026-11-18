@@ -89,3 +89,6 @@ html body:has(.pb-cases-end) footer.theme-dark:not(#_):not(#__):not(#___):not(#_
 .pbxt__i:not(#_):not(#__){width:52px;height:52px;border-radius:50%;display:grid;place-items:center;color:#F98513;border:1px dotted rgba(249,133,19,.6);background:rgba(249,133,19,.08)}
 .pbxt__x:not(#_):not(#__){font-size:16px;line-height:1.45;font-weight:600;color:#fff}
 @media(prefers-reduced-motion:reduce){.pbxt__t:not(#_):not(#__){transition:none}.pbxt__t:not(#_):not(#__):hover{transform:none}}
+
+/* lead form: chip rows wrap inside the card (the global mobile "scroll row" rule must not apply here) */
+html body .pb-lead div.flex.flex-wrap.gap-2\.5.items-center:not(#_):not(#__):not(#___):not(#____){flex-wrap:wrap !important;overflow:visible !important;margin-inline:0 !important;padding-inline:0 !important}
