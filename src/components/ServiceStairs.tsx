@@ -77,12 +77,12 @@ export function ServiceStairs({ items }: { items: string[] }) {
       started = false;
     };
     const check = () => {
-      const el = rootRef.current;
+      const el = (rootRef.current?.closest("section") as HTMLElement | null) ?? rootRef.current;
       if (!el) return;
       const r = el.getBoundingClientRect();
       const vh = window.innerHeight;
       const overlap = Math.min(r.bottom, vh) - Math.max(r.top, 0);
-      const need = Math.min(r.height * 0.85, vh * 0.7);
+      const need = Math.min(r.height * 0.9, vh * 0.8);
       if (r.bottom < 0 || r.top > vh) {
         if (started || timer) stop();
         setActive(0);
