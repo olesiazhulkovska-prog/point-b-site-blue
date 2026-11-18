@@ -220,8 +220,15 @@ export function ServiceStairs({ items }: { items: string[] }) {
         ))}
       </ol>
       <svg className="pbst__trail" aria-hidden="true">
+        <defs>
+          {trail.map((d, i) => (
+            <mask key={i} id={`pbst-m${i}`} maskUnits="userSpaceOnUse" x="-50" y="-50" width="4000" height="4000">
+              <path d={d} pathLength={1} className={`pbst__reveal${i < active ? " is-on" : ""}`} />
+            </mask>
+          ))}
+        </defs>
         {trail.map((d, i) => (
-          <path key={i} d={d} className={i < active ? "is-on" : ""} />
+          <path key={i} d={d} mask={`url(#pbst-m${i})`} />
         ))}
       </svg>
       <div className="pbst__ground" aria-hidden="true" />
