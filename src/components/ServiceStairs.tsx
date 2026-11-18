@@ -71,7 +71,7 @@ export function ServiceStairs({ items }: { items: string[] }) {
   React.useEffect(() => {
     let timer = 0;
     let started = false;
-    const STEP_MS = 3000;
+    const STEP_MS = 4400;
     const stop = () => {
       window.clearTimeout(timer);
       window.clearInterval(timer);
@@ -123,12 +123,17 @@ export function ServiceStairs({ items }: { items: string[] }) {
       const mobile = window.matchMedia("(max-width:767px)").matches;
       const h = mobile ? 68 : 110;
       const r = el.getBoundingClientRect();
-      const last = activeRef.current === n - 1;
-      const x = mobile ? r.right - 14 - h * 0.3 : r.left + r.width * (last ? 0.34 : 0.5);
+      const lands = (el2: HTMLElement) => el2.getBoundingClientRect().left + el2.getBoundingClientRect().width * 0.34;
+      const launches = (el2: HTMLElement) => el2.getBoundingClientRect().left + el2.getBoundingClientRect().width * 0.74;
+      const idx = activeRef.current;
+      const prev = idx > 0 ? stepRefs.current[idx - 1] : null;
+      const x = mobile ? r.right - 14 - h * 0.3 : lands(el);
+      const lx = mobile ? x : prev ? launches(prev) : x;
       (window as any).__pbStairs = {
         on: vis,
         i: activeRef.current,
         x: x + window.scrollX,
+        lx: lx + window.scrollX,
         yDoc: r.top + window.scrollY + 3,
         s: h / 3.3,
         yMin: Math.min(...stepRefs.current.map((e) => (e ? e.getBoundingClientRect().top + window.scrollY + 3 : 1e9))),
@@ -165,15 +170,20 @@ export function ServiceStairs({ items }: { items: string[] }) {
     const calcTrail = () => {
       const pts = stepRefs.current.map((el, i) => {
         if (!el) return null;
-        const last = i === n - 1;
-        return { x: el.offsetLeft + el.offsetWidth * (last ? 0.34 : 0.5), y: el.offsetTop + 3 };
+        return {
+          land: el.offsetLeft + el.offsetWidth * 0.34,
+          launch: el.offsetLeft + el.offsetWidth * 0.74,
+          y: el.offsetTop + 3,
+        };
       });
       const d: string[] = [];
       for (let i = 0; i < n - 1; i++) {
         const a = pts[i];
         const b = pts[i + 1];
         if (!a || !b) continue;
-        d.push(`M${a.x},${a.y} Q${(a.x + b.x) / 2},${(a.y + b.y) / 2 - (Math.max(0, a.y - b.y) + 48)} ${b.x},${b.y}`);
+        d.push(
+          `M${a.launch},${a.y} Q${(a.launch + b.land) / 2},${(a.y + b.y) / 2 - (Math.max(0, a.y - b.y) + 48)} ${b.land},${b.y}`,
+        );
       }
       setTrail(d);
     };
