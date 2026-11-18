@@ -91,7 +91,7 @@ export const CasesPage = () => {
         )}
       </section>
       <section className="mt-28 max-w-[1680px] mx-auto px-5 sm:px-8 lg:px-12 xl:px-16">
-        <div className="rounded-3xl bg-[color:var(--card)] text-[color:var(--ink)] p-8 sm:p-14 border border-[color:var(--card-border)] text-center">
+        <div className="rounded-3xl text-[color:var(--ink)] p-8 sm:p-14 border border-[color:var(--card-border)] text-center" style={{ background: "linear-gradient(rgb(27,46,140), rgb(17,17,68))" }}>
           <div className="max-w-2xl mx-auto space-y-5">
             <span className="text-[13px] font-bold uppercase tracking-widest text-[color:var(--accent-green)]">
               Подібний результат для вашого бізнесу
