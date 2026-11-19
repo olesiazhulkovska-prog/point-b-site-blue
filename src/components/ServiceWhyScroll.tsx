@@ -64,7 +64,8 @@ export function ServiceWhyScroll({
         return;
       }
       const r = el.getBoundingClientRect();
-      const span = r.height - window.innerHeight;
+      const stick = el.querySelector(".sws__stick") as HTMLElement | null;
+      const span = r.height - (stick ? stick.offsetHeight : window.innerHeight);
       const v = span > 0 ? Math.min(1, Math.max(0, -r.top / span)) : 1;
       setP((prev) => (Math.abs(prev - v) < 0.002 ? prev : v));
     };
