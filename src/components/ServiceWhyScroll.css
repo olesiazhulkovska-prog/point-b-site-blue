@@ -1,5 +1,5 @@
-.sws{position:relative;overflow:clip;height:calc(min(100svh,640px) + var(--n,3) * 28svh)}
-.sws__stick{position:sticky;z-index:1;top:0;min-height:min(100svh,640px);display:flex;align-items:flex-start;padding-block:max(124px,15svh) var(--sec-y,64px);box-sizing:border-box}
+.sws{position:relative;overflow:clip;height:calc(min(100svh,640px) + var(--n,3) * 11svh)}
+.sws__stick{position:sticky;z-index:1;top:0;min-height:min(100svh,640px);display:flex;align-items:flex-start;padding-block:max(96px,10svh) var(--sec-y,64px);box-sizing:border-box}
 .sws__in{position:relative;z-index:1;padding-top:28px}
 /* background video: semi-transparent over the blue, fading out at the top and bottom edges */
 .sws__bg{position:absolute;inset:0;z-index:0;pointer-events:none;-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 22%,#000 78%,transparent 100%);mask-image:linear-gradient(to bottom,transparent 0,#000 22%,#000 78%,transparent 100%)}
