@@ -10,12 +10,14 @@ type Item = { title: string; desc: string };
 export function ServiceWhyScroll({
   title,
   eyebrow,
+  video,
   subtitle,
   items,
 }: {
   title: string;
   subtitle?: string;
   eyebrow?: string;
+  video?: string;
   items: Item[];
 }) {
   const trackRef = React.useRef<HTMLDivElement>(null);
@@ -96,7 +98,7 @@ export function ServiceWhyScroll({
         <div className="sws__bg" aria-hidden="true">
           <video
             ref={videoRef}
-            src={BG_VIDEO}
+            src={video || BG_VIDEO}
             muted
             loop
             playsInline

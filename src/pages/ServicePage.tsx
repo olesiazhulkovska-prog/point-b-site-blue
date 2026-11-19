@@ -623,6 +623,7 @@ export const ServicePage = ({ serviceType: n }) => {
         {o.secondBlockItems.length === 3 ? (
           <ServiceWhyScroll
             eyebrow="Цінність"
+            video={n === "ai-bots" ? "https://res.cloudinary.com/dset5uqua/video/upload/v1795093403/gemini_generated_video_8321928d_koqakd.webm" : undefined}
             title={o.secondBlockTitle}
             subtitle={"secondBlockSubtitle" in o ? (o.secondBlockSubtitle as string) : undefined}
             items={o.secondBlockItems}
