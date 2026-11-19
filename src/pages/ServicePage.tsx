@@ -5,6 +5,7 @@ import { ServiceWhyScroll } from "../components/ServiceWhyScroll";
 import React from "react";
 import { ArrowRight, CircleCheck, Mail, Phone, Send } from "lucide-react";
 import ExtraTiles from "../components/ExtraTiles";
+import BulletIcon from "../components/BulletIcon";
 import { useSite } from "../context/SiteContext";
 import { KeyCrmPainsDiagram } from "../shared/KeyCrmPainsDiagram";
 import { AiAgentFlowDiagram } from "../shared/AiAgentFlowDiagram";
@@ -592,7 +593,7 @@ export const ServicePage = ({ serviceType: n }) => {
           {n === "keycrm" && o.whatWeDoItems.length === 6 ? (
             <KeyCrmStepsGallery items={o.whatWeDoItems} />
           ) : (
-            <div className="pbs-grid" data-n={o.whatWeDoItems.length}>
+            <div className={`pbs-grid${"bullets" in o.whatWeDoItems[0] ? " pbs-grid--kc" : ""}`} data-n={o.whatWeDoItems.length}>
               {o.whatWeDoItems.map((i, d) => (
                 <div key={d} className="pbs-card">
                   <div className="pbs-head">
@@ -606,6 +607,7 @@ export const ServicePage = ({ serviceType: n }) => {
                     <ul className="pbs-list">
                       {i.bullets.map((x, p) => (
                         <li key={p}>
+                          <BulletIcon text={x} index={p} />
                           <span>{x}</span>
                         </li>
                       ))}
