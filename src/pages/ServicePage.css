@@ -10,7 +10,7 @@
 }
 
 .pb-band--arch {
-  border-radius: 0 0 50% 50% / 0 0 var(--arc) var(--arc);
+  border-radius: 0 0 50% 50% / 0 0 calc(var(--arc) * var(--arc-k, 1)) calc(var(--arc) * var(--arc-k, 1));
   margin-bottom: calc(var(--arc) * -1);
   padding-bottom: var(--arc);
 }
