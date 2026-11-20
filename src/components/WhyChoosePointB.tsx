@@ -42,6 +42,7 @@ import { ServicesList } from "./ServicesList";
 import { FadeInOnView } from "../shared/FadeInOnView";
 import { CaseCard } from "./CaseCard";
 import { ReviewCard } from "./ReviewCard";
+import { TG_URL } from "../data/data";
 export const PBP = {
   Хорошоп: "img",
   WordPress:
@@ -2563,7 +2564,7 @@ export const WhyChoosePointB = () => {
                   </button>
                   <a
                     id="home-cta-bottom-telegram"
-                    href={`https://t.me/${i.telegram.replace("@", "")}`}
+                    href={TG_URL}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-full sm:w-auto min-h-[52px] sm:min-h-[56px] px-4 sm:px-8 py-3.5 sm:py-4 rounded-full border border-[color:var(--cta-text)]/45 bg-transparent hover:bg-[color:var(--cta-text)]/10 hover:border-[color:var(--cta-text)]/70 text-[color:var(--cta-text)] font-semibold text-[15px] sm:text-base whitespace-nowrap active:scale-98 transition-all flex items-center justify-center gap-2 font-manrope uppercase tracking-wide sm:tracking-wider"

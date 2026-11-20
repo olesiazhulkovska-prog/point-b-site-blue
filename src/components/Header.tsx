@@ -22,6 +22,7 @@ import {
 } from "lucide-react";
 import { useSite } from "../context/SiteContext";
 import { Logo } from "./Logo";
+import { TG_URL } from "../data/data";
 export const Dk = (n) => true;
 export const Header = () => {
   const {
@@ -387,13 +388,13 @@ export const Header = () => {
             <div className="pt-3 mt-1 border-t border-[color:var(--card-border)] flex flex-col gap-1 text-[14px] font-manrope font-semibold text-[color:var(--ink)]">
               {i.telegram && (
                 <a
-                  href={`https://t.me/${i.telegram.replace("@", "")}`}
+                  href={TG_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 py-2.5 px-3 rounded-xl hover:bg-[color:var(--card)]"
                 >
                   <Send className="w-5 h-5 text-[color:var(--accent-green)]" />
-                  <span>{i.telegram}</span>
+                  <span>Написати в Telegram</span>
                 </a>
               )}
               {i.email && (

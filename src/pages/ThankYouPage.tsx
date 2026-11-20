@@ -2,6 +2,7 @@
 /* Відновлено з прод-збірки; імена та типи доводяться вручну. */
 import { ArrowRight, CircleCheck, House } from "lucide-react";
 import { useSite } from "../context/SiteContext";
+import { TG_URL } from "../data/data";
 
 export const ThankYouPage = () => {
   const { navigateTo: n, contactInfo: s } = useSite();
@@ -62,14 +63,14 @@ export const ThankYouPage = () => {
           </div>
         </div>
         <div className="text-[13px] text-[color:var(--ink-soft)]">
-          Потрібна термінова відповідь? Напишіть напряму в Telegram:{" "}
+          Потрібна термінова відповідь?{" "}
           <a
-            href={`https://t.me/${s.telegram.replace("@", "")}`}
+            href={TG_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="text-[color:var(--ink)] font-bold underline hover:text-[#A84300]"
           >
-            {s.telegram}
+            Написати в Telegram
           </a>
         </div>
         <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">

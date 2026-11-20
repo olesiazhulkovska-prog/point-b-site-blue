@@ -4,6 +4,7 @@ import * as l from "react/jsx-runtime";
 import { Mail, Phone, Send, ShieldCheck } from "lucide-react";
 import { useSite } from "../context/SiteContext";
 import { Logo } from "./Logo";
+import { TG_URL } from "../data/data";
 
 export const Xk = "./assets/dfb6afa590.png";
 
@@ -155,13 +156,13 @@ export const Footer = () => {
                   <div>
                     <a
                       id="footer-contact-telegram"
-                      href={`https://t.me/${s.telegram.replace("@", "")}`}
+                      href={TG_URL}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-2 max-md:py-3 text-[color:var(--ink)]/70 hover:text-[color:var(--ink)] transition-colors"
                     >
                       <Send className="w-3.5 h-3.5 text-[color:var(--accent-green)]" />
-                      <span>{s.telegram}</span>
+                      <span>Написати в Telegram</span>
                     </a>
                   </div>
                 ),

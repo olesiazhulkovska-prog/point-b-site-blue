@@ -762,13 +762,13 @@ export const ServicePage = ({ serviceType: n }) => {
                 <span>+380 73 78 600 40</span>
               </a>
               <a
-                href="https://t.me/pointb_valentyna"
+                href="https://t.me/m/csptpTj_ZTRi"
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#2F4BFF]/10 border border-[#2F4BFF]/30 text-[13px] sm:text-sm font-semibold text-[#1B2Ea1] hover:bg-[#2F4BFF]/20 transition-all shadow-xs"
               >
                 <Send className="w-3.5 h-3.5 text-[#2F4BFF]" />
-                <span>Telegram: Відкрити чат</span>
+                <span>Написати в Telegram</span>
               </a>
             </div>
           </div>

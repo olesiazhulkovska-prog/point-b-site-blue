@@ -3,10 +3,11 @@
 
 export const eb = [];
 
+export const TG_URL = "https://t.me/m/csptpTj_ZTRi";
 export const Pr = {
   phone: "+38 073 786 00 40",
   email: "point.b.here@gmail.com",
-  telegram: "pointb_valentyna",
+  telegram: "https://t.me/m/csptpTj_ZTRi",
   workingHours: "Пн–Пт, 9:00–18:00",
   companyLegalName: "ФОП Кошовий Лев Олександрович",
   edrpou: "3722211170",
@@ -29,7 +30,7 @@ export const Pr = {
       id: "ch-telegram-1",
       type: "telegram",
       label: "Telegram",
-      value: "https://telegram.me/pointb_valentyna",
+      value: "https://t.me/m/csptpTj_ZTRi",
     },
     {
       id: "ch-hours-1",

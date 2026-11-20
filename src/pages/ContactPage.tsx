@@ -112,7 +112,7 @@ export const ContactPage = () => {
                               rel={p ? "noopener noreferrer" : undefined}
                               className="text-base font-bold text-[color:var(--ink)] hover:text-[color:var(--accent-green)] transition-colors break-all mt-0.5 inline-block"
                             >
-                              {s.value}
+                              {y ? "Написати в Telegram" : s.value}
                             </a>
                           ) : (
                             <div className="text-base font-bold text-[color:var(--ink)] break-words mt-0.5">
