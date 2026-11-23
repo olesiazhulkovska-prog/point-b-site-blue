@@ -2609,7 +2609,16 @@ html body .pb-logos img.pb-wm:not(#_):not(#__):not(#___):not(#____){flex:0 0 aut
   html{overscroll-behavior-y:none}
 }
 /* cases hero: badge, heading and text centered */
-html body .pb-cases-hero:not(#_):not(#__){margin-left:auto;margin-right:auto;text-align:center}
+html body .pb-cases-hero:not(#_):not(#__){margin-left:auto;margin-right:auto;text-align:center;max-width:68rem}
 html body .pb-cases-hero h1:not(#_):not(#__){margin-left:auto;margin-right:auto;text-align:center;text-wrap:balance}
-html body .pb-cases-hero h1:not(#_):not(#__){max-width:46rem}
-html body .pb-cases-hero p:not(#_):not(#__){margin-left:auto;margin-right:auto;margin-top:28px;max-width:46rem;text-align:center;text-wrap:balance}
+html body .pb-cases-hero h1:not(#_):not(#__){max-width:100%;text-wrap:wrap}
+html body .pb-cases-hero p:not(#_):not(#__){margin-left:auto;margin-right:auto;margin-top:28px;max-width:100%;text-align:center;text-wrap:balance}
+/* cases hero, desktop: the description is exactly as wide as the heading's longest line */
+@media(min-width:1024px){
+  html body .pb-cases-hero:not(#_):not(#__){width:fit-content;max-width:100%}
+  html body .pb-cases-hero h1:not(#_):not(#__){white-space:nowrap;margin-left:auto;margin-right:auto}
+  html body .pb-cases-hero p:not(#_):not(#__){width:0;min-width:100%;max-width:none;margin-left:0;margin-right:0}
+}
+html body .pb-cases-br:not(#_):not(#__){display:none}
+@media(min-width:1024px){html body .pb-cases-br:not(#_):not(#__){display:inline}}
+@media(min-width:1024px){html body .pb-cases-hero p:not(#_):not(#__){text-wrap:wrap}}

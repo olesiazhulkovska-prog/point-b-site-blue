@@ -23,7 +23,7 @@ export const CasesPage = () => {
               Портфоліо та результати
             </span>
             <h1 className="pb-h2 text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[color:var(--ink)] sm:tracking-tight leading-tight">
-              Кейси впровадження систем у реальному бізнесі
+              Кейси впровадження систем<br className="pb-cases-br" /> у реальному бізнесі
             </h1>
             <p className="text-base sm:text-lg text-[color:var(--ink-soft)] leading-relaxed font-normal pt-1">
               Реальні приклади того, як компанії позбулися операційного хаосу,
