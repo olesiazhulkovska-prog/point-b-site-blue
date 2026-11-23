@@ -566,6 +566,7 @@ export const ServicePage = ({ serviceType: n }) => {
               </a>
             </div>
             <div
+              id={n === "ai-bots" ? "pb-why-cards" : undefined}
               className="pb-hero-media relative rounded-2xl sm:rounded-3xl overflow-hidden border border-[color:var(--card-border)] shadow-[0_24px_60px_-20px_rgba(17,17,68,0.25)] p-4 sm:p-6 flex items-center justify-center"
               style={{
                 backgroundImage: "var(--panel-gradient)",

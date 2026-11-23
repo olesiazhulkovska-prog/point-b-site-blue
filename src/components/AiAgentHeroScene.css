@@ -1,37 +1,21 @@
-/* Hero animation for "Боти та AI": mascot explains the agent, text types step by step.
-   Sits in a dark blue hero, so colours are fixed here. Font sizes/paddings follow the design-system snap grid. */
-.pbh{--o:#F98513;position:relative;width:100%;display:grid;grid-template-columns:minmax(150px,36%) 1fr;grid-template-areas:"bot card";column-gap:16px;align-items:stretch;color:#fff;font-family:inherit}
+/* Hero animation for "Боти та AI": step list + typed explanation. The real 3D mascot stands on the top edge of the
+   hero panel (id pb-why-cards, see ServicePage). Sits in a dark blue hero, so colours are fixed here.
+   Font sizes/paddings follow the design-system snap grid. */
+.pbh{--o:#F98513;width:100%;display:grid;grid-template-columns:minmax(150px,34%) 1fr;gap:24px;align-items:stretch;color:#fff;font-family:inherit}
 .pbh-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
-.pbh-mascot{grid-area:bot;position:relative;display:flex;align-items:flex-end;justify-content:center;min-height:300px}
-.pbh-bot{width:100%;max-width:230px;height:auto;overflow:visible}
-.pbh-float{animation:pbhFloat 3.4s ease-in-out infinite}
-.pbh-shadow{transform-box:fill-box;transform-origin:center;animation:pbhShadow 3.4s ease-in-out infinite}
-.pbh-ant{transform-box:fill-box;transform-origin:100% 100%;animation:pbhAnt 2.6s ease-in-out infinite}
-.pbh-eyes{transform:translateX(5px);transition:transform .5s}
-.pbh-eye{transform-box:fill-box;transform-origin:center;animation:pbhBlink 4.6s infinite}
-.pbh-bot.is-talking .pbh-eye{animation:pbhTalk .5s ease-in-out infinite}
-.pbh-arm{transform-box:view-box}
-.pbh-arm--r{transform-origin:169px 168px;transition:transform .6s cubic-bezier(.22,1,.36,1)}
-.pbh-arm--l{transform-origin:55px 170px;animation:pbhArmL 3.4s ease-in-out infinite}
-.pbh-bot[data-step="0"] .pbh-arm--r{animation:pbhWave .9s ease-in-out infinite}
-.pbh-bot[data-step="1"] .pbh-arm--r{--pr:-70deg;animation:pbhPoint 1.6s ease-in-out infinite}
-.pbh-bot[data-step="2"] .pbh-arm--r{--pr:-80deg;animation:pbhPoint 1.1s ease-in-out infinite}
-.pbh-bot[data-step="3"] .pbh-arm--r{--pr:-95deg;animation:pbhPoint 1.8s ease-in-out infinite}
-
-.pbh-badge{position:absolute;top:8%;right:4%;display:grid;place-items:center;width:48px;height:48px;border-radius:50%;background:var(--o);color:#111144;box-shadow:0 8px 24px -8px rgba(249,133,19,.8);animation:pbhPop .45s cubic-bezier(.22,1,.36,1)}
-.pbh-badge svg{width:24px;height:24px}
-
-.pbh-card{grid-area:card;display:flex;flex-direction:column;gap:16px;padding:16px;border-radius:20px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
-.pbh-body{display:flex;flex-direction:column;gap:12px}
-
-.pbh-tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
-.pbh-tab{all:unset;box-sizing:border-box;cursor:pointer;display:flex;flex-direction:column;gap:8px;min-width:0;opacity:.55;transition:opacity .3s}
+.pbh-tabs{display:flex;flex-direction:column;justify-content:center;gap:16px}
+.pbh-tab{all:unset;box-sizing:border-box;cursor:pointer;display:grid;grid-template-columns:40px 1fr;grid-template-areas:"ic l" "ic b";column-gap:12px;row-gap:8px;align-items:center;min-width:0;opacity:.55;transition:opacity .3s}
 .pbh-tab.is-on,.pbh-tab.is-done{opacity:1}
-.pbh-bar{display:block;height:4px;border-radius:4px;background:rgba(255,255,255,.2);overflow:hidden}
+.pbh-ic{grid-area:ic;display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);color:#fff;transition:background .3s,color .3s,border-color .3s}
+.pbh-ic svg{width:20px;height:20px}
+.pbh-tab.is-on .pbh-ic{background:var(--o);border-color:var(--o);color:#111144}
+.pbh-tab.is-done .pbh-ic{border-color:var(--o);color:var(--o)}
+.pbh-tab__l{grid-area:l;font-size:16px;line-height:1.2;font-weight:600;align-self:end}
+.pbh-bar{grid-area:b;display:block;height:4px;border-radius:4px;background:rgba(255,255,255,.2);overflow:hidden;align-self:start}
 .pbh-bar>span{display:block;height:100%;border-radius:4px;background:var(--o);transition:width .2s linear}
-.pbh-tab__l{font-size:14px;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
+.pbh-body{display:flex;flex-direction:column;gap:12px;padding:24px;border-radius:20px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
 .pbh-stack{display:grid}
 .pbh-stack>*{grid-area:1/1;visibility:hidden;margin:0}
 .pbh-stack>.is-on{visibility:visible}
@@ -45,32 +29,20 @@
 .pbh-chip.is-on{opacity:1;transform:none}
 .pbh-chip svg{width:16px;height:16px;flex:none;color:var(--o)}
 
-@keyframes pbhFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-@keyframes pbhShadow{0%,100%{transform:scaleX(1);opacity:.3}50%{transform:scaleX(.82);opacity:.18}}
-@keyframes pbhAnt{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(5deg)}}
-@keyframes pbhBlink{0%,93%,100%{transform:scaleY(1)}96%{transform:scaleY(.08)}}
-@keyframes pbhTalk{0%,100%{transform:scaleY(1)}50%{transform:scaleY(.72)}}
-@keyframes pbhArmL{0%,100%{transform:rotate(2deg)}50%{transform:rotate(-4deg)}}
-@keyframes pbhWave{0%,100%{transform:rotate(-125deg)}50%{transform:rotate(-155deg)}}
-@keyframes pbhPoint{0%,100%{transform:rotate(var(--pr,0deg))}50%{transform:rotate(calc(var(--pr,0deg) - 8deg))}}
-@keyframes pbhPop{0%{transform:scale(.4);opacity:0}100%{transform:scale(1);opacity:1}}
 @keyframes pbhIn{0%{opacity:0;transform:translateY(6px)}100%{opacity:1;transform:none}}
 @keyframes pbhCaret{0%,50%{opacity:1}51%,100%{opacity:0}}
 
-/* phone: small mascot beside the step tabs, text card full width below */
+/* phone: steps in one row (icon + label + bar), text card below */
 @media(max-width:640px){
-  .pbh{grid-template-columns:96px 1fr;grid-template-areas:"bot head" "body body";column-gap:8px;row-gap:8px}
-  .pbh-card{display:contents}
-  .pbh-mascot{min-height:0;align-items:center}
-  .pbh-bot{max-width:96px}
-  .pbh-badge{width:32px;height:32px;top:-4px;right:-6px}
-  .pbh-badge svg{width:16px;height:16px}
-  .pbh-head{grid-area:head;align-self:center}
-  .pbh-tabs{grid-template-columns:repeat(2,1fr);row-gap:12px}
-  .pbh-body{grid-area:body;border-radius:20px;padding:16px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.18)}
+  .pbh{grid-template-columns:1fr;gap:16px}
+  .pbh-tabs{flex-direction:row;gap:8px}
+  .pbh-tab{flex:1;grid-template-columns:1fr;grid-template-areas:"ic" "l" "b";justify-items:start;row-gap:8px}
+  .pbh-tab__l{font-size:14px}
+  .pbh-bar{width:100%}
+  .pbh-body{padding:16px}
 }
 
 @media (prefers-reduced-motion:reduce){
-  .pbh-float,.pbh-shadow,.pbh-ant,.pbh-arm,.pbh-eye,.pbh-caret,.pbh-badge{animation:none !important}
+  .pbh-caret{animation:none !important}
   .pbh-chip{transition:none}
 }
