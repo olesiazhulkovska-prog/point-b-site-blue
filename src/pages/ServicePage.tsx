@@ -623,6 +623,7 @@ export const ServicePage = ({ serviceType: n }) => {
       <Band tone={tones[1]}>
         {o.secondBlockItems.length === 3 ? (
           <ServiceWhyScroll
+            key={n}
             eyebrow="Цінність"
             video={n === "ai-bots" ? "https://res.cloudinary.com/dset5uqua/video/upload/v1795093403/gemini_generated_video_8321928d_koqakd.webm" : undefined}
             title={o.secondBlockTitle}

@@ -70,11 +70,11 @@ export const AppContent = () => {
         case "about":
           return <AboutPage />;
         case "keycrm":
-          return <ServicePage serviceType="keycrm" />;
+          return <ServicePage key="keycrm" serviceType="keycrm" />;
         case "ai-bots":
-          return <ServicePage serviceType="ai-bots" />;
+          return <ServicePage key="ai-bots" serviceType="ai-bots" />;
         case "analytics":
-          return <ServicePage serviceType="analytics" />;
+          return <ServicePage key="analytics" serviceType="analytics" />;
         case "cases":
           return <CasesPage />;
         case "contact":

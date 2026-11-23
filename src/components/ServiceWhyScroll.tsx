@@ -41,7 +41,7 @@ export function ServiceWhyScroll({
     });
     io.observe(el);
     return () => io.disconnect();
-  }, [motionOk]);
+  }, [motionOk, video]);
   const [p, setP] = React.useState(0);
   const listRef = React.useRef<HTMLOListElement>(null);
   const [mAct, setMAct] = React.useState(0);
@@ -97,6 +97,7 @@ export function ServiceWhyScroll({
       {motionOk && (
         <div className="sws__bg" aria-hidden="true">
           <video
+            key={video || BG_VIDEO}
             ref={videoRef}
             src={video || BG_VIDEO}
             muted
