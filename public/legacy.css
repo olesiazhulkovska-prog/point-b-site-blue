@@ -2740,3 +2740,13 @@ html body .pbx-group img:not(#_):not(#__):not(#___):not(#____){margin:0 30px !im
 
 /* hero text a bit higher on desktop */
 @media(min-width:1024px){html body #hero-dark > div.relative:not(#_):not(#__){translate:0 -7svh}}
+
+/* mobile fixes: centered brand logos row, footer left edge, no bare html colour under the footer */
+html body .pb-logos img.pb-wm:not(#_):not(#__):not(#___):not(#____){flex:0 0 auto !important;width:auto !important;max-width:none !important}
+@media (max-width:760px){
+  html body .pb-logos:not(#_):not(#__):not(#___){flex-wrap:wrap !important;justify-content:center !important}
+  html body #site-footer:not(#_):not(#__) ul button:not(#_):not(#__){text-align:left !important;padding-left:0 !important;margin-left:0 !important;width:auto}
+  html body #site-footer:not(#_):not(#__) ul,html body #site-footer:not(#_):not(#__) li{padding-left:0 !important;margin-left:0 !important}
+  html body #site-footer:not(#_):not(#__){background:#111144 !important}
+  html{overscroll-behavior-y:none}
+}

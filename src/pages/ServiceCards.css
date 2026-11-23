@@ -62,3 +62,16 @@
 .pbs-grid--kc .pbs-card:hover .pbs-ic:not(#_):not(#__){color:#F98513;background:#FFF1E2;border-color:#FFC98F}
 .pbs-grid--kc .pbs-list:not(#_):not(#__){margin-top:0}
 .pbs-grid--kc .pbs-list li:first-child:not(#_):not(#__){border-top:0 !important}
+
+/* phone only: cards stay open and stack on top of each other while scrolling */
+@media (max-width:767px){
+  .pbs-grid:not(#_):not(#__){display:block;overflow:visible}
+  .pbs-grid > .pbs-card:not(#_):not(#__){position:sticky;top:calc(88px + var(--i,0) * 14px);margin:0 0 20px;box-shadow:0 -14px 30px -18px rgba(17,17,68,.45),0 18px 36px -26px rgba(17,17,68,.45);transition:none}
+  .pbs-grid > .pbs-card:not(#_):not(#__):hover{transform:none}
+  .pbs-grid > .pbs-card:nth-child(1){--i:0}
+  .pbs-grid > .pbs-card:nth-child(2){--i:1}
+  .pbs-grid > .pbs-card:nth-child(3){--i:2}
+  .pbs-grid > .pbs-card:nth-child(4){--i:3}
+  .pbs-grid > .pbs-card:nth-child(5){--i:4}
+  .pbs-grid > .pbs-card:nth-child(n+6){--i:5}
+}
