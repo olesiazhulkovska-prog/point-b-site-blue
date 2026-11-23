@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Check, ClipboardList, Database, LayoutDashboard, MessageCircle, Plug, ShieldCheck, UserRound, type LucideIcon } from "lucide-react";
+import { Check, Database, MessageCircle, UserRound, type LucideIcon } from "lucide-react";
 import "./AiAgentHeroScene.css";
 
 export type HeroStep = { tab: string; title: string; text: string; chip: string; Icon: LucideIcon };
@@ -33,37 +33,6 @@ export const AI_HERO_STEPS: HeroStep[] = [
     text: "Якщо розмова виходить за межі сценарію, підключаю менеджера й передаю всю історію листування.",
     chip: "Менеджер бачить увесь контекст",
     Icon: UserRound,
-  },
-];
-
-export const CRM_HERO_STEPS: HeroStep[] = [
-  {
-    tab: "Аналіз",
-    title: "Розбираємо ваш процес",
-    text: "Проходимо ваш шлях від заявки до відвантаження. Бачимо, де процес рветься і що живе в таблицях та чатах.",
-    chip: "Карта процесів",
-    Icon: ClipboardList,
-  },
-  {
-    tab: "Проєкт",
-    title: "Малюємо систему під вас",
-    text: "Збираємо модулі під вашу логіку: заявки, угоди, виробництво, склад. Без зайвих полів і чужих обмежень.",
-    chip: "Прототип на погодження",
-    Icon: LayoutDashboard,
-  },
-  {
-    tab: "Розробка",
-    title: "Будуємо й підключаємо",
-    text: "Пишемо CRM з нуля та інтегруємо з 1С, сайтом, месенджерами, оплатою й аналітикою.",
-    chip: "Інтеграції налаштовані",
-    Icon: Plug,
-  },
-  {
-    tab: "Запуск",
-    title: "Запуск і супровід",
-    text: "Навчаємо команду, переносимо дані та супроводжуємо після запуску. Код і система повністю ваші.",
-    chip: "100% власність на код",
-    Icon: ShieldCheck,
   },
 ];
 

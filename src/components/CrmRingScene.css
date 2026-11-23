@@ -1,0 +1,43 @@
+/* Hero animation for "Власна CRM": module sectors assemble into a ring; text typed in the centre.
+   Dark blue hero, colours fixed. Font sizes follow the design-system snap grid (14/16/20).
+   The title uses a ::before text so the runtime font normaliser leaves its size alone. */
+.pbr{--o:#F98513;width:100%;display:flex;flex-direction:column;align-items:center;gap:16px;color:#fff}
+.pbr-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+.pbr-ring{position:relative;width:min(100%,340px);aspect-ratio:1}
+.pbr-ring svg{display:block;width:100%;height:100%;overflow:visible}
+
+.pbr-s{transition:transform .8s cubic-bezier(.22,1,.36,1)}
+.pbr-s .pbr-sp{fill:rgba(255,255,255,.04);stroke:rgba(255,255,255,.3);stroke-width:2;stroke-dasharray:4 6;stroke-linejoin:round;transition:fill .5s,stroke .5s,stroke-width .5s}
+.pbr-s svg{color:rgba(255,255,255,.4);transition:color .4s}
+.pbr-s.is-built .pbr-sp{fill:rgba(47,75,216,.6);stroke:rgba(47,75,216,.6);stroke-width:10;stroke-dasharray:none}
+.pbr-s.is-built svg{color:#fff}
+.pbr-s.is-active .pbr-sp{fill:var(--o);stroke:var(--o)}
+.pbr-s.is-active svg{color:#111144}
+.pbr-s.is-final .pbr-sp{stroke:var(--o);fill:rgba(47,75,216,.6)}
+
+.pbr-c{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:0 24%;text-align:center}
+.pbr-t{font-size:20px;line-height:1.2;font-weight:700;color:#fff;animation:pbrIn .4s ease}
+.pbr-t::before{content:attr(data-t)}
+.pbr-p{margin:0;font-size:14px;line-height:1.4;color:rgba(255,255,255,.9)}
+.pbr-rest{color:transparent}
+.pbr-caret{display:inline-block;width:2px;height:1em;margin:0 1px -.15em;background:var(--o);animation:pbrCaret .8s steps(1) infinite}
+
+.pbr-foot{display:grid;min-height:40px;justify-items:center;align-items:center}
+.pbr-chip{grid-area:1/1;display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:8px 16px;border-radius:999px;font-size:14px;line-height:1.2;font-weight:600;opacity:0;transform:translateY(6px);transition:opacity .4s,transform .4s;white-space:nowrap}
+.pbr-chip.is-on{opacity:1;transform:none}
+.pbr-chip--own{background:rgba(249,133,19,.16);border:1px solid rgba(249,133,19,.6);color:#FFD2A1}
+.pbr-chip--prog{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.22);color:rgba(255,255,255,.9)}
+.pbr-chip b{color:var(--o);font-weight:700}
+
+@keyframes pbrIn{0%{opacity:0;transform:translateY(5px)}100%{opacity:1;transform:none}}
+@keyframes pbrCaret{0%,50%{opacity:1}51%,100%{opacity:0}}
+
+@media(max-width:480px){
+  .pbr-c{padding:0 22%}
+  .pbr-chip{white-space:normal;text-align:center}
+}
+@media (prefers-reduced-motion:reduce){
+  .pbr-s{transition:none}
+  .pbr-caret,.pbr-t{animation:none !important}
+}
