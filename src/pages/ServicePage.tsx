@@ -9,6 +9,7 @@ import BulletIcon from "../components/BulletIcon";
 import { useSite } from "../context/SiteContext";
 import { KeyCrmPainsDiagram } from "../shared/KeyCrmPainsDiagram";
 import { AiAgentHeroScene } from "../components/AiAgentHeroScene";
+import { CrmFitSlider } from "../components/CrmFitSlider";
 import { CrmRingScene } from "../components/CrmRingScene";
 import { CustomCrmCompareDiagram } from "../shared/CustomCrmCompareDiagram";
 import { LeadForm } from "../components/LeadForm";
@@ -717,30 +718,7 @@ export const ServicePage = ({ serviceType: n }) => {
                   {o.comparison.title}
                 </h2>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="p-6 rounded-2xl bg-[color:var(--card)] border border-[color:var(--card-border)] space-y-2">
-                  <span className="text-[13px] font-bold uppercase tracking-wider text-[color:var(--muted)]">
-                    Готова платформа
-                  </span>
-                  <h3 className="text-lg font-bold text-[color:var(--ink)]">
-                    Впровадження keyCRM
-                  </h3>
-                  <p className="text-base text-[color:var(--muted)] leading-relaxed">
-                    {o.comparison.keycrm}
-                  </p>
-                </div>
-                <div className="p-6 rounded-2xl bg-[color:var(--card)] border border-[color:var(--lime)]/40 space-y-2 relative overflow-hidden">
-                  <span className="text-[13px] font-bold uppercase tracking-wider text-[color:var(--accent-green)]">
-                    Власна розробка з нуля
-                  </span>
-                  <h3 className="text-lg font-bold text-[color:var(--ink)]">
-                    Власна CRM-система
-                  </h3>
-                  <p className="text-base text-[color:var(--ink)] leading-relaxed">
-                    {o.comparison.custom}
-                  </p>
-                </div>
-              </div>
+              <CrmFitSlider keycrm={o.comparison.keycrm} custom={o.comparison.custom} />
             </div>
           </section>
         </Band>
