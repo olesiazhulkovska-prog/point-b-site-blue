@@ -1420,7 +1420,7 @@ canvas.bg{transition:opacity .6s ease}
 
 /* v67 mobile: stats numbers, center nav button, why-us cards system */
 @media(max-width:760px){
-  html body #stats-section:not(#_){--fs-h2:clamp(64px,21vw,96px);--fs-h3:clamp(32px,10vw,48px)}
+  html body #stats-section:not(#_){--fs-h1:clamp(88px,29vw,128px);--fs-h2:clamp(88px,29vw,128px);--fs-h3:clamp(32px,10vw,48px)}
   html body #stats-section .tabular-nums:not(#_):not(#__){line-height:.95 !important;letter-spacing:-.02em}
   html body #stats-section .tabular-nums>span:not(#_):not(#__){font-weight:700}
 
