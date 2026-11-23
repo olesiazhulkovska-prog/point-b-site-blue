@@ -15,6 +15,8 @@ export function CrmFitSlider({ keycrm, custom }: { keycrm: string; custom: strin
   const ref = useRef<HTMLDivElement>(null);
   const [v, setV] = useState(0);
   const touched = useRef(false);
+  const [demo, setDemo] = useState(true);
+  const [hint, setHint] = useState(true);
 
   // one gentle demo run when the block first comes into view
   useEffect(() => {
@@ -22,6 +24,7 @@ export function CrmFitSlider({ keycrm, custom }: { keycrm: string; custom: strin
     if (!el || typeof IntersectionObserver === "undefined") return;
     if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) {
       setV(3);
+      setDemo(false);
       return;
     }
     const timers: number[] = [];
@@ -29,10 +32,10 @@ export function CrmFitSlider({ keycrm, custom }: { keycrm: string; custom: strin
       (e) => {
         if (!e.some((x) => x.isIntersecting)) return;
         io.disconnect();
-        [1, 2, 3, 4].forEach((k, i) => timers.push(window.setTimeout(() => !touched.current && setV(k), 900 + i * 750)));
-        timers.push(window.setTimeout(() => !touched.current && setV(3), 900 + 4 * 750 + 900));
+        [1, 2, 3, 4].forEach((k, i) => timers.push(window.setTimeout(() => !touched.current && setV(k), 500 + i * 800)));
+        timers.push(window.setTimeout(() => setDemo(false), 500 + 4 * 800));
       },
-      { threshold: 0.5 },
+      { threshold: 0.35 },
     );
     io.observe(el);
     return () => {
@@ -64,14 +67,19 @@ export function CrmFitSlider({ keycrm, custom }: { keycrm: string; custom: strin
             max={STOPS.length - 1}
             step={1}
             value={v}
+            className={hint && !demo ? "is-hint" : ""}
             aria-label="Складність вашого процесу"
             aria-valuetext={STOPS[v].label}
             onChange={(e) => {
               touched.current = true;
+              setHint(false);
               setV(Number(e.target.value));
             }}
           />
         </div>
+        <p className={`pbf-hint${hint ? " is-on" : ""}`} aria-hidden="true">
+          {demo ? "Дивіться, як змінюється вибір" : "Тепер рухайте повзунок самі"}
+        </p>
         <div className="pbf-now" aria-live="polite">
           <strong>{STOPS[v].label}</strong>
           <span>{STOPS[v].note}</span>
