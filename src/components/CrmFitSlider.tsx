@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./CrmFitSlider.css";
 
 const STOPS = [
@@ -15,6 +15,14 @@ export function CrmFitSlider({ keycrm, custom }: { keycrm: string; custom: strin
   const ref = useRef<HTMLDivElement>(null);
   const [v, setV] = useState(0);
   const touched = useRef(false);
+  const drag = useRef(false);
+  const pick = (e: React.PointerEvent) => {
+    const r = (e.currentTarget as HTMLElement).getBoundingClientRect();
+    const k = Math.round(Math.min(1, Math.max(0, (e.clientX - r.left) / r.width)) * (STOPS.length - 1));
+    touched.current = true;
+    setHint(false);
+    setV(k);
+  };
   const [demo, setDemo] = useState(true);
   const [hint, setHint] = useState(true);
 
@@ -53,7 +61,17 @@ export function CrmFitSlider({ keycrm, custom }: { keycrm: string; custom: strin
           <span>Типовий процес</span>
           <span>Унікальний процес</span>
         </div>
-        <div className="pbf-track" style={{ ["--p" as string]: `${pct}%`, ["--edge" as string]: `${((EDGE + 0.5) / (STOPS.length - 1)) * 100}%` }}>
+        <div
+          className="pbf-track"
+          onPointerDown={(e) => {
+            (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
+            drag.current = true;
+            pick(e);
+          }}
+          onPointerMove={(e) => drag.current && pick(e)}
+          onPointerUp={() => (drag.current = false)}
+          onPointerCancel={() => (drag.current = false)}
+          style={{ ["--p" as string]: `${pct}%`, ["--edge" as string]: `${((EDGE + 0.5) / (STOPS.length - 1)) * 100}%` }}>
           <span className="pbf-fill" />
           <span className="pbf-edge" aria-hidden="true">
             <b>keyCRM тут перестає вистачати</b>
@@ -61,13 +79,13 @@ export function CrmFitSlider({ keycrm, custom }: { keycrm: string; custom: strin
           {STOPS.map((_, i) => (
             <span key={i} className={`pbf-dot${i <= v ? " is-on" : ""}`} style={{ left: `${(i / (STOPS.length - 1)) * 100}%` }} />
           ))}
+          <span className={`pbf-thumb${hint && !demo ? " is-hint" : ""}`} aria-hidden="true" />
           <input
             type="range"
             min={0}
             max={STOPS.length - 1}
             step={1}
             value={v}
-            className={hint && !demo ? "is-hint" : ""}
             aria-label="Складність вашого процесу"
             aria-valuetext={STOPS[v].label}
             onChange={(e) => {
@@ -77,6 +95,10 @@ export function CrmFitSlider({ keycrm, custom }: { keycrm: string; custom: strin
             }}
           />
         </div>
+        <p className="pbf-legend" aria-hidden="true">
+          <i />
+          keyCRM тут перестає вистачати
+        </p>
         <p className={`pbf-hint${hint ? " is-on" : ""}`} aria-hidden="true">
           {demo ? "Дивіться, як змінюється вибір" : "Тепер рухайте повзунок самі"}
         </p>
