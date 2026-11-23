@@ -121,7 +121,7 @@ export function ServiceStairs({ items }: { items: string[] }) {
       const rr = root.getBoundingClientRect();
       const vis = rr.top < window.innerHeight * 0.82 && rr.bottom > window.innerHeight * 0.12;
       const mobile = window.matchMedia("(max-width:767px)").matches;
-      const h = mobile ? 104 : 110;
+      const h = mobile ? 92 : 110;
       const r = el.getBoundingClientRect();
       const lands = (el2: HTMLElement) =>
         el2.getBoundingClientRect().left + el2.getBoundingClientRect().width * (activeRef.current === n - 1 ? 0.38 : 0.5);
