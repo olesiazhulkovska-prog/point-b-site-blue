@@ -4,6 +4,20 @@ import "./ServiceWhyScroll.css";
 const BG_VIDEO =
   "https://res.cloudinary.com/dset5uqua/video/upload/v1794925372/gemini_generated_video_7d6945d7_ycmx24.webm";
 
+/** webm for most browsers; iPhone/iPad Safari often cannot play it, so an H.264 mp4 (made by the CDN) goes first there. */
+function videoSources(url: string, start?: number) {
+  const frag = start ? `#t=${start}` : "";
+  const webm = { src: url + frag, type: "video/webm" };
+  const mp4 = {
+    src: url.replace("/upload/", "/upload/f_mp4,vc_h264,q_auto:eco/").replace(/\.webm$/, ".mp4") + frag,
+    type: "video/mp4",
+  };
+  const ios =
+    typeof navigator !== "undefined" &&
+    (/iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1));
+  return ios ? [mp4, webm] : [webm, mp4];
+}
+
 type Item = { title: string; desc: string };
 
 /** Scroll-driven steps: the block pins while the page scrolls, the numbered rail lights up step by step. */
@@ -102,7 +116,6 @@ export function ServiceWhyScroll({
           <video
             key={video || BG_VIDEO}
             ref={videoRef}
-            src={(video || BG_VIDEO) + (videoStart ? `#t=${videoStart}` : "")}
             onLoadedMetadata={(e) => {
               if (videoStart) e.currentTarget.currentTime = videoStart;
             }}
@@ -117,7 +130,11 @@ export function ServiceWhyScroll({
             autoPlay
             preload="metadata"
             tabIndex={-1}
-          />
+          >
+            {videoSources(video || BG_VIDEO, videoStart).map((x) => (
+              <source key={x.type} src={x.src} type={x.type} />
+            ))}
+          </video>
         </div>
       )}
       <div className="sws__stick">

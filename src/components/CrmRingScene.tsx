@@ -72,7 +72,7 @@ export function CrmRingScene() {
       const full = p < N ? MODULES[p].text : FINAL.text;
       if (n < full.length) {
         const prev = full[n - 1];
-        const t = window.setTimeout(() => setN(n + 1), 42 + (prev === "," ? 120 : 0));
+        const t = window.setTimeout(() => setN(n + 1), 58 + (prev === "," ? 160 : 0));
         return () => window.clearTimeout(t);
       }
       const t = window.setTimeout(

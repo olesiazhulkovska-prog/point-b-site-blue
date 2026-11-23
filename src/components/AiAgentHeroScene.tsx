@@ -66,8 +66,8 @@ export function AiAgentHeroScene({ steps: STEPS = AI_HERO_STEPS }: { steps?: Her
     }
     if (n < full.length) {
       const prev = full[n - 1];
-      const pause = prev === "." || prev === ":" ? 120 : prev === "," ? 60 : 0;
-      const t = window.setTimeout(() => setN(n + 1), 20 + pause);
+      const pause = prev === "." || prev === ":" ? 160 : prev === "," ? 90 : 0;
+      const t = window.setTimeout(() => setN(n + 1), 34 + pause);
       return () => window.clearTimeout(t);
     }
     const t = window.setTimeout(() => {
