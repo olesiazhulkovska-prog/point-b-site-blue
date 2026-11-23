@@ -163,7 +163,8 @@
           !e.closest(".hero-fan") &&
           !e.matches('#why-us-section [class*="text-[44px]"]') &&
           !e.matches(".pb-why-num, .pb-why-badge") &&
-          !(small && e.closest(".sv3-viz"))
+          !(small && e.closest(".sv3-viz")) &&
+          !(innerWidth <= 760 && e.closest("#stats-section .tabular-nums"))
         ) {
           if (
             !/^(Point|B|POINT)$/.test(e.textContent.trim()) &&

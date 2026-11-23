@@ -1423,6 +1423,8 @@ canvas.bg{transition:opacity .6s ease}
   html body #stats-section:not(#_){--fs-h1:clamp(88px,29vw,128px);--fs-h2:clamp(88px,29vw,128px);--fs-h3:clamp(32px,10vw,48px)}
   html body #stats-section .tabular-nums:not(#_):not(#__){line-height:.95 !important;letter-spacing:-.02em}
   html body #stats-section .tabular-nums>span:not(#_):not(#__){font-weight:700}
+  /* розмір цифр задаємо напряму (без var і без JS-нормалайзера) — однаково в Chrome та Safari */
+  html body #stats-section .tabular-nums:not(#_):not(#__), html body #stats-section .tabular-nums *:not(#_):not(#__){font-size:clamp(88px,29vw,128px) !important}
 
   html body #tab-lead:not(#_):not(#__){
     background:#F98513 !important;
