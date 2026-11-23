@@ -1,9 +1,11 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Check, Database, MessageCircle, UserRound } from "lucide-react";
+import { Check, ClipboardList, Database, LayoutDashboard, MessageCircle, Plug, ShieldCheck, UserRound, type LucideIcon } from "lucide-react";
 import "./AiAgentHeroScene.css";
 
-/** Hero animation for the "Боти та AI" service: the mascot explains how the agent works, text is typed step by step. */
-const STEPS = [
+export type HeroStep = { tab: string; title: string; text: string; chip: string; Icon: LucideIcon };
+
+/** Hero animation for a service: step list + text typed step by step. "Боти та AI": the real mascot stands on the panel (see ServicePage). */
+export const AI_HERO_STEPS: HeroStep[] = [
   {
     tab: "Приймає",
     title: "Відповідаю одразу",
@@ -32,11 +34,42 @@ const STEPS = [
     chip: "Менеджер бачить увесь контекст",
     Icon: UserRound,
   },
-] as const;
+];
+
+export const CRM_HERO_STEPS: HeroStep[] = [
+  {
+    tab: "Аналіз",
+    title: "Розбираємо ваш процес",
+    text: "Проходимо ваш шлях від заявки до відвантаження. Бачимо, де процес рветься і що живе в таблицях та чатах.",
+    chip: "Карта процесів",
+    Icon: ClipboardList,
+  },
+  {
+    tab: "Проєкт",
+    title: "Малюємо систему під вас",
+    text: "Збираємо модулі під вашу логіку: заявки, угоди, виробництво, склад. Без зайвих полів і чужих обмежень.",
+    chip: "Прототип на погодження",
+    Icon: LayoutDashboard,
+  },
+  {
+    tab: "Розробка",
+    title: "Будуємо й підключаємо",
+    text: "Пишемо CRM з нуля та інтегруємо з 1С, сайтом, месенджерами, оплатою й аналітикою.",
+    chip: "Інтеграції налаштовані",
+    Icon: Plug,
+  },
+  {
+    tab: "Запуск",
+    title: "Запуск і супровід",
+    text: "Навчаємо команду, переносимо дані та супроводжуємо після запуску. Код і система повністю ваші.",
+    chip: "100% власність на код",
+    Icon: ShieldCheck,
+  },
+];
 
 const HOLD_MS = 2600;
 
-export function AiAgentHeroScene() {
+export function AiAgentHeroScene({ steps: STEPS = AI_HERO_STEPS }: { steps?: HeroStep[] }) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(true);
   const [step, setStep] = useState(0);
