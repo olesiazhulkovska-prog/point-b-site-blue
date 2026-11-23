@@ -42,7 +42,7 @@ export function CrmFitSlider({ keycrm, custom }: { keycrm: string; custom: strin
         if (!e.some((x) => x.isIntersecting)) return;
         io.disconnect();
         const DUR = 5200;
-        const t0 = performance.now() + 400;
+        const t0 = performance.now() + 500;
         const tick = (now: number) => {
           if (touched.current) return;
           const u = Math.min(1, Math.max(0, (now - t0) / DUR));
@@ -53,9 +53,10 @@ export function CrmFitSlider({ keycrm, custom }: { keycrm: string; custom: strin
         };
         raf.current = requestAnimationFrame(tick);
       },
-      { threshold: 0.35 },
+      // starts only when the block reaches the middle of the screen (not as soon as its edge peeks in)
+      { threshold: 0, rootMargin: "-30% 0px -30% 0px" },
     );
-    io.observe(el);
+    io.observe(el.querySelector(".pbf-scale") || el);
     return () => {
       io.disconnect();
       cancelAnimationFrame(raf.current);
