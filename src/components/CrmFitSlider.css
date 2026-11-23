@@ -45,3 +45,5 @@
 .pbf-thumb.is-hint{animation:pbfPulse 1.6s ease-out infinite}
 @keyframes pbfPulse{0%{box-shadow:0 6px 16px -4px rgba(17,17,68,.55),0 0 0 0 rgba(249,133,19,.65)}70%,100%{box-shadow:0 6px 16px -4px rgba(17,17,68,.55),0 0 0 16px rgba(249,133,19,0)}}
 @media (prefers-reduced-motion:reduce){.pbf-thumb.is-hint{animation:none}.pbf-thumb{transition:none}}
+
+.pbf-track.is-demo .pbf-fill,.pbf-track.is-demo .pbf-thumb{transition:none}

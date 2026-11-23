@@ -13,47 +13,57 @@ const EDGE = 2; // index from which the ready platform no longer holds
 /** "Чим це відрізняється від keyCRM": the visitor drags process complexity and sees which option fits. */
 export function CrmFitSlider({ keycrm, custom }: { keycrm: string; custom: string }) {
   const ref = useRef<HTMLDivElement>(null);
-  const [v, setV] = useState(0);
+  const [pos, setPos] = useState(0); // continuous position 0..4, the thumb follows it
+  const [demo, setDemo] = useState(true);
   const touched = useRef(false);
   const drag = useRef(false);
+  const raf = useRef(0);
+  const v = Math.round(pos);
   const pick = (e: React.PointerEvent) => {
     const r = (e.currentTarget as HTMLElement).getBoundingClientRect();
     const k = Math.round(Math.min(1, Math.max(0, (e.clientX - r.left) / r.width)) * (STOPS.length - 1));
     touched.current = true;
-    setHint(false);
-    setV(k);
+    cancelAnimationFrame(raf.current);
+    setDemo(false);
+    setPos(k);
   };
-  const [demo, setDemo] = useState(true);
-  const [hint, setHint] = useState(true);
 
-  // one gentle demo run when the block first comes into view
+  // when the block comes into view the thumb glides to the end by itself; the visitor can then drag it back
   useEffect(() => {
     const el = ref.current;
     if (!el || typeof IntersectionObserver === "undefined") return;
     if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) {
-      setV(3);
+      setPos(3);
       setDemo(false);
       return;
     }
-    const timers: number[] = [];
     const io = new IntersectionObserver(
       (e) => {
         if (!e.some((x) => x.isIntersecting)) return;
         io.disconnect();
-        [1, 2, 3, 4].forEach((k, i) => timers.push(window.setTimeout(() => !touched.current && setV(k), 500 + i * 800)));
-        timers.push(window.setTimeout(() => setDemo(false), 500 + 4 * 800));
+        const DUR = 5200;
+        const t0 = performance.now() + 400;
+        const tick = (now: number) => {
+          if (touched.current) return;
+          const u = Math.min(1, Math.max(0, (now - t0) / DUR));
+          const e2 = u < 0.5 ? 2 * u * u : 1 - Math.pow(-2 * u + 2, 2) / 2;
+          setPos(e2 * (STOPS.length - 1));
+          if (u < 1) raf.current = requestAnimationFrame(tick);
+          else setDemo(false);
+        };
+        raf.current = requestAnimationFrame(tick);
       },
       { threshold: 0.35 },
     );
     io.observe(el);
     return () => {
       io.disconnect();
-      timers.forEach(clearTimeout);
+      cancelAnimationFrame(raf.current);
     };
   }, []);
 
   const custom_on = v > EDGE;
-  const pct = (v / (STOPS.length - 1)) * 100;
+  const pct = (pos / (STOPS.length - 1)) * 100;
   return (
     <div className="pbf" ref={ref}>
       <div className="pbf-scale">
@@ -62,7 +72,7 @@ export function CrmFitSlider({ keycrm, custom }: { keycrm: string; custom: strin
           <span>Унікальний процес</span>
         </div>
         <div
-          className="pbf-track"
+          className={`pbf-track${demo ? " is-demo" : ""}`}
           onPointerDown={(e) => {
             (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
             drag.current = true;
@@ -77,9 +87,9 @@ export function CrmFitSlider({ keycrm, custom }: { keycrm: string; custom: strin
             <b>keyCRM тут перестає вистачати</b>
           </span>
           {STOPS.map((_, i) => (
-            <span key={i} className={`pbf-dot${i <= v ? " is-on" : ""}`} style={{ left: `${(i / (STOPS.length - 1)) * 100}%` }} />
+            <span key={i} className={`pbf-dot${i <= pos + 0.01 ? " is-on" : ""}`} style={{ left: `${(i / (STOPS.length - 1)) * 100}%` }} />
           ))}
-          <span className={`pbf-thumb${hint && !demo ? " is-hint" : ""}`} aria-hidden="true" />
+          <span className={`pbf-thumb${!demo && !touched.current ? " is-hint" : ""}`} aria-hidden="true" />
           <input
             type="range"
             min={0}
@@ -90,17 +100,15 @@ export function CrmFitSlider({ keycrm, custom }: { keycrm: string; custom: strin
             aria-valuetext={STOPS[v].label}
             onChange={(e) => {
               touched.current = true;
-              setHint(false);
-              setV(Number(e.target.value));
+              cancelAnimationFrame(raf.current);
+              setDemo(false);
+              setPos(Number(e.target.value));
             }}
           />
         </div>
         <p className="pbf-legend" aria-hidden="true">
           <i />
           keyCRM тут перестає вистачати
-        </p>
-        <p className={`pbf-hint${hint ? " is-on" : ""}`} aria-hidden="true">
-          {demo ? "Дивіться, як змінюється вибір" : "Тепер рухайте повзунок самі"}
         </p>
         <div className="pbf-now" aria-live="polite">
           <strong>{STOPS[v].label}</strong>
