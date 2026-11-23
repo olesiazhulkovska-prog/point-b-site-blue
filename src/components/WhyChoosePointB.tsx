@@ -39,6 +39,7 @@ import { D1, en } from "../data/data";
 import { KeyCrmText } from "../shared/KeyCrmText";
 import { useSite } from "../context/SiteContext";
 import { ServicesList } from "./ServicesList";
+import { DeferMount } from "./DeferMount";
 import { FadeInOnView } from "../shared/FadeInOnView";
 import { CaseCard } from "./CaseCard";
 import { ReviewCard } from "./ReviewCard";
@@ -2431,7 +2432,9 @@ export const WhyChoosePointB = () => {
         </div>
       </section>
       <div id="service-cards-container" className="pb-sec relative z-20">
-        <ServicesList services={h} openLeadModal={s} />
+        <DeferMount id="services-section" height={[2480, 3430]}>
+          <ServicesList services={h} openLeadModal={s} />
+        </DeferMount>
       </div>
       <section
         id="why-us-section"
@@ -2450,7 +2453,9 @@ export const WhyChoosePointB = () => {
               стабільній операційці та контролі бізнесу.
             </p>
           </div>
-          <Wq />
+          <DeferMount height={[614, 551]}>
+            <Wq />
+          </DeferMount>
         </div>
       </section>
       <div
@@ -2482,6 +2487,7 @@ export const WhyChoosePointB = () => {
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
               </button>
             </div>
+            <DeferMount height={[820, 1850]}>
             <div className="md:hidden flex flex-col gap-6">
               {b.map((A) => (
                 <div key={A.id} className="shadow-none h-full">
@@ -2496,6 +2502,7 @@ export const WhyChoosePointB = () => {
                 </div>
               ))}
             </div>
+            </DeferMount>
           </div>
         </section>
         <section

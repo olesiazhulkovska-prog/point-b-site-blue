@@ -40,10 +40,21 @@
   }
   var PROPS = ["paddingTop", "paddingRight", "paddingBottom", "paddingLeft"];
   var CP = ["padding-top", "padding-right", "padding-bottom", "padding-left"];
+  /* perf: чи є в документі вузли, ще не нормалізовані для цього розміру вікна (дешево, без читання стилів) */
+  function pending() {
+    var small = matchMedia("(max-width:480px)").matches,
+      mobile = matchMedia("(max-width:767px)").matches;
+    var key = (small ? "s" : "") + (mobile ? "m" : "") + innerWidth;
+    var all = document.body.querySelectorAll("*");
+    for (var i = 0; i < all.length; i++) if (seen.get(all[i]) !== key) return true;
+    return false;
+  }
   function run(root) {
     var host =
       !root || root === document.body ? document.documentElement : root;
     if (host.classList.contains("pb-ds-run")) return run0(root);
+    /* нічого нового — не вмикаємо pb-ds-run (він змушує перерахувати стилі всього документа двічі) */
+    if (!root && !pending()) return;
     host.classList.add("pb-ds-run");
     try {
       run0(root);
@@ -84,9 +95,12 @@
         t0 === "svg" ||
         t0 === "path" ||
         t0 === "VIDEO" ||
-        e0.closest("svg")
-      )
+        /* svg та всі його нащадки мають не-xhtml namespace — те саме, що closest("svg"), але без обходу предків */
+        e0.namespaceURI !== "http://www.w3.org/1999/xhtml"
+      ) {
+        seen.set(e0, key);
         continue;
+      }
       if (seen.get(e0) === key) continue;
       restore(e0);
       seen.set(e0, key);
@@ -129,10 +143,20 @@
           else if (rv === 50 && Math.abs(w - h) > 2)
             ops.push(e, "border-radius", "var(--radius)");
         }
-        var isHead = /^H[1-4]$/.test(tag),
-          inHeader = e.closest("header,nav.fixed,#cookie-consent-banner");
+        var isHead = /^H[1-4]$/.test(tag);
         /* 2. font size */
+        var hasText = false;
+        if (!isHead) {
+          for (var c = e.firstChild; c; c = c.nextSibling) {
+            if (c.nodeType === 3 && c.textContent.trim()) {
+              hasText = true;
+              break;
+            }
+          }
+        }
+        /* perf: більшість елементів — обгортки без власного тексту; перевіряємо це першим, до дорогих closest/matches */
         if (
+          hasText &&
           !isHead &&
           !e.closest("h1,h2,h3,h4") &&
           !e.matches("h2 + p") &&
@@ -141,15 +165,7 @@
           !e.matches(".pb-why-num, .pb-why-badge") &&
           !(small && e.closest(".sv3-viz"))
         ) {
-          var hasText = false;
-          for (var c = e.firstChild; c; c = c.nextSibling) {
-            if (c.nodeType === 3 && c.textContent.trim()) {
-              hasText = true;
-              break;
-            }
-          }
           if (
-            hasText &&
             !/^(Point|B|POINT)$/.test(e.textContent.trim()) &&
             !e.closest("[data-hero-title]")
           ) {
@@ -203,27 +219,30 @@
           tag !== "HEADER" &&
           tag !== "MAIN" &&
           tag !== "BODY" &&
-          !e.classList.contains("sv3-card") &&
-          !e.closest(".sv3-viz") &&
-          !e.closest(".sv3-dg")
+          !e.classList.contains("sv3-card")
         ) {
+          /* perf: спершу рахуємо, чи взагалі є що міняти; closest — лише для тих, кому це потрібно */
+          var sp2 = [];
           for (var k = 0; k < 4; k++) {
             var pv = parseFloat(cs[PROPS[k]]);
             if (pv >= 6) {
               var sp = snapSp(pv);
-              if (sp !== Math.round(pv)) ops.push(e, CP[k], sp + "px");
+              if (sp !== Math.round(pv)) sp2.push(CP[k], sp + "px");
             }
           }
           var g1 = parseFloat(cs.rowGap),
             g2 = parseFloat(cs.columnGap);
           if (g1 >= 6) {
             var s1 = snapSp(g1);
-            if (s1 !== Math.round(g1)) ops.push(e, "row-gap", s1 + "px");
+            if (s1 !== Math.round(g1)) sp2.push("row-gap", s1 + "px");
           }
           if (g2 >= 6) {
             var s2 = snapSp(g2);
-            if (s2 !== Math.round(g2)) ops.push(e, "column-gap", s2 + "px");
+            if (s2 !== Math.round(g2)) sp2.push("column-gap", s2 + "px");
           }
+          if (sp2.length && !e.closest(".sv3-viz") && !e.closest(".sv3-dg"))
+            for (var q3 = 0; q3 < sp2.length; q3 += 2)
+              ops.push(e, sp2[q3], sp2[q3 + 1]);
         }
       }
       for (var z = 0; z < ops.length; z += 3)

@@ -3,15 +3,52 @@
 import React from "react";
 import { X } from "lucide-react";
 import { useSite } from "../context/SiteContext";
-import { LeadForm } from "./LeadForm";
 import { WhyChoosePointB } from "./WhyChoosePointB";
-import { AboutPage } from "../pages/AboutPage";
-import { ServicePage } from "../pages/ServicePage";
-import { CasesPage } from "../pages/CasesPage";
-import { ContactPage } from "../pages/ContactPage";
-import { ThankYouPage } from "../pages/ThankYouPage";
-import { CaseDetailPage } from "../pages/CaseDetailPage";
-import { NotFoundPage } from "../pages/NotFoundPage";
+/* perf: усі сторінки, крім головної, — окремі чанки; головна не тягне код сервісних сторінок, кейсів, форми */
+const lazyNamed = (load, name) =>
+  React.lazy(() => load().then((m) => ({ default: m[name] })));
+const loadAbout = () => import("../pages/AboutPage");
+const loadService = () => import("../pages/ServicePage");
+const loadCases = () => import("../pages/CasesPage");
+const loadContact = () => import("../pages/ContactPage");
+const loadThanks = () => import("../pages/ThankYouPage");
+const loadCaseDetail = () => import("../pages/CaseDetailPage");
+const loadNotFound = () => import("../pages/NotFoundPage");
+const loadLeadForm = () => import("./LeadForm");
+const AboutPage = lazyNamed(loadAbout, "AboutPage");
+const ServicePage = lazyNamed(loadService, "ServicePage");
+const CasesPage = lazyNamed(loadCases, "CasesPage");
+const ContactPage = lazyNamed(loadContact, "ContactPage");
+const ThankYouPage = lazyNamed(loadThanks, "ThankYouPage");
+const CaseDetailPage = lazyNamed(loadCaseDetail, "CaseDetailPage");
+const NotFoundPage = lazyNamed(loadNotFound, "NotFoundPage");
+const LeadForm = lazyNamed(loadLeadForm, "LeadForm");
+/* підтягуємо чанки у фоні, але не під час старту: або після першої взаємодії, або через ~9 с */
+if (typeof window !== "undefined") {
+  let warmed = false;
+  const warm = () => {
+    if (warmed) return;
+    warmed = true;
+    [loadService, loadCases, loadLeadForm, loadContact, loadAbout, loadCaseDetail].forEach(
+      (f, i) => setTimeout(() => f().catch(() => {}), i * 600),
+    );
+  };
+  const idleWarm = () =>
+    "requestIdleCallback" in window
+      ? window.requestIdleCallback(warm, { timeout: 4000 })
+      : setTimeout(warm, 1500);
+  ["pointerdown", "keydown", "touchstart", "scroll"].forEach((ev) =>
+    addEventListener(ev, () => setTimeout(idleWarm, 1200), {
+      once: true,
+      passive: true,
+    }),
+  );
+  const later = () => setTimeout(idleWarm, 9000);
+  document.readyState === "complete"
+    ? later()
+    : addEventListener("load", later, { once: true });
+}
+
 const PrivacyPage = React.lazy(() =>
   import("../pages/PrivacyPage").then((m) => ({ default: m.PrivacyPage })),
 );
@@ -48,6 +85,7 @@ export const C_tq = () => {
         >
           <X className="w-5 h-5" />
         </button>
+        <React.Suspense fallback={null}>
         <LeadForm
           title="Заявка на консультацію"
           subtitle="Розкажіть коротко про ваш бізнес і задачу — підготуємо персональний план та розрахуємо орієнтовну вартість."
@@ -56,6 +94,7 @@ export const C_tq = () => {
           sourcePage={`modal-${i}`}
           className="border-0 shadow-none bg-transparent p-6 sm:p-10 md:p-14"
         />
+        </React.Suspense>
       </div>
     </div>
   ) : null;

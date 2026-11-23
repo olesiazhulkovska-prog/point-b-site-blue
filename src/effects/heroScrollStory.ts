@@ -312,14 +312,7 @@
       r > 100 &&
         i.getPropertyValue("--sv3-tw") !== r + "px" &&
         i.setProperty("--sv3-tw", r + "px");
-      var a = document.querySelectorAll(".sv3-card"),
-        o = document.documentElement.style;
-      if (a.length) {
-        o.setProperty("--sv3-eq", "0px");
-        for (var s = 0, l = 0; l < a.length; l++)
-          s = Math.max(s, a[l].offsetHeight);
-        o.setProperty("--sv3-eq", s + "px");
-      }
+      /* perf: --sv3-eq ніде не читається; скидання в 0 і назад на <html> двічі перераховувало стилі всього документа */
     }
   }
 })();
