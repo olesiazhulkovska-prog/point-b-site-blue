@@ -625,7 +625,14 @@ export const ServicePage = ({ serviceType: n }) => {
           <ServiceWhyScroll
             key={n}
             eyebrow="Цінність"
-            video={n === "ai-bots" ? "https://res.cloudinary.com/dset5uqua/video/upload/v1795093403/gemini_generated_video_8321928d_koqakd.webm" : undefined}
+            video={
+              n === "ai-bots"
+                ? "https://res.cloudinary.com/dset5uqua/video/upload/v1795093403/gemini_generated_video_8321928d_koqakd.webm"
+                : n === "analytics"
+                  ? "https://res.cloudinary.com/dset5uqua/video/upload/v1795423043/gemini_generated_video_53c75ff2_hp5yca.webm"
+                  : undefined
+            }
+            videoStart={n === "analytics" ? 12 : undefined}
             title={o.secondBlockTitle}
             subtitle={"secondBlockSubtitle" in o ? (o.secondBlockSubtitle as string) : undefined}
             items={o.secondBlockItems}

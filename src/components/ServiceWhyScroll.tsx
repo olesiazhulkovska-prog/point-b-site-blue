@@ -11,6 +11,7 @@ export function ServiceWhyScroll({
   title,
   eyebrow,
   video,
+  videoStart,
   subtitle,
   items,
 }: {
@@ -18,6 +19,8 @@ export function ServiceWhyScroll({
   subtitle?: string;
   eyebrow?: string;
   video?: string;
+  /** seconds: the loop starts (and restarts) here */
+  videoStart?: number;
   items: Item[];
 }) {
   const trackRef = React.useRef<HTMLDivElement>(null);
@@ -99,9 +102,17 @@ export function ServiceWhyScroll({
           <video
             key={video || BG_VIDEO}
             ref={videoRef}
-            src={video || BG_VIDEO}
+            src={(video || BG_VIDEO) + (videoStart ? `#t=${videoStart}` : "")}
+            onLoadedMetadata={(e) => {
+              if (videoStart) e.currentTarget.currentTime = videoStart;
+            }}
+            onEnded={(e) => {
+              if (!videoStart) return;
+              e.currentTarget.currentTime = videoStart;
+              e.currentTarget.play().catch(() => {});
+            }}
             muted
-            loop
+            loop={!videoStart}
             playsInline
             autoPlay
             preload="metadata"
