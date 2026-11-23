@@ -21,7 +21,7 @@ export function CrmFitSlider({ keycrm, custom }: { keycrm: string; custom: strin
     const el = ref.current;
     if (!el || typeof IntersectionObserver === "undefined") return;
     if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) {
-      setV(0);
+      setV(3);
       return;
     }
     const timers: number[] = [];
@@ -30,7 +30,7 @@ export function CrmFitSlider({ keycrm, custom }: { keycrm: string; custom: strin
         if (!e.some((x) => x.isIntersecting)) return;
         io.disconnect();
         [1, 2, 3, 4].forEach((k, i) => timers.push(window.setTimeout(() => !touched.current && setV(k), 900 + i * 750)));
-        timers.push(window.setTimeout(() => !touched.current && setV(1), 900 + 4 * 750 + 900));
+        timers.push(window.setTimeout(() => !touched.current && setV(3), 900 + 4 * 750 + 900));
       },
       { threshold: 0.5 },
     );
