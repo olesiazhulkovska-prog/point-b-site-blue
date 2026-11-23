@@ -13,6 +13,7 @@ import { CrmRingScene } from "../components/CrmRingScene";
 import { CustomCrmCompareDiagram } from "../shared/CustomCrmCompareDiagram";
 import { LeadForm } from "../components/LeadForm";
 import { KeyCrmStepsGallery } from "../components/KeyCrmStepsGallery";
+import { equalizeStackCards } from "../effects/equalCards";
 import "./ServicePage.css";
 import "./ServiceCards.css";
 
@@ -520,6 +521,7 @@ export const ServicePage = ({ serviceType: n }) => {
       },
     }[n];
   const tones = bandTones("comparison" in o && o.comparison ? 6 : 5);
+  React.useEffect(() => equalizeStackCards(), [n]);
   return (
     <div className="bg-[color:var(--card)] min-h-screen text-[color:var(--ink)] selection:bg-[color:var(--tint)] selection:text-[color:var(--ink)]">
       <Band tone="blue" arch={tones[0] === "light"}>

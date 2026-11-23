@@ -26,8 +26,8 @@
 
 /* телефон: сходинки йдуть вниз із відступом, маскот сидить на верхній грані активної картки */
 @media (max-width:767px){
-  .pbst{padding-top:52px}
-  .pbst__steps{display:flex;flex-direction:column;gap:44px;align-items:stretch}
+  .pbst{padding-top:96px}
+  .pbst__steps{display:flex;flex-direction:column;gap:92px;align-items:stretch}
   .pbst__step{min-height:0;margin-right:0;border-bottom:1px solid rgba(201,211,255,.28);border-radius:16px;margin-left:0;padding:20px 20px 22px}
   .pb-band--light .pbst__step{border-bottom-color:#C9D3FF}
   .pbst__n svg{width:32px;height:32px}

@@ -71,7 +71,7 @@ export function ServiceStairs({ items }: { items: string[] }) {
   React.useEffect(() => {
     let timer = 0;
     let started = false;
-    const STEP_MS = 4400;
+    const STEP_MS = window.matchMedia("(max-width:767px)").matches ? 2700 : 4400;
     const stop = () => {
       window.clearTimeout(timer);
       window.clearInterval(timer);
@@ -121,7 +121,7 @@ export function ServiceStairs({ items }: { items: string[] }) {
       const rr = root.getBoundingClientRect();
       const vis = rr.top < window.innerHeight * 0.82 && rr.bottom > window.innerHeight * 0.12;
       const mobile = window.matchMedia("(max-width:767px)").matches;
-      const h = mobile ? 68 : 110;
+      const h = mobile ? 104 : 110;
       const r = el.getBoundingClientRect();
       const lands = (el2: HTMLElement) =>
         el2.getBoundingClientRect().left + el2.getBoundingClientRect().width * (activeRef.current === n - 1 ? 0.38 : 0.5);
@@ -137,6 +137,7 @@ export function ServiceStairs({ items }: { items: string[] }) {
         lx: lx + window.scrollX,
         yDoc: r.top + window.scrollY + 3,
         s: h / 3.3,
+        fast: mobile,
         yMin: Math.min(...stepRefs.current.map((e) => (e ? e.getBoundingClientRect().top + window.scrollY + 3 : 1e9))),
         yMax: Math.max(...stepRefs.current.map((e) => (e ? e.getBoundingClientRect().top + window.scrollY + 3 : 0))),
       };

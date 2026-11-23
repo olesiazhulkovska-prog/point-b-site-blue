@@ -61,24 +61,26 @@ export function KeyCrmStepsGallery({ items }: { items: StepItem[] }) {
     }
   }, [mode]);
   React.useLayoutEffect(() => {
-    if (mode !== 1 || active === null) return;
-    const el = tileRefs.current[active];
-    const cap = el?.querySelector(".pbg-cap") as HTMLElement | null;
-    const desc = el?.querySelector(".pbg-desc") as HTMLElement | null;
-    if (cap && desc) setFootH(Math.ceil(cap.offsetHeight + desc.scrollHeight + 12 + 16));
-  }, [active, width, mode]);
+    if (mode !== 1) return;
+    let m = 0;
+    tileRefs.current.forEach((el) => {
+      const cap = el?.querySelector(".pbg-cap") as HTMLElement | null;
+      const desc = el?.querySelector(".pbg-desc") as HTMLElement | null;
+      if (cap && desc) m = Math.max(m, Math.ceil(cap.offsetHeight + desc.scrollHeight + 12 + 16));
+    });
+    if (m) setFootH(m);
+  }, [width, mode]);
   const cols = mode;
   const rows = Math.ceil(items.length / cols);
 
   const gridStyle: React.CSSProperties = { gap: mode === 3 ? 16 : 12 };
+  let tileH = 0;
   if (mode === 1) {
-    const closed = 92;
     const open = 52 + Math.round(Math.max(120, (width - 36) * 0.717)) + 14 + footH;
     gridStyle.height = "auto";
     gridStyle.gridTemplateColumns = "1fr";
-    gridStyle.gridTemplateRows = items
-      .map((_, i) => `${active === i ? open : closed}px`)
-      .join(" ");
+    gridStyle.display = "block";
+    tileH = open;
   } else {
     gridStyle.height =
       mode === 3
@@ -139,7 +141,8 @@ export function KeyCrmStepsGallery({ items }: { items: StepItem[] }) {
               ref={(el) => {
                 tileRefs.current[i] = el;
               }}
-              className={`pbg-tile${active === i ? " on" : ""}`}
+              className={`pbg-tile${active === i || mode === 1 ? " on" : ""}`}
+              style={mode === 1 ? ({ height: tileH, "--i": Math.min(i, 5) } as React.CSSProperties) : undefined}
               role="listitem"
               tabIndex={0}
               aria-label={`Крок ${num}: ${it.title}`}

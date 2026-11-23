@@ -65,3 +65,8 @@
 /* phone: chevron shows that a card opens on tap */
 .pbg.m1 .pbg-top::after{content:"";flex:none;width:9px;height:9px;margin-left:auto;margin-top:-4px;border-right:2.5px solid #2431A4;border-bottom:2.5px solid #2431A4;transform:rotate(45deg);transition:transform .35s,border-color .35s,margin .35s}
 .pbg.m1 .pbg-tile.on .pbg-top::after{transform:rotate(-135deg);margin-top:5px;border-color:#F98513}
+
+/* phone: every card is open and they stack on top of each other while scrolling */
+.pbg.m1 .pbg-tile:not(#_):not(#__){position:sticky;top:calc(88px + var(--i,0) * 14px);margin:0 0 20px;contain:none;box-shadow:0 -14px 30px -18px rgba(17,17,68,.45),0 18px 36px -26px rgba(17,17,68,.45);cursor:default}
+.pbg.m1 .pbg-top::after{display:none}
+.pbg.m1 .pbg-grid{display:block;transition:none}
