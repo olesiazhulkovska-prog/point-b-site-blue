@@ -72,7 +72,7 @@ export function CrmRingScene() {
       const full = p < N ? MODULES[p].text : FINAL.text;
       if (n < full.length) {
         const prev = full[n - 1];
-        const t = window.setTimeout(() => setN(n + 1), 22 + (prev === "," ? 60 : 0));
+        const t = window.setTimeout(() => setN(n + 1), 42 + (prev === "," ? 120 : 0));
         return () => window.clearTimeout(t);
       }
       const t = window.setTimeout(
@@ -80,7 +80,7 @@ export function CrmRingScene() {
           setP(p + 1);
           setN(0);
         },
-        p === N ? 3600 : 800,
+        p === N ? 4200 : 1500,
       );
       return () => window.clearTimeout(t);
     }
@@ -112,11 +112,11 @@ export function CrmRingScene() {
       </ul>
 
       <div className="pbr-ring" aria-hidden="true">
-        <svg viewBox="0 0 400 400" focusable="false">
+        <svg viewBox="-34 -34 468 468" focusable="false">
           {GEO.map((g, i) => {
             const on = i < built;
             const act = i === active;
-            const off = on ? 0 : 46;
+            const off = on ? 0 : 30;
             return (
               <g
                 key={i}
@@ -126,7 +126,7 @@ export function CrmRingScene() {
                 <path className="pbr-sp" d={g.d} />
                 {(() => {
                   const Ic = MODULES[i].Icon;
-                  return <Ic x={g.ix - 15} y={g.iy - 15} width={30} height={30} strokeWidth={2} />;
+                  return <Ic x={g.ix - 16} y={g.iy - 16} width={32} height={32} strokeWidth={2} />;
                 })()}
               </g>
             );
@@ -137,7 +137,6 @@ export function CrmRingScene() {
           <p className="pbr-p">
             <span>{shown}</span>
             {n < full.length && p <= N && <i className="pbr-caret" />}
-            <span className="pbr-rest">{p > N ? "" : full.slice(n)}</span>
           </p>
         </div>
       </div>
