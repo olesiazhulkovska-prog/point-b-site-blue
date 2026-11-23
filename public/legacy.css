@@ -2608,3 +2608,7 @@ html body .pb-logos img.pb-wm:not(#_):not(#__):not(#___):not(#____){flex:0 0 aut
   html body #site-footer:not(#_):not(#__){background:#111144 !important}
   html{overscroll-behavior-y:none}
 }
+/* cases hero: badge, heading and text centered */
+html body .pb-cases-hero:not(#_):not(#__){margin-left:auto;margin-right:auto;text-align:center}
+html body .pb-cases-hero h1:not(#_):not(#__){margin-left:auto;margin-right:auto;text-align:center;text-wrap:balance}
+html body .pb-cases-hero p:not(#_):not(#__){margin-left:auto;margin-right:auto;max-width:42rem;text-align:center;text-wrap:balance}

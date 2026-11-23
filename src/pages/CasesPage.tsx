@@ -18,7 +18,7 @@ export const CasesPage = () => {
     <div className="bg-[color:var(--card)] min-h-screen text-[color:var(--ink)] selection:bg-[color:var(--tint)] selection:text-[color:var(--ink)] pb-20">
       <section className="bg-[color:var(--card)] border-b border-[color:var(--card-border)] py-24 md:py-32">
         <div className="max-w-[1680px] mx-auto px-5 sm:px-8 lg:px-12 xl:px-16">
-          <div className="max-w-4xl space-y-4">
+          <div className="pb-cases-hero max-w-4xl space-y-4">
             <span className="inline-block px-3 py-1 rounded-full text-[13px] font-semibold bg-[color:var(--tint)] text-[color:var(--ink)] border border-[color:var(--card-border)]">
               Портфоліо та результати
             </span>
