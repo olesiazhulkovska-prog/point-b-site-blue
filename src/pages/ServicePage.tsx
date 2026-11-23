@@ -8,7 +8,7 @@ import ExtraTiles from "../components/ExtraTiles";
 import BulletIcon from "../components/BulletIcon";
 import { useSite } from "../context/SiteContext";
 import { KeyCrmPainsDiagram } from "../shared/KeyCrmPainsDiagram";
-import { AiAgentFlowDiagram } from "../shared/AiAgentFlowDiagram";
+import { AiAgentHeroScene } from "../components/AiAgentHeroScene";
 import { CustomCrmCompareDiagram } from "../shared/CustomCrmCompareDiagram";
 import { LeadForm } from "../components/LeadForm";
 import { KeyCrmStepsGallery } from "../components/KeyCrmStepsGallery";
@@ -573,7 +573,7 @@ export const ServicePage = ({ serviceType: n }) => {
             >
               <div className="w-full max-w-[720px] flex items-center justify-center">
                 {n === "keycrm" && <KeyCrmPainsDiagram />}
-                {n === "ai-bots" && <AiAgentFlowDiagram svc />}
+                {n === "ai-bots" && <AiAgentHeroScene />}
                 {n === "analytics" && <CustomCrmCompareDiagram svc />}
               </div>
             </div>
