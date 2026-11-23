@@ -34,7 +34,7 @@ const STEPS = [
   },
 ] as const;
 
-const HOLD_MS = 3200;
+const HOLD_MS = 2600;
 
 export function AiAgentHeroScene() {
   const ref = useRef<HTMLDivElement>(null);
@@ -64,8 +64,8 @@ export function AiAgentHeroScene() {
     }
     if (n < full.length) {
       const prev = full[n - 1];
-      const pause = prev === "." || prev === ":" ? 220 : prev === "," ? 110 : 0;
-      const t = window.setTimeout(() => setN(n + 1), 26 + pause);
+      const pause = prev === "." || prev === ":" ? 120 : prev === "," ? 60 : 0;
+      const t = window.setTimeout(() => setN(n + 1), 20 + pause);
       return () => window.clearTimeout(t);
     }
     const t = window.setTimeout(() => {
