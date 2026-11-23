@@ -522,7 +522,7 @@ export const ServicePage = ({ serviceType: n }) => {
   return (
     <div className="bg-[color:var(--card)] min-h-screen text-[color:var(--ink)] selection:bg-[color:var(--tint)] selection:text-[color:var(--ink)]">
       <Band tone="blue" arch={tones[0] === "light"}>
-        <section className="pb-hero relative overflow-hidden bg-transparent py-24 md:py-32">
+        <section className={`pb-hero relative overflow-hidden bg-transparent py-24 md:py-32${n === "ai-bots" ? " pb-hero--tall" : ""}`}>
           <Cq mode={n} />
           <div className="relative z-10 max-w-[1680px] mx-auto px-5 sm:px-8 lg:px-12 xl:px-16 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
             <div className="pb-hero-copy space-y-4">

@@ -121,9 +121,7 @@ export function AiAgentHeroScene() {
       <div className="pbh-body" aria-hidden="true">
         <div className="pbh-stack pbh-stack--t">
           {STEPS.map((s, i) => (
-            <h3 key={s.tab} className={i === step ? "is-on" : ""}>
-              {s.title}
-            </h3>
+            <div key={s.tab} className={`pbh-title${i === step ? " is-on" : ""}`} data-t={s.title} />
           ))}
         </div>
         <div className="pbh-stack pbh-stack--p">

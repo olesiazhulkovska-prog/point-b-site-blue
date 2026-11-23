@@ -19,9 +19,10 @@
 .pbh-stack{display:grid}
 .pbh-stack>*{grid-area:1/1;visibility:hidden;margin:0}
 .pbh-stack>.is-on{visibility:visible}
-.pbh-stack--t h3{font-size:20px;line-height:1.3;font-weight:700;color:#fff}
-.pbh-stack--t h3.is-on{animation:pbhIn .4s ease}
-.pbh-stack--p p{font-size:16px;line-height:1.5;color:rgba(255,255,255,.88)}
+.pbh-title{font-size:20px;line-height:1.3;font-weight:700;color:#fff}
+.pbh-title::before{content:attr(data-t)}
+.pbh-title.is-on{animation:pbhIn .4s ease}
+html body .pbh .pbh-stack--p p:not(#_):not(#__){font-size:16px !important;line-height:1.5 !important;color:rgba(255,255,255,.88)}
 .pbh-rest{color:transparent}
 .pbh-caret{display:inline-block;width:2px;height:1.05em;margin:0 1px -.15em;background:var(--o);animation:pbhCaret .8s steps(1) infinite}
 
@@ -45,4 +46,19 @@
 @media (prefers-reduced-motion:reduce){
   .pbh-caret{animation:none !important}
   .pbh-chip{transition:none}
+}
+
+/* desktop: bigger panel and text */
+@media(min-width:1024px){
+  .pbh{min-height:440px;gap:32px;grid-template-columns:minmax(170px,32%) 1fr}
+  .pbh-tabs{gap:24px}
+  .pbh-tab{grid-template-columns:48px 1fr;column-gap:16px}
+  .pbh-ic{width:48px;height:48px}
+  .pbh-ic svg{width:24px;height:24px}
+  .pbh-tab__l{font-size:20px}
+  .pbh-body{padding:32px;gap:16px;justify-content:center}
+  .pbh-title{font-size:28px;line-height:1.2;font-weight:600}
+  html body .pbh .pbh-stack--p p:not(#_):not(#__){font-size:20px !important;line-height:1.5 !important}
+  .pbh-chip{font-size:16px;min-height:48px;padding:8px 24px 8px 16px}
+  .pbh-chip svg{width:20px;height:20px}
 }
