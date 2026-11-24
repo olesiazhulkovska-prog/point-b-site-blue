@@ -282,9 +282,12 @@
           else {
             var t = M.indexOf(e),
               n = [0.02, 0.09, 0.16, 0.3, 0.43, 0.56];
+            // touch screens: shorter fade, so the cards settle to full colour sooner (no half-transparent grey at rest)
+            var cz = matchMedia("(pointer: coarse)").matches,
+              cs = cz ? 0.55 : 1;
             p(
               e,
-              o((v - (void 0 !== n[t] ? n[t] : 0.02 + 0.1 * t)) / 0.13),
+              o((v - (void 0 !== n[t] ? n[t] : 0.02 + 0.1 * t) * cs) / (cz ? 0.06 : 0.13)),
               "card",
             );
           }
