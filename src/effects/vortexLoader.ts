@@ -15,9 +15,15 @@
   }
   function chk() {
     if (d) return;
-    var c = document.getElementById("cta-section");
+    var c = document.getElementById("cta-section") || document.querySelector(".pb-vortex-hero");
     if (c && c.getBoundingClientRect().top < innerHeight * 2.5) go();
   }
+  /* lazy route chunks mount after the load event: poll for a while */
+  var pn = 0,
+    pt = setInterval(function () {
+      chk();
+      if (d || ++pn > 40) clearInterval(pt);
+    }, 700);
   addEventListener("scroll", chk, { passive: true });
   addEventListener("resize", chk, { passive: true });
   addEventListener("load", chk);
