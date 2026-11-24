@@ -37,7 +37,16 @@ export const CustomCrmCompareDiagram = ({ svc: SV }) => {
       }
       if (!s) return;
       d(0);
-      const k = window.setInterval(() => d((H) => (H >= 7 ? 0 : H + 1)), 1100);
+      // plays once and stays on the finished state (no cyclic reset to grey pills)
+      const k = window.setInterval(() => {
+        d((H) => {
+          if (H >= 7) {
+            window.clearInterval(k);
+            return H;
+          }
+          return H + 1;
+        });
+      }, 1100);
       return () => window.clearInterval(k);
     }, [s]));
   const x = [100 / 6, 50, 500 / 6],
@@ -244,10 +253,11 @@ export const CustomCrmCompareDiagram = ({ svc: SV }) => {
                   >
                     {k.cells.map((H, F) => {
                       const C = i > R,
+                        dx = typeof window !== "undefined" && window.innerWidth < 1100 ? 12 : 34,
                         ee =
                           F === 0
-                            ? "translate(-34px,8px) rotate(-3deg)"
-                            : "translate(34px,-8px) rotate(3deg)";
+                            ? `translate(-${dx}px,6px) rotate(-2deg)`
+                            : `translate(${dx}px,-6px) rotate(2deg)`;
                       return (
                         <div
                           key={H}
