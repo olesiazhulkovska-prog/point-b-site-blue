@@ -13,5 +13,17 @@
         }
       ]
     }
+  ],
+  "redirects": [
+    {
+      "source": "/keycrm",
+      "destination": "/?utm_source=keycrm_support&utm_medium=chat&utm_campaign=profile",
+      "permanent": false
+    },
+    {
+      "source": "/keycrm/",
+      "destination": "/?utm_source=keycrm_support&utm_medium=chat&utm_campaign=profile",
+      "permanent": false
+    }
   ]
 }
