@@ -2631,3 +2631,6 @@ html body .pb-vortex-hero:not(#_):not(#__) > .pbx-vortex{position:absolute;inset
 @media(min-width:1024px){html body .pb-vortex-hero:not(#_):not(#__){min-height:max(620px,76svh)}}
 html body .pb-vortex-hero:not(#_):not(#__) .pbx-vortex canvas:not(#_):not(#__):not(#___){opacity:.42 !important}
 html body .pb-vortex-hero:not(#_):not(#__) h1, html body .pb-vortex-hero:not(#_):not(#__) p{text-shadow:0 2px 18px rgba(14,22,62,.55)}
+/* cases hero: wider funnel */
+html body .pb-vortex-hero:not(#_):not(#__) .pbx-vortex canvas:not(#_):not(#__):not(#___){transform:scaleX(1.7);transform-origin:50% 50%}
+@media(max-width:760px){html body .pb-vortex-hero:not(#_):not(#__) .pbx-vortex canvas:not(#_):not(#__):not(#___){transform:scaleX(1.5)}}
