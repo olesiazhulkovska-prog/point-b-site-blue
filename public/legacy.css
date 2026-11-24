@@ -2663,10 +2663,12 @@ html body .pb-logos .pb-chip img.pb-wm-sh:not(#_):not(#__):not(#___):not(#____){
 
 /* cases page: bigger closing frame, header-style button, room for the mascot above it */
 html body .pb-cases-frame:not(#_):not(#__){padding:clamp(44px,7vw,112px) clamp(20px,5vw,96px) clamp(44px,6vw,96px)}
-html body .pb-cases-frame-in:not(#_):not(#__){max-width:60rem}
+html body .pb-cases-frame-in:not(#_):not(#__){max-width:60rem;display:flex;flex-direction:column;align-items:center;text-align:center}
+html body .pb-cases-frame-in:not(#_):not(#__) > *{text-align:center}
 html body .pb-cases-frame h2:not(#_):not(#__){font-size:clamp(32px,4.6vw,64px) !important;line-height:1.08}
 html body .pb-cases-frame-in p:not(#_):not(#__){font-size:clamp(16px,1.5vw,20px);max-width:44rem;margin-left:auto !important;margin-right:auto !important}
-html body .pb-cases-lead-wrap:not(#_):not(#__){padding-top:clamp(160px,14vw,190px);display:flex;justify-content:center}
+html body .pb-cases-lead-wrap:not(#_):not(#__){padding-top:clamp(200px,16vw,230px);display:flex;justify-content:center;width:100%}
+html body .pb-cases-lead-wrap:not(#_):not(#__) + p{margin-top:clamp(20px,2vw,28px)}
 html body #cases-cta-lead:not(#_):not(#__):not(#___){display:inline-flex !important;align-items:center;justify-content:space-between;gap:18px;border-radius:999px !important;white-space:nowrap;min-height:56px !important;padding:7px 7px 7px 28px !important;font:600 16px/1.2 var(--font-body) !important;text-transform:none !important;letter-spacing:0 !important;background:#F98513 !important;background-image:none !important;color:#111144 !important;border:0 !important;box-shadow:none !important;transition:transform .2s}
 html body #cases-cta-lead:not(#_):not(#__):not(#___):hover{transform:translateY(-1px)}
 html body #cases-cta-lead:not(#_):not(#__):not(#___) svg:last-child{box-sizing:content-box;width:18px !important;height:18px !important;padding:11px;border-radius:50%;flex:none;color:#111144 !important;background:#fff;transform:none}

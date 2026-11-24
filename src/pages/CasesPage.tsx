@@ -99,10 +99,6 @@ export const CasesPage = () => {
             <h2 className="pb-h2 text-3xl sm:text-4xl font-extrabold text-[color:var(--ink)] sm:tracking-tight">
               Бажаєте систематизувати свій відділ продажів?
             </h2>
-            <p className="text-[color:var(--muted)] text-base sm:text-base leading-relaxed">
-              Розкажіть про свої задачі. Ми підберемо відповідні технології та
-              покажемо, як саме вирішувалися аналогічні виклики у вашій ніші.
-            </p>
             <div className="pb-cases-lead-wrap">
               <button
                 id="cases-cta-lead"
@@ -113,6 +109,10 @@ export const CasesPage = () => {
                 <ArrowRight className="w-4 h-4 text-[color:var(--ink)]" />
               </button>
             </div>
+            <p className="text-[color:var(--muted)] text-base sm:text-base leading-relaxed">
+              Розкажіть про свої задачі. Ми підберемо відповідні технології та
+              покажемо, як саме вирішувалися аналогічні виклики у вашій ніші.
+            </p>
           </div>
         </div>
       </section>
