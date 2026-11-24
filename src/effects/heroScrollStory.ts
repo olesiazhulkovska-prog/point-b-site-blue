@@ -98,7 +98,7 @@
         }
       else if (i) {
         var n = i.gin.offsetHeight;
-        i.pinG && Math.abs(n - i.gH) > 4 && d();
+        i.pinG && n - i.gH > 4 && d();
       }
     }, 500),
       document.fonts &&
@@ -187,8 +187,12 @@
           "px;height:" +
           Math.round(0.7 * e) +
           "px;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:0 !important;"));
-      var r = i.gin.offsetHeight,
-        a = Math.min(1, (e - 76 - 12) / r);
+      var r = i.gin.offsetHeight;
+      // keep the tallest height seen at this width, so an animating inner block (chat) never makes the pinned graph rescale back and forth
+      (i.gmaxW === innerWidth && (r = Math.max(r, i.gmax || 0)),
+        (i.gmax = r),
+        (i.gmaxW = innerWidth));
+      var a = Math.min(1, (e - 76 - 12) / r);
       if (((i.pinG = i.deskOn && a >= 0.66), i.pinG)) {
         i.gscale = a;
         var o = r * a,

@@ -253,7 +253,7 @@ export const CustomCrmCompareDiagram = ({ svc: SV }) => {
                   >
                     {k.cells.map((H, F) => {
                       const C = i > R,
-                        dx = typeof window !== "undefined" && window.innerWidth < 1100 ? 12 : 34,
+                        dx = typeof window !== "undefined" && window.innerWidth < 1300 ? 12 : 34,
                         ee =
                           F === 0
                             ? `translate(-${dx}px,6px) rotate(-2deg)`

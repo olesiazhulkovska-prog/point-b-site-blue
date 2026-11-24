@@ -2634,3 +2634,15 @@ html body .pb-vortex-hero:not(#_):not(#__) h1, html body .pb-vortex-hero:not(#_)
 /* cases hero: wider funnel */
 html body .pb-vortex-hero:not(#_):not(#__) .pbx-vortex canvas:not(#_):not(#__):not(#___){transform:scaleX(1.7);transform-origin:50% 50%}
 @media(max-width:760px){html body .pb-vortex-hero:not(#_):not(#__) .pbx-vortex canvas:not(#_):not(#__):not(#___){transform:scaleX(1.5)}}
+
+/* partners marquee: no grey boxes behind logos on iOS/iPadOS Safari (mask + animated layer + opacity) */
+.pbx-marquee:not(#_):not(#__){isolation:isolate;-webkit-mask-image:none;mask-image:none;background:transparent}
+.pbx-marquee::before,.pbx-marquee::after{content:"";position:absolute;top:0;bottom:0;width:6%;z-index:2;pointer-events:none}
+.pbx-marquee{position:relative}
+.pbx-marquee::before{left:0;background:linear-gradient(90deg,var(--navy-950,#111144),transparent)}
+.pbx-marquee::after{right:0;background:linear-gradient(270deg,var(--navy-950,#111144),transparent)}
+.pbx-track{will-change:transform;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+html body .pbx-group img:not(#_):not(#__):not(#___){opacity:1 !important;background:transparent !important;mix-blend-mode:normal}
+
+/* service 02 (tablet): more air between the chat and the step cards, so the right column is not pressed against the edge */
+@media (min-width:768px) and (max-width:1279px){.sv3-dg .hidden.md\:grid.gap-4:not(#_):not(#__){column-gap:28px !important}.sv3-dg .hidden.md\:grid.gap-4:not(#_):not(#__)>div:last-child{padding-right:0}}
