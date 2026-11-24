@@ -15,7 +15,7 @@
   }
   function chk() {
     if (d) return;
-    var c = document.getElementById("cta-section") || document.querySelector(".pb-vortex-hero, .pb-cases-frame");
+    var c = document.getElementById("cta-section") || document.querySelector(".pb-vortex-hero");
     if (c && c.getBoundingClientRect().top < innerHeight * 2.5) go();
   }
   /* lazy route chunks mount after the load event: poll for a while */

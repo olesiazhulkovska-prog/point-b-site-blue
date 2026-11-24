@@ -3,7 +3,7 @@
 (function () {
   function mount() {
     if (!window.PBXVortex) return;
-    var hosts = document.querySelectorAll(".pb-vortex-hero, .pb-cases-frame");
+    var hosts = document.querySelectorAll(".pb-vortex-hero");
     for (var k = 0; k < hosts.length; k++) one(hosts[k]);
   }
   function one(s) {

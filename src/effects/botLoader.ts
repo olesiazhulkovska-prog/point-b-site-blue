@@ -42,7 +42,7 @@
     return 0;
   }
   function go() {
-    if (d || !(home() || /^#\/(keycrm|ai-bots|analytics)/.test(location.hash)) || weak()) return;
+    if (d || !(home() || /^#\/(keycrm|ai-bots|analytics|cases)/.test(location.hash)) || weak()) return;
     d = 1;
     var s = document.createElement("script");
     s.src = "point-b-bot.js?v=41";
