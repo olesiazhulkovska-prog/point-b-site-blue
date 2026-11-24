@@ -461,7 +461,7 @@ export const LeadForm = ({
             ) : (
               <l.Fragment>
                 <span>{p}</span>
-                <Send className="w-4 h-4 text-[color:var(--accent-green)]" />
+                <Send className="w-[18px] h-[18px]" strokeWidth={2.25} style={{ color: "#111144" }} />
               </l.Fragment>
             )}
           </button>
