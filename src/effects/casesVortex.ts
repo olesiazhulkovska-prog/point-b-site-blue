@@ -1,14 +1,13 @@
 // @ts-nocheck
 /* cases hero: the same WebGL funnel (vortex) as in the footer CTA, behind the first screen */
 (function () {
-  var st = {};
   function mount() {
-    var s = document.querySelector(".pb-vortex-hero");
-    if (!s) {
-      st.w = null;
-      return;
-    }
     if (!window.PBXVortex) return;
+    var hosts = document.querySelectorAll(".pb-vortex-hero, .pb-cases-frame");
+    for (var k = 0; k < hosts.length; k++) one(hosts[k]);
+  }
+  function one(s) {
+    var st = s.__pbxV || (s.__pbxV = {});
     if (st.w && s.contains(st.w)) return;
     var w = document.createElement("div");
     w.className = "pbx-vortex";
