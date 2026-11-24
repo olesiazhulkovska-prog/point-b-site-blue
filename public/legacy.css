@@ -2653,3 +2653,10 @@ html body .pbx-group img:not(#_):not(#__):not(#___){opacity:1 !important;backgro
   html body #site-footer:not(#_):not(#__) li > a,html body #site-footer:not(#_):not(#__) li > button{margin-left:0 !important;padding-left:0 !important;padding-inline-start:0 !important;text-align:left !important;justify-content:flex-start !important}
   html body #site-footer:not(#_):not(#__) [class*="md:col-span-"]{padding-left:0 !important;margin-left:0 !important;justify-self:start}
 }
+
+/* site logos (WordPress / Хорошоп / Shopify): one style — white wordmarks on equal dark-blue pills */
+html body .pb-logos:not(#_):not(#__):not(#___):not(#____){display:flex !important;flex-wrap:wrap !important;align-items:center !important;justify-content:flex-start !important;gap:6px !important}
+html body .pb-logos .pb-chip:not(#_):not(#__):not(#___):not(#____){display:inline-flex !important;align-items:center;justify-content:center;flex:0 0 auto !important;box-sizing:border-box;width:82px;height:24px;padding:0;border-radius:999px;background:var(--btn-dark,#1B2E8C)}
+html body .pb-logos .pb-chip img.pb-wm:not(#_):not(#__):not(#___):not(#____){display:block !important;flex:none !important;width:auto !important;max-width:none !important;margin:0 !important;padding:0 !important;height:9px !important;filter:brightness(0) invert(1) !important;opacity:1 !important;background:none !important;border:0 !important}
+html body .pb-logos .pb-chip img.pb-wm-hr:not(#_):not(#__):not(#___):not(#____){height:7.5px !important}
+html body .pb-logos .pb-chip img.pb-wm-sh:not(#_):not(#__):not(#___):not(#____){height:17px !important}

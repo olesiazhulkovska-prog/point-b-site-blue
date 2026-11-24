@@ -519,7 +519,8 @@ export const C_ag = ({
               label: "Сайт",
               sub: (
                 <span className="pb-logos">
-                  <img
+                  <span className="pb-chip">
+                    <img
                     className="pb-wm pb-wm-wp"
                     src="/assets/wm-wordpress.webp"
                     alt="WordPress"
@@ -527,7 +528,9 @@ export const C_ag = ({
                     height={52}
                     draggable={false}
                   />
-                  <img
+                  </span>
+                  <span className="pb-chip">
+                    <img
                     className="pb-wm pb-wm-hr"
                     src="/assets/wm-horoshop.webp"
                     alt="Хорошоп"
@@ -535,7 +538,9 @@ export const C_ag = ({
                     height={49}
                     draggable={false}
                   />
-                  <img
+                  </span>
+                  <span className="pb-chip">
+                    <img
                     className="pb-wm pb-wm-sh"
                     src="/assets/wm-shopify.webp"
                     alt="Shopify"
@@ -543,6 +548,7 @@ export const C_ag = ({
                     height={80}
                     draggable={false}
                   />
+                  </span>
                 </span>
               ),
             },
@@ -665,7 +671,8 @@ export const C_ag = ({
               label="Сайт"
               sub={
                 <span className="pb-logos">
-                  <img
+                  <span className="pb-chip">
+                    <img
                     className="pb-wm pb-wm-wp"
                     src="/assets/wm-wordpress.webp"
                     alt="WordPress"
@@ -673,7 +680,9 @@ export const C_ag = ({
                     height={52}
                     draggable={false}
                   />
-                  <img
+                  </span>
+                  <span className="pb-chip">
+                    <img
                     className="pb-wm pb-wm-hr"
                     src="/assets/wm-horoshop.webp"
                     alt="Хорошоп"
@@ -681,7 +690,9 @@ export const C_ag = ({
                     height={49}
                     draggable={false}
                   />
-                  <img
+                  </span>
+                  <span className="pb-chip">
+                    <img
                     className="pb-wm pb-wm-sh"
                     src="/assets/wm-shopify.webp"
                     alt="Shopify"
@@ -689,6 +700,7 @@ export const C_ag = ({
                     height={80}
                     draggable={false}
                   />
+                  </span>
                 </span>
               }
               compact
