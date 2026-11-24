@@ -2622,3 +2622,5 @@ html body .pb-cases-hero p:not(#_):not(#__){margin-left:auto;margin-right:auto;m
 html body .pb-cases-br:not(#_):not(#__){display:none}
 @media(min-width:1024px){html body .pb-cases-br:not(#_):not(#__){display:inline}}
 @media(min-width:1024px){html body .pb-cases-hero p:not(#_):not(#__){text-wrap:wrap}}
+/* cases: the end block overlaps the last 80px of this section, so the CTA button must never sit under it (mobile) */
+html body .pb-cases-cta:not(#_):not(#__){padding-bottom:80px}
