@@ -190,10 +190,10 @@ export const CaseDetailPage = ({ slug: n }) => {
           </div>
         </div>
       </section>
-      <div className="pb-case-main max-w-[1680px] mx-auto px-5 sm:px-8 lg:px-12 xl:px-16 py-14 space-y-16">
+      <div className="pb-case-main">
         {((d.hasClientRequest && d.clientRequestItems && d.clientRequestItems.length > 0) ||
           (d.hasSituationBefore && d.situationBeforeItems && d.situationBeforeItems.length > 0)) && (
-          <section className="pb-case-row grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <section className="pb-band pb-band-white"><div className="pb-wrap"><div className="pb-case-row">
             {d.hasSituationBefore && d.situationBeforeItems && d.situationBeforeItems.length > 0 && (
               <div id="section-situation-before" className="pb-case-card pb-case-before rounded-2xl border p-8 sm:p-10">
                 <span className="text-[13px] font-bold uppercase tracking-widest block">Було</span>
@@ -224,17 +224,17 @@ export const CaseDetailPage = ({ slug: n }) => {
                 </ul>
               </div>
             )}
-          </section>
+          </div></div></section>
         )}
-        <section id="section-what-we-did" className="pb-case-steps">
+        <section id="section-what-we-did" className="pb-band pb-band-grad"><div className="pb-wrap">
           <div className="mb-8">
             <span className="text-[13px] font-bold uppercase tracking-widest text-[color:var(--accent-green)]">Реалізація</span>
             <h2 className="text-2xl sm:text-3xl font-bold text-[color:var(--ink)] mt-1">Що ми зробили</h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-8">
+          <div className="pb-case-stepgrid">
             {d.whatWeDidSteps.map((p, f) => (
               <div key={f} className="flex items-start gap-4">
-                <div className="w-9 h-9 rounded-lg bg-[color:var(--btn-dark)] text-[color:var(--on-dark)] flex items-center justify-center font-bold text-[14px] shrink-0">
+                <div className="pb-case-steps-n w-9 h-9 rounded-lg bg-[color:var(--btn-dark)] text-[color:var(--on-dark)] flex items-center justify-center font-bold text-[14px] shrink-0">
                   {f + 1}
                 </div>
                 <div className="space-y-1">
@@ -244,9 +244,9 @@ export const CaseDetailPage = ({ slug: n }) => {
               </div>
             ))}
           </div>
-        </section>
-        <section id="section-result" className="pb-case-band">
-          <div className="pb-case-band-in">
+        </div></section>
+        <section id="section-result" className="pb-band pb-band-white">
+          <div className="pb-wrap">
             <span className="text-[13px] font-bold uppercase tracking-widest text-[color:var(--accent-green)]">Стало</span>
             <h2 className="pb-h2 text-3xl sm:text-4xl font-extrabold text-[color:var(--ink)] mt-1 sm:tracking-tight">
               Результати впровадження
@@ -312,6 +312,7 @@ export const CaseDetailPage = ({ slug: n }) => {
             </div>
           </div>
         </section>
+        <section className="pb-band pb-band-navy"><div className="pb-wrap pb-case-end">
         <section id="section-systems-cta" className="pb-case-stack">
           <span className="text-[13px] font-bold uppercase tracking-widest text-[color:var(--accent-green)]">Технологічний стек</span>
           <h3 className="text-xl font-bold text-[color:var(--ink)] mt-1 mb-4">Системи, які інтегрували</h3>
@@ -323,7 +324,7 @@ export const CaseDetailPage = ({ slug: n }) => {
             ))}
           </div>
         </section>
-        <section id="case-skalar-form-section" className="pt-8 pb-4">
+        <section id="case-skalar-form-section">
           <LeadForm
             title="Заявка на консультацію"
             defaultService={d.serviceType || "Впровадження keyCRM"}
@@ -331,7 +332,7 @@ export const CaseDetailPage = ({ slug: n }) => {
           />
         </section>
         {s.filter((p) => p.id !== d.id).length > 0 && (
-          <section className="pt-4 space-y-6">
+          <section className="space-y-6">
             <div className="flex items-center justify-between">
               <div>
                 <span className="text-[13px] font-bold uppercase tracking-widest text-[color:var(--accent-green)]">
@@ -382,6 +383,7 @@ export const CaseDetailPage = ({ slug: n }) => {
             </div>
           </section>
         )}
+        </div></section>
       </div>
     </div>
   ) : (

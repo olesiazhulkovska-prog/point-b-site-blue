@@ -2707,3 +2707,39 @@ html body .pb-case-resgrid:not(#_):not(#__){display:grid;grid-template-columns:r
 html body .pb-case-row:not(#_):not(#__){display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:24px}
 html body .pb-case-card:not(#_):not(#__){align-self:stretch}
 html body .pb-case-review:not(#_):not(#__){margin-top:32px}
+/* case detail v3: alternating bands — white / blue gradient / navy */
+html body .pb-case-page:not(#_):not(#__){overflow-x:clip}
+html body .pb-case-main:not(#_):not(#__){padding:0}
+html body .pb-band:not(#_):not(#__){position:relative;isolation:isolate;padding:clamp(56px,7vw,104px) 0}
+html body .pb-band:not(#_):not(#__)::before{content:"";position:absolute;top:0;bottom:0;left:-100vmax;right:-100vmax;z-index:-1;background:var(--band)}
+html body .pb-wrap:not(#_):not(#__){max-width:1680px;margin:0 auto;padding:0 clamp(20px,4vw,64px)}
+html body .pb-case-end:not(#_):not(#__){display:flex;flex-direction:column;gap:clamp(48px,6vw,80px)}
+html body .pb-band-navy:not(#_):not(#__){--band:#111144}
+html body .pb-band-grad:not(#_):not(#__){--band:linear-gradient(180deg,#1B2E8C 0%,#111144 100%)}
+html body .pb-band-white:not(#_):not(#__){--band:#FFFFFF;--ink:#111144;--ink-soft:#3F4470;--muted:#4A4F7A;--card:#FFFFFF;--tint:#EEF1FF;--card-border:#D3D9F2;--accent-green:#D96A00;color:#111144}
+html body .pb-band-white:not(#_):not(#__) h2,html body .pb-band-white:not(#_):not(#__) h3{color:#111144 !important;text-shadow:none}
+html body .pb-band-white:not(#_):not(#__) p,html body .pb-band-white:not(#_):not(#__) li,html body .pb-band-white:not(#_):not(#__) .pb-case-card span:not(.pb-case-dot){color:#2A2E5C}
+html body .pb-band-white .pb-case-card:not(#_):not(#__){background:#F4F6FF !important;border:1px solid #D3D9F2 !important;box-shadow:none}
+html body .pb-band-white .pb-case-before:not(#_):not(#__){background:#FFF4E6 !important;border-color:#F4C690 !important}
+html body .pb-band-white .pb-case-before:not(#_):not(#__) > span{color:#C25E00 !important}
+html body .pb-band-white .pb-case-card > span.uppercase:not(#_):not(#__){color:#1B2E8C !important}
+html body .pb-band-white .pb-case-before > span.uppercase:not(#_):not(#__){color:#C25E00 !important}
+html body .pb-band-white .pb-case-metric:not(#_):not(#__){background:#F4F6FF;border:1px solid #D3D9F2}
+html body .pb-band-white .pb-case-metric-n:not(#_):not(#__){color:#1B2E8C}
+html body .pb-band-white .pb-case-metric-l:not(#_):not(#__){color:#2A2E5C}
+html body .pb-band-white .pb-case-metric-t:not(#_):not(#__){color:#111144;opacity:1 !important}
+html body .pb-band-white .pb-case-res:not(#_):not(#__){background:#FFFFFF !important;border:1px solid #D3D9F2 !important}
+html body .pb-band-white .pb-case-res span:not(#_):not(#__){color:#111144}
+html body .pb-band-white .pb-case-cta:not(#_):not(#__){border-top:1px solid #D3D9F2}
+html body .pb-band-grad .pb-case-steps-n:not(#_):not(#__){background:#F98513 !important;color:#111144 !important}
+html body .pb-band-grad h3:not(#_):not(#__){color:#fff}
+html body .pb-band-grad p:not(#_):not(#__){color:#DCE2FF}
+/* review stands out: deep blue card, orange accent */
+html body .pb-case-review:not(#_):not(#__){margin-top:40px;--ink:#fff;--ink-soft:#C9D3FF;--card-border:rgba(255,255,255,.22);--tint:rgba(255,255,255,.12);--bar:#F98513}
+html body .pb-case-review figure:not(#_):not(#__){background:linear-gradient(135deg,#1B2E8C 0%,#111144 100%) !important;border:0 !important;border-left:6px solid #F98513 !important;border-radius:24px;padding:clamp(28px,3.5vw,48px);box-shadow:0 24px 60px -24px rgba(17,17,68,.55)}
+html body .pb-case-review blockquote:not(#_):not(#__){font-size:clamp(18px,1.9vw,26px);line-height:1.5;color:#fff}
+html body .pb-case-review blockquote span:not(#_):not(#__){color:#fff}
+html body .pb-case-review svg:not(#_):not(#__){opacity:1 !important;color:#F98513 !important;width:44px;height:44px}
+html body .pb-case-review figcaption div:not(#_):not(#__){color:#fff}
+html body .pb-case-stepgrid:not(#_):not(#__){display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:40px 56px}
+html body .pb-case-metric:not(#_):not(#__){min-height:120px}
