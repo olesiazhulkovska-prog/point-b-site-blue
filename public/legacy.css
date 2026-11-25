@@ -2917,3 +2917,11 @@ html body #site-footer .pt-8.flex:not(#_):not(#__){align-items:flex-start;text-a
 html body .pb-case-tabs:not(#_):not(#__){position:static !important;top:auto;box-shadow:none;transform:none !important;opacity:1 !important;pointer-events:auto}
 html body .pb-case-tabs .overflow-x-auto:not(#_):not(#__){display:none}
 }
+/* mobile: hero links become icon-only circles on the right */
+@media (max-width:640px){
+html body .pb-case-hero-in > div:first-child:not(#_):not(#__){flex-wrap:nowrap}
+html body .pb-case-hero-in > div:first-child > div:first-child:not(#_):not(#__){min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+html body .pb-case-link:not(#_):not(#__){width:44px;height:44px;padding:0;justify-content:center;gap:0;flex:none}
+html body .pb-case-link .pb-case-link-t:not(#_):not(#__),html body .pb-case-link .pb-case-link-ext:not(#_):not(#__){display:none}
+html body .pb-case-link svg:not(#_):not(#__){width:20px;height:20px}
+}

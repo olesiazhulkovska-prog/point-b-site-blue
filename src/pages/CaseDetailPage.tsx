@@ -127,11 +127,12 @@ export const CaseDetailPage = ({ slug: n }) => {
                   href={d.websiteUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group/link inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[13px] font-medium text-[color:var(--ink-soft)] bg-[color:var(--tint)] hover:bg-[color:var(--accent-green)] hover:text-[color:var(--on-dark)] transition-all border border-[color:var(--card-border)] shadow-2xs"
+                  aria-label="Вебсайт компанії"
+                  className="pb-case-link group/link inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[13px] font-medium text-[color:var(--ink-soft)] bg-[color:var(--tint)] hover:bg-[color:var(--accent-green)] hover:text-[color:var(--on-dark)] transition-all border border-[color:var(--card-border)] shadow-2xs"
                 >
                   <Globe className="w-3.5 h-3.5 text-[color:var(--accent-green)] group-hover/link:text-[color:var(--ink)] transition-colors" />
-                  <span>Вебсайт компанії</span>
-                  <ExternalLink className="w-2.5 h-2.5 opacity-60" />
+                  <span className="pb-case-link-t">Вебсайт компанії</span>
+                  <ExternalLink className="pb-case-link-ext w-2.5 h-2.5 opacity-60" />
                 </a>
               )}
               {d.instagramUrl && (
@@ -139,11 +140,12 @@ export const CaseDetailPage = ({ slug: n }) => {
                   href={d.instagramUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group/link inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[13px] font-medium text-[color:var(--ink-soft)] bg-[color:var(--tint)] hover:bg-pink-600 hover:text-[color:var(--ink)] transition-all border border-[color:var(--card-border)] shadow-2xs"
+                  aria-label="Instagram"
+                  className="pb-case-link group/link inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[13px] font-medium text-[color:var(--ink-soft)] bg-[color:var(--tint)] hover:bg-pink-600 hover:text-[color:var(--ink)] transition-all border border-[color:var(--card-border)] shadow-2xs"
                 >
                   <Instagram className="w-3.5 h-3.5 text-pink-600 group-hover/link:text-[color:var(--ink)] transition-colors" />
-                  <span>Instagram</span>
-                  <ExternalLink className="w-2.5 h-2.5 opacity-60" />
+                  <span className="pb-case-link-t">Instagram</span>
+                  <ExternalLink className="pb-case-link-ext w-2.5 h-2.5 opacity-60" />
                 </a>
               )}
             </div>
