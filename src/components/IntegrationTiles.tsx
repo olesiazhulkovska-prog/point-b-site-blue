@@ -84,7 +84,7 @@ export default function IntegrationTiles({ items }: { items: string[] }) {
   const n = spokes.length;
   const pts = spokes.map((_, i) => {
     const a = ((-90 + (360 / n) * (i + 0.5)) * Math.PI) / 180;
-    return { x: 50 + 41 * Math.cos(a), y: 50 + 39 * Math.sin(a) };
+    return { x: 50 + 43 * Math.cos(a), y: 50 + 42 * Math.sin(a) };
   });
 
   return (
