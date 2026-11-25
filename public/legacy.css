@@ -3072,11 +3072,11 @@ html body .pb-more-tag:not(#_):not(#__){font-size:13px;font-weight:600;color:#4A
 html body .pb-more-name:not(#_):not(#__){font-size:18px;font-weight:800;line-height:1.25;color:#111144;margin:2px 0 4px}
 html body .pb-more-metric:not(#_):not(#__){font-size:20px;font-weight:800;line-height:1.15;color:#1B2E8C}
 html body .pb-more-cap:not(#_):not(#__){font-size:14px;line-height:1.4;color:#2A2E5C;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-html body .pb-more-go:not(#_):not(#__){position:absolute;right:10px;bottom:10px;width:56px;height:56px;border-radius:50%;background:#F98513;color:#fff;display:flex;align-items:center;justify-content:center;transition:background .25s}
+html body .pb-more-go:not(#_):not(#__){position:absolute;right:10px;bottom:10px;width:56px;height:56px;border-radius:50%;background:#F98513;color:#111144;display:flex;align-items:center;justify-content:center}
+html body .pb-more-go svg:not(#_):not(#__){color:#111144;stroke:#111144}
 html body .pb-more-go svg:not(#_):not(#__){transform:rotate(-45deg);transition:transform .3s}
 @media (hover:hover){
   html body .pb-more-case:hover .pb-more-bg img:not(#_):not(#__){transform:scale(1.06)}
-  html body .pb-more-case:hover .pb-more-go:not(#_):not(#__){background:#E0740A}
   html body .pb-more-case:hover .pb-more-go svg:not(#_):not(#__){transform:rotate(0)}
 }
 
