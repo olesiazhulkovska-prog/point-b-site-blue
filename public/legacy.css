@@ -3108,3 +3108,8 @@ html body .pb-vortex-hero:not(#_):not(#__) > div:not(.pbx-vortex):not(.pb-cases-
   html body .pb-cases-end:not(#_):not(#__):not(#___){height:160px}
   html body:has(.pb-cases-page) #site-footer:not(#_):not(#__){padding-top:0}
 }
+
+/* lead form button: white circle with dark arrow (same as hero buttons) */
+html body .pb-lead-go:not(#_):not(#__){display:inline-flex;align-items:center;justify-content:center;flex:none;width:38px;height:38px;border-radius:50%;background:#fff}
+html body .pb-lead-go svg:not(#_):not(#__){color:#111144;stroke:#111144;transition:transform .3s}
+@media (hover:hover){html body button:hover > .pb-lead-go svg:not(#_):not(#__){transform:translateX(3px)}}
