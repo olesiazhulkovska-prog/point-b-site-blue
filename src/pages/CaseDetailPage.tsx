@@ -267,9 +267,11 @@ export const CaseDetailPage = ({ slug: n }) => {
             <ol className="pb-path">
               {d.whatWeDidSteps.map((p, f) => (
                 <li key={f} className="pb-path-step" style={{ "--i": f } as React.CSSProperties}>
-                  <span className="pb-path-n">{f + 1}</span>
                   <div className="pb-path-card">
-                    <h3 className="pb-path-t">{Ra(p.title)}</h3>
+                    <div className="pb-path-hd">
+                      <span className="pb-path-n">{f + 1}</span>
+                      <h3 className="pb-path-t">{Ra(p.title)}</h3>
+                    </div>
                     <div className="pb-path-d">{Ra(p.description)}</div>
                   </div>
                 </li>
