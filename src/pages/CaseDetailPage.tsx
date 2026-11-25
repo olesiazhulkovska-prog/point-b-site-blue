@@ -1,5 +1,6 @@
 // @ts-nocheck
 /* Відновлено з прод-збірки; імена та типи доводяться вручну. */
+import { useEffect, useState } from "react";
 import {
   ArrowLeft,
   ArrowRight,
@@ -50,9 +51,22 @@ export const CaseDetailPage = ({ slug: n }) => {
         p.slug === `case-${n}` ||
         p.id === `case-${n}`,
     );
+  const [tabsHidden, setTabsHidden] = useState(false);
+  useEffect(() => {
+    let ly = window.scrollY;
+    const f = () => {
+      const y = window.scrollY, dy = y - ly;
+      if (Math.abs(dy) > 6) {
+        setTabsHidden(dy > 0 && y > 160);
+        ly = y;
+      }
+    };
+    window.addEventListener("scroll", f, { passive: true });
+    return () => window.removeEventListener("scroll", f);
+  }, []);
   return d ? (
     <div className="pb-cases-page pb-case-page bg-[color:var(--card)] min-h-screen text-[color:var(--ink)] selection:bg-[color:var(--tint)] selection:text-[color:var(--ink)] pb-20">
-      <div className="bg-[color:var(--card)] border-b border-[color:var(--card-border)] sticky top-20 z-30 shadow-2xs">
+      <div data-hidden={tabsHidden ? "1" : "0"} className="pb-case-tabs bg-[color:var(--card)] border-b border-[color:var(--card-border)] sticky top-20 z-30 shadow-2xs">
         <div className="max-w-[1680px] mx-auto px-5 sm:px-8 lg:px-12 xl:px-16 py-3 flex flex-wrap items-center justify-between gap-3">
           <button
             id="case-back-to-list-btn"
@@ -82,8 +96,14 @@ export const CaseDetailPage = ({ slug: n }) => {
           </div>
         </div>
       </div>
-      <section className="bg-[color:var(--card)] border-b border-[color:var(--card-border)] py-12 md:py-16">
-        <div className="max-w-[1680px] mx-auto px-5 sm:px-8 lg:px-12 xl:px-16 space-y-6">
+      <section className="pb-case-hero pb-band--arch">
+        {d.coverImageUrl && (
+          <div className="pb-case-hero-bg" aria-hidden="true">
+            <img src={d.coverImageUrl} alt="" referrerPolicy="no-referrer" />
+            <div className="pb-case-hero-shade" />
+          </div>
+        )}
+        <div className="pb-wrap pb-case-hero-in">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div className="inline-block px-3 py-1 rounded-full text-[13px] font-semibold bg-[color:var(--tint)] text-[color:var(--ink)] border border-[color:var(--card-border)]">
               {d.heroSphereTag}
@@ -121,35 +141,6 @@ export const CaseDetailPage = ({ slug: n }) => {
           <p className="text-base sm:text-lg text-[color:var(--ink-soft)] leading-relaxed max-w-3xl">
             {Ra(d.companyDescription)}
           </p>
-          {d.coverImageUrl && (
-            <div className="relative rounded-2xl overflow-hidden h-56 sm:h-72 border border-[color:var(--card-border)] shadow-xs mt-4">
-              <img
-                src={d.coverImageUrl}
-                alt={d.companyName}
-                referrerPolicy="no-referrer"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#F4F7a1]/70 via-[#F4F7a1]/15 to-transparent" />
-              <div className="absolute bottom-4 left-5 right-5 flex items-center justify-between text-[color:var(--ink)] text-[13px] font-medium">
-                <span className="bg-white/80 backdrop-blur-md px-3 py-1 rounded-full border border-[color:var(--card-border)]">
-                  {d.companyName}
-                  {" · Реалізований проєкт"}
-                </span>
-                <span className="text-[color:var(--muted)] hidden sm:inline">
-                  {(x = d.integratedSystems) == null
-                    ? undefined
-                    : x
-                        .map((p) =>
-                          p
-                            .replace(/\bKeyCRM\b/g, "keyCRM")
-                            .replace(/\bКЕЙ СРМ\b/g, "кей СРМ"),
-                        )
-                        .slice(0, 3)
-                        .join(" · ")}
-                </span>
-              </div>
-            </div>
-          )}
           <div className="pt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <div className="p-4 rounded-xl bg-[color:var(--card)] border border-[color:var(--card-border)]">
               <div className="flex items-center gap-1.5 text-[13px] font-semibold text-[color:var(--ink-soft)] uppercase tracking-wider mb-1">
@@ -197,7 +188,7 @@ export const CaseDetailPage = ({ slug: n }) => {
             {d.hasSituationBefore && d.situationBeforeItems && d.situationBeforeItems.length > 0 && (
               <div id="section-situation-before" className="pb-case-card pb-case-before rounded-2xl border p-8 sm:p-10">
                 <span className="text-[13px] font-bold uppercase tracking-widest block">Було</span>
-                <h2 className="text-2xl font-bold text-[color:var(--ink)] mt-1 mb-6">Ситуація до впровадження</h2>
+                <h3 className="pb-case-card-t">Ситуація до впровадження</h3>
                 <ul className="space-y-3.5">
                   {d.situationBeforeItems.map((p, f) => (
                     <li key={f} className="flex items-start gap-3.5 text-base text-[color:var(--ink)]">
@@ -211,7 +202,7 @@ export const CaseDetailPage = ({ slug: n }) => {
             {d.hasClientRequest && d.clientRequestItems && d.clientRequestItems.length > 0 && (
               <div id="section-client-request" className="pb-case-card rounded-2xl border p-8 sm:p-10">
                 <span className="text-[13px] font-bold uppercase tracking-widest text-[color:var(--accent-green)] block">Запит клієнта</span>
-                <h2 className="text-2xl font-bold text-[color:var(--ink)] mt-1 mb-6">Що потрібно було зробити</h2>
+                <h3 className="pb-case-card-t">Що потрібно було зробити</h3>
                 <ul className="space-y-3.5">
                   {d.clientRequestItems.map((p, f) => (
                     <li key={f} className="flex items-start gap-3.5 text-base text-[color:var(--ink)]">
