@@ -269,7 +269,7 @@ export const CaseDetailPage = ({ slug: n }) => {
             {d.whatWeDidSteps.map((p, f) => {
               const on = f === Math.min(stepActive, d.whatWeDidSteps.length - 1);
               return (
-                <div key={f} className="pb-tab-item" data-active={on ? "1" : "0"}>
+                <div key={f} className="pb-tab-item" data-active={on ? "1" : "0"} style={{ "--i": f } as React.CSSProperties}>
                   <button
                     type="button"
                     className="pb-tab"
