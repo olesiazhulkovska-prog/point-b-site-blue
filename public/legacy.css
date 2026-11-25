@@ -2676,3 +2676,9 @@ html body .pb-cases-cta:not(#_):not(#__){margin-top:7rem}
 
 /* cases closing frame: no vortex, only the mascot on the button */
 html body .pb-cases-frame h2:not(#_):not(#__),html body .pb-cases-frame-in p:not(#_):not(#__){text-shadow:none}
+/* cases: one navy (#111144 = footer) + hero fades into it */
+html:has(.pb-cases-page):not(#_):not(#__):not(#___):not(#____),html:has(.pb-cases-page) body:not(#_):not(#__):not(#___):not(#____){background-color:#111144 !important}
+html.pb-inner body main > div.min-h-screen.pb-cases-page:not(#_):not(#__):not(#___):not(#____){background:linear-gradient(180deg,transparent 0,transparent var(--hh,0px),#111144 var(--hh,0px)) !important}
+html.pb-inner body div.min-h-screen.pb-cases-page > section:not(:first-child):not(#_):not(#__):not(#___){background:#111144 !important;box-shadow:0 0 0 100vmax #111144}
+html body .pb-cases-page .pb-vortex-hero:not(#_):not(#__){border-bottom-color:transparent !important}
+html body .pb-cases-page .pb-vortex-hero:not(#_):not(#__)::after{content:"";position:absolute;left:0;right:0;bottom:0;height:clamp(140px,22vh,240px);background:linear-gradient(180deg,rgba(17,17,68,0),#111144);z-index:0;pointer-events:none}

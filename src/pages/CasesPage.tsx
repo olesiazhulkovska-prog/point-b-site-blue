@@ -15,7 +15,7 @@ export const CasesPage = () => {
     [d, x] = React.useState("all"),
     p = d === "all" ? n : n.filter((f) => f.dataIndustry === d);
   return (
-    <div className="bg-[color:var(--card)] min-h-screen text-[color:var(--ink)] selection:bg-[color:var(--tint)] selection:text-[color:var(--ink)] pb-20">
+    <div className="pb-cases-page bg-[color:var(--card)] min-h-screen text-[color:var(--ink)] selection:bg-[color:var(--tint)] selection:text-[color:var(--ink)] pb-20">
       <section className="pb-vortex-hero bg-[color:var(--card)] border-b border-[color:var(--card-border)] py-24 md:py-32">
         <div className="max-w-[1680px] mx-auto px-5 sm:px-8 lg:px-12 xl:px-16">
           <div className="pb-cases-hero max-w-4xl space-y-4">
