@@ -3005,3 +3005,31 @@ html body #why-us-section:not(#_):not(#__){background:linear-gradient(180deg,#1B
 /* Cases CTA: optically centred frame (equal gaps above label / below text), button + mascot a bit higher */
 html body .pb-cases-frame:not(#_):not(#__):not(#___){padding:calc(clamp(44px,5.6vw,88px) - 14px) clamp(20px,5vw,96px) clamp(44px,5.6vw,88px)}
 html body .pb-cases-lead-wrap:not(#_):not(#__):not(#___){margin-top:clamp(130px,9.6vw,148px)}
+/* ===== case page polish (round 3) ===== */
+/* hero: blue shade starts higher so title + lead read clearly */
+html body .pb-case-hero-shade:not(#_):not(#__):not(#___){background:linear-gradient(180deg,rgba(17,17,68,.5) 0%,rgba(17,17,68,.22) 18%,rgba(17,17,68,.66) 36%,rgba(17,17,68,.9) 54%,rgba(17,17,68,.96) 76%,#111144 100%)}
+/* Було / Запит клієнта: blue card matches the left column height (desktop) */
+@media(min-width:901px){
+html body .pb-flow--both:not(#_):not(#__):not(#___){align-items:stretch}
+html body .pb-flow--both .pb-flow-l:not(#_):not(#__){display:flex;flex-direction:column}
+html body .pb-flow--both .pb-flow-pills:not(#_):not(#__){flex:1}
+html body .pb-flow--both .pb-flow-row:not(#_):not(#__){flex:1;display:flex}
+html body .pb-flow--both .pb-flow-pill:not(#_):not(#__){flex:1;align-items:center}
+html body .pb-flow--both .pb-flow-dot:not(#_):not(#__){margin-top:0}
+html body .pb-flow--both .pb-flow-r:not(#_):not(#__){display:flex;flex-direction:column;justify-content:center}
+}
+/* tabs panel: fill the space with progress + next step */
+html body .pb-tab-item[data-active="1"] .pb-tab-panel:not(#_):not(#__){display:flex;flex-direction:column;min-height:0}
+html body .pb-tab-d:not(#_):not(#__):not(#___):not(#____){font-size:19px;line-height:1.6}
+html body .pb-tab-foot:not(#_):not(#__){margin-top:auto;padding-top:28px;display:flex;align-items:center;justify-content:space-between;gap:20px;position:relative}
+html body .pb-tab-prog:not(#_):not(#__){display:flex;gap:6px}
+html body .pb-tab-prog i:not(#_):not(#__){display:block;width:28px;height:4px;border-radius:4px;background:#CDD2EB}
+html body .pb-tab-prog i[data-on="1"]:not(#_):not(#__){background:#F98513}
+html body .pb-tab-next:not(#_):not(#__){display:inline-flex;align-items:center;gap:10px;max-width:60%;text-align:left;padding:12px 18px;border-radius:999px;border:1px solid #CDD2EB;background:#F6F5F4;color:#1B2E8C;font-weight:600;font-size:15px;line-height:1.3;cursor:pointer;transition:background-color .2s,border-color .2s}
+html body .pb-tab-next span:not(#_):not(#__){color:#F98513;font-size:18px}
+@media (hover:hover){html body .pb-tab-next:hover:not(#_):not(#__){background:#fff;border-color:#F98513}}
+@media(max-width:999px){html body .pb-tab-foot:not(#_):not(#__){display:none}}
+/* result metric cards: blue text, content bottom-left */
+html body .pb-case-metric:not(#_):not(#__):not(#___){justify-content:flex-end;align-items:flex-start;text-align:left}
+html body .pb-band-white:not(#_):not(#__) :is(.pb-case-metric-h,.pb-case-metric-t):not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______):not(#_______):not(#________){color:#1B2E8C !important}
+@media(min-width:901px){html body .pb-flow--both .pb-flow-r:not(#_):not(#__):not(#___){align-self:stretch}}

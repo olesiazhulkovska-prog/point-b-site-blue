@@ -288,6 +288,23 @@ export const CaseDetailPage = ({ slug: n }) => {
                     <span className="pb-tab-ghost" aria-hidden="true">{String(f + 1).padStart(2, "0")}</span>
                     <h3 className="pb-tab-h">{Ra(p.title)}</h3>
                     <div className="pb-tab-d">{Ra(p.description)}</div>
+                    {d.whatWeDidSteps.length > 1 && (
+                      <div className="pb-tab-foot">
+                        <span className="pb-tab-prog" aria-hidden="true">
+                          {d.whatWeDidSteps.map((_, k) => (
+                            <i key={k} data-on={k <= f ? "1" : "0"} />
+                          ))}
+                        </span>
+                        <button
+                          type="button"
+                          className="pb-tab-next"
+                          onClick={() => { setStepActive((f + 1) % d.whatWeDidSteps.length); setStepAuto(false); }}
+                        >
+                          {f + 1 < d.whatWeDidSteps.length ? "Далі: " + Ra(d.whatWeDidSteps[f + 1].title) : "Почати спочатку"}
+                          <span aria-hidden="true">→</span>
+                        </button>
+                      </div>
+                    )}
                   </div>
                 </div>
               );
