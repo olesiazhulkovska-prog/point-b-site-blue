@@ -56,6 +56,15 @@ export const CaseDetailPage = ({ slug: n }) => {
     );
   const [tabsHidden, setTabsHidden] = useState(false);
   useEffect(() => {
+    const el = document.querySelector(".pb-flow");
+    if (!el || !("IntersectionObserver" in window)) { el && el.classList.add("is-in"); return; }
+    const io = new IntersectionObserver((es) => {
+      if (es[0].isIntersecting) { el.classList.add("is-in"); io.disconnect(); }
+    }, { threshold: 0.25 });
+    io.observe(el);
+    return () => io.disconnect();
+  }, [n]);
+  useEffect(() => {
     let ly = window.scrollY;
     const f = () => {
       const y = window.scrollY, dy = y - ly;
@@ -186,40 +195,54 @@ export const CaseDetailPage = ({ slug: n }) => {
       </section>
       <div className="pb-case-main">
         {((d.hasClientRequest && d.clientRequestItems && d.clientRequestItems.length > 0) ||
-          (d.hasSituationBefore && d.situationBeforeItems && d.situationBeforeItems.length > 0)) && (
-          <section className="pb-band pb-band-white"><div className="pb-wrap"><div className="pb-case-row">
-            {d.hasSituationBefore && d.situationBeforeItems && d.situationBeforeItems.length > 0 && (
-              <div id="section-situation-before" className="pb-case-card pb-case-before rounded-2xl border p-8 sm:p-10">
-                <span className="text-[13px] font-bold uppercase tracking-widest block">Було</span>
-                <h3 className="pb-case-card-t">Ситуація до впровадження</h3>
-                <ul className="space-y-3.5">
-                  {d.situationBeforeItems.map((p, f) => (
-                    <li key={f} className="flex items-start gap-3.5 text-base text-[color:var(--ink)]">
-                      <span className="pb-case-dot w-2 h-2 rounded-full mt-2 shrink-0" />
-                      <span className="leading-relaxed">{Ra(p)}</span>
-                    </li>
-                  ))}
-                </ul>
+          (d.hasSituationBefore && d.situationBeforeItems && d.situationBeforeItems.length > 0)) && (() => {
+          const before = d.hasSituationBefore && d.situationBeforeItems && d.situationBeforeItems.length > 0 ? d.situationBeforeItems : null;
+          const req = d.hasClientRequest && d.clientRequestItems && d.clientRequestItems.length > 0 ? d.clientRequestItems : null;
+          return (
+            <section className="pb-band pb-band-white"><div className="pb-wrap">
+              <div className={`pb-flow${before && req ? " pb-flow--both" : ""}`}>
+                {before && (
+                  <div id="section-situation-before" className="pb-flow-l">
+                    <span className="pb-flow-lab pb-flow-lab--o">Було</span>
+                    <div className="pb-flow-pills">
+                      {before.map((p, f) => (
+                        <div key={f} className="pb-flow-pill" style={{ "--i": f }}>
+                          <span className="pb-flow-dot" />
+                          <span>{Ra(p)}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+                {before && req && (
+                  <div className="pb-flow-mid" aria-hidden="true">
+                    <svg className="pb-flow-svg" viewBox="0 0 120 200" preserveAspectRatio="none">
+                      <path d="M2 14 C 56 14, 50 100, 104 100" />
+                      <path d="M2 186 C 56 186, 50 100, 104 100" />
+                      <path d="M2 100 H 104" />
+                      <path className="pb-flow-head" d="M92 86 L 108 100 L 92 114" />
+                    </svg>
+                    <svg className="pb-flow-down" viewBox="0 0 24 40"><path d="M12 2 V 34 M3 25 L 12 36 L 21 25" /></svg>
+                  </div>
+                )}
+                {req && (
+                  <div id="section-client-request" className="pb-flow-r">
+                    <span className="pb-flow-lab pb-flow-lab--w">Запит клієнта</span>
+                    <h3 className="pb-flow-title">Що потрібно було зробити</h3>
+                    <ul>
+                      {req.map((p, f) => (
+                        <li key={f}>
+                          <span className="pb-flow-chk"><CircleCheck /></span>
+                          <span>{Ra(p)}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
               </div>
-            )}
-            {d.hasClientRequest && d.clientRequestItems && d.clientRequestItems.length > 0 && (
-              <div id="section-client-request" className="pb-case-card rounded-2xl border p-8 sm:p-10">
-                <span className="text-[13px] font-bold uppercase tracking-widest text-[color:var(--accent-green)] block">Запит клієнта</span>
-                <h3 className="pb-case-card-t">Що потрібно було зробити</h3>
-                <ul className="space-y-3.5">
-                  {d.clientRequestItems.map((p, f) => (
-                    <li key={f} className="flex items-start gap-3.5 text-base text-[color:var(--ink)]">
-                      <div className="w-5 h-5 rounded-full bg-[color:var(--tint)] text-[color:var(--accent-green)] flex items-center justify-center shrink-0 mt-0.5">
-                        <CircleCheck className="w-4 h-4" />
-                      </div>
-                      <span className="leading-relaxed">{Ra(p)}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-          </div></div></section>
-        )}
+            </div></section>
+          );
+        })()}
         <section id="section-what-we-did" className="pb-band pb-band-grad"><div className="pb-wrap">
           <div className="mb-8">
             <span className="text-[13px] font-bold uppercase tracking-widest text-[color:var(--accent-green)]">Реалізація</span>
