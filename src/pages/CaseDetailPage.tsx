@@ -217,7 +217,6 @@ export const CaseDetailPage = ({ slug: n }) => {
               <div className={`pb-flow${before && req ? " pb-flow--both" : ""}`}>
                 {before && (
                   <div id="section-situation-before" className="pb-flow-l">
-                    <span className="pb-flow-lab pb-flow-lab--o">Було</span>
                     <div className="pb-flow-pills" style={{ gridTemplateRows: `repeat(${before.length}, 1fr)` }}>
                       {before.map((p, f) => (
                         <div key={f} className="pb-flow-row">

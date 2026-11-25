@@ -3088,3 +3088,7 @@ html body .pb-case-hero:not(#_):not(#__):not(#___){padding-bottom:calc(var(--arc
 
 /* partners: keyCRM logo pure white like the other partner logos (source PNG is warm off-white) */
 html body footer img[alt="keyCRM"]:not(#_):not(#__):not(#___){filter:brightness(0) invert(1) !important;opacity:1 !important}
+
+/* flow: blue card spans exactly from the first light-blue frame to the last */
+html body .pb-flow-row:first-child:not(#_):not(#__):not(#___){padding-top:0}
+html body .pb-flow-row:last-child:not(#_):not(#__):not(#___){padding-bottom:0}
