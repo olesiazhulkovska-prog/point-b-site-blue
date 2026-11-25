@@ -2769,3 +2769,7 @@ html body .pb-case-main > .pb-band:first-child:not(#_):not(#__){padding-top:calc
 html body .pb-case-page .pb-case-card h2:not(#_):not(#__):not(#___){font-size:clamp(22px,2.2vw,30px) !important;margin:8px 0 24px !important}
 html body .pb-case-page .pb-case-card h2:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______):not(#_______){font-size:clamp(22px,2.2vw,30px) !important;line-height:1.2 !important}
 html body .pb-case-page .pb-case-card-t:not(#_):not(#__){font-size:clamp(22px,2.2vw,30px);line-height:1.2;font-weight:700;margin:8px 0 24px;letter-spacing:-.01em;color:#111144}
+/* hero pills/cards: solid brand blue, no transparency, wrapper stays clear */
+html body .pb-case-hero-in:not(#_):not(#__) > :first-child > div:not(#_):not(#__):not(#___):not(#____){background:transparent !important;border:0 !important;backdrop-filter:none !important;-webkit-backdrop-filter:none !important}
+html body .pb-case-hero-in:not(#_):not(#__) > :first-child > div:first-child:not(#_):not(#__):not(#___):not(#____),html body .pb-case-hero-in:not(#_):not(#__) > :first-child a:not(#_):not(#__):not(#___):not(#____){background:#1B2E8C !important;border:1px solid rgba(255,255,255,.22) !important;color:#fff !important;backdrop-filter:none !important;-webkit-backdrop-filter:none !important}
+html body .pb-case-hero-in:not(#_):not(#__) > div:last-child > div:not(#_):not(#__):not(#___){background:#1B2E8C !important;backdrop-filter:none !important;-webkit-backdrop-filter:none !important;border-color:rgba(255,255,255,.22) !important}
