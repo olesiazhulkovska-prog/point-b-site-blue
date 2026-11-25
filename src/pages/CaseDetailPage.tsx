@@ -29,6 +29,16 @@ export const Ra = (n) =>
         .replace(/\bKey CRM\b/gi, "key CRM")
     : "";
 
+
+const caseMetric = (t) => {
+  const m = t.match(/(\$\s?\d+[.,]?\d*|×\s?\d+[.,]?\d*|[−\-–]\s?\d+\s?%|\d+[.,]?\d*\+?\s?(?:%|год\S*|хв|днів|дні|день|міс\S*))/i);
+  if (!m) return null;
+  const s = t.trim(), v = m[1];
+  if (s.endsWith(v)) return { n: v, l: s.slice(0, s.length - v.length).replace(/[\s=:—-]+$/, "") };
+  if (s.startsWith(v)) return { n: v, l: s.slice(v.length).replace(/^[\s=:—-]+/, "") };
+  return null;
+};
+
 export const CaseDetailPage = ({ slug: n }) => {
   var x;
   const { cases: s, navigateTo: o, openLeadModal: i } = useSite(),
@@ -40,7 +50,7 @@ export const CaseDetailPage = ({ slug: n }) => {
         p.id === `case-${n}`,
     );
   return d ? (
-    <div className="bg-[color:var(--card)] min-h-screen text-[color:var(--ink)] selection:bg-[color:var(--tint)] selection:text-[color:var(--ink)] pb-20">
+    <div className="pb-cases-page pb-case-page bg-[color:var(--card)] min-h-screen text-[color:var(--ink)] selection:bg-[color:var(--tint)] selection:text-[color:var(--ink)] pb-20">
       <div className="bg-[color:var(--card)] border-b border-[color:var(--card-border)] sticky top-20 z-30 shadow-2xs">
         <div className="max-w-[1680px] mx-auto px-5 sm:px-8 lg:px-12 xl:px-16 py-3 flex flex-wrap items-center justify-between gap-3">
           <button
@@ -139,23 +149,6 @@ export const CaseDetailPage = ({ slug: n }) => {
               </div>
             </div>
           )}
-          {d.businessValues && d.businessValues.length > 0 && (
-            <div id="case-top-business-values" className="pt-4">
-              <div className="text-[13px] font-bold uppercase tracking-widest text-[color:var(--accent-green)] mb-3">
-                Ключова цінність для бізнесу
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                {d.businessValues.map((p, f) => (
-                  <div
-                    key={f}
-                    className="p-5 rounded-xl bg-[color:var(--tint)] border border-[color:var(--card-border)] text-base sm:text-lg font-bold text-[color:var(--ink)] leading-snug"
-                  >
-                    {Ra(p)}
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
           <div className="pt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <div className="p-4 rounded-xl bg-[color:var(--card)] border border-[color:var(--card-border)]">
               <div className="flex items-center gap-1.5 text-[13px] font-semibold text-[color:var(--ink-soft)] uppercase tracking-wider mb-1">
@@ -196,222 +189,131 @@ export const CaseDetailPage = ({ slug: n }) => {
           </div>
         </div>
       </section>
-      <div className="max-w-[1680px] mx-auto px-5 sm:px-8 lg:px-12 xl:px-16 py-14 space-y-16">
-        {d.hasClientRequest &&
-          d.clientRequestItems &&
-          d.clientRequestItems.length > 0 && (
-            <section
-              id="section-client-request"
-              className="bg-[color:var(--card)] rounded-2xl border border-[color:var(--card-border)] p-8 sm:p-10 shadow-xs"
-            >
-              <div className="mb-6">
-                <span className="text-[13px] font-bold uppercase tracking-widest text-[color:var(--accent-green)]">
-                  Вихідні цілі
-                </span>
-                <h2 className="text-2xl font-bold text-[color:var(--ink)] mt-1">
-                  Запит клієнта
-                </h2>
+      <div className="pb-case-main max-w-[1680px] mx-auto px-5 sm:px-8 lg:px-12 xl:px-16 py-14 space-y-16">
+        {((d.hasClientRequest && d.clientRequestItems && d.clientRequestItems.length > 0) ||
+          (d.hasSituationBefore && d.situationBeforeItems && d.situationBeforeItems.length > 0)) && (
+          <section className="pb-case-row grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {d.hasSituationBefore && d.situationBeforeItems && d.situationBeforeItems.length > 0 && (
+              <div id="section-situation-before" className="pb-case-card pb-case-before rounded-2xl border p-8 sm:p-10">
+                <span className="text-[13px] font-bold uppercase tracking-widest block">Було</span>
+                <h2 className="text-2xl font-bold text-[color:var(--ink)] mt-1 mb-6">Ситуація до впровадження</h2>
+                <ul className="space-y-3.5">
+                  {d.situationBeforeItems.map((p, f) => (
+                    <li key={f} className="flex items-start gap-3.5 text-base text-[color:var(--ink)]">
+                      <span className="pb-case-dot w-2 h-2 rounded-full mt-2 shrink-0" />
+                      <span className="leading-relaxed">{Ra(p)}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <ul className="space-y-3.5">
-                {d.clientRequestItems.map((p, f) => (
-                  <li
-                    key={f}
-                    className="flex items-start gap-3.5 text-base sm:text-base text-[color:var(--ink)]"
-                  >
-                    <div className="w-5 h-5 rounded-full bg-[color:var(--tint)] text-[color:var(--accent-green)] flex items-center justify-center shrink-0 mt-0.5">
-                      <CircleCheck className="w-4 h-4" />
-                    </div>
-                    <span className="leading-relaxed">{Ra(p)}</span>
-                  </li>
-                ))}
-              </ul>
-            </section>
-          )}
-        {d.hasSituationBefore &&
-          d.situationBeforeItems &&
-          d.situationBeforeItems.length > 0 && (
-            <section
-              id="section-situation-before"
-              className="bg-amber-50/40 rounded-2xl border border-amber-200/80 p-8 sm:p-10"
-            >
-              <div className="mb-6">
-                <span className="text-[13px] font-bold uppercase tracking-widest text-amber-900 block">
-                  Точка А
-                </span>
-                <div className="flex items-center gap-2.5 mt-0.5">
-                  <TriangleAlert className="w-6 h-6 text-amber-700 shrink-0" />
-                  <h2 className="text-2xl font-bold text-[color:var(--ink)]">
-                    Ситуація до впровадження
-                  </h2>
-                </div>
+            )}
+            {d.hasClientRequest && d.clientRequestItems && d.clientRequestItems.length > 0 && (
+              <div id="section-client-request" className="pb-case-card rounded-2xl border p-8 sm:p-10">
+                <span className="text-[13px] font-bold uppercase tracking-widest text-[color:var(--accent-green)] block">Запит клієнта</span>
+                <h2 className="text-2xl font-bold text-[color:var(--ink)] mt-1 mb-6">Що потрібно було зробити</h2>
+                <ul className="space-y-3.5">
+                  {d.clientRequestItems.map((p, f) => (
+                    <li key={f} className="flex items-start gap-3.5 text-base text-[color:var(--ink)]">
+                      <div className="w-5 h-5 rounded-full bg-[color:var(--tint)] text-[color:var(--accent-green)] flex items-center justify-center shrink-0 mt-0.5">
+                        <CircleCheck className="w-4 h-4" />
+                      </div>
+                      <span className="leading-relaxed">{Ra(p)}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <ul className="space-y-3.5">
-                {d.situationBeforeItems.map((p, f) => (
-                  <li
-                    key={f}
-                    className="flex items-start gap-3.5 text-base sm:text-base text-[color:var(--ink)]"
-                  >
-                    <span className="w-2 h-2 rounded-full bg-amber-600 mt-2 shrink-0" />
-                    <span className="leading-relaxed">{Ra(p)}</span>
-                  </li>
-                ))}
-              </ul>
-            </section>
-          )}
-        <section
-          id="section-what-we-did"
-          className="bg-[color:var(--card)] rounded-2xl border border-[color:var(--card-border)] p-8 sm:p-10 shadow-xs"
-        >
+            )}
+          </section>
+        )}
+        <section id="section-what-we-did" className="pb-case-steps">
           <div className="mb-8">
-            <span className="text-[13px] font-bold uppercase tracking-widest text-[color:var(--accent-green)]">
-              Реалізація
-            </span>
-            <h2 className="text-2xl font-bold text-[color:var(--ink)] mt-1">
-              Що ми зробили
-            </h2>
+            <span className="text-[13px] font-bold uppercase tracking-widest text-[color:var(--accent-green)]">Реалізація</span>
+            <h2 className="text-2xl sm:text-3xl font-bold text-[color:var(--ink)] mt-1">Що ми зробили</h2>
           </div>
-          <div className="space-y-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-8">
             {d.whatWeDidSteps.map((p, f) => (
-              <div
-                key={f}
-                className="flex items-start gap-4 p-4 rounded-xl hover:bg-[color:var(--card)] border border-transparent hover:border-[color:var(--card-border)] transition-colors"
-              >
-                <div className="w-8 h-8 rounded-lg bg-[color:var(--btn-dark)] text-[color:var(--on-dark)] flex items-center justify-center font-bold text-[13px] shrink-0 mt-0.5">
+              <div key={f} className="flex items-start gap-4">
+                <div className="w-9 h-9 rounded-lg bg-[color:var(--btn-dark)] text-[color:var(--on-dark)] flex items-center justify-center font-bold text-[14px] shrink-0">
                   {f + 1}
                 </div>
                 <div className="space-y-1">
-                  <h3 className="text-base font-bold text-[color:var(--ink)]">
-                    {Ra(p.title)}
-                  </h3>
-                  <p className="text-base text-[color:var(--ink-soft)] leading-relaxed">
-                    {Ra(p.description)}
-                  </p>
+                  <h3 className="text-lg font-bold text-[color:var(--ink)]">{Ra(p.title)}</h3>
+                  <p className="text-base text-[color:var(--ink-soft)] leading-relaxed">{Ra(p.description)}</p>
                 </div>
               </div>
             ))}
           </div>
         </section>
-        <section
-          id="section-mid-cta"
-          className="rounded-3xl bg-[color:var(--card)] border border-[color:var(--card-border)] p-8 sm:p-10 flex flex-col sm:flex-row sm:items-center justify-between gap-6"
-        >
-          <div className="space-y-2 max-w-2xl">
-            <h3 className="text-xl sm:text-2xl font-extrabold text-[color:var(--ink)]">
-              Такий результат — і для вашого бізнесу
-            </h3>
-            <p className="text-base text-[color:var(--ink-soft)] leading-relaxed">
-              {d.companyName +
-                ": " +
-                (d.businessValues || []).slice(0, 2).join(" · ")}
-            </p>
-          </div>
-          <button
-            id="case-mid-cta-btn"
-            onClick={() => i(`Хочу так само, як у кейсі: ${d.companyName}`)}
-            className="w-full sm:w-auto shrink-0 px-7 py-3.5 rounded-full bg-[color:var(--btn-dark)] text-[color:var(--on-dark)] font-bold text-sm hover:bg-[color:var(--btn-dark-hover)] transition-all flex items-center justify-center gap-2"
-          >
-            <span>Хочу так само</span>
-            <ArrowRight className="w-4 h-4 text-[color:var(--accent-green)]" />
-          </button>
-        </section>
-        <section
-          id="section-result"
-          className="rounded-3xl bg-[color:var(--card)] text-[color:var(--ink)] p-8 sm:p-12 border border-[color:var(--card-border)] space-y-10"
-        >
-          <div>
-            <span className="text-[13px] font-bold uppercase tracking-widest text-[color:var(--accent-green)]">
-              Точка B
-            </span>
-            <h2 className="pb-h2 text-2xl sm:text-3xl font-extrabold text-[color:var(--ink)] mt-1 sm:tracking-tight">
+        <section id="section-result" className="pb-case-band">
+          <div className="pb-case-band-in">
+            <span className="text-[13px] font-bold uppercase tracking-widest text-[color:var(--accent-green)]">Стало</span>
+            <h2 className="pb-h2 text-3xl sm:text-4xl font-extrabold text-[color:var(--ink)] mt-1 sm:tracking-tight">
               Результати впровадження
             </h2>
             {d.resultIntro && (
-              <p className="text-[color:var(--muted)] text-base sm:text-base mt-2 leading-relaxed max-w-3xl">
-                {Ra(d.resultIntro)}
-              </p>
+              <p className="text-[color:var(--ink-soft)] text-base sm:text-lg mt-3 leading-relaxed max-w-3xl">{Ra(d.resultIntro)}</p>
             )}
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {d.resultItems.map((p, f) => (
-              <div
-                key={f}
-                className="p-5 rounded-2xl bg-[color:var(--card)] border border-[color:var(--card-border)] flex items-start gap-3"
-              >
-                <div className="w-5 h-5 rounded-full bg-[color:var(--btn-dark)] text-[color:var(--lime)] border border-[color:var(--accent-green)] flex items-center justify-center shrink-0 mt-0.5">
-                  <CircleCheck className="w-3.5 h-3.5" />
-                </div>
-                <span className="text-base text-[color:var(--ink)] leading-relaxed font-medium">
-                  {Ra(p)}
-                </span>
+            {d.businessValues && d.businessValues.length > 0 && (
+              <div className="pb-case-metrics">
+                {d.businessValues.map((p, f) => {
+                  const m = caseMetric(Ra(p));
+                  return (
+                    <div key={f} className="pb-case-metric">
+                      {m ? (
+                        <>
+                          <div className="pb-case-metric-n">{m.n}</div>
+                          <div className="pb-case-metric-l">{m.l}</div>
+                        </>
+                      ) : (
+                        <div className="pb-case-metric-t">{Ra(p)}</div>
+                      )}
+                    </div>
+                  );
+                })}
               </div>
-            ))}
-          </div>
-          <ReviewCard
-            review={
-              d.clientQuote
-                ? {
-                    ...d.clientQuote,
-                    text: Ra(d.clientQuote.text),
-                  }
-                : undefined
-            }
-          />
-          <div className="pt-2 border-t border-[color:var(--card-border)]">
-            <h3 className="text-sm font-bold uppercase tracking-wider text-[color:var(--accent-green)] mb-4 flex items-center gap-2">
-              <TrendingUp className="w-4 h-4" />
-              <span>Ключова цінність для бізнесу</span>
-            </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              {d.businessValues.map((p, f) => (
-                <div
-                  key={f}
-                  className="p-4 rounded-xl bg-[color:var(--card)] border border-[color:var(--card-border)] text-[13px] font-mono font-normal tracking-wider text-[color:var(--accent-green)] leading-relaxed"
-                >
-                  {Ra(p)}
+            )}
+            <div className="pb-case-resgrid">
+              {d.resultItems.map((p, f) => (
+                <div key={f} className="pb-case-res p-5 rounded-2xl border flex items-start gap-3">
+                  <div className="w-5 h-5 rounded-full bg-[color:var(--btn-dark)] text-[color:var(--lime)] border border-[color:var(--accent-green)] flex items-center justify-center shrink-0 mt-0.5">
+                    <CircleCheck className="w-3.5 h-3.5" />
+                  </div>
+                  <span className="text-base text-[color:var(--ink)] leading-relaxed font-medium">{Ra(p)}</span>
                 </div>
               ))}
             </div>
-          </div>
-        </section>
-        <section
-          id="section-systems-cta"
-          className="bg-[color:var(--card)] rounded-3xl border border-[color:var(--card-border)] p-8 sm:p-12 shadow-xs"
-        >
-          <div className="space-y-6">
-            <div>
-              <span className="text-[13px] font-bold uppercase tracking-widest text-[color:var(--accent-green)]">
-                Технологічний стек
-              </span>
-              <h3 className="text-xl font-bold text-[color:var(--ink)] mt-1">
-                Системи, які інтегрували
-              </h3>
-            </div>
-            <div className="p-4 rounded-xl bg-[color:var(--card)] border border-[color:var(--card-border)] text-base font-medium text-[color:var(--ink)] leading-relaxed">
-              {d.integratedSystems
-                .map((p) =>
-                  p
-                    .replace(/\bKeyCRM\b/g, "keyCRM")
-                    .replace(/\bКЕЙ СРМ\b/g, "кей СРМ"),
-                )
-                .join(" · ")}
-            </div>
-            <div className="pt-4 flex flex-col sm:flex-row items-center gap-4">
+            {d.clientQuote && d.clientQuote.text && !/Тут буде відгук/i.test(d.clientQuote.text) && (
+              <div className="mt-8">
+                <ReviewCard review={{ ...d.clientQuote, text: Ra(d.clientQuote.text) }} />
+              </div>
+            )}
+            <div id="section-mid-cta" className="pb-case-cta">
+              <div className="space-y-1.5 max-w-2xl">
+                <h3 className="text-xl sm:text-2xl font-extrabold text-[color:var(--ink)]">Такий результат — і для вашого бізнесу</h3>
+                <p className="text-base text-[color:var(--ink-soft)] leading-relaxed">
+                  Розкажіть про свої задачі, і ми покажемо, як це буде у вашій ніші.
+                </p>
+              </div>
               <button
-                id="case-cta-same-result-btn"
+                id="case-mid-cta-btn"
                 onClick={() => i(`Хочу так само, як у кейсі: ${d.companyName}`)}
-                className="w-full sm:w-auto px-7 py-3.5 rounded-full bg-[color:var(--btn-dark)] text-[color:var(--on-dark)] font-bold text-sm hover:bg-[color:var(--btn-dark-hover)] transition-all flex items-center justify-center gap-2"
+                className="pb-case-cta-btn cursor-pointer"
               >
                 <span>Хочу так само</span>
-                <ArrowRight className="w-4 h-4 text-[color:var(--accent-green)]" />
-              </button>
-              <button
-                id="case-cta-all-cases-btn"
-                onClick={() => o("cases")}
-                className="w-full sm:w-auto px-7 py-3.5 rounded-full border border-[color:var(--card-border)] text-[color:var(--ink-soft)] font-semibold text-sm hover:bg-[color:var(--card)] transition-all"
-              >
-                Усі кейси
+                <ArrowRight className="w-4 h-4" />
               </button>
             </div>
+          </div>
+        </section>
+        <section id="section-systems-cta" className="pb-case-stack">
+          <span className="text-[13px] font-bold uppercase tracking-widest text-[color:var(--accent-green)]">Технологічний стек</span>
+          <h3 className="text-xl font-bold text-[color:var(--ink)] mt-1 mb-4">Системи, які інтегрували</h3>
+          <div className="flex flex-wrap gap-2.5">
+            {d.integratedSystems.map((p, f) => (
+              <span key={f} className="pb-case-chip">
+                {p.replace(/\bKeyCRM\b/g, "keyCRM").replace(/\bКЕЙ СРМ\b/g, "кей СРМ")}
+              </span>
+            ))}
           </div>
         </section>
         <section id="case-skalar-form-section" className="pt-8 pb-4">
