@@ -2785,3 +2785,8 @@ html body .pb-case-res:not(#_):not(#__){padding:20px 22px;align-items:flex-start
 html body .pb-case-res span:not(#_):not(#__){font-size:17px;line-height:1.5;font-weight:500}
 html body .pb-case-res > div:first-child:not(#_):not(#__){background:#1B2E8C !important;color:#fff !important;border:0 !important;width:24px;height:24px;margin-top:1px}
 html body .pb-case-intro:not(#_):not(#__){margin-top:16px;max-width:48rem;font-size:clamp(17px,1.4vw,20px);line-height:1.55;color:#2A2E5C}
+/* hero data cards: white, blue icons */
+html body .pb-case-hero-in:not(#_):not(#__) > div:last-child > div:not(#_):not(#__):not(#___):not(#____){background:#FFFFFF !important;border:0 !important;box-shadow:0 12px 30px -14px rgba(17,17,68,.5)}
+html body .pb-case-hero-in:not(#_):not(#__) > div:last-child > div:not(#_):not(#__):not(#___) svg{color:#1B2E8C !important;stroke:#1B2E8C !important;opacity:1 !important}
+html body .pb-case-hero-in:not(#_):not(#__) > div:last-child > div:not(#_):not(#__):not(#___) span{color:#4A4F7A !important;text-shadow:none !important}
+html body .pb-case-hero-in:not(#_):not(#__) > div:last-child > div:not(#_):not(#__):not(#___) > div:last-child{color:#111144 !important;text-shadow:none !important}
