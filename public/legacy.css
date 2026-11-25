@@ -3085,3 +3085,6 @@ html body .pb-case-hero:not(#_):not(#__):not(#___){padding-bottom:calc(var(--arc
 
 /* === Case page responsive fixes === */
 @media (min-width:600px) and (max-width:1000px){html body .pb-case-metrics > .pb-case-metric:last-child:nth-child(odd):not(#_):not(#__){grid-column:1/-1}}
+
+/* partners: keyCRM logo pure white like the other partner logos (source PNG is warm off-white) */
+html body footer img[alt="keyCRM"]:not(#_):not(#__):not(#___){filter:brightness(0) invert(1) !important;opacity:1 !important}
