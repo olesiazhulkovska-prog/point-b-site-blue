@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Workflow, Phone, Receipt, Truck, Mail, ShoppingCart, ShoppingBag, Boxes, Factory,
   CreditCard, MessageSquareText, Store, Database, Plug, type LucideIcon,
@@ -29,24 +30,95 @@ const RULES: Rule[] = [
   { re: /api|інтеграц/i, icon: Plug, cat: "Інтеграція" },
 ];
 
-export default function IntegrationTiles({ items }: { items: string[] }) {
+const ROLES: [RegExp, string][] = [
+  [/нова\s*пошта/i, "ТТН створюється автоматично"],
+  [/укрпошта/i, "Відправлення з CRM"],
+  [/checkbox|ппро|прро/i, "Чеки без ручної роботи"],
+  [/binotel|телефон/i, "Дзвінки в картці клієнта"],
+  [/instagram|telegram|viber/i, "Заявки одразу в CRM"],
+  [/rozetka|розетка|хорошоп|horoshop|opencart|shopify|woocommerce/i, "Замовлення в одній стрічці"],
+];
+
+function norm(raw: string) {
+  return raw.replace(/\bKeyCRM\b/g, "keyCRM").replace(/\bКЕЙ СРМ\b/g, "кей СРМ");
+}
+
+function Glyph({ name }: { name: string }) {
+  const r = RULES.find((x) => x.re.test(name));
+  const Icon = r?.icon ?? (r?.brand ? undefined : Database);
   return (
-    <div className="pb-int">
-      {items.map((raw, i) => {
-        const name = raw.replace(/\bKeyCRM\b/g, "keyCRM").replace(/\bКЕЙ СРМ\b/g, "кей СРМ");
+    <span className={`pb-int-i${r?.brand ? " pb-int-i--brand" : ""}`} aria-hidden="true">
+      {r?.brand ? (
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d={r.brand.path} /></svg>
+      ) : Icon ? (
+        <Icon size={22} strokeWidth={1.9} />
+      ) : null}
+    </span>
+  );
+}
+
+export default function IntegrationTiles({ items }: { items: string[] }) {
+  const [hot, setHot] = useState<number | null>(null);
+  const names = items.map(norm);
+  const hubIdx = names.findIndex((n) => /keycrm/i.test(n));
+  const spokes = names.filter((_, i) => i !== hubIdx);
+
+  // Без keyCRM або занадто багато систем — залишаємо просту сітку
+  if (hubIdx < 0 || spokes.length < 2 || spokes.length > 10) {
+    return (
+      <div className="pb-int">
+        {names.map((name, i) => {
+          const r = RULES.find((x) => x.re.test(name));
+          return (
+            <div className="pb-int-t" key={i}>
+              <Glyph name={name} />
+              <span className="pb-int-n">{name}</span>
+              <span className="pb-int-c">{r?.cat ?? "Інтеграція"}</span>
+            </div>
+          );
+        })}
+      </div>
+    );
+  }
+
+  const n = spokes.length;
+  const pts = spokes.map((_, i) => {
+    const a = ((-90 + (360 / n) * (i + 0.5)) * Math.PI) / 180;
+    return { x: 50 + 41 * Math.cos(a), y: 50 + 39 * Math.sin(a) };
+  });
+
+  return (
+    <div className="pb-hub" onMouseLeave={() => setHot(null)}>
+      <svg className="pb-hub-l" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+        {pts.map((p, i) => (
+          <line key={i} x1="50" y1="50" x2={p.x} y2={p.y} data-on={hot === i ? "" : undefined} />
+        ))}
+      </svg>
+      <div className="pb-hub-c">
+        <Glyph name={names[hubIdx]} />
+        <b>{names[hubIdx]}</b>
+        <small>центр екосистеми</small>
+      </div>
+      {spokes.map((name, i) => {
         const r = RULES.find((x) => x.re.test(name));
-        const Icon = r?.icon ?? (r?.brand ? undefined : Database);
+        const role = ROLES.find(([re]) => re.test(name))?.[1];
         return (
-          <div className="pb-int-t" key={i}>
-            <span className={`pb-int-i${r?.brand ? " pb-int-i--brand" : ""}`} aria-hidden="true">
-              {r?.brand ? (
-                <svg viewBox="0 0 24 24" width="30" height="30" fill="currentColor"><path d={r.brand.path} /></svg>
-              ) : Icon ? (
-                <Icon size={26} strokeWidth={1.8} />
-              ) : null}
+          <div
+            key={i}
+            className="pb-hub-n"
+            data-on={hot === i ? "" : undefined}
+            style={{ left: `${pts[i].x}%`, top: `${pts[i].y}%` }}
+            tabIndex={0}
+            onMouseEnter={() => setHot(i)}
+            onFocus={() => setHot(i)}
+            onBlur={() => setHot(null)}
+          >
+            {role && <span className="pb-hub-role">{role}</span>}
+            <Glyph name={name} />
+            <span className="pb-hub-t">
+              <b>{name}</b>
+              <small>{r?.cat ?? "Інтеграція"}</small>
             </span>
-            <span className="pb-int-n">{name}</span>
-            <span className="pb-int-c">{r?.cat ?? "Інтеграція"}</span>
           </div>
         );
       })}
