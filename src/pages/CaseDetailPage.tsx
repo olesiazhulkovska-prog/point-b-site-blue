@@ -235,7 +235,7 @@ export const CaseDetailPage = ({ slug: n }) => {
                     <h3 className="pb-flow-title">Що потрібно було зробити</h3>
                     <ul>
                       {req.map((p, f) => (
-                        <li key={f}>
+                        <li key={f} style={{ "--i": f } as React.CSSProperties}>
                           <span className="pb-flow-chk"><CircleCheck /></span>
                           <span>{Ra(p)}</span>
                         </li>
