@@ -3020,7 +3020,7 @@ html body .pb-flow--both .pb-flow-r:not(#_):not(#__){display:flex;flex-direction
 }
 /* tabs panel: fill the space with progress + next step */
 html body .pb-tab-item[data-active="1"] .pb-tab-panel:not(#_):not(#__){display:flex;flex-direction:column;min-height:0}
-html body .pb-tab-d:not(#_):not(#__):not(#___):not(#____){font-size:19px;line-height:1.6}
+@media (min-width:1000px){html body .pb-tab-d:not(#_):not(#__):not(#___):not(#____){font-size:19px;line-height:1.6}}
 html body .pb-tab-foot:not(#_):not(#__){margin-top:auto;padding-top:28px;display:flex;align-items:center;justify-content:space-between;gap:20px;position:relative}
 html body .pb-tab-prog:not(#_):not(#__){display:flex;gap:6px}
 html body .pb-tab-prog i:not(#_):not(#__){display:block;width:28px;height:4px;border-radius:4px;background:#CDD2EB}
@@ -3068,3 +3068,6 @@ html body .pb-more-bg:not(#_):not(#__){position:absolute;inset:0;z-index:-1}
 html body .pb-more-bg img:not(#_):not(#__){position:absolute;inset:0;width:100%;height:100%;object-fit:cover;max-width:none;transform:scale(1.04);transition:transform .6s ease}
 html body .pb-more-bg:not(#_):not(#__)::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(17,17,68,.45) 0%,rgba(17,17,68,.78) 55%,rgba(17,17,68,.95) 100%)}
 @media (hover:hover){html body .pb-more-case:hover .pb-more-bg img:not(#_):not(#__){transform:scale(1.1)}}
+
+/* === Case page responsive fixes === */
+@media (min-width:600px) and (max-width:1000px){html body .pb-case-metrics > .pb-case-metric:last-child:nth-child(odd):not(#_):not(#__){grid-column:1/-1}}
