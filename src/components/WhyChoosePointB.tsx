@@ -515,7 +515,8 @@ export const C_ag = ({
           </svg>
           {[
             {
-              top: "10.25%",
+              top: "8.75%",
+              h: "22%",
               icon: <Inbox className="w-[2cqw] h-[2cqw]" />,
               label: "Сайт",
               sub: (
@@ -573,7 +574,7 @@ export const C_ag = ({
                 left: 0,
                 top: X.top,
                 width: "23.4%",
-                height: "19%",
+                height: X.h || "19%",
                 opacity: y,
                 x: j,
               }}
