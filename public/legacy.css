@@ -3081,7 +3081,7 @@ html body .pb-more-go svg:not(#_):not(#__){transform:rotate(-45deg);transition:t
 }
 
 /* hero: lift content + white cards up from the bottom edge */
-html body .pb-case-hero:not(#_):not(#__):not(#___){padding-bottom:calc(var(--arc) + 96px)}
+html body .pb-case-hero:not(#_):not(#__):not(#___){padding-bottom:calc(var(--arc) + 150px)}
 
 /* === Case page responsive fixes === */
 @media (min-width:600px) and (max-width:1000px){html body .pb-case-metrics > .pb-case-metric:last-child:nth-child(odd):not(#_):not(#__){grid-column:1/-1}}
