@@ -2814,10 +2814,6 @@ html body .pb-flow-lab--w:not(#_):not(#__){color:#F98513}
 html body .pb-flow-pills:not(#_):not(#__){display:flex;flex-direction:column;gap:14px}
 html body .pb-flow-pill:not(#_):not(#__){display:flex;align-items:flex-start;gap:12px;background:#fff;border:1px solid #F5C59B;border-radius:22px;padding:16px 20px;color:#1B2E8C;font-size:17px;line-height:1.45;box-shadow:0 10px 24px -16px rgba(17,17,68,.35);transition:transform .8s cubic-bezier(.2,.7,.2,1),opacity .6s;transition-delay:calc(var(--i,0)*90ms);opacity:0;transform:translateX(calc((var(--i,0) % 2 * 2 - 1) * -26px)) rotate(calc((var(--i,0) % 2 * 2 - 1) * -4deg))}
 html body .pb-flow.is-in .pb-flow-pill:not(#_):not(#__){opacity:1}
-html body .pb-flow.is-in .pb-flow-pill:nth-child(4n+1):not(#_):not(#__){transform:translateX(-8px) rotate(-1.4deg)}
-html body .pb-flow.is-in .pb-flow-pill:nth-child(4n+2):not(#_):not(#__){transform:translateX(10px) rotate(1.1deg)}
-html body .pb-flow.is-in .pb-flow-pill:nth-child(4n+3):not(#_):not(#__){transform:translateX(-4px) rotate(-.8deg)}
-html body .pb-flow.is-in .pb-flow-pill:nth-child(4n+4):not(#_):not(#__){transform:translateX(12px) rotate(1.5deg)}
 html body .pb-flow-dot:not(#_):not(#__){flex:none;width:9px;height:9px;border-radius:50%;background:#F98513;margin-top:8px}
 html body .pb-flow-mid:not(#_):not(#__){align-self:stretch;display:flex;align-items:center;justify-content:center;min-height:120px}
 html body .pb-flow-svg:not(#_):not(#__){width:100%;height:100%;min-height:160px;fill:none;stroke:#F98513;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;overflow:visible}
@@ -2835,3 +2831,21 @@ html body .pb-flow.is-in .pb-flow-svg path:not(#_):not(#__){animation:pbFlowDraw
 @media (prefers-reduced-motion:reduce){html body .pb-flow-pill:not(#_):not(#__){opacity:1;transition:none}html body .pb-flow-svg path:not(#_):not(#__){stroke-dashoffset:0;animation:none !important}}
 @media(max-width:900px){html body .pb-flow--both:not(#_):not(#__){grid-template-columns:1fr;gap:20px}html body .pb-flow-svg:not(#_):not(#__){display:none}html body .pb-flow-down:not(#_):not(#__){display:block}html body .pb-flow-mid:not(#_):not(#__){min-height:0}}
 html body .pb-case-page .pb-flow-r h3.pb-flow-title:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______),html body .pb-case-page .pb-band-white .pb-flow-r h3.pb-flow-title:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______){color:#fff !important;-webkit-text-fill-color:#fff !important}
+
+/* straight connectors */
+html body .pb-flow--both:not(#_):not(#__){grid-template-columns:minmax(0,1fr) 88px minmax(0,1fr);gap:0}
+html body .pb-flow-pills:not(#_):not(#__){gap:14px}
+html body .pb-flow-row:not(#_):not(#__){position:relative}
+html body .pb-flow-row .pb-flow-tick:not(#_):not(#__){position:absolute;left:100%;top:50%;width:44px;height:2px;margin-top:-1px;background:#F98513;transform-origin:left;transform:scaleX(0);transition:transform .5s ease .5s}
+html body .pb-flow.is-in .pb-flow-tick:not(#_):not(#__){transform:scaleX(1)}
+html body .pb-flow-arrow:not(#_):not(#__){position:absolute;top:50%;left:44px;right:0;height:2px;margin-top:-1px;background:#F98513;transform-origin:left;transform:scaleX(0);transition:transform .5s ease 1s}
+html body .pb-flow-arrow:not(#_):not(#__)::after{content:"";position:absolute;right:0;top:-7px;border-left:12px solid #F98513;border-top:8px solid transparent;border-bottom:8px solid transparent}
+html body .pb-flow.is-in .pb-flow-arrow:not(#_):not(#__){transform:scaleX(1)}
+html body .pb-flow-mid:not(#_):not(#__){position:relative}
+@media(max-width:900px){html body .pb-flow-tick:not(#_):not(#__),html body .pb-flow-arrow:not(#_):not(#__){display:none}html body .pb-flow--both:not(#_):not(#__){grid-template-columns:1fr}}
+html body .pb-flow--both .pb-flow-row:not(#_):not(#__)::after{content:"";position:absolute;left:calc(100% + 43px);width:2px;background:#F98513;top:-14px;bottom:-14px;opacity:0;transition:opacity .4s ease .9s}
+html body .pb-flow--both .pb-flow-row:first-child:not(#_):not(#__)::after{top:50%}
+html body .pb-flow--both .pb-flow-row:last-child:not(#_):not(#__)::after{bottom:50%}
+html body .pb-flow--both .pb-flow-row:only-child:not(#_):not(#__)::after{display:none}
+html body .pb-flow.is-in .pb-flow-row:not(#_):not(#__)::after{opacity:1}
+@media(max-width:900px){html body .pb-flow-row:not(#_):not(#__)::after{display:none !important}}

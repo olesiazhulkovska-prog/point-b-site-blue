@@ -206,9 +206,12 @@ export const CaseDetailPage = ({ slug: n }) => {
                     <span className="pb-flow-lab pb-flow-lab--o">Було</span>
                     <div className="pb-flow-pills">
                       {before.map((p, f) => (
-                        <div key={f} className="pb-flow-pill" style={{ "--i": f }}>
-                          <span className="pb-flow-dot" />
-                          <span>{Ra(p)}</span>
+                        <div key={f} className="pb-flow-row">
+                          <div className="pb-flow-pill" style={{ "--i": f } as React.CSSProperties}>
+                            <span className="pb-flow-dot" />
+                            <span>{Ra(p)}</span>
+                          </div>
+                          <span className="pb-flow-tick" />
                         </div>
                       ))}
                     </div>
@@ -216,12 +219,7 @@ export const CaseDetailPage = ({ slug: n }) => {
                 )}
                 {before && req && (
                   <div className="pb-flow-mid" aria-hidden="true">
-                    <svg className="pb-flow-svg" viewBox="0 0 120 200" preserveAspectRatio="none">
-                      <path d="M2 14 C 56 14, 50 100, 104 100" />
-                      <path d="M2 186 C 56 186, 50 100, 104 100" />
-                      <path d="M2 100 H 104" />
-                      <path className="pb-flow-head" d="M92 86 L 108 100 L 92 114" />
-                    </svg>
+                    <span className="pb-flow-arrow" />
                     <svg className="pb-flow-down" viewBox="0 0 24 40"><path d="M12 2 V 34 M3 25 L 12 36 L 21 25" /></svg>
                   </div>
                 )}
