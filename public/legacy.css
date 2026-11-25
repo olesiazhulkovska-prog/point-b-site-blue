@@ -2872,3 +2872,4 @@ html body .pb-flow--both .pb-flow-row:not(#_):not(#__)::after,html body .pb-flow
 @media(max-width:900px){html body .pb-flow--both:not(#_):not(#__){grid-template-columns:1fr}}
 html body .pb-flow-pill:not(#_):not(#__){background:#E4E7F6;border-color:rgba(36,49,164,.45)}
 html body .pb-flow-arrow:not(#_):not(#__){display:none !important}
+html body .pb-flow-svg:not(#_):not(#__){stroke:#F98513;stroke-width:1.5}
