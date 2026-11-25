@@ -138,6 +138,16 @@
             h = e.offsetHeight;
           if (Math.abs(w - h) <= 2 && w <= 64 && w > 0)
             ops.push(e, "border-radius", "50%");
+          else if (
+            r.indexOf("%") < 0 &&
+            h >= 24 && h <= 84 && w > h * 1.3 &&
+            (e.classList.contains("rounded-full") ||
+              ((tag === "BUTTON" || tag === "A") && !e.closest(".pb-more-case, .pb-int, .pb-hub"))) &&
+            !e.matches(".pb-tab, [role=tab]") &&
+            getComputedStyle(e).backgroundColor !== "rgba(0, 0, 0, 0)"
+          )
+            /* one pill radius for every button / chip (Tailwind rounded-full was being flattened to 24px) */
+            ops.push(e, "border-radius", "999px");
           else if (r.indexOf("%") < 0)
             /* big blocks never get a pill/oval radius, even if an ancestor leaks --radius:999px */
             ops.push(e, "border-radius", w > 64 && h > 64 ? "min(var(--radius), 32px)" : "var(--radius)");
