@@ -58,6 +58,25 @@ export const CaseDetailPage = ({ slug: n }) => {
   const [tabsHidden, setTabsHidden] = useState(false);
   const [stepActive, setStepActive] = useState(0);
   const [stepAuto, setStepAuto] = useState(true);
+  const [stepRun, setStepRun] = useState(0);
+  /* "Що ми зробили": завжди стартує з першого кроку, коли блок з'являється у в'юпорті; поза екраном — стоїть на 1 і не крутиться */
+  useEffect(() => {
+    const el = document.querySelector("#section-what-we-did .pb-tabs");
+    if (!el || !("IntersectionObserver" in window)) return;
+    const io = new IntersectionObserver((es) => {
+      const e = es[es.length - 1];
+      if (e.isIntersecting && e.intersectionRatio >= 0.3) {
+        setStepActive(0);
+        setStepAuto(true);
+        setStepRun((r) => r + 1);
+      } else if (!e.isIntersecting) {
+        setStepActive(0);
+        setStepAuto(false);
+      }
+    }, { threshold: [0, 0.3] });
+    io.observe(el);
+    return () => io.disconnect();
+  }, [d && d.slug]);
   useEffect(() => {
     const el = document.querySelector(".pb-path");
     if (!el || !("IntersectionObserver" in window)) { el && el.classList.add("is-in"); return; }
@@ -280,7 +299,7 @@ export const CaseDetailPage = ({ slug: n }) => {
                     <span className="pb-tab-n">{f + 1}</span>
                     <span className="pb-tab-t">{Ra(p.title)}</span>
                     {on && stepAuto && (
-                      <span className="pb-tab-bar" onAnimationEnd={() => setStepActive((f + 1) % d.whatWeDidSteps.length)} />
+                      <span key={stepRun} className="pb-tab-bar" onAnimationEnd={() => setStepActive((f + 1) % d.whatWeDidSteps.length)} />
                     )}
                   </button>
                   <div id={`pb-tabp-${f}`} className="pb-tab-panel" role="region">
