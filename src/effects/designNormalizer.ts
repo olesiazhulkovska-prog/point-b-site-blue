@@ -139,7 +139,8 @@
           if (Math.abs(w - h) <= 2 && w <= 64 && w > 0)
             ops.push(e, "border-radius", "50%");
           else if (r.indexOf("%") < 0)
-            ops.push(e, "border-radius", "var(--radius)");
+            /* big blocks never get a pill/oval radius, even if an ancestor leaks --radius:999px */
+            ops.push(e, "border-radius", w > 64 && h > 64 ? "min(var(--radius), 32px)" : "var(--radius)");
           else if (rv === 50 && Math.abs(w - h) > 2)
             ops.push(e, "border-radius", "var(--radius)");
         }
