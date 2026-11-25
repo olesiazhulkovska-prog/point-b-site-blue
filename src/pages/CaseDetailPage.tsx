@@ -17,6 +17,7 @@ import {
 import { useSite } from "../context/SiteContext";
 import { ReviewCard } from "../components/ReviewCard";
 import { LeadForm } from "../components/LeadForm";
+import { HOME_REVIEWS } from "../data/homeReviews";
 
 export const Ra = (n) =>
   n
@@ -282,11 +283,17 @@ export const CaseDetailPage = ({ slug: n }) => {
                 </div>
               ))}
             </div>
-            {d.clientQuote && d.clientQuote.text && !/Тут буде відгук/i.test(d.clientQuote.text) && (
-              <div className="mt-8">
-                <ReviewCard review={{ ...d.clientQuote, text: Ra(d.clientQuote.text) }} />
-              </div>
-            )}
+            {(() => {
+              const own = d.clientQuote && d.clientQuote.text && !/Тут буде відгук/i.test(d.clientQuote.text) ? d.clientQuote : null;
+              const nm = (d.companyName || "").toLowerCase();
+              const home = own ? null : HOME_REVIEWS.find((r) => nm && r.role.toLowerCase().includes(nm));
+              const r = own || home;
+              return r ? (
+                <div className="mt-8 pb-case-review">
+                  <ReviewCard review={{ ...r, text: Ra(r.text) }} />
+                </div>
+              ) : null;
+            })()}
             <div id="section-mid-cta" className="pb-case-cta">
               <div className="space-y-1.5 max-w-2xl">
                 <h3 className="text-xl sm:text-2xl font-extrabold text-[color:var(--ink)]">Такий результат — і для вашого бізнесу</h3>

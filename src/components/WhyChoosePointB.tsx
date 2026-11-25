@@ -43,6 +43,7 @@ import { DeferMount } from "./DeferMount";
 import { FadeInOnView } from "../shared/FadeInOnView";
 import { CaseCard } from "./CaseCard";
 import { ReviewCard } from "./ReviewCard";
+import { HOME_REVIEWS } from "../data/homeReviews";
 import { TG_URL } from "../data/data";
 export const PBP = {
   Хорошоп: "img",
@@ -2312,26 +2313,7 @@ export const WhyChoosePointB = () => {
   const f = o.filter((A) => A.showOnHome).slice(0, 3),
     b = f.length > 0 ? f : o.slice(0, 3),
     y = [...b, ...o.filter((A) => !b.some((U) => U.id === A.id))].slice(0, 4),
-    j = [
-      {
-        text: "Ми дуже задоволені співпрацею! Усі налаштування CRM були виконані чітко та у строки, система працює саме так, як ми і планували. Команда із задоволенням працює в новій CRM — процеси стали простішими та прозорішими. Дякуємо за професіоналізм і увагу до деталей!",
-        author: "Руслан Тольба",
-        role: "СЕО та співвласник Ukrainian Solar",
-        photo: "/assets/rev-ruslan-v3.webp",
-      },
-      {
-        text: "Point B не просто підключили CRM, а зробили так, щоб вона лягла на наші внутрішні процеси.",
-        author: "Кріс Художнікова",
-        role: "Директорка з маркетингу Minelly",
-        photo: "/assets/rev-kris-v3.webp",
-      },
-      {
-        text: "Команда завжди на зв’язку, моментально реагує на всі запитання та уточнення. Також деталізовані та продумані брифи — це суттєво зекономило наш час при наданій інформації.",
-        author: "Катерина Кушнірьова",
-        role: "Співвласниця Osik Barefoot",
-        photo: "/assets/rev-kateryna-v3.webp",
-      },
-    ],
+    j = HOME_REVIEWS,
     h = [
       {
         id: "crm",

@@ -2706,3 +2706,4 @@ html body .pb-case-metrics:not(#_):not(#__){display:grid;grid-template-columns:r
 html body .pb-case-resgrid:not(#_):not(#__){display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:16px;margin-top:20px}
 html body .pb-case-row:not(#_):not(#__){display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:24px}
 html body .pb-case-card:not(#_):not(#__){align-self:stretch}
+html body .pb-case-review:not(#_):not(#__){margin-top:32px}
