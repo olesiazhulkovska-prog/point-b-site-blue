@@ -8,7 +8,6 @@ import "./footerRibbonGlow";
 import "./designNormalizer";
 import "./landscapeDiagramFit";
 import "./ctaVortex";
-import "./casesVortex";
 import "./partnersMarquee";
 import "./heroSchemeStretch";
 import "./heroGraphFreeze";
