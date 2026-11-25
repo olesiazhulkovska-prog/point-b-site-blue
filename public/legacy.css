@@ -3101,3 +3101,10 @@ html body .pb-cases-shade{position:absolute;inset:0;background:radial-gradient(e
 @media(max-width:760px){html body .pb-cases-shade{background:radial-gradient(ellipse 120% 90% at 50% 50%,rgba(17,17,68,.94) 0%,rgba(17,17,68,.88) 55%,rgba(17,17,68,.4) 100%)}}
 @media(prefers-reduced-motion:reduce){html body .pb-cases-bg video{display:none}}
 html body .pb-vortex-hero:not(#_):not(#__) > div:not(.pbx-vortex):not(.pb-cases-bg){position:relative;z-index:1;width:100%}
+
+/* cases page (≥761px): less empty space between the contact card and the partners marquee (end spacer 240 → 160, no extra page/footer padding) */
+@media(min-width:761px){
+  html body .pb-cases-page:not(#_):not(#__){padding-bottom:0}
+  html body .pb-cases-end:not(#_):not(#__):not(#___){height:160px}
+  html body:has(.pb-cases-page) #site-footer:not(#_):not(#__){padding-top:0}
+}
