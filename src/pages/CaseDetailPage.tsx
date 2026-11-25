@@ -204,14 +204,13 @@ export const CaseDetailPage = ({ slug: n }) => {
                 {before && (
                   <div id="section-situation-before" className="pb-flow-l">
                     <span className="pb-flow-lab pb-flow-lab--o">Було</span>
-                    <div className="pb-flow-pills">
+                    <div className="pb-flow-pills" style={{ gridTemplateRows: `repeat(${before.length}, 1fr)` }}>
                       {before.map((p, f) => (
                         <div key={f} className="pb-flow-row">
                           <div className="pb-flow-pill" style={{ "--i": f } as React.CSSProperties}>
                             <span className="pb-flow-dot" />
                             <span>{Ra(p)}</span>
                           </div>
-                          <span className="pb-flow-tick" />
                         </div>
                       ))}
                     </div>
@@ -219,6 +218,12 @@ export const CaseDetailPage = ({ slug: n }) => {
                 )}
                 {before && req && (
                   <div className="pb-flow-mid" aria-hidden="true">
+                    <svg className="pb-flow-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+                      {before.map((_, k) => {
+                        const y = ((k + 0.5) / before.length) * 100;
+                        return <path key={k} d={`M0 ${y} C55 ${y} 45 50 100 50`} />;
+                      })}
+                    </svg>
                     <span className="pb-flow-arrow" />
                     <svg className="pb-flow-down" viewBox="0 0 24 40"><path d="M12 2 V 34 M3 25 L 12 36 L 21 25" /></svg>
                   </div>
