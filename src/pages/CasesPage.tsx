@@ -19,7 +19,7 @@ export const CasesPage = () => {
       <section className="pb-vortex-hero bg-[color:var(--card)] border-b border-[color:var(--card-border)] py-24 md:py-32">
         <div className="max-w-[1680px] mx-auto px-5 sm:px-8 lg:px-12 xl:px-16">
           <div className="pb-cases-hero max-w-4xl space-y-4">
-            <span className="inline-block px-3 py-1 rounded-full text-[13px] font-semibold bg-[color:var(--tint)] text-[color:var(--ink)] border border-[color:var(--card-border)]">
+            <span className="pb-cases-pill inline-block px-3 py-1 rounded-full text-[13px] font-semibold bg-[color:var(--tint)] text-[color:var(--ink)] border border-[color:var(--card-border)]">
               Портфоліо та результати
             </span>
             <h1 className="pb-h2 text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[color:var(--ink)] sm:tracking-tight leading-tight">

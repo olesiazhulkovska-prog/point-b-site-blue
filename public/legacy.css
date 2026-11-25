@@ -2682,3 +2682,5 @@ html.pb-inner body main > div.min-h-screen.pb-cases-page:not(#_):not(#__):not(#_
 html.pb-inner body div.min-h-screen.pb-cases-page > section:not(:first-child):not(#_):not(#__):not(#___){background:#111144 !important;box-shadow:0 0 0 100vmax #111144}
 html body .pb-cases-page .pb-vortex-hero:not(#_):not(#__){border-bottom-color:transparent !important}
 html body .pb-cases-page .pb-vortex-hero:not(#_):not(#__)::after{content:"";position:absolute;left:0;right:0;bottom:0;height:clamp(140px,22vh,240px);background:linear-gradient(180deg,rgba(17,17,68,0),#111144);z-index:0;pointer-events:none}
+html body .pb-cases-pill:not(#_):not(#__):not(#___){background:#F98513 !important;color:#111144 !important;border-color:transparent !important}
+html body .pb-vortex-hero:not(#_):not(#__) > .pbx-vortex:not(#_):not(#__):not(#___){background:#111144 linear-gradient(180deg,#18267A 0%,#141D68 30%,#111144 58%) !important}
