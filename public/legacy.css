@@ -2894,3 +2894,4 @@ html body .pb-int-i--brand:not(#_):not(#__){background:#1B2E8C;border-color:#1B2
 html body .pb-int-n:not(#_):not(#__){font-weight:700;font-size:16px;line-height:1.25;color:#111144}
 html body .pb-int-c:not(#_):not(#__){font-size:13px;line-height:1.2;color:#1B2E8C;opacity:.8}
 @media(max-width:600px){html body .pb-int:not(#_):not(#__){grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}}
+html body .pb-int-i:not(#_):not(#__){background:#1B2E8C;border-color:#1B2E8C;color:#fff}
