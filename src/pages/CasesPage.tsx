@@ -5,6 +5,22 @@ import { ArrowRight, Funnel } from "lucide-react";
 import { useSite } from "../context/SiteContext";
 import { CaseCard } from "../components/CaseCard";
 
+/* hero background video (webm; iPhone/iPad get an H.264 mp4 made by the CDN) */
+const HERO_VIDEO =
+  "https://res.cloudinary.com/dset5uqua/video/upload/v1795632639/gemini_generated_video_5f1b0270_hgvgur.webm";
+function heroVideoSources(url: string) {
+  const webm = { src: url, type: "video/webm" };
+  const mp4 = {
+    src: url.replace("/upload/", "/upload/f_mp4,vc_h264,q_auto:eco/").replace(/\.webm$/, ".mp4"),
+    type: "video/mp4",
+  };
+  const ios =
+    typeof navigator !== "undefined" &&
+    (/iPhone|iPad|iPod/.test(navigator.userAgent) ||
+      (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1));
+  return ios ? [mp4, webm] : [webm, mp4];
+}
+
 export const CasesPage = () => {
   const {
       cases: n,
@@ -17,6 +33,14 @@ export const CasesPage = () => {
   return (
     <div className="pb-cases-page bg-[color:var(--card)] min-h-screen text-[color:var(--ink)] selection:bg-[color:var(--tint)] selection:text-[color:var(--ink)] pb-20">
       <section className="pb-vortex-hero bg-[color:var(--card)] border-b border-[color:var(--card-border)] py-24 md:py-32">
+        <div className="pb-cases-bg" aria-hidden="true">
+          <video muted loop playsInline autoPlay preload="auto" tabIndex={-1}>
+            {heroVideoSources(HERO_VIDEO).map((x) => (
+              <source key={x.type} src={x.src} type={x.type} />
+            ))}
+          </video>
+          <span className="pb-cases-shade" />
+        </div>
         <div className="max-w-[1680px] mx-auto px-5 sm:px-8 lg:px-12 xl:px-16">
           <div className="pb-cases-hero max-w-4xl space-y-4">
             <span className="pb-cases-pill inline-block px-3 py-1 rounded-full text-[13px] font-semibold bg-[color:var(--tint)] text-[color:var(--ink)] border border-[color:var(--card-border)]">

@@ -3092,3 +3092,12 @@ html body footer img[alt="keyCRM"]:not(#_):not(#__):not(#___){filter:brightness(
 /* flow: blue card spans exactly from the first light-blue frame to the last */
 html body .pb-flow-row:first-child:not(#_):not(#__):not(#___){padding-top:0}
 html body .pb-flow-row:last-child:not(#_):not(#__):not(#___){padding-bottom:0}
+
+/* ── Cases hero: video background + #111144 shade (92% centre → 30% edges) so text stays readable on any video / on mobile ── */
+html body .pb-vortex-hero:not(#_):not(#__){background:#111144}
+html body .pb-vortex-hero:not(#_):not(#__) > .pb-cases-bg:not(#___){position:absolute !important;inset:0 !important;width:auto !important;z-index:0 !important;pointer-events:none;overflow:hidden}
+html body .pb-cases-bg video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+html body .pb-cases-shade{position:absolute;inset:0;background:radial-gradient(ellipse 75% 85% at 50% 50%,rgba(17,17,68,.92) 0%,rgba(17,17,68,.88) 42%,rgba(17,17,68,.3) 100%)}
+@media(max-width:760px){html body .pb-cases-shade{background:radial-gradient(ellipse 120% 90% at 50% 50%,rgba(17,17,68,.94) 0%,rgba(17,17,68,.88) 55%,rgba(17,17,68,.4) 100%)}}
+@media(prefers-reduced-motion:reduce){html body .pb-cases-bg video{display:none}}
+html body .pb-vortex-hero:not(#_):not(#__) > div:not(.pbx-vortex):not(.pb-cases-bg){position:relative;z-index:1;width:100%}
