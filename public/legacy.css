@@ -3002,3 +3002,6 @@ html body .pb-tab-d:not(#_):not(#__):not(#___){font-size:15px;line-height:1.6;co
 /* "Чому обирають": clean gradient like the cases block, no glow blobs */
 html body #why-us-section:not(#_):not(#__):not(#___)::before,html body #why-us-section:not(#_):not(#__):not(#___)::after{display:none !important;content:none !important;animation:none !important}
 html body #why-us-section:not(#_):not(#__){background:linear-gradient(180deg,#1B2E8C 0%,#111144 100%) !important}
+/* Cases CTA: optically centred frame (equal gaps above label / below text), button + mascot a bit higher */
+html body .pb-cases-frame:not(#_):not(#__):not(#___){padding:calc(clamp(44px,5.6vw,88px) - 14px) clamp(20px,5vw,96px) clamp(44px,5.6vw,88px)}
+html body .pb-cases-lead-wrap:not(#_):not(#__):not(#___){margin-top:clamp(130px,9.6vw,148px)}
