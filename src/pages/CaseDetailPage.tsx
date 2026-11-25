@@ -34,7 +34,10 @@ export const Ra = (n) =>
 
 const caseMetric = (t) => {
   const m = t.match(/(\$\s?\d+[.,]?\d*|×\s?\d+[.,]?\d*|[−\-–]\s?\d+\s?%|\d+[.,]?\d*\+?\s?(?:%|год\S*|хв|днів|дні|день|міс\S*))/i);
-  if (!m) return null;
+  if (!m) {
+    const k = t.indexOf(" = ");
+    return k > 0 ? { h: t.slice(0, k).trim(), l: t.slice(k + 3).trim() } : null;
+  }
   const s = t.trim(), v = m[1];
   if (s.endsWith(v)) return { n: v, l: s.slice(0, s.length - v.length).replace(/[\s=:—-]+$/, "") };
   if (s.startsWith(v)) return { n: v, l: s.slice(v.length).replace(/^[\s=:—-]+/, "") };
@@ -243,7 +246,7 @@ export const CaseDetailPage = ({ slug: n }) => {
               Результати впровадження
             </h2>
             {d.resultIntro && (
-              <p className="text-[color:var(--ink-soft)] text-base sm:text-lg mt-3 leading-relaxed max-w-3xl">{Ra(d.resultIntro)}</p>
+              <div className="pb-case-intro">{Ra(d.resultIntro)}</div>
             )}
             {d.businessValues && d.businessValues.length > 0 && (
               <div className="pb-case-metrics">
@@ -251,7 +254,12 @@ export const CaseDetailPage = ({ slug: n }) => {
                   const m = caseMetric(Ra(p));
                   return (
                     <div key={f} className="pb-case-metric">
-                      {m ? (
+                      {m && m.h ? (
+                        <>
+                          <div className="pb-case-metric-h">{m.h}</div>
+                          <div className="pb-case-metric-l">{m.l}</div>
+                        </>
+                      ) : m ? (
                         <>
                           <div className="pb-case-metric-n">{m.n}</div>
                           <div className="pb-case-metric-l">{m.l}</div>

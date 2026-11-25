@@ -2773,3 +2773,15 @@ html body .pb-case-page .pb-case-card-t:not(#_):not(#__){font-size:clamp(22px,2.
 html body .pb-case-hero-in:not(#_):not(#__) > :first-child > div:not(#_):not(#__):not(#___):not(#____){background:transparent !important;border:0 !important;backdrop-filter:none !important;-webkit-backdrop-filter:none !important}
 html body .pb-case-hero-in:not(#_):not(#__) > :first-child > div:first-child:not(#_):not(#__):not(#___):not(#____),html body .pb-case-hero-in:not(#_):not(#__) > :first-child a:not(#_):not(#__):not(#___):not(#____){background:#1B2E8C !important;border:1px solid rgba(255,255,255,.22) !important;color:#fff !important;backdrop-filter:none !important;-webkit-backdrop-filter:none !important}
 html body .pb-case-hero-in:not(#_):not(#__) > div:last-child > div:not(#_):not(#__):not(#___){background:#1B2E8C !important;backdrop-filter:none !important;-webkit-backdrop-filter:none !important;border-color:rgba(255,255,255,.22) !important}
+/* result block readability */
+html body .pb-case-page #section-result h2 + p:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______){color:#2A2E5C !important;font-size:clamp(17px,1.4vw,20px) !important;line-height:1.55 !important;max-width:48rem}
+html body .pb-case-metric:not(#_):not(#__){justify-content:flex-start;gap:10px;padding:26px 24px}
+html body .pb-case-metric-h:not(#_):not(#__){font-size:clamp(19px,1.6vw,23px);font-weight:800;line-height:1.2;color:#111144}
+html body .pb-case-metric-n:not(#_):not(#__){margin-top:auto}
+html body .pb-band-white .pb-case-metric-l:not(#_):not(#__){font-size:16px;line-height:1.45;color:#2A2E5C}
+html body .pb-case-metrics:not(#_):not(#__){margin-bottom:12px}
+html body .pb-case-resgrid:not(#_):not(#__){grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));margin-top:28px}
+html body .pb-case-res:not(#_):not(#__){padding:20px 22px;align-items:flex-start}
+html body .pb-case-res span:not(#_):not(#__){font-size:17px;line-height:1.5;font-weight:500}
+html body .pb-case-res > div:first-child:not(#_):not(#__){background:#1B2E8C !important;color:#fff !important;border:0 !important;width:24px;height:24px;margin-top:1px}
+html body .pb-case-intro:not(#_):not(#__){margin-top:16px;max-width:48rem;font-size:clamp(17px,1.4vw,20px);line-height:1.55;color:#2A2E5C}
