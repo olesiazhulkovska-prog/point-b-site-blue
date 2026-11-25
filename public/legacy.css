@@ -2903,3 +2903,17 @@ html body .pb-flow-chk svg:not(#_):not(#__){opacity:0;transform:scale(.4);transi
 html body .pb-flow.is-in .pb-flow-r .pb-flow-chk:not(#_):not(#__):not(#___):not(#____):not(#_____){background:#F98513;box-shadow:inset 0 0 0 2px #F98513}
 html body .pb-flow.is-in .pb-flow-chk svg:not(#_):not(#__){opacity:1;transform:scale(1)}
 @media (prefers-reduced-motion:reduce){html body .pb-flow-r li:not(#_):not(#__),html body .pb-flow-chk:not(#_):not(#__),html body .pb-flow-chk svg:not(#_):not(#__){transition:none !important;opacity:1 !important;transform:none !important}html body .pb-band-white .pb-flow-r .pb-flow-chk:not(#_):not(#__):not(#___):not(#____){background:#F98513}}
+/* mobile footer: one left edge for everything */
+@media (max-width:767px){
+html body #site-footer ul:not(#_):not(#__){margin:0;padding:0;list-style:none}
+html body #site-footer li:not(#_):not(#__){margin:0;padding:0}
+html body #site-footer li > button:not(#_):not(#__){display:block;width:100%;margin:0;padding-left:0;padding-right:0;text-align:left;-webkit-appearance:none;appearance:none;background:none;border:0}
+html body #site-footer a:not(#_):not(#__){margin-left:0}
+html body #site-footer #footer-privacy-link:not(#_):not(#__){padding-left:0;margin-left:0;text-align:left;-webkit-appearance:none;appearance:none;background:none;border:0}
+html body #site-footer .pt-8.flex:not(#_):not(#__){align-items:flex-start;text-align:left}
+}
+/* mobile case page: no sticky case switcher, keep only the back link */
+@media (max-width:767px){
+html body .pb-case-tabs:not(#_):not(#__){position:static !important;top:auto;box-shadow:none;transform:none !important;opacity:1 !important;pointer-events:auto}
+html body .pb-case-tabs .overflow-x-auto:not(#_):not(#__){display:none}
+}
