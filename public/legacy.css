@@ -2790,3 +2790,8 @@ html body .pb-case-hero-in:not(#_):not(#__) > div:last-child > div:not(#_):not(#
 html body .pb-case-hero-in:not(#_):not(#__) > div:last-child > div:not(#_):not(#__):not(#___) svg{color:#1B2E8C !important;stroke:#1B2E8C !important;opacity:1 !important}
 html body .pb-case-hero-in:not(#_):not(#__) > div:last-child > div:not(#_):not(#__):not(#___) span{color:#4A4F7A !important;text-shadow:none !important}
 html body .pb-case-hero-in:not(#_):not(#__) > div:last-child > div:not(#_):not(#__):not(#___) > div:last-child{color:#111144 !important;text-shadow:none !important}
+/* white bands: text in brand blue #1B2E8C instead of near-black navy */
+html body .pb-band-white:not(#_):not(#__){--ink:#1B2E8C;--ink-soft:#1B2E8C;--muted:#1B2E8C;color:#1B2E8C}
+html body .pb-band-white:not(#_):not(#__) :is(h2,h3,.pb-case-card-t,.pb-case-metric-h,.pb-case-metric-t,.pb-case-intro,.pb-case-metric-l,li,p):not(#_):not(#__):not(#___):not(#____):not(#_____){color:#1B2E8C !important}
+html body .pb-band-white:not(#_):not(#__) .pb-case-card span:not(.pb-case-dot):not(.uppercase):not(#_):not(#__):not(#___):not(#____),html body .pb-band-white:not(#_):not(#__) .pb-case-res span:not(#_):not(#__):not(#___):not(#____){color:#1B2E8C !important}
+html body .pb-band-white:not(#_):not(#__) .pb-case-cta h3:not(#_):not(#__):not(#___):not(#____){color:#1B2E8C !important}
