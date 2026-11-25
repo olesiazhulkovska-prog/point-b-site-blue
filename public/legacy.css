@@ -2925,3 +2925,18 @@ html body .pb-case-link:not(#_):not(#__){width:44px;height:44px;padding:0;justif
 html body .pb-case-link .pb-case-link-t:not(#_):not(#__),html body .pb-case-link .pb-case-link-ext:not(#_):not(#__){display:none}
 html body .pb-case-link svg:not(#_):not(#__){width:20px;height:20px}
 }
+/* "Що ми зробили": vertical path (sticky heading + numbered dashed timeline) */
+html body .pb-path-wrap:not(#_):not(#__){display:grid;grid-template-columns:1fr;gap:28px}
+@media(min-width:1000px){html body .pb-path-wrap:not(#_):not(#__){grid-template-columns:minmax(240px,1fr) minmax(0,2.2fr);gap:64px;align-items:start}
+html body .pb-path-head:not(#_):not(#__){position:sticky;top:120px}}
+html body .pb-path:not(#_):not(#__){list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:18px}
+html body .pb-path-step:not(#_):not(#__){position:relative;display:grid;grid-template-columns:44px minmax(0,1fr);gap:18px;opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.7,.2,1);transition-delay:calc(var(--i,0)*110ms)}
+html body .pb-path.is-in .pb-path-step:not(#_):not(#__){opacity:1;transform:none}
+html body .pb-path-step:not(:last-child):not(#_):not(#__)::before{content:"";position:absolute;left:21px;top:46px;bottom:-18px;border-left:2px dashed #F98513}
+html body .pb-path-n:not(#_):not(#__){width:44px;height:44px;border-radius:50%;background:#F98513;color:#111144;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;position:relative;z-index:1;box-shadow:0 0 0 6px rgba(249,133,19,.18)}
+html body .pb-path-card:not(#_):not(#__){background:#fff;border-radius:22px;padding:22px 26px;box-shadow:0 18px 36px -24px rgba(0,0,0,.55);transition:transform .25s ease,box-shadow .25s ease}
+@media (hover:hover){html body .pb-path-card:hover:not(#_):not(#__){transform:translateY(-3px);box-shadow:0 22px 40px -22px rgba(0,0,0,.6)}}
+html body .pb-path-t:not(#_):not(#__):not(#___):not(#____){color:#111144 !important;font-size:clamp(18px,1.7vw,22px);line-height:1.25;font-weight:700;margin:0 0 8px}
+html body .pb-path-d:not(#_):not(#__):not(#___){color:#1B2E8C;font-size:16px;line-height:1.6}
+@media(max-width:600px){html body .pb-path-step:not(#_):not(#__){grid-template-columns:36px minmax(0,1fr);gap:12px}html body .pb-path-n:not(#_):not(#__){width:36px;height:36px;font-size:15px}html body .pb-path-step:not(:last-child):not(#_):not(#__)::before{left:17px;top:38px}html body .pb-path-card:not(#_):not(#__){padding:18px 18px;border-radius:18px}}
+@media (prefers-reduced-motion:reduce){html body .pb-path-step:not(#_):not(#__){opacity:1;transform:none;transition:none}}

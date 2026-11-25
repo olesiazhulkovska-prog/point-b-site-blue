@@ -57,6 +57,15 @@ export const CaseDetailPage = ({ slug: n }) => {
     );
   const [tabsHidden, setTabsHidden] = useState(false);
   useEffect(() => {
+    const el = document.querySelector(".pb-path");
+    if (!el || !("IntersectionObserver" in window)) { el && el.classList.add("is-in"); return; }
+    const io = new IntersectionObserver((es) => {
+      if (es[0].isIntersecting) { el.classList.add("is-in"); io.disconnect(); }
+    }, { threshold: 0.12 });
+    io.observe(el);
+    return () => io.disconnect();
+  }, [n]);
+  useEffect(() => {
     const el = document.querySelector(".pb-flow");
     if (!el || !("IntersectionObserver" in window)) { el && el.classList.add("is-in"); return; }
     const io = new IntersectionObserver((es) => {
@@ -250,22 +259,22 @@ export const CaseDetailPage = ({ slug: n }) => {
           );
         })()}
         <section id="section-what-we-did" className="pb-band pb-band-grad"><div className="pb-wrap">
-          <div className="mb-8">
-            <span className="text-[13px] font-bold uppercase tracking-widest text-[color:var(--accent-green)]">Реалізація</span>
-            <h2 className="text-2xl sm:text-3xl font-bold text-[color:var(--ink)] mt-1">Що ми зробили</h2>
-          </div>
-          <div className="pb-case-stepgrid">
-            {d.whatWeDidSteps.map((p, f) => (
-              <div key={f} className="flex items-start gap-4">
-                <div className="pb-case-steps-n w-9 h-9 rounded-lg bg-[color:var(--btn-dark)] text-[color:var(--on-dark)] flex items-center justify-center font-bold text-[14px] shrink-0">
-                  {f + 1}
-                </div>
-                <div className="space-y-1">
-                  <h3 className="text-lg font-bold text-[color:var(--ink)]">{Ra(p.title)}</h3>
-                  <p className="text-base text-[color:var(--ink-soft)] leading-relaxed">{Ra(p.description)}</p>
-                </div>
-              </div>
-            ))}
+          <div className="pb-path-wrap">
+            <div className="pb-path-head">
+              <span className="text-[13px] font-bold uppercase tracking-widest text-[color:var(--accent-green)]">Реалізація</span>
+              <h2 className="text-2xl sm:text-3xl font-bold text-[color:var(--ink)] mt-1">Що ми зробили</h2>
+            </div>
+            <ol className="pb-path">
+              {d.whatWeDidSteps.map((p, f) => (
+                <li key={f} className="pb-path-step" style={{ "--i": f } as React.CSSProperties}>
+                  <span className="pb-path-n">{f + 1}</span>
+                  <div className="pb-path-card">
+                    <h3 className="pb-path-t">{Ra(p.title)}</h3>
+                    <div className="pb-path-d">{Ra(p.description)}</div>
+                  </div>
+                </li>
+              ))}
+            </ol>
           </div>
         </div></section>
         <section id="section-result" className="pb-band pb-band-white">
