@@ -2878,3 +2878,10 @@ html body .pb-flow-arrow:not(#_):not(#__){display:block !important;top:50%;left:
 html body .pb-flow-arrow:not(#_):not(#__)::before{display:none}
 html body .pb-flow-arrow:not(#_):not(#__)::after{content:"";position:absolute;right:-8px;top:-6px;border-left:11px solid #F98513;border-top:7px solid transparent;border-bottom:7px solid transparent}
 @media(max-width:900px){html body .pb-flow-arrow:not(#_):not(#__){display:none !important}}
+html body .pb-flow-pill:not(#_):not(#__){transition:opacity .6s,transform .25s ease,box-shadow .25s ease,background-color .25s ease,border-color .25s ease;cursor:default}
+@media (hover:hover){
+html body .pb-flow-pill:hover:not(#_):not(#__){transform:translateY(-3px) !important;background:#fff;border:1px solid #F98513;box-shadow:0 14px 28px -14px rgba(17,17,68,.35)}
+html body .pb-flow-pill:hover .pb-flow-dot:not(#_):not(#__){transform:scale(1.5)}
+}
+html body .pb-flow-dot:not(#_):not(#__){transition:transform .25s ease}
+@media (prefers-reduced-motion:reduce){html body .pb-flow-pill:hover:not(#_):not(#__){transform:none !important}}
