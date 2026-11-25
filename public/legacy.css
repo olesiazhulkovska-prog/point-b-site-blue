@@ -2873,3 +2873,8 @@ html body .pb-flow--both .pb-flow-row:not(#_):not(#__)::after,html body .pb-flow
 html body .pb-flow-pill:not(#_):not(#__){background:#E4E7F6;border-color:rgba(36,49,164,.45)}
 html body .pb-flow-arrow:not(#_):not(#__){display:none !important}
 html body .pb-flow-svg:not(#_):not(#__){stroke:#F98513;stroke-width:1.5}
+html body .pb-flow-svg:not(#_):not(#__){display:none !important}
+html body .pb-flow-arrow:not(#_):not(#__){display:block !important;top:50%;left:10px;right:8px;height:2px;margin-top:-1px;background:repeating-linear-gradient(90deg,#F98513 0 7px,transparent 7px 13px)}
+html body .pb-flow-arrow:not(#_):not(#__)::before{display:none}
+html body .pb-flow-arrow:not(#_):not(#__)::after{content:"";position:absolute;right:-8px;top:-6px;border-left:11px solid #F98513;border-top:7px solid transparent;border-bottom:7px solid transparent}
+@media(max-width:900px){html body .pb-flow-arrow:not(#_):not(#__){display:none !important}}
