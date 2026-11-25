@@ -56,6 +56,8 @@ export const CaseDetailPage = ({ slug: n }) => {
         p.id === `case-${n}`,
     );
   const [tabsHidden, setTabsHidden] = useState(false);
+  const [stepActive, setStepActive] = useState(0);
+  const [stepAuto, setStepAuto] = useState(true);
   useEffect(() => {
     const el = document.querySelector(".pb-path");
     if (!el || !("IntersectionObserver" in window)) { el && el.classList.add("is-in"); return; }
@@ -259,24 +261,37 @@ export const CaseDetailPage = ({ slug: n }) => {
           );
         })()}
         <section id="section-what-we-did" className="pb-band pb-band-grad"><div className="pb-wrap">
-          <div className="pb-path-wrap">
-            <div className="pb-path-head">
-              <span className="text-[13px] font-bold uppercase tracking-widest text-[color:var(--accent-green)]">Реалізація</span>
-              <h2 className="text-2xl sm:text-3xl font-bold text-[color:var(--ink)] mt-1">Що ми зробили</h2>
-            </div>
-            <ol className="pb-path">
-              {d.whatWeDidSteps.map((p, f) => (
-                <li key={f} className="pb-path-step" style={{ "--i": f } as React.CSSProperties}>
-                  <div className="pb-path-card">
-                    <div className="pb-path-hd">
-                      <span className="pb-path-n">{f + 1}</span>
-                      <h3 className="pb-path-t">{Ra(p.title)}</h3>
-                    </div>
-                    <div className="pb-path-d">{Ra(p.description)}</div>
+          <div className="pb-tabs-head">
+            <span className="text-[13px] font-bold uppercase tracking-widest text-[color:var(--accent-green)]">Реалізація</span>
+            <h2 className="text-2xl sm:text-3xl font-bold text-[color:var(--ink)] mt-1">Що ми зробили</h2>
+          </div>
+          <div className="pb-tabs" onMouseEnter={() => setStepAuto(false)}>
+            {d.whatWeDidSteps.map((p, f) => {
+              const on = f === Math.min(stepActive, d.whatWeDidSteps.length - 1);
+              return (
+                <div key={f} className="pb-tab-item" data-active={on ? "1" : "0"}>
+                  <button
+                    type="button"
+                    className="pb-tab"
+                    aria-expanded={on}
+                    aria-controls={`pb-tabp-${f}`}
+                    onClick={() => { setStepActive(f); setStepAuto(false); }}
+                    onMouseEnter={() => { if (window.matchMedia && window.matchMedia("(hover:hover) and (min-width:1000px)").matches) { setStepActive(f); setStepAuto(false); } }}
+                  >
+                    <span className="pb-tab-n">{f + 1}</span>
+                    <span className="pb-tab-t">{Ra(p.title)}</span>
+                    {on && stepAuto && (
+                      <span className="pb-tab-bar" onAnimationEnd={() => setStepActive((f + 1) % d.whatWeDidSteps.length)} />
+                    )}
+                  </button>
+                  <div id={`pb-tabp-${f}`} className="pb-tab-panel" role="region">
+                    <span className="pb-tab-ghost" aria-hidden="true">{String(f + 1).padStart(2, "0")}</span>
+                    <h3 className="pb-tab-h">{Ra(p.title)}</h3>
+                    <div className="pb-tab-d">{Ra(p.description)}</div>
                   </div>
-                </li>
-              ))}
-            </ol>
+                </div>
+              );
+            })}
           </div>
         </div></section>
         <section id="section-result" className="pb-band pb-band-white">
