@@ -2795,3 +2795,7 @@ html body .pb-band-white:not(#_):not(#__){--ink:#1B2E8C;--ink-soft:#1B2E8C;--mut
 html body .pb-band-white:not(#_):not(#__) :is(h2,h3,.pb-case-card-t,.pb-case-metric-h,.pb-case-metric-t,.pb-case-intro,.pb-case-metric-l,li,p):not(#_):not(#__):not(#___):not(#____):not(#_____){color:#1B2E8C !important}
 html body .pb-band-white:not(#_):not(#__) .pb-case-card span:not(.pb-case-dot):not(.uppercase):not(#_):not(#__):not(#___):not(#____),html body .pb-band-white:not(#_):not(#__) .pb-case-res span:not(#_):not(#__):not(#___):not(#____){color:#1B2E8C !important}
 html body .pb-band-white:not(#_):not(#__) .pb-case-cta h3:not(#_):not(#__):not(#___):not(#____){color:#1B2E8C !important}
+/* white bands = service-card colours: titles #111144, subtitles/descriptions + numbers #1B2E8C */
+html body .pb-band-white:not(#_):not(#__) :is(h2,h3,.pb-case-card-t,.pb-case-metric-h,.pb-case-metric-t):not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______){color:#111144 !important}
+html body .pb-band-white:not(#_):not(#__) .pb-case-cta h3:not(#_):not(#__):not(#___):not(#____):not(#_____){color:#111144 !important}
+html body .pb-band-white:not(#_):not(#__) :is(.pb-case-intro,.pb-case-metric-l,li,p,.pb-case-metric-n):not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______){color:#1B2E8C !important}
