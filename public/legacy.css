@@ -2885,3 +2885,12 @@ html body .pb-flow-pill:hover .pb-flow-dot:not(#_):not(#__){transform:scale(1.5)
 }
 html body .pb-flow-dot:not(#_):not(#__){transition:transform .25s ease}
 @media (prefers-reduced-motion:reduce){html body .pb-flow-pill:hover:not(#_):not(#__){transform:none !important}}
+/* integrations tiles (white cards on navy band) */
+html body .pb-int:not(#_):not(#__){display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:14px;margin-top:6px}
+html body .pb-int-t:not(#_):not(#__){display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;background:#fff;border-radius:22px;padding:24px 14px 20px;transition:transform .25s ease,box-shadow .25s ease}
+@media (hover:hover){html body .pb-int-t:hover:not(#_):not(#__){transform:translateY(-3px);box-shadow:0 16px 30px -16px rgba(0,0,0,.55)}}
+html body .pb-int-i:not(#_):not(#__){width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(249,133,19,.14);border:1px solid rgba(249,133,19,.5);color:#F98513;margin-bottom:8px}
+html body .pb-int-i--brand:not(#_):not(#__){background:#1B2E8C;border-color:#1B2E8C;color:#fff}
+html body .pb-int-n:not(#_):not(#__){font-weight:700;font-size:16px;line-height:1.25;color:#111144}
+html body .pb-int-c:not(#_):not(#__){font-size:13px;line-height:1.2;color:#1B2E8C;opacity:.8}
+@media(max-width:600px){html body .pb-int:not(#_):not(#__){grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}}

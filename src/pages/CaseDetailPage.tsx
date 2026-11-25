@@ -1,5 +1,6 @@
 // @ts-nocheck
 /* Відновлено з прод-збірки; імена та типи доводяться вручну. */
+import IntegrationTiles from "../components/IntegrationTiles";
 import { useEffect, useState } from "react";
 import {
   ArrowLeft,
@@ -341,13 +342,7 @@ export const CaseDetailPage = ({ slug: n }) => {
         <section id="section-systems-cta" className="pb-case-stack">
           <span className="text-[13px] font-bold uppercase tracking-widest text-[color:var(--accent-green)]">Технологічний стек</span>
           <h3 className="text-xl font-bold text-[color:var(--ink)] mt-1 mb-4">Системи, які інтегрували</h3>
-          <div className="flex flex-wrap gap-2.5">
-            {d.integratedSystems.map((p, f) => (
-              <span key={f} className="pb-case-chip">
-                {p.replace(/\bKeyCRM\b/g, "keyCRM").replace(/\bКЕЙ СРМ\b/g, "кей СРМ")}
-              </span>
-            ))}
-          </div>
+          <IntegrationTiles items={d.integratedSystems} />
         </section>
         <section id="case-skalar-form-section">
           <LeadForm
