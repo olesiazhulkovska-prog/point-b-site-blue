@@ -13,6 +13,7 @@
     w.className = "pbx-vortex";
     w.setAttribute("aria-hidden", "true");
     var cv = document.createElement("canvas");
+    cv.dataset.dpr = "1"; /* soft lines: 1x is enough, saves ~55% fill on retina */
     w.appendChild(cv);
     s.insertBefore(w, s.firstChild);
     st.w = w;

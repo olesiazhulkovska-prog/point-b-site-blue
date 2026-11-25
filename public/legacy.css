@@ -2627,7 +2627,7 @@ html body .pb-cases-cta:not(#_):not(#__){padding-bottom:80px}
 /* cases hero: taller first screen with the footer's funnel (vortex) behind the text */
 html body .pb-vortex-hero:not(#_):not(#__){position:relative;overflow:hidden;display:flex;align-items:center;min-height:max(540px,70svh)}
 html body .pb-vortex-hero:not(#_):not(#__) > div:not(.pbx-vortex){position:relative;z-index:1;width:100%}
-html body .pb-vortex-hero:not(#_):not(#__) > .pbx-vortex{position:absolute;inset:0 0 auto 0;height:max(1250px,185%) !important;z-index:0}
+html body .pb-vortex-hero:not(#_):not(#__) > .pbx-vortex{position:absolute;inset:0 0 auto 0;height:max(1120px,165%) !important;z-index:0}
 @media(min-width:1024px){html body .pb-vortex-hero:not(#_):not(#__){min-height:max(620px,76svh)}}
 html body .pb-vortex-hero:not(#_):not(#__) .pbx-vortex canvas:not(#_):not(#__):not(#___){opacity:.6 !important}
 html body .pb-vortex-hero:not(#_):not(#__) h1, html body .pb-vortex-hero:not(#_):not(#__) p{text-shadow:0 2px 18px rgba(14,22,62,.55)}

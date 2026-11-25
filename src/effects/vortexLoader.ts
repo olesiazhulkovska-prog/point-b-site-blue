@@ -5,7 +5,7 @@
     if (d) return;
     d = 1;
     var s = document.createElement("script");
-    s.src = "vortex.js?v=3";
+    s.src = "vortex.js?v=4";
     s.onload = function () {
       try {
         dispatchEvent(new Event("scroll"));
