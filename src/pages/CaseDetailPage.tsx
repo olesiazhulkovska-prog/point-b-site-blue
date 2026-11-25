@@ -295,14 +295,16 @@ export const CaseDetailPage = ({ slug: n }) => {
                             <i key={k} data-on={k <= f ? "1" : "0"} />
                           ))}
                         </span>
-                        <button
-                          type="button"
-                          className="pb-tab-next"
-                          onClick={() => { setStepActive((f + 1) % d.whatWeDidSteps.length); setStepAuto(false); }}
-                        >
-                          {f + 1 < d.whatWeDidSteps.length ? "Далі: " + Ra(d.whatWeDidSteps[f + 1].title) : "Почати спочатку"}
-                          <span aria-hidden="true">→</span>
-                        </button>
+                        {f + 1 < d.whatWeDidSteps.length && (
+                          <button
+                            type="button"
+                            className="pb-tab-next"
+                            onClick={() => { setStepActive(f + 1); setStepAuto(false); }}
+                          >
+                            {"Далі: " + Ra(d.whatWeDidSteps[f + 1].title)}
+                            <span aria-hidden="true">→</span>
+                          </button>
+                        )}
                       </div>
                     )}
                   </div>
@@ -386,7 +388,7 @@ export const CaseDetailPage = ({ slug: n }) => {
         <section className="pb-band pb-band-navy"><div className="pb-wrap pb-case-end">
         <section id="section-systems-cta" className="pb-case-stack">
           <span className="text-[13px] font-bold uppercase tracking-widest text-[color:var(--accent-green)]">Технологічний стек</span>
-          <h3 className="text-xl font-bold text-[color:var(--ink)] mt-1 mb-4">Системи, які інтегрували</h3>
+          <h2 className="text-2xl sm:text-3xl font-bold text-[color:var(--ink)] mt-1 mb-4">Системи, які інтегрували</h2>
           <IntegrationTiles items={d.integratedSystems} />
         </section>
         <section id="case-skalar-form-section">
@@ -403,9 +405,9 @@ export const CaseDetailPage = ({ slug: n }) => {
                 <span className="text-[13px] font-bold uppercase tracking-widest text-[color:var(--accent-green)]">
                   Більше досвіду
                 </span>
-                <h3 className="text-2xl font-bold text-[color:var(--ink)] mt-0.5">
+                <h2 className="text-2xl sm:text-3xl font-bold text-[color:var(--ink)] mt-1">
                   Інші кейси впровадження
-                </h3>
+                </h2>
               </div>
               <button
                 onClick={() => o("cases")}
@@ -423,8 +425,13 @@ export const CaseDetailPage = ({ slug: n }) => {
                   <div
                     key={p.id}
                     onClick={() => o(p.slug)}
-                    className="p-5 rounded-2xl bg-[color:var(--card)] border border-[color:var(--card-border)] hover:border-[color:var(--card-border)] hover:shadow-xs transition-all cursor-pointer flex flex-col justify-between group"
+                    className="pb-more-case p-5 rounded-2xl bg-[color:var(--card)] border border-[color:var(--card-border)] hover:border-[color:var(--card-border)] hover:shadow-xs transition-all cursor-pointer flex flex-col justify-between group"
                   >
+                    {p.coverImageUrl && (
+                      <span className="pb-more-bg" aria-hidden="true">
+                        <img src={p.coverImageUrl} alt="" loading="lazy" referrerPolicy="no-referrer" />
+                      </span>
+                    )}
                     <div>
                       <div className="text-[13px] font-semibold text-[color:var(--ink-soft)] mb-2">
                         {p.industryTag}

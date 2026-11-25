@@ -3061,3 +3061,10 @@ html body .pb-hub-n[data-on] .pb-hub-role:not(#_):not(#__){opacity:1;transform:t
   html body .pb-hub-n:not(#_):not(#__){position:relative;left:auto !important;top:auto !important;transform:none;white-space:normal;border-radius:18px;padding:8px 12px 8px 8px;min-width:0}
   html body .pb-hub-role:not(#_):not(#__){display:none}
 }
+
+/* === Case page: "Інші кейси" cards with photo background === */
+html body .pb-more-case:not(#_):not(#__){position:relative;overflow:hidden;isolation:isolate;min-height:230px}
+html body .pb-more-bg:not(#_):not(#__){position:absolute;inset:0;z-index:-1}
+html body .pb-more-bg img:not(#_):not(#__){position:absolute;inset:0;width:100%;height:100%;object-fit:cover;max-width:none;transform:scale(1.04);transition:transform .6s ease}
+html body .pb-more-bg:not(#_):not(#__)::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(17,17,68,.45) 0%,rgba(17,17,68,.78) 55%,rgba(17,17,68,.95) 100%)}
+@media (hover:hover){html body .pb-more-case:hover .pb-more-bg img:not(#_):not(#__){transform:scale(1.1)}}
