@@ -1352,7 +1352,7 @@ html body .sv3-card .sv3-viz:has(.overflow-y-auto) .overflow-y-auto > div[data-o
 @media(prefers-reduced-motion:reduce){#why-us-section::after{animation:none !important;opacity:.6}}
 
 /* v60: roaming orange glows that appear here and there */
-#why-us-section:not(#_):not(#__):not(#___):not(#____){background:radial-gradient(900px 480px at 15% 0%,rgba(201,211,255,.22),transparent 70%),linear-gradient(180deg,#1B2E8C 0%,#111144 55%,#111144 100%) !important}
+#why-us-section:not(#_):not(#__):not(#___):not(#____){background:linear-gradient(180deg,#1B2E8C 0%,#111144 100%) !important}
 #why-us-section::before,#why-us-section::after{left:0 !important;top:0 !important;right:auto !important;bottom:auto !important;opacity:0;will-change:transform,opacity}
 #why-us-section::after{width:min(62vw,980px) !important;height:min(62vw,980px) !important;background:radial-gradient(closest-side,rgba(249,133,19,.5),rgba(249,133,19,.16) 48%,rgba(249,133,19,0) 72%) !important;animation:pbx-roam-a 34s ease-in-out infinite !important}
 #why-us-section::before{width:min(42vw,640px) !important;height:min(42vw,640px) !important;background:radial-gradient(closest-side,rgba(249,133,19,.46),rgba(249,133,19,.14) 50%,rgba(249,133,19,0) 72%) !important;animation:pbx-roam-b 27s ease-in-out infinite !important;animation-delay:-9s !important}
@@ -2925,3 +2925,6 @@ html body .pb-case-link:not(#_):not(#__){width:44px;height:44px;padding:0;justif
 html body .pb-case-link .pb-case-link-t:not(#_):not(#__),html body .pb-case-link .pb-case-link-ext:not(#_):not(#__){display:none}
 html body .pb-case-link svg:not(#_):not(#__){width:20px;height:20px}
 }
+/* "Чому обирають": clean gradient like the cases block, no glow blobs */
+html body #why-us-section:not(#_):not(#__):not(#___)::before,html body #why-us-section:not(#_):not(#__):not(#___)::after{display:none !important;content:none !important;animation:none !important}
+html body #why-us-section:not(#_):not(#__){background:linear-gradient(180deg,#1B2E8C 0%,#111144 100%) !important}
