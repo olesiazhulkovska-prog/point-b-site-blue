@@ -2870,3 +2870,5 @@ html body .pb-flow-r:not(#_):not(#__){align-self:center}
 html body .pb-flow--both:not(#_):not(#__){grid-template-columns:minmax(0,1fr) clamp(96px,13%,170px) minmax(0,1fr)}
 html body .pb-flow--both .pb-flow-row:not(#_):not(#__)::after,html body .pb-flow--both .pb-flow-row:first-child:not(#_):not(#__)::after,html body .pb-flow--both .pb-flow-row:last-child:not(#_):not(#__)::after{display:none !important;content:none !important}
 @media(max-width:900px){html body .pb-flow--both:not(#_):not(#__){grid-template-columns:1fr}}
+html body .pb-flow-pill:not(#_):not(#__){background:#E4E7F6;border-color:rgba(36,49,164,.45)}
+html body .pb-flow-arrow:not(#_):not(#__){display:none !important}
