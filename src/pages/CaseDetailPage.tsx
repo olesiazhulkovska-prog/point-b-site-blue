@@ -89,7 +89,7 @@ export const CaseDetailPage = ({ slug: n }) => {
     return () => window.removeEventListener("scroll", f);
   }, []);
   return d ? (
-    <div className="pb-cases-page pb-case-page bg-[color:var(--card)] min-h-screen text-[color:var(--ink)] selection:bg-[color:var(--tint)] selection:text-[color:var(--ink)] pb-20">
+    <div key={d.slug} className="pb-cases-page pb-case-page bg-[color:var(--card)] min-h-screen text-[color:var(--ink)] selection:bg-[color:var(--tint)] selection:text-[color:var(--ink)] pb-20">
       <div data-hidden={tabsHidden ? "1" : "0"} className="pb-case-tabs bg-[color:var(--card)] border-b border-[color:var(--card-border)] sticky top-20 z-30 shadow-2xs">
         <div className="max-w-[1680px] mx-auto px-5 sm:px-8 lg:px-12 xl:px-16 py-3 flex flex-wrap items-center justify-between gap-3">
           <button
@@ -330,16 +330,16 @@ export const CaseDetailPage = ({ slug: n }) => {
                     <div key={f} className="pb-case-metric">
                       {m && m.h ? (
                         <>
-                          <div className="pb-case-metric-h">{m.h}</div>
+                          <div key="h" className="pb-case-metric-h">{m.h}</div>
                           <div className="pb-case-metric-l">{m.l}</div>
                         </>
                       ) : m ? (
                         <>
-                          <div className="pb-case-metric-n">{m.n}</div>
+                          <div key="n" className="pb-case-metric-n">{m.n}</div>
                           <div className="pb-case-metric-l">{m.l}</div>
                         </>
                       ) : (
-                        <div className="pb-case-metric-t">{Ra(p)}</div>
+                        <div key="t" className="pb-case-metric-t">{Ra(p)}</div>
                       )}
                     </div>
                   );
@@ -425,31 +425,22 @@ export const CaseDetailPage = ({ slug: n }) => {
                   <div
                     key={p.id}
                     onClick={() => o(p.slug)}
-                    className="pb-more-case p-5 rounded-2xl bg-[color:var(--card)] border border-[color:var(--card-border)] hover:border-[color:var(--card-border)] hover:shadow-xs transition-all cursor-pointer flex flex-col justify-between group"
+                    className="pb-more-case group"
                   >
                     {p.coverImageUrl && (
                       <span className="pb-more-bg" aria-hidden="true">
                         <img src={p.coverImageUrl} alt="" loading="lazy" referrerPolicy="no-referrer" />
                       </span>
                     )}
-                    <div>
-                      <div className="text-[13px] font-semibold text-[color:var(--ink-soft)] mb-2">
-                        {p.industryTag}
-                      </div>
-                      <h4 className="text-base font-bold text-[color:var(--ink)] group-hover:text-[color:var(--accent-green)] transition-colors mb-2">
-                        {p.companyName}
-                      </h4>
-                      <div className="text-lg font-extrabold text-[color:var(--accent-green)]">
-                        {p.shortResultMetric}
-                      </div>
-                      <div className="text-[13px] text-[color:var(--ink-soft)] mt-0.5 line-clamp-1">
-                        {p.shortResultCaption}
-                      </div>
+                    <div className="pb-more-body">
+                      <div className="pb-more-tag">{p.industryTag}</div>
+                      <h4 className="pb-more-name">{p.companyName}</h4>
+                      <div className="pb-more-metric">{p.shortResultMetric}</div>
+                      <div className="pb-more-cap">{p.shortResultCaption}</div>
                     </div>
-                    <div className="pt-4 mt-3 border-t border-[color:var(--card-border)] flex items-center justify-between text-[13px] font-semibold text-[color:var(--ink-soft)] group-hover:text-[color:var(--accent-green)]">
-                      <span>Переглянути</span>
-                      <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                    </div>
+                    <span className="pb-more-go" aria-hidden="true">
+                      <ArrowRight className="w-5 h-5" />
+                    </span>
                   </div>
                 ))}
             </div>
