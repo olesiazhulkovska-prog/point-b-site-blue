@@ -3188,3 +3188,10 @@ html body .pb-case-review figure:not(#_):not(#__):not(#___){border-left:0 !impor
   html.pb-inner body div.min-h-screen > section.pb-cases-cta:not(:first-child):not(.mt-8):not(#_):not(#__):not(#___){padding-bottom:24px !important}
   html body:has(.pb-cases-page) #site-footer:not(#_):not(#__){padding-top:16px !important}
 }
+
+/* ---------- v: tablet — менший відступ між каруселлю кейсів і CTA ---------- */
+@media (min-width:768px) and (max-width:1180px){
+  html body section:has(> .pb-cases-grid):not(#_):not(#__):not(#___){padding-bottom:16px !important}
+  html body section.pb-cases-cta:not(#_):not(#__):not(#___){margin-top:32px !important}
+  html.pb-inner body div.min-h-screen > section.pb-cases-cta:not(:first-child):not(.mt-8):not(#_):not(#__):not(#___){padding-top:24px !important}
+}
