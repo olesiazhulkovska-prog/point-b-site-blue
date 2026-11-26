@@ -88,10 +88,16 @@ export const SiteProvider = ({ children: n }) => {
               ...S.map((O) => {
                 let I = yp.find((X) => X.slug === O.slug);
                 /* Ukrainian Solar: saved copies with the previous site/IG links get the confirmed ones; links edited in the admin are kept */
-                if (I != null && /^case-ukrainian-solar/.test(O.slug)) {
+                if (I != null) {
                   const fix = {};
-                  if (/ukrainiansolar\.com\.ua/.test(O.websiteUrl || "")) fix.websiteUrl = I.websiteUrl;
-                  if (/instagram\.com\/ukrainian_solar/.test(O.instagramUrl || "")) fix.instagramUrl = I.instagramUrl;
+                  if (/^case-ukrainian-solar/.test(O.slug)) {
+                    if (/ukrainiansolar\.com\.ua/.test(O.websiteUrl || "")) fix.websiteUrl = I.websiteUrl;
+                    if (/instagram\.com\/ukrainian_solar/.test(O.instagramUrl || "")) fix.instagramUrl = I.instagramUrl;
+                  }
+                  /* wrong placeholder links (other companies / unresolvable domains) are dropped; real IG handles replace the old ones */
+                  if (/^(https?:\/\/)?(www\.)?(kms\.ua|brendyoptom\.com\.ua|milo\.ua)\/?$/.test(O.websiteUrl || "")) fix.websiteUrl = "";
+                  if (/instagram\.com\/milo_print/.test(O.instagramUrl || "")) fix.instagramUrl = I.instagramUrl;
+                  if (/^instagram\.com\/brendy_optom_ua|^https:\/\/instagram\.com\/brendy_optom_ua/.test(O.instagramUrl || "")) fix.instagramUrl = I.instagramUrl;
                   if (Object.keys(fix).length) O = { ...O, ...fix };
                 }
                 /* AI-agent case: saved copies that still hold the previous photo get the new one; a photo set in the admin is kept */

@@ -75,8 +75,7 @@ export const yp = [
     showOnHome: true,
     orderPriority: 1,
     coverImageUrl: vv,
-    websiteUrl: "https://brendyoptom.com.ua",
-    instagramUrl: "https://instagram.com/brendy_optom_ua",
+    instagramUrl: "https://www.instagram.com/brendy_optom_ua/",
     hooks: [
       {
         type: "metric",
@@ -183,7 +182,6 @@ export const yp = [
     showOnHome: true,
     orderPriority: 2,
     coverImageUrl: Nv,
-    websiteUrl: "https://kms.ua",
     hooks: [
       {
         type: "metric",
@@ -394,8 +392,7 @@ export const yp = [
     showOnHome: false,
     orderPriority: 4,
     coverImageUrl: Uv,
-    websiteUrl: "https://milo.ua",
-    instagramUrl: "https://instagram.com/milo_print",
+    instagramUrl: "https://www.instagram.com/milo.kids.ua/",
     hooks: [
       {
         type: "metric",
