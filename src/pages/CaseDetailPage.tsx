@@ -74,11 +74,18 @@ export const CaseDetailPage = ({ slug: n }) => {
         prev = Math.max(h, need);
       });
     };
+    /* iOS Safari ховає/показує адресний рядок під час скролу -> resize лише по висоті; перерахунок тоді дає стрибки карток, тому реагуємо тільки на зміну ширини */
+    let lastW = window.innerWidth;
+    const onResize = () => {
+      if (window.innerWidth === lastW) return;
+      lastW = window.innerWidth;
+      fit();
+    };
     fit();
     const t1 = setTimeout(fit, 400), t2 = setTimeout(fit, 1600);
-    window.addEventListener("resize", fit);
+    window.addEventListener("resize", onResize);
     window.addEventListener("load", fit);
-    return () => { clearTimeout(t1); clearTimeout(t2); window.removeEventListener("resize", fit); window.removeEventListener("load", fit); };
+    return () => { clearTimeout(t1); clearTimeout(t2); window.removeEventListener("resize", onResize); window.removeEventListener("load", fit); };
   }, [d && d.slug]);
   useEffect(() => {
     const el = document.querySelector("#section-what-we-did .pb-tabs");
