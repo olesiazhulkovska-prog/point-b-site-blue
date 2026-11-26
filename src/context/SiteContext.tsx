@@ -230,14 +230,25 @@ export const SiteProvider = ({ children: n }) => {
                     ];
             const fixHours = (v: any) =>
               typeof v === "string" && /19:00/.test(v) ? "Пн–Пт, 9:00–18:00" : v;
+            /* одноразово: старий номер, збережений у браузері адмінки, замінюємо на актуальний із даних сайту */
+            let phoneFixed = false;
+            try {
+              phoneFixed = !!localStorage.getItem("pointb_phone_fix_v1");
+              if (!phoneFixed) localStorage.setItem("pointb_phone_fix_v1", "1");
+            } catch {}
+            const fixPhone = (c: any) =>
+              !phoneFixed && c && (c.type === "phone" || /телефон|phone/i.test(c.label || ""))
+                ? { ...c, value: Pr.phone }
+                : c;
             const chans = (I.length > 0 ? I : Pr.channels).map((c: any) =>
               c && (c.type === "hours" || /графік|годин/i.test(c.label || ""))
                 ? { ...c, value: fixHours(c.value) }
-                : c,
+                : fixPhone(c),
             );
             return {
               ...Pr,
               ...S,
+              phone: phoneFixed ? S.phone ?? Pr.phone : Pr.phone,
               workingHours: fixHours(S.workingHours ?? Pr.workingHours),
               channels: chans,
               requisites: X.length > 0 ? X : Pr.requisites,
