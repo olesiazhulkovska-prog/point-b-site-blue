@@ -3136,3 +3136,6 @@ html body .pb-case-review figure:not(#_):not(#__):not(#___){border-left:0 !impor
   html body .pb-tab-t:not(#_):not(#__):not(#___){font-size:17px;line-height:22px}
   html body .pb-tab-panel:not(#_):not(#__):not(#___),html body .pb-tab-item[data-active="1"] .pb-tab-panel:not(#_):not(#__):not(#___){padding:6px 18px 20px 48px !important}
 }
+
+/* case hero on phones: content sits lower (less empty space under the cards) */
+@media(max-width:760px){html body .pb-case-hero:not(#_):not(#__):not(#___):not(#____){padding-bottom:calc(var(--arc) + 44px)}}
