@@ -86,7 +86,14 @@ export const SiteProvider = ({ children: n }) => {
           if (Array.isArray(S) && S.length > 0)
             return [
               ...S.map((O) => {
-                const I = yp.find((X) => X.slug === O.slug);
+                let I = yp.find((X) => X.slug === O.slug);
+                /* Ukrainian Solar: saved copies with the previous site/IG links get the confirmed ones; links edited in the admin are kept */
+                if (I != null && /^case-ukrainian-solar/.test(O.slug)) {
+                  const fix = {};
+                  if (/ukrainiansolar\.com\.ua/.test(O.websiteUrl || "")) fix.websiteUrl = I.websiteUrl;
+                  if (/instagram\.com\/ukrainian_solar/.test(O.instagramUrl || "")) fix.instagramUrl = I.instagramUrl;
+                  if (Object.keys(fix).length) O = { ...O, ...fix };
+                }
                 /* AI-agent case: saved copies that still hold the previous photo get the new one; a photo set in the admin is kept */
                 if (I != null && O.slug === "case-ukrainian-solar-ai" && I.coverImageUrl && /6b437bf83d/.test(O.coverImageUrl || ""))
                   return Eo({ ...O, coverImageUrl: I.coverImageUrl });

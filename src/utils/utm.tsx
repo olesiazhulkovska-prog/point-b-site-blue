@@ -290,8 +290,8 @@ export const yp = [
     showOnHome: true,
     orderPriority: 3,
     coverImageUrl: Sv,
-    websiteUrl: "https://ukrainiansolar.com.ua",
-    instagramUrl: "https://instagram.com/ukrainian_solar",
+    websiteUrl: "https://ukrainiansolar.com/",
+    instagramUrl: "https://www.instagram.com/ukrainiansolar/",
     hooks: [
       {
         type: "metric",
@@ -600,8 +600,8 @@ export const yp = [
       },
     ],
     coverImageUrl: "./assets/case-solar-ai.webp",
-    websiteUrl: "https://ukrainiansolar.com.ua",
-    instagramUrl: "https://instagram.com/ukrainian_solar",
+    websiteUrl: "https://ukrainiansolar.com/",
+    instagramUrl: "https://www.instagram.com/ukrainiansolar/",
     orderPriority: 5,
   },
 ];
