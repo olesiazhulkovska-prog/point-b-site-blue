@@ -599,7 +599,7 @@ export const yp = [
         text: "Самописний агент, а не віджет на конструкторі",
       },
     ],
-    coverImageUrl: Sv,
+    coverImageUrl: "./assets/case-solar-ai.webp",
     websiteUrl: "https://ukrainiansolar.com.ua",
     instagramUrl: "https://instagram.com/ukrainian_solar",
     orderPriority: 5,

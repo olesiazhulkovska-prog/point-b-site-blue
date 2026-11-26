@@ -3123,3 +3123,7 @@ html body .pb-lead-go svg:not(#_):not(#__){color:#111144;stroke:#111144;transiti
   html body .pb-tab-panel:not(#_):not(#__),html body .pb-tab-item[data-active="1"] .pb-tab-panel:not(#_):not(#__){padding:2px 18px 20px 64px}
   html body .pb-tab-d:not(#_):not(#__):not(#___){font-size:15px;line-height:1.6}
 }
+
+/* no orange stripes on cards: home service cards (top bar), client review card (left edge) */
+html body #services-section article[style]:not(#_):not(#__):not(#___)::before{content:none !important;display:none !important}
+html body .pb-case-review figure:not(#_):not(#__):not(#___){border-left:0 !important}
