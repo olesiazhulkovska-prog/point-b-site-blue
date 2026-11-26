@@ -116,7 +116,7 @@ export const CaseCard = ({
           }
         >
           {f && !i ? (
-            <div className="absolute left-0 top-0 w-full h-[202px] sm:h-[180px] overflow-hidden">
+            <div className="pb-cc-photo absolute left-0 top-0 w-full h-[202px] sm:h-[180px] overflow-hidden">
               <motion.img
                 style={{
                   y: U,
@@ -138,10 +138,10 @@ export const CaseCard = ({
               </div>
             </div>
           )}
-          <div className="absolute left-0 top-0 w-full h-[202px] sm:h-[180px] [background:linear-gradient(180deg,rgba(255,255,255,0)_0%,rgba(255,255,255,0)_40%,rgba(255,255,255,0.7)_72%,var(--surface)_100%)]" />
+          <div className="pb-cc-photo absolute left-0 top-0 w-full h-[202px] sm:h-[180px] [background:linear-gradient(180deg,rgba(255,255,255,0)_0%,rgba(255,255,255,0)_40%,rgba(255,255,255,0.7)_72%,var(--surface)_100%)]" />
         </div>
-        <div className="relative z-10 flex flex-col h-full p-5 sm:p-6 gap-3">
-          <div className="h-[150px] sm:h-[122px] shrink-0 flex items-start justify-end">
+        <div className="pb-cc-body relative z-10 flex flex-col h-full p-5 sm:p-6 gap-3">
+          <div className="pb-cc-spacer h-[150px] sm:h-[122px] shrink-0 flex items-start justify-end">
             <div className="flex items-center gap-1.5 shrink-0">
               {n.websiteUrl && (
                 <a
@@ -171,15 +171,15 @@ export const CaseCard = ({
               )}
             </div>
           </div>
-          <span className="text-[14px] font-mono uppercase tracking-wider text-[color:var(--ink)] leading-snug break-words min-w-0 min-h-[1.4rem] md:min-h-[2.2rem]">
+          <span className="pb-cc-tag text-[14px] font-mono uppercase tracking-wider text-[color:var(--ink)] leading-snug break-words min-w-0 min-h-[1.4rem] md:min-h-[2.2rem]">
             {n.industryTag}
           </span>
-          <h3 className="text-2xl sm:text-[24px] font-bold font-manrope text-[color:var(--ink)] sm:tracking-tight leading-snug min-h-[3.2rem] sm:min-h-[3.2rem] md:max-lg:min-h-[6.9rem]">
+          <h3 className="pb-cc-title text-2xl sm:text-[24px] font-bold font-manrope text-[color:var(--ink)] sm:tracking-tight leading-snug min-h-[3.2rem] sm:min-h-[3.2rem] md:max-lg:min-h-[6.9rem]">
             <KeyCrmText text={Jp(n.companyName)} />
           </h3>
-          <div className="mt-auto flex flex-col gap-3.5">
+          <div className="pb-cc-bottom mt-auto flex flex-col gap-3.5">
             {b.length > 0 && (
-              <div className="rounded-2xl bg-[color:var(--card)] backdrop-blur-md border border-[color:var(--card-border)] p-3.5 grid grid-cols-2 gap-x-4 gap-y-3 min-h-[7.9rem] md:min-h-[8.4rem] md:max-lg:min-h-[10.8rem] lg:max-[1095px]:min-h-[10.8rem] content-start">
+              <div className="pb-cc-metrics rounded-2xl bg-[color:var(--card)] backdrop-blur-md border border-[color:var(--card-border)] p-3.5 grid grid-cols-2 gap-x-4 gap-y-3 min-h-[7.9rem] md:min-h-[8.4rem] md:max-lg:min-h-[10.8rem] lg:max-[1095px]:min-h-[10.8rem] content-start">
                 {b.map((C, ee) => (
                   <div key={ee} className="min-w-0">
                     <div className="text-2xl font-extrabold font-namu text-[color:var(--ink)] sm:tracking-tight leading-none">

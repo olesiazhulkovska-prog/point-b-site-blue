@@ -102,7 +102,7 @@ export const CasesPage = () => {
             </button>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="pb-cases-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {p.map((f) => (
               <CaseCard
                 key={f.id}

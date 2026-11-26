@@ -3139,3 +3139,52 @@ html body .pb-case-review figure:not(#_):not(#__):not(#___){border-left:0 !impor
 
 /* case hero on phones: content sits lower (less empty space under the cards) */
 @media(max-width:760px){html body .pb-case-hero:not(#_):not(#__):not(#___):not(#____){padding-bottom:calc(var(--arc) + 44px)}}
+
+/* ---------- v: header pill air (tablet + 1024–1279) — значення відступів на шкалі designNormalizer (8/12/16), gap/pill <6px не чіпаються ---------- */
+@media (min-width:768px) and (max-width:899px){
+  html body header nav.pb-nav:not(#_):not(#__):not(#___){padding:5px !important;gap:5px !important}
+  html body header nav.pb-nav .pb-nl:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______):not(#_______){padding-left:8px !important;padding-right:8px !important}
+}
+@media (min-width:900px) and (max-width:1023px){
+  html body header nav.pb-nav:not(#_):not(#__):not(#___){padding:5px !important;gap:4px !important}
+  html body header nav.pb-nav .pb-nl:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______):not(#_______){padding-left:16px !important;padding-right:16px !important}
+}
+@media (min-width:1024px) and (max-width:1279px){
+  html body header > div:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______) > #nav-logo-btn:first-child:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______){min-width:0 !important}
+  html body header nav.pb-nav:not(#_):not(#__):not(#___){padding:5px !important;gap:4px !important}
+  html body header nav.pb-nav .pb-nl:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______):not(#_______){padding-left:16px !important;padding-right:16px !important}
+}
+@media (min-width:1024px) and (max-width:1099px){
+  html body header nav.pb-nav:not(#_):not(#__):not(#___){gap:8px !important}
+  html body header nav.pb-nav .pb-nl:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______):not(#_______){padding-left:12px !important;padding-right:12px !important}
+}
+
+/* ---------- v: cases listing — tablet swipe carousel + air inside cards ---------- */
+@media (min-width:768px) and (max-width:1180px){
+  .pb-cases-grid:not(#_){
+    display:flex !important;flex-wrap:nowrap;align-items:stretch;gap:22px;
+    overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;
+    scroll-snap-type:x mandatory;overscroll-behavior-x:contain;scrollbar-width:none;
+    margin-inline:calc((100% - 100vw) / 2);padding:4px 48px 24px;
+    scroll-padding-inline:48px;
+  }
+  .pb-cases-grid::-webkit-scrollbar{display:none}
+  .pb-cases-grid > *{flex:0 0 clamp(390px,50vw,450px);height:auto !important;align-self:stretch;scroll-snap-align:start}
+  .pb-cases-grid .pb-cc-photo{height:204px !important}
+  .pb-cases-grid .pb-cc-body{gap:16px !important;padding:26px !important}
+  .pb-cases-grid .pb-cc-spacer{height:174px !important}
+  .pb-cases-grid .pb-cc-tag{min-height:0 !important}
+  .pb-cases-grid .pb-cc-title{min-height:3.4rem !important}
+  .pb-cases-grid .pb-cc-bottom{gap:18px !important}
+  .pb-cases-grid .pb-cc-metrics{min-height:0 !important;padding:16px !important}
+}
+
+/* ---------- v: mobile — менший відступ між останніми картками й бігущою у футері ---------- */
+@media (max-width:760px){
+  html body .pb-case-page:not(#_):not(#__){padding-bottom:0 !important}
+  html body .pb-case-main > section:last-child:not(#_):not(#__):not(#___){padding-bottom:32px !important}
+  html body:has(.pb-case-page) #site-footer:not(#_):not(#__){padding-top:16px !important}
+  html body .pb-cases-page:not(#_):not(#__){padding-bottom:0 !important}
+  html.pb-inner body div.min-h-screen > section.pb-cases-cta:not(:first-child):not(.mt-8):not(#_):not(#__):not(#___){padding-bottom:24px !important}
+  html body:has(.pb-cases-page) #site-footer:not(#_):not(#__){padding-top:16px !important}
+}
