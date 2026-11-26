@@ -2,14 +2,24 @@
 (function () {
   /* pb-fit: hero scheme + progress line always fit the visible viewport (laptop windows) */
   var last = "",
-    lastW = null;
+    lastW = null,
+    settleUntil = 0;
   function fit() {
     var W = document.querySelector(".hero-graph-in > div");
     if (!W) return;
     if (W !== lastW) {
       lastW = W;
       last = "";
+      /* new hero DOM (SPA navigation home): reveal animations still run, rects are distorted -> keep re-measuring until settled */
+      settleUntil = Date.now() + 4000;
+      [900, 2000, 3200, 4300].forEach(function (d) {
+        setTimeout(function () {
+          last = "";
+          fit();
+        }, d);
+      });
     }
+    if (Date.now() < settleUntil) last = "";
     var g = document.querySelector(".hero-graph");
     if (innerWidth < 1025) {
       var bx0 = W.querySelector("div.md\\:block");
