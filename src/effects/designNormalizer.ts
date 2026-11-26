@@ -137,7 +137,8 @@
           var w = e.offsetWidth,
             h = e.offsetHeight;
           if (Math.abs(w - h) <= 2 && w <= 64 && w > 0)
-            ops.push(e, "border-radius", "50%");
+            /* min(50%,32px): identical for real circles (<=64px), but a box that later grows can never turn into an oval */
+            ops.push(e, "border-radius", "min(50%, 32px)");
           else if (
             r.indexOf("%") < 0 &&
             h >= 24 && h <= 84 && w > h * 1.3 &&
