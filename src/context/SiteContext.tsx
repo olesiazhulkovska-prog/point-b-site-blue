@@ -87,6 +87,9 @@ export const SiteProvider = ({ children: n }) => {
             return [
               ...S.map((O) => {
                 const I = yp.find((X) => X.slug === O.slug);
+                /* AI-agent case: saved copies that still hold the previous photo get the new one; a photo set in the admin is kept */
+                if (I != null && O.slug === "case-ukrainian-solar-ai" && I.coverImageUrl && /6b437bf83d/.test(O.coverImageUrl || ""))
+                  return Eo({ ...O, coverImageUrl: I.coverImageUrl });
                 return I != null &&
                   I.coverImageUrl &&
                   (!O.coverImageUrl ||
