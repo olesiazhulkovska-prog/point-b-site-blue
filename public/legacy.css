@@ -3187,6 +3187,7 @@ html body .pb-case-review figure:not(#_):not(#__):not(#___){border-left:0 !impor
   html body .pb-cases-page:not(#_):not(#__){padding-bottom:0 !important}
   html.pb-inner body div.min-h-screen > section.pb-cases-cta:not(:first-child):not(.mt-8):not(#_):not(#__):not(#___){padding-bottom:24px !important}
   html body:has(.pb-cases-page) #site-footer:not(#_):not(#__){padding-top:16px !important}
+  html body .pb-cases-end:not(#_):not(#__):not(#___){height:0 !important;margin:0 !important}
 }
 
 /* ---------- v: tablet — менший відступ між каруселлю кейсів і CTA ---------- */
@@ -3194,4 +3195,10 @@ html body .pb-case-review figure:not(#_):not(#__):not(#___){border-left:0 !impor
   html body section:has(> .pb-cases-grid):not(#_):not(#__):not(#___){padding-bottom:16px !important}
   html body section.pb-cases-cta:not(#_):not(#__):not(#___){margin-top:32px !important}
   html.pb-inner body div.min-h-screen > section.pb-cases-cta:not(:first-child):not(.mt-8):not(#_):not(#__):not(#___){padding-top:24px !important}
+}
+
+/* ---------- v: mobile — підзаголовок хіро кейсів на всю ширину сітки ---------- */
+@media (max-width:760px){
+  html body .pb-cases-hero:not(#_):not(#__){max-width:none !important;width:100% !important}
+  html body .pb-cases-hero p:not(#_):not(#__){text-wrap:wrap !important;max-width:none !important;width:100% !important;margin-inline:0 !important}
 }
