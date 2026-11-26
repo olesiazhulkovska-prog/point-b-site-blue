@@ -60,6 +60,26 @@ export const CaseDetailPage = ({ slug: n }) => {
   const [stepAuto, setStepAuto] = useState(true);
   const [stepRun, setStepRun] = useState(0);
   /* "Що ми зробили": завжди стартує з першого кроку, коли блок з'являється у в'юпорті; поза екраном — стоїть на 1 і не крутиться */
+  /* телефон: у «стопки» низ кожної наступної картки має бути нижче за низ попередньої (крок 40px) — тоді в кінці блоку вони складаються рівно, а не нашаровуються хаотично */
+  useEffect(() => {
+    const fit = () => {
+      const items = Array.from(document.querySelectorAll<HTMLElement>("#section-what-we-did .pb-tab-item"));
+      items.forEach((it) => { it.style.minHeight = ""; });
+      if (!window.matchMedia("(max-width:999px)").matches) return;
+      let prev = 0;
+      items.forEach((it) => {
+        const h = it.getBoundingClientRect().height;
+        const need = Math.max(h, prev - 40 + 6);
+        if (need > h + 0.5) it.style.minHeight = Math.ceil(need) + "px";
+        prev = Math.max(h, need);
+      });
+    };
+    fit();
+    const t1 = setTimeout(fit, 400), t2 = setTimeout(fit, 1600);
+    window.addEventListener("resize", fit);
+    window.addEventListener("load", fit);
+    return () => { clearTimeout(t1); clearTimeout(t2); window.removeEventListener("resize", fit); window.removeEventListener("load", fit); };
+  }, [d && d.slug]);
   useEffect(() => {
     const el = document.querySelector("#section-what-we-did .pb-tabs");
     if (!el || !("IntersectionObserver" in window)) return;
