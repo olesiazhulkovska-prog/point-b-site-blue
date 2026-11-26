@@ -91,7 +91,7 @@ export const AdminPage = () => {
     [he, Re] = React.useState("cases"),
     [G, E] = React.useState(null),
     [S, O] = React.useState(false),
-    [I, X] = React.useState(""),
+    [I, setIndustryInput] = React.useState(""),
     [Z, oe] = React.useState(""),
     [be, ue] = React.useState(null),
     [de, lt] = React.useState(null),
@@ -551,7 +551,7 @@ export const AdminPage = () => {
                   type="text"
                   placeholder="Назва галузі (наприклад: Агросектор, Логістика)"
                   value={I}
-                  onChange={(K) => X(K.target.value)}
+                  onChange={(K) => setIndustryInput(K.target.value)}
                   className="w-full sm:flex-1 px-4 py-2.5 text-xs rounded-xl border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-neutral-900"
                 />
                 <input
@@ -566,7 +566,7 @@ export const AdminPage = () => {
                   onClick={() => {
                     I.trim() &&
                       (b(I.trim(), Z.trim() || undefined),
-                      X(""),
+                      setIndustryInput(""),
                       oe(""),
                       Me("Нову галузь додано до фільтрів!"));
                   }}
