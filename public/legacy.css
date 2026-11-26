@@ -3202,3 +3202,6 @@ html body .pb-case-review figure:not(#_):not(#__):not(#___){border-left:0 !impor
   html body .pb-cases-hero:not(#_):not(#__){max-width:none !important;width:100% !important}
   html body .pb-cases-hero p:not(#_):not(#__){text-wrap:wrap !important;max-width:none !important;width:100% !important;margin-inline:0 !important}
 }
+/* "Чому обирають": clean gradient like the cases block, no glow blobs */
+html body #why-us-section:not(#_):not(#__):not(#___)::before,html body #why-us-section:not(#_):not(#__):not(#___)::after{display:none !important;content:none !important;animation:none !important}
+html body #why-us-section:not(#_):not(#__){background:linear-gradient(180deg,#1B2E8C 0%,#111144 100%) !important}
