@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && esbuild dist/legacy.css --minify --allow-overwrite --outfile=dist/legacy.css",
     "preview": "vite preview",
     "lint": "tsc --noEmit"
   },
