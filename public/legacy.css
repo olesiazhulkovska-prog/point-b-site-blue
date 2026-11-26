@@ -3127,3 +3127,12 @@ html body .pb-lead-go svg:not(#_):not(#__){color:#111144;stroke:#111144;transiti
 /* no orange stripes on cards: home service cards (top bar), client review card (left edge) */
 html body #services-section article[style]:not(#_):not(#__):not(#___)::before{content:none !important;display:none !important}
 html body .pb-case-review figure:not(#_):not(#__):not(#___){border-left:0 !important}
+
+/* mobile steps v2: sticky cards overlap each other (each covers the previous, only its first title line peeks out); orange number without circle */
+@media(max-width:999px){
+  html body .pb-tab-item:not(#_):not(#__):not(#___){position:sticky;top:calc(84px + var(--i,0)*40px);margin:0 0 18px;box-shadow:0 -12px 26px -14px rgba(0,0,0,.55)}
+  html body .pb-tab:not(#_):not(#__):not(#___){padding:14px 18px 4px !important;gap:10px;align-items:flex-start}
+  html body .pb-tab-n:not(#_):not(#__):not(#___),html body .pb-tab-item[data-active="1"] .pb-tab-n:not(#_):not(#__):not(#___){width:auto;min-width:22px;height:auto;border:0;border-radius:0;background:transparent;color:#F98513;font-size:22px;line-height:22px;font-weight:800;justify-content:flex-start}
+  html body .pb-tab-t:not(#_):not(#__):not(#___){font-size:17px;line-height:22px}
+  html body .pb-tab-panel:not(#_):not(#__):not(#___),html body .pb-tab-item[data-active="1"] .pb-tab-panel:not(#_):not(#__):not(#___){padding:6px 18px 20px 48px !important}
+}
