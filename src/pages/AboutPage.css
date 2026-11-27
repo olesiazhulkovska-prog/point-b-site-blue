@@ -192,10 +192,13 @@ body:has(.ab-last) footer.theme-dark .pbx-marquee:not(#_):not(#__){margin-top:0!
   .pb-band.ab-last:not(#_):not(#__){--ab-gap-top:96px;--ab-gap:56px}
 }
 .ab-last>section:not(#_):not(#__){padding-top:0!important;padding-bottom:0!important}
-.pb-band.ab-last:not(#_):not(#__){padding-bottom:32px!important}
-@media (max-width:767px){.pb-band.ab-last:not(#_):not(#__){padding-bottom:24px!important}}
+.pb-band.ab-last:not(#_):not(#__){padding-bottom:96px!important}
+@media (max-width:767px){.pb-band.ab-last:not(#_):not(#__){padding-bottom:56px!important}}
 @media (min-width:768px) and (max-width:1023px){.pb-band.ab-last:not(#_):not(#__){--ab-gap-top:160px}}
 /* верхній падінг бенду нормалізатор виставляє інлайном (≥768) — додаткову «повітря» після дуги відгуків дає margin секції */
 @media (min-width:768px){.ab-last>section:not(#_):not(#__){margin-top:56px}}
 @media (min-width:1024px){.ab-last>section:not(#_):not(#__){margin-top:72px}}
 @media (min-width:1440px){.ab-last>section:not(#_):not(#__){margin-top:88px}}
+
+/* вікно перегляду не може їхати вбік (overflow:clip на html трактується як auto) */
+html:has(.ab-last):not(#_):not(#__){overflow-x:hidden!important}

@@ -15,7 +15,7 @@ export const AboutReasons = ({ head }: { head: ReactNode }) => {
   useEffect(() => {
     const ol = listRef.current;
     if (!ol) return;
-    const lis = Array.from(ol.children) as HTMLElement[];
+    const lis = Array.from(ol.querySelectorAll<HTMLElement>(":scope > li"));
     let raf = 0;
     const upd = () => {
       raf = 0;
