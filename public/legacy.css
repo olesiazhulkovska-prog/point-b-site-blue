@@ -3227,3 +3227,12 @@ html body #why-us-section:not(#_):not(#__){background:linear-gradient(180deg,#1B
   html body .sv3-viz div.inline-flex.rounded-full:not(#_):not(#__):not(#___){white-space:nowrap !important;font-size:13px !important;line-height:1.2 !important;padding-left:10px !important;padding-right:10px !important;gap:6px !important}
   html body .sv3-viz div.md\:hidden > div.mx-auto:not(#_):not(#__):not(#___){margin-top:0 !important;margin-bottom:0 !important}
 }
+
+/* === mobile: compact Було/Стало (cards were 900-1270px tall) === */
+@media (max-width:767px){
+  html body .sv3-viz div.md\:hidden:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______):not(#_______):not(#________){gap:8px !important;padding:4px 0 !important}
+  html body .sv3-viz div.md\:hidden > div.flex-col:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______):not(#_______):not(#________){gap:8px !important}
+  html body .sv3-viz div.md\:hidden > div.flex-col:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______):not(#_______):not(#________):last-of-type{gap:0 !important}
+  html body .sv3-viz div.md\:hidden div.relative.rounded-2xl:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______):not(#_______):not(#________){padding:8px 14px !important}
+  html body .sv3-viz div.md\:hidden > div.mx-auto:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______):not(#_______):not(#________){margin:0 !important}
+}
