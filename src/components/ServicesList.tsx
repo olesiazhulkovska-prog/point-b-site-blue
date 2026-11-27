@@ -156,9 +156,7 @@ export const Sv3 = ({ services: n, openLeadModal: lead }) => {
     let q = 0;
     const run = () => {
         q = 0;
-        const st = window.matchMedia(
-          "(min-width: 1100px) and (min-height: 760px)",
-        ).matches;
+        const st = false; // карточки більше не накладаються (sticky вимкнено)
         cs.forEach((c, i) => {
           if (!st || i === cs.length - 1) {
             c.style.setProperty("--cov", "0");
