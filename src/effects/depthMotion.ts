@@ -11,6 +11,11 @@
       CSS.supports("animation-timeline: view()")
     );
   } catch (e) {}
+  /* Safari (iPad/iPhone): view() timelines with min()/calc() ranges leave tall blocks half transparent -> use the IntersectionObserver fallback there */
+  try {
+    var apple = /Apple/.test(navigator.vendor || "") && !/Chrome|CriOS|FxiOS|Edg/.test(navigator.userAgent);
+    if (apple) sda = false;
+  } catch (e) {}
   if (sda) root.classList.add("pbx-sda");
   function clamp(v, a, b) {
     return v < a ? a : v > b ? b : v;
