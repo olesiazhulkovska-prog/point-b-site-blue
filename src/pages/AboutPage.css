@@ -126,3 +126,6 @@ body:has(.ab-last) footer.theme-dark .pbx-marquee:not(#_):not(#__){margin-top:-2
   .pb-band.ab-last:not(#_):not(#__){margin-bottom:-48px}
   body:has(.ab-last) footer.theme-dark .pbx-marquee:not(#_):not(#__){margin-top:-12px;margin-bottom:-12px}
 }
+
+/* кружечок зі стрілкою — завжди в кінці кнопки «Залишити заявку» */
+.ab-cta__row>.pb-hero-cta:not(#_):not(#__){justify-content:space-between;padding-left:28px;padding-right:6px;gap:12px}
