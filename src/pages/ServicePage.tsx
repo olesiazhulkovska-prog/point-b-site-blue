@@ -736,7 +736,7 @@ export const ServicePage = ({ serviceType: n }) => {
               Заповніть заявку або зв'яжіться з нашою командою будь-яким зручним
               способом
             </p>
-            <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 mt-5">
+            <div className="pb-cta-contacts flex flex-wrap items-center justify-center gap-3 sm:gap-4 mt-5">
               <a
                 href="mailto:point.b.here@gmail.com"
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[color:var(--card)] border border-[color:var(--card-border)] text-[13px] sm:text-sm font-semibold text-[color:var(--ink)] hover:border-[color:var(--card-border)] hover:bg-[color:var(--card)] transition-all shadow-xs"

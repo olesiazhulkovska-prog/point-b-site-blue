@@ -3242,3 +3242,28 @@ html body #why-us-section:not(#_):not(#__){background:linear-gradient(180deg,#1B
 html body #why-us-section .snap-start div.\@container > div.flex > div.flex-1.flex-wrap:not(#_):not(#__):not(#___){flex:0 0 auto !important}
 html body #why-us-section .snap-start div.\@container > div.flex > div.flex-1.rounded-lg:not(#_):not(#__):not(#___){min-width:0 !important;flex:1 1 0 !important}
 @media (max-width:480px){html body #why-us-section .snap-start div.\@container > div.flex:not(#_):not(#__):not(#___){gap:10px !important}}
+
+/* === mobile polish 27.11 === */
+@media (max-width:480px){
+  /* why-us diagrams: pills -1px, shorter arrow, wider right block */
+  html body #why-us-section .snap-start .pb-diagram .font-manrope:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______):not(#_______):not(#________){font-size:13px !important}
+  html body #why-us-section .snap-start:nth-child(5n+2) .\@container > div.flex > div.flex-wrap > div:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______):not(#_______):not(#________){min-width:92px !important}
+  html body #why-us-section .snap-start:nth-child(5n+2) .\@container > div.flex > svg:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______):not(#_______):not(#________){padding-left:8px !important;background-size:12px 1.5px !important}
+  html body #why-us-section .snap-start .pb-diagram .\@container > div.flex:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______):not(#_______):not(#________){gap:6px !important}
+  html body #why-us-section .snap-start .pb-diagram div.rounded-lg .justify-between:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______):not(#_______):not(#________){gap:8px !important}
+  html body #why-us-section .snap-start .pb-diagram div.rounded-lg .justify-between svg:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______):not(#_______):not(#________){flex:none !important;margin-right:2px}
+}
+@media (max-width:767px){
+  /* arrow Було→Стало: no gap between line and triangle */
+  html body .sv3-viz div.md\:hidden > div.mx-auto:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______):not(#_______):not(#________){gap:0 !important}
+  /* CTA contacts: same width */
+  html body .pb-cta-contacts:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______):not(#_______):not(#________){flex-direction:column !important;align-items:stretch !important;max-width:300px;width:100%;margin-left:auto !important;margin-right:auto !important}
+  html body .pb-cta-contacts > a:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______):not(#_______):not(#________){justify-content:center !important;width:100% !important}
+  /* lead form: left-aligned labels, title on one line */
+  html body [id^="lead-label-"]:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______):not(#_______):not(#________){display:flex !important;flex-wrap:wrap !important;justify-content:flex-start !important;align-items:center !important;text-align:left !important;column-gap:10px !important;row-gap:2px !important;padding-left:0 !important;padding-right:0 !important;width:100%}
+  html body [id^="lead-label-"] > span:first-child:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______):not(#_______):not(#________){white-space:nowrap !important;font-size:14px !important}
+  html body [id^="lead-label-"] ~ div:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______):not(#_______):not(#________){justify-content:flex-start !important}
+  html body [id^="lead-label-"] ~ div .flex-wrap:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______):not(#_______):not(#________){justify-content:flex-start !important}
+  html body #lead-label-comment > span:first-child:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______):not(#_______):not(#________){white-space:normal !important}
+  html body label[for="lead-heard-from"]:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______):not(#_______):not(#________){display:flex !important;flex-wrap:wrap;justify-content:flex-start !important;text-align:left !important;column-gap:10px;row-gap:2px}
+}
