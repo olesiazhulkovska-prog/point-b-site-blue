@@ -3235,4 +3235,5 @@ html body #why-us-section:not(#_):not(#__){background:linear-gradient(180deg,#1B
   html body .sv3-viz div.md\:hidden > div.flex-col:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______):not(#_______):not(#________):last-of-type{gap:0 !important}
   html body .sv3-viz div.md\:hidden div.relative.rounded-2xl:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______):not(#_______):not(#________){padding:8px 14px !important}
   html body .sv3-viz div.md\:hidden > div.mx-auto:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______):not(#_______):not(#________){margin:0 !important}
+  html body .sv3-viz div.md\:hidden div.w-px:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______):not(#_______):not(#________){margin-top:0 !important;margin-bottom:0 !important}
 }
