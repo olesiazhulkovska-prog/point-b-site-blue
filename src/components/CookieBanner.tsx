@@ -32,7 +32,7 @@ export const CookieBanner = () => {
       id="cookie-consent-banner"
       className="fixed bottom-[104px] md:bottom-4 left-4 right-4 sm:left-auto sm:right-6 sm:max-w-md z-50 bg-[color:var(--card)] backdrop-blur-md rounded-2xl border border-[color:var(--card-border)] shadow-xl p-3 md:p-4 text-[color:var(--ink)] animate-in fade-in slide-in-from-bottom-5 duration-300"
     >
-      <div className="md:hidden -m-1 flex flex-col gap-2">
+      <div className="lg:hidden -m-1 flex flex-col gap-2">
         <p className="text-[14px] leading-snug text-[color:var(--ink-soft)]">
           Використовуємо cookies для роботи сайту й аналітики.{" "}
           <button
@@ -62,7 +62,7 @@ export const CookieBanner = () => {
           </button>
         </div>
       </div>
-      <div className="hidden md:flex items-start gap-3">
+      <div className="hidden lg:flex items-start gap-3">
         <div className="p-2 rounded-xl bg-[color:var(--tint)] text-[color:var(--ink-soft)] shrink-0 mt-0.5">
           <Cookie className="w-5 h-5 text-[color:var(--accent-green)]" />
         </div>
