@@ -3271,18 +3271,18 @@ html body #why-us-section .snap-start div.\@container > div.flex > div.flex-1.ro
   html body .pb-hero-media:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______):not(#_______):not(#________){margin-bottom:28px !important}
 }
 
-/* === lead form: one type scale on phones (title 26 / lead 15 / labels 14 / options 13 / hint 12 / field 16 / placeholder 14 / legal 13) ===
+/* === lead form: one type scale on phones (title 26 / lead 15 / labels 14 / options 14 / hint 12 / field 16 / placeholder 14 / legal 14) ===
    field text stays 16px on purpose: <16px makes iOS zoom the page when a field gets focus */
 @media (max-width:767px){
   html body main .pb-lead h2:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______):not(#_______):not(#________):not(#_________):not(#__________):not(#___________):not(#____________){font-size:26px !important;line-height:1.15 !important}
   html body main .pb-lead h2 + p.pb-lead-sub:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______):not(#_______):not(#________):not(#_________):not(#__________):not(#___________):not(#____________){font-size:15px !important;line-height:1.5 !important}
   html body .pb-lead h3:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______):not(#_______):not(#________){font-size:14px !important;font-weight:700 !important}
-  html body .pb-lead form p:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______):not(#_______):not(#________){font-size:13px !important;line-height:1.5 !important}
+  html body .pb-lead form p:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______):not(#_______):not(#________){font-size:14px !important;line-height:1.5 !important}
   html body .pb-lead [id^="lead-label-"] > span:first-child:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______):not(#_______):not(#________){font-size:14px !important;font-weight:700 !important}
   /* hint «Необов'язково»: small, always on its own line under the title */
   html body .pb-lead [id^="lead-label-"] > span:nth-child(2),html body .pb-lead label[for="lead-heard-from"] > span:nth-child(2):not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______):not(#_______):not(#________){order:2;flex:0 0 100%;font-size:12px !important;font-weight:400 !important;text-transform:none !important;letter-spacing:0 !important;line-height:1.3 !important;margin-top:-1px}
   html body .pb-lead [id^="lead-label-"] > span:nth-child(n+3):not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______):not(#_______):not(#________){font-size:12px !important}
-  html body .pb-lead [id^="lead-label-"] ~ div button:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______):not(#_______):not(#________){font-size:13px !important}
+  html body .pb-lead [id^="lead-label-"] ~ div button:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______):not(#_______):not(#________){font-size:14px !important}
   html body .pb-lead input::placeholder,html body .pb-lead textarea::placeholder{font-size:14px !important}
 }
 /* diagram 04: icons were glued to the pill edge */
