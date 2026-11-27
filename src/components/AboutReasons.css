@@ -1,0 +1,40 @@
+/* AboutReasons: editorial sticky — ліворуч 35% + заголовок (sticky), праворуч 12 пунктів із нумерацією 01–12 */
+.ab-ed{display:grid;grid-template-columns:1fr;gap:32px;margin-bottom:48px}
+.ab-ed__big{font-size:clamp(96px,30vw,150px);line-height:.85;font-weight:800;letter-spacing:-.04em;color:#F98513;font-variant-numeric:tabular-nums;margin-bottom:24px}
+.ab-ed__left .pb-head{margin-bottom:0}
+
+.ab-ed__list{position:relative;list-style:none;margin:0;padding:0 0 0 22px}
+.ab-ed__rail{position:absolute;left:0;top:0;bottom:0;width:2px;border-radius:2px;background:rgba(255,255,255,.14);overflow:hidden}
+.ab-ed__rail em{display:block;width:100%;height:100%;background:#F98513;transform:scaleY(var(--p,0));transform-origin:top;will-change:transform}
+
+.ab-ed__list li{display:grid;grid-template-columns:48px minmax(0,1fr);column-gap:8px;padding:28px 0;border-top:1px solid rgba(255,255,255,.14)}
+.ab-ed__list li:last-child{border-bottom:1px solid rgba(255,255,255,.14)}
+.ab-ed__n{font-size:22px;line-height:1.2;font-weight:600;font-variant-numeric:tabular-nums;color:rgba(255,255,255,.38);transition:color .4s ease}
+.ab-ed__txt{opacity:.6;transform:translateY(5px);transition:opacity .6s ease,transform .6s ease}
+.ab-ed__t{margin:0;font-size:clamp(20px,5vw,24px);line-height:1.25;font-weight:700;color:#fff}
+.ab-ed__d{margin:10px 0 0;font-size:16px;line-height:1.55;color:#D5DDFA}
+.ab-ed__list li.is-active .ab-ed__n{color:#F98513}
+.ab-ed__list li.is-active .ab-ed__txt{opacity:1;transform:none}
+
+@media (min-width:1024px){
+  .ab-ed{grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:72px;align-items:start;margin-bottom:72px}
+  .ab-ed__left{position:sticky;top:132px}
+  .ab-ed__big{font-size:clamp(150px,15vw,230px);margin-bottom:32px}
+  .ab-ed__list{padding-left:36px}
+  .ab-ed__list li{grid-template-columns:72px minmax(0,1fr);padding:44px 0}
+  .ab-ed__n{font-size:30px}
+  .ab-ed__t{font-size:clamp(24px,2.1vw,30px)}
+  .ab-ed__d{font-size:17px}
+}
+
+/* перекриття legacy-стилів (колір/розмір тексту в синьому блоці) */
+.ab-ed .ab-ed__t:not(#_):not(#__){color:#fff!important;margin:0!important}
+.ab-ed .ab-ed__d:not(#_):not(#__){color:#D5DDFA!important;margin:10px 0 0!important}
+.ab-ed .ab-ed__list li:not(#_):not(#__){padding-left:0!important;padding-right:0!important}
+.ab-ed .ab-ed__n:not(#_):not(#__){color:rgba(255,255,255,.38)}
+.ab-ed .ab-ed__list li.is-active .ab-ed__n:not(#_):not(#__){color:#F98513}
+
+@media (prefers-reduced-motion:reduce){
+  .ab-ed__txt{opacity:1;transform:none;transition:none}
+  .ab-ed__n{transition:none}
+}

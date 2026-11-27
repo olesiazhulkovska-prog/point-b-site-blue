@@ -11,7 +11,7 @@ import { D1, Kv, Vv, kv } from "../data/data";
 import { AboutHeroScene } from "../components/AboutHeroScene";
 import { ReviewsSection } from "../components/ReviewsSection";
 import { AboutDifferences } from "../components/AboutDifferences";
-import { AboutWhyStay } from "../components/AboutWhyStay";
+import { AboutReasons } from "../components/AboutReasons";
 import { CountUp } from "../components/CountUp";
 import { AboutCardArt } from "../components/AboutCardArt";
 
@@ -216,12 +216,15 @@ export const AboutPage = () => {
       {/* 5. 12 reasons + CTA (blue, same as footer tone) */}
       <div className="pb-band pb-band--blue ab-last">
         <section className={wrap}>
-          <div className="pb-head max-w-3xl">
-            <span className={eyebrow}>Стандарти якості</span>
-            <h2 className="pb-h2 text-2xl sm:text-3xl font-extrabold text-[color:var(--ink)] mt-1 sm:tracking-tight">Понад 35% клієнтів стають постійними</h2>
-            <p className="text-base mt-2">Повний перелік 12 причин, чому бізнеси залишаються з Point B Group на роки</p>
-          </div>
-          <AboutWhyStay />
+          <AboutReasons
+            head={
+              <div className="pb-head max-w-3xl">
+                <span className={eyebrow}>Стандарти якості</span>
+                <h2 className="pb-h2 text-2xl sm:text-3xl font-extrabold text-[color:var(--ink)] mt-1 sm:tracking-tight">Понад 35% клієнтів стають постійними</h2>
+                <p className="text-base mt-2">Повний перелік 12 причин, чому бізнеси залишаються з Point B Group на роки</p>
+              </div>
+            }
+          />
           <div className="pb-hero ab-cta rounded-3xl border border-[color:var(--card-border)] px-6 py-14 sm:px-14 sm:py-20 text-center" style={{ backgroundImage: "var(--panel-gradient)" }}>
             <span className={eyebrow}>Партнерство з Point B</span>
             <h2 className="pb-h2 text-3xl sm:text-5xl font-extrabold text-[color:var(--ink)] sm:tracking-tight mt-3 max-w-3xl mx-auto leading-tight">Почніть з аудиту ваших процесів</h2>
