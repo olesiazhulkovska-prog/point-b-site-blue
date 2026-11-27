@@ -57,3 +57,5 @@
 .ab-why__t::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:100%;border-radius:2px;background:#F98513;transform:scaleX(0);transform-origin:left;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
 .ab-why__list li.is-active .ab-why__t::after{transform:scaleX(1)}
 @media (prefers-reduced-motion:reduce){.ab-why__t::after{transition:none}}
+
+.ab-why__list button:focus-visible:not(#_):not(#__){outline:none!important}
