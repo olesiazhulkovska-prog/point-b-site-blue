@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { Search, SlidersHorizontal, Building2, BadgeCheck, Bot, ChartNoAxesCombined, GraduationCap, FileText, Headset, CalendarClock, Eye, Target } from "lucide-react";
 import { Kv } from "../data/data";
 import "./AboutWhyStay.css";
@@ -17,18 +17,6 @@ const num = (i: number) => String(i + 1).padStart(2, "0");
 
 export const AboutWhyStay = () => {
   const [active, setActive] = useState(3);
-  const paused = useRef(false);
-  const reduce = useRef(false);
-
-  useEffect(() => {
-    reduce.current = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduce.current) return;
-    const id = window.setInterval(() => {
-      if (paused.current || document.hidden) return;
-      setActive((a) => (a + 1) % TOTAL);
-    }, 3200);
-    return () => window.clearInterval(id);
-  }, []);
 
   const start = Math.min(TOTAL - PAGE, Math.max(0, active - 3));
   const items = Kv.slice(start, start + PAGE);
@@ -37,11 +25,7 @@ export const AboutWhyStay = () => {
   const large = active > TOTAL / 2 ? 1 : 0;
 
   return (
-    <div
-      className="ab-why"
-      onMouseEnter={() => (paused.current = true)}
-      onMouseLeave={() => (paused.current = false)}
-    >
+    <div className="ab-why">
       <div className="ab-why__left">
         <span className="ab-why__eyebrow">Довіра клієнтів</span>
         <div role="heading" aria-level={3} className="ab-why__title">Чому клієнти залишаються з нами</div>

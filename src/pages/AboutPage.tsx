@@ -1,5 +1,6 @@
 // @ts-nocheck
 /* Відновлено з прод-збірки; імена та типи доводяться вручну. */
+import { useEffect } from "react";
 import { ArrowRight, Bot, Check, CodeXml, Layers, Send, ChartColumn, Database } from "lucide-react";
 
 const STACK_ICONS = { "keyCRM": Layers, "Telegram": Send, "Power BI": ChartColumn, "1С / BAS": Database };
@@ -16,6 +17,12 @@ import { AboutCardArt } from "../components/AboutCardArt";
 const DIRECTION_PAGES = ["keycrm", "ai-bots", "analytics"];
 
 export const AboutPage = () => {
+  // захист від горизонтального «зльоту» полотна на мобілці
+  useEffect(() => {
+    const fix = () => { if (window.scrollX) window.scrollTo(0, window.scrollY); };
+    window.addEventListener("scroll", fix, { passive: true });
+    return () => window.removeEventListener("scroll", fix);
+  }, []);
   const { navigateTo: n, openLeadModal: s } = useSite(),
     o = [
       {
