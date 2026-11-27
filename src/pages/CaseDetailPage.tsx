@@ -82,10 +82,13 @@ export const CaseDetailPage = ({ slug: n }) => {
       fit();
     };
     fit();
-    const t1 = setTimeout(fit, 400), t2 = setTimeout(fit, 1600);
+    const t1 = setTimeout(fit, 400), t2 = setTimeout(fit, 1600), t3 = setTimeout(fit, 3500);
+    /* шрифти (swap) і нормалайзер міняють перенос рядків уже після першого fit -> перераховуємо, інакше min-height застарілий і картки «стрибають» */
+    let alive = true;
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { if (alive) fit(); });
     window.addEventListener("resize", onResize);
     window.addEventListener("load", fit);
-    return () => { clearTimeout(t1); clearTimeout(t2); window.removeEventListener("resize", onResize); window.removeEventListener("load", fit); };
+    return () => { alive = false; clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); window.removeEventListener("resize", onResize); window.removeEventListener("load", fit); };
   }, [d && d.slug]);
   useEffect(() => {
     const el = document.querySelector("#section-what-we-did .pb-tabs");

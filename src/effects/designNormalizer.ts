@@ -176,6 +176,7 @@
           !e.matches("h2 + p") &&
           !e.closest(".hero-fan") &&
           !e.closest("#lead-form, form") &&
+          !e.closest(".pb-tab-t, .pb-tab-n") &&
           !e.matches('#why-us-section [class*="text-[44px]"]') &&
           !e.matches(".pb-why-num, .pb-why-badge") &&
           !(small && e.closest(".sv3-viz")) &&

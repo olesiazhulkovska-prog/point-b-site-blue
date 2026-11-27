@@ -3290,3 +3290,9 @@ html body #why-us-section .snap-start div.\@container > div.flex > div.flex-1.ro
   html body #why-us-section .snap-start .pb-diagram .\@container .flex-1.space-y-1\.5 > div:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______):not(#_______):not(#________){padding-left:10px !important;padding-right:6px !important;gap:6px !important}
   html body #why-us-section .snap-start .pb-diagram .\@container div[class*="w-[34%]"]:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______):not(#_______):not(#________){width:31% !important;flex:none !important;padding-left:3px !important;padding-right:3px !important;font-size:12.5px !important;overflow-wrap:normal !important}
 }
+
+/* case steps on phones: step titles clearly larger than their text (18 vs 15/16) */
+@media(max-width:999px){
+  html body .pb-tab-t:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______){font-size:18px !important;line-height:23px !important}
+  html body .pb-tab-n:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______),html body .pb-tab-item[data-active="1"] .pb-tab-n:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______){font-size:22px !important}
+}
