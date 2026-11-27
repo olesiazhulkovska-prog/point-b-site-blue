@@ -35,11 +35,10 @@ const Crm = () => (
   </div>
 );
 
-/** Справжній 3D-маскот Point B (кадри з головної): виходить зліва й махає рукою. */
+/** Справжній 3D-маскот Point B (живий, з point-b-bot.js): стоїть у рамці картки, виходить зліва й махає. id="pb-card-bot" — якір для маскота. */
 const Mascot = () => (
-  <div className="acx__in acx__mascot" role="img" aria-label="Маскот Point B виходить і махає рукою">
-    <img className="acx__bot" src="./mascot-wave.webp" alt="" width="520" height="397" decoding="async" loading="lazy" />
-    <img className="acx__bot acx__bot--still" src="./mascot-wave-still.png" alt="" width="520" height="397" decoding="async" loading="lazy" />
+  <div id="pb-card-bot" className="acx__in acx__mascot" role="img" aria-label="Маскот Point B махає рукою">
+    <img className="acx__still" src="./mascot-still.png" alt="" decoding="async" loading="lazy" />
   </div>
 );
 

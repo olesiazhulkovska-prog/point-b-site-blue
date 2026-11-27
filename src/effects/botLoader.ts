@@ -8,6 +8,9 @@
   function why(r) {
     window.__pbBotWhy = r;
     try {
+      document.documentElement.classList.add("pb-bot-off");
+    } catch (e) {}
+    try {
       console.info("[pb-bot] не завантажено:", r);
     } catch (e) {}
     return 1;
@@ -42,10 +45,10 @@
     return 0;
   }
   function go() {
-    if (d || !(home() || /^#\/(keycrm|ai-bots|analytics|cases)/.test(location.hash)) || weak()) return;
+    if (d || !(home() || /^#\/(keycrm|ai-bots|analytics|cases|about)/.test(location.hash)) || weak()) return;
     d = 1;
     var s = document.createElement("script");
-    s.src = "point-b-bot.js?v=42";
+    s.src = "point-b-bot.js?v=43";
     s.async = true;
     s.onerror = function () {
       why("script load failed");
