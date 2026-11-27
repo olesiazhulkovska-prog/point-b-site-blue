@@ -17,7 +17,9 @@
     var h = document.documentElement;
     var cs = (e: Element | null, p: string) =>
       e ? getComputedStyle(e).getPropertyValue(p) : "—";
+    var sfs = [].slice.call(document.querySelectorAll("#stats-section .tabular-nums")).map(function (n) { return cs(n, "font-size"); }).join("/");
     var lines = [
+      "css v: " + cs(h, "--pb-v") + " | stats fs: " + sfs + " | sv3 pos: " + cs(document.querySelector(".sv3-card"), "position") + " h:" + cs(document.querySelector(".sv3-card"), "height"),
       "UA: " + navigator.userAgent.replace(/Mozilla\/5.0 /, ""),
       "inner: " + innerWidth + "x" + innerHeight + " dpr " + devicePixelRatio,
       "client: " + h.clientWidth + " vv: " + (window.visualViewport ? Math.round(window.visualViewport.width) + " s" + window.visualViewport.scale : "—"),
