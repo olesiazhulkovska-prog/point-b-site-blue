@@ -3244,7 +3244,7 @@ html body #why-us-section .snap-start div.\@container > div.flex > div.flex-1.ro
 @media (max-width:480px){html body #why-us-section .snap-start div.\@container > div.flex:not(#_):not(#__):not(#___){gap:10px !important}}
 
 /* === mobile polish 27.11 === */
-@media (max-width:480px){
+@media (max-width:420px){
   /* why-us diagrams: pills -1px, shorter arrow, wider right block */
   html body #why-us-section .snap-start .pb-diagram .font-manrope:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______):not(#_______):not(#________){font-size:13px !important}
   html body #why-us-section .snap-start:nth-child(5n+2) .\@container > div.flex > div.flex-wrap > div:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______):not(#_______):not(#________){min-width:92px !important}
@@ -3286,7 +3286,7 @@ html body #why-us-section .snap-start div.\@container > div.flex > div.flex-1.ro
   html body .pb-lead input::placeholder,html body .pb-lead textarea::placeholder{font-size:14px !important}
 }
 /* diagram 04: icons were glued to the pill edge */
-@media (max-width:480px){
+@media (max-width:420px){
   html body #why-us-section .snap-start .pb-diagram .\@container .flex-1.space-y-1\.5 > div:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______):not(#_______):not(#________){padding-left:10px !important;padding-right:6px !important;gap:6px !important}
   html body #why-us-section .snap-start .pb-diagram .\@container div[class*="w-[34%]"]:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______):not(#_______):not(#________){width:31% !important;flex:none !important;padding-left:3px !important;padding-right:3px !important;font-size:12.5px !important;overflow-wrap:normal !important}
 }
