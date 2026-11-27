@@ -10,6 +10,7 @@ import "./AboutPage.css";
 import { D1, Kv, Vv, kv } from "../data/data";
 import { AboutHeroScene } from "../components/AboutHeroScene";
 import { AboutDifferences } from "../components/AboutDifferences";
+import { AboutPrinciples } from "../components/AboutPrinciples";
 import { AboutWhyStay } from "../components/AboutWhyStay";
 import { CountUp } from "../components/CountUp";
 import { AboutCardArt } from "../components/AboutCardArt";
@@ -165,15 +166,7 @@ export const AboutPage = () => {
             <h2 className="pb-h2 text-2xl sm:text-3xl font-extrabold text-[color:var(--ink)] mt-1 sm:tracking-tight">Принципи комунікації</h2>
             <p className="text-base mt-2">Фундаментальні принципи співпраці, за які нас рекомендують партнерам</p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {kv.map((d) => (
-              <div key={d.number} className="p-7 rounded-3xl bg-[color:var(--card)] border border-[color:var(--card-border)]">
-                <span className="text-3xl font-extrabold text-[color:var(--accent-green)] block mb-4">{d.number}</span>
-                <h3 className="text-lg font-bold text-[color:var(--ink)] mb-2 leading-snug">{d.title}</h3>
-                <p className="text-base text-[color:var(--ink-soft)] leading-relaxed">{d.description}</p>
-              </div>
-            ))}
-          </div>
+          <AboutPrinciples />
         </section>
       </div>
 
