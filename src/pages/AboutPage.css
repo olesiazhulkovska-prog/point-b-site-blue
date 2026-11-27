@@ -1,0 +1,28 @@
+/* About page: spacing in plain CSS (Tailwind utilities are precompiled in legacy.css, new ones don't exist there) */
+.ab-hero h1:not(#_):not(#__){margin:16px 0 24px}
+.ab-hero p:not(#_):not(#__){margin:0}
+.ab-stats:not(#_):not(#__){display:grid;grid-template-columns:1fr;gap:28px;margin-top:56px}
+.ab-stats>div:not(#_):not(#__){padding:0}
+.ab-stats__v{font-size:44px;line-height:1.05;font-weight:800;font-variant-numeric:tabular-nums}
+.ab-stats__l{margin-top:8px;font-size:16px;line-height:1.4;font-weight:500;max-width:260px;opacity:.82}
+@media(min-width:640px){
+  .ab-stats:not(#_):not(#__){grid-template-columns:repeat(3,1fr);gap:0;margin-top:72px}
+  .ab-stats>div:not(#_):not(#__){padding:0 32px}
+  .ab-stats>div:first-child:not(#_):not(#__){padding-left:0}
+  .ab-stats>div+div:not(#_):not(#__){border-left:1px solid var(--card-border)}
+  .ab-stats__v{font-size:56px}
+}
+.ab-stack:not(#_):not(#__){margin-top:56px}
+.ab-stack__t:not(#_):not(#__){margin:0 0 20px}
+.ab-cta:not(#_):not(#__){margin-top:80px}
+.ab-cta .pb-hero-cta:not(#_):not(#__){margin-top:0}
+.ab-cta h2:not(#_):not(#__){margin:12px auto 0}
+.ab-cta p:not(#_):not(#__){margin:20px auto 0}
+.ab-cta__row:not(#_):not(#__){margin-top:36px}
+
+/* service-page phone rules shrink .pb-hero; About hero and CTA card need their own room */
+@media(max-width:1023px){
+  .pb-hero.ab-hero:not(#_):not(#__):not(#___){padding-top:7rem;padding-bottom:4.5rem}
+  .pb-hero.ab-cta:not(#_):not(#__):not(#___){padding:3.5rem 1.5rem;margin-top:56px}
+}
+.ab-cta p:not(#_):not(#__){text-align:center;max-width:36rem}

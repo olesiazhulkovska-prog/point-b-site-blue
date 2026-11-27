@@ -2,7 +2,11 @@
 /* Відновлено з прод-збірки; імена та типи доводяться вручну. */
 import { ArrowRight, Bot, Check, CodeXml, Layers } from "lucide-react";
 import { useSite } from "../context/SiteContext";
+import "./ServicePage.css";
+import "./AboutPage.css";
 import { D1, Kv, Vv, kv } from "../data/data";
+
+const DIRECTION_PAGES = ["keycrm", "ai-bots", "analytics"];
 
 export const AboutPage = () => {
   const { navigateTo: n, openLeadModal: s } = useSite(),
@@ -44,259 +48,183 @@ export const AboutPage = () => {
         role: "Двостороння синхронізація баз даних",
       },
     ];
+  const wrap = "max-w-[1680px] mx-auto px-5 sm:px-8 lg:px-12 xl:px-16";
+  const eyebrow = "text-[13px] font-bold uppercase tracking-widest text-[color:var(--accent-green)]";
   return (
-    <div className="bg-[color:var(--card)] min-h-screen text-[color:var(--ink)] selection:bg-[color:var(--tint)] selection:text-[color:var(--ink)] pb-20">
-      <section className="bg-[color:var(--card)] border-b border-[color:var(--card-border)] py-24 md:py-36">
-        <div className="max-w-[1680px] mx-auto px-5 sm:px-8 lg:px-12 xl:px-16">
-          <div className="max-w-4xl">
-            <span className="text-[13px] font-bold uppercase tracking-widest text-[color:var(--accent-green)]">
-              Про компанію Point B Group
-            </span>
-            <h1 className="pb-h2 text-4xl sm:text-5xl font-extrabold text-[color:var(--ink)] sm:tracking-tight mt-3 mb-6">
-              Ми будуємо системи, які звільняють час власників та примножують
-              дохід
-            </h1>
-            <p className="text-lg text-[color:var(--ink-soft)] leading-relaxed">
-              <strong>Місія Point B</strong>
-              {
-                " — допомогти малому та середньому бізнесу перейти від операційного хаосу до керованої системи через правильну автоматизацію та впровадження CRM."
-              }
-            </p>
-          </div>
-        </div>
-      </section>
-      <section className="py-24 md:py-32 max-w-[1680px] mx-auto px-5 sm:px-8 lg:px-12 xl:px-16">
-        <div className="mb-10">
-          <span className="text-[13px] font-bold uppercase tracking-widest text-[color:var(--accent-green)]">
-            Спеціалізація
-          </span>
-          <h2 className="pb-h2 text-2xl sm:text-3xl font-extrabold text-[color:var(--ink)] mt-1 sm:tracking-tight">
-            Три напрямки роботи
-          </h2>
-          <p className="text-[color:var(--ink-soft)] text-base mt-1">
-            Комплексна синергія трьох ключових компетенцій в одній експертній
-            команді
-          </p>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {o.map((d, x) => {
-            const C_p = d.icon;
-            return (
-              <div
-                key={x}
-                className="bg-[color:var(--card)] rounded-2xl border border-[color:var(--card-border)] p-7 shadow-xs hover:border-[color:var(--card-border)] transition-all"
+    <div className="bg-[color:var(--card)] min-h-screen text-[color:var(--ink)] selection:bg-[color:var(--tint)] selection:text-[color:var(--ink)]">
+      {/* 1. hero (blue) + key figures */}
+      <div className="pb-band pb-band--blue pb-band--arch">
+        <section className="pb-hero ab-hero relative overflow-hidden bg-transparent py-24 md:py-32">
+          <div className={wrap}>
+            <div className="max-w-4xl">
+              <span className={eyebrow}>Про компанію Point B Group</span>
+              <h1 className="pb-h2 text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[color:var(--ink)] sm:tracking-tight leading-tight">
+                Ми будуємо системи, які звільняють час власників та примножують дохід
+              </h1>
+              <p className="text-base sm:text-lg text-[color:var(--ink)]/85 leading-relaxed max-w-3xl">
+                <strong>Місія Point B</strong>
+                {" — допомогти малому та середньому бізнесу перейти від операційного хаосу до керованої системи через правильну автоматизацію та впровадження CRM."}
+              </p>
+              <a
+                className="pb-hero-cta"
+                data-ds-round="1"
+                href="#lead"
+                onClick={(e) => {
+                  e.preventDefault();
+                  s("Сторінка Про компанію");
+                }}
               >
-                <div className="w-12 h-12 rounded-xl bg-[color:var(--btn-dark)] text-[color:var(--on-dark)] flex items-center justify-center mb-5">
-                  <C_p className="w-6 h-6 text-[color:var(--accent-green)]" />
-                </div>
-                <h3 className="text-lg font-bold text-[color:var(--ink)] mb-3">
-                  {d.title}
-                </h3>
-                <p className="text-base text-[color:var(--ink-soft)] leading-relaxed">
-                  {d.description}
-                </p>
-              </div>
-            );
-          })}
-        </div>
-      </section>
-      <section className="py-24 md:py-32 bg-[color:var(--card)] border-y border-[color:var(--card-border)]">
-        <div className="max-w-[1680px] mx-auto px-5 sm:px-8 lg:px-12 xl:px-16">
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <span className="text-[13px] font-bold uppercase tracking-widest text-[color:var(--accent-green)]">
-              Факти та масштаб
-            </span>
-            <h2 className="pb-h2 text-2xl sm:text-3xl font-extrabold text-[color:var(--ink)] mt-1 sm:tracking-tight">
-              Досвід, підтверджений цифрами
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-            {D1.map((d, x) => (
-              <div
-                key={x}
-                className="p-6 rounded-2xl bg-[color:var(--card)] border border-[color:var(--card-border)] flex flex-col justify-center"
-              >
-                <div className="text-3xl sm:text-4xl font-extrabold text-[color:var(--ink)]">
-                  {d.value}
-                </div>
-                <div className="text-sm sm:text-base text-[color:var(--ink-soft)] font-medium mt-2">
-                  {d.label}
-                </div>
-                {d.sub && (
-                  <div className="text-[13px] text-[color:var(--accent-green)] font-normal mt-1">
-                    ({d.sub})
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-          <div className="mt-12 pt-10 border-t border-[color:var(--card-border)]">
-            <div className="text-[13px] font-semibold text-[color:var(--ink-soft)] uppercase tracking-wider text-center mb-6">
-              Ключові технологічні стеки та інтеграції
+                <span>Залишити заявку</span>
+                <span className="pb-hero-cta__ic" aria-hidden="true">
+                  <ArrowRight className="w-5 h-5" />
+                </span>
+              </a>
             </div>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-              {i.map((d, x) => (
-                <div
-                  key={x}
-                  className="p-4 rounded-xl bg-[color:var(--card)] border border-[color:var(--card-border)] text-center"
-                >
-                  <div className="font-bold text-[color:var(--ink)] text-base">
-                    {d.name}
-                  </div>
-                  <div className="text-[13px] text-[color:var(--ink-soft)] mt-1">
-                    {d.role}
-                  </div>
+            <div className="ab-stats">
+              {D1.map((d, x) => (
+                <div key={x}>
+                  <div className="ab-stats__v text-[color:var(--ink)]">{d.value}</div>
+                  <div className="ab-stats__l text-[color:var(--ink)]">{d.label}</div>
                 </div>
               ))}
             </div>
           </div>
-        </div>
-      </section>
-      <section className="py-24 md:py-32 max-w-[1680px] mx-auto px-5 sm:px-8 lg:px-12 xl:px-16">
-        <div className="mb-10 max-w-3xl">
-          <span className="text-[13px] font-bold uppercase tracking-widest text-[color:var(--accent-green)]">
-            Культура взаємодії
-          </span>
-          <h2 className="pb-h2 text-2xl sm:text-3xl font-extrabold text-[color:var(--ink)] mt-1 sm:tracking-tight">
-            Принципи комунікації
-          </h2>
-          <p className="text-[color:var(--ink-soft)] text-base mt-1">
-            Фундаментальні принципи співпраці, за які нас рекомендують партнерам
-          </p>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {kv.map((d) => (
-            <div
-              key={d.number}
-              className="p-6 rounded-2xl bg-[color:var(--card)] border border-[color:var(--card-border)] flex flex-col justify-between shadow-xs"
-            >
-              <div>
-                <span className="text-2xl font-extrabold text-[color:var(--accent-green)] block mb-3">
-                  {d.number}
-                </span>
-                <h3 className="text-base font-bold text-[color:var(--ink)] mb-2 leading-snug">
-                  {d.title}
-                </h3>
-                <p className="text-base text-[color:var(--ink-soft)] leading-relaxed">
-                  {d.description}
-                </p>
-              </div>
+        </section>
+      </div>
+
+      {/* 2. directions + stack (light) */}
+      <div className="pb-band pb-band--light">
+        <section className={wrap}>
+          <div className="pb-head max-w-2xl">
+            <span className={eyebrow}>Спеціалізація</span>
+            <h2 className="pb-h2 text-2xl sm:text-3xl font-extrabold text-[color:var(--ink)] mt-1 sm:tracking-tight">Три напрямки роботи</h2>
+            <p className="text-base mt-2">Комплексна синергія трьох ключових компетенцій в одній експертній команді</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {o.map((d, x) => {
+              const C_p = d.icon;
+              return (
+                <button
+                  key={x}
+                  type="button"
+                  onClick={() => n(DIRECTION_PAGES[x])}
+                  className="text-left flex flex-col gap-4 p-7 rounded-3xl bg-[color:var(--surface)] border border-[color:var(--card-border)] shadow-[0_18px_36px_-26px_rgba(0,0,40,.55)] hover:border-[#F98513] hover:-translate-y-0.5 transition-all cursor-pointer"
+                >
+                  <span className="pbxt__i"><C_p size={26} strokeWidth={1.7} /></span>
+                  <h3 className="text-xl font-bold text-[color:var(--ink)] leading-snug">{d.title}</h3>
+                  <p className="text-base text-[color:var(--ink-soft)] leading-relaxed">{d.description}</p>
+                  <span className="mt-auto pt-2 inline-flex items-center gap-2 text-[15px] font-semibold text-[color:var(--ink)]">
+                    Детальніше <ArrowRight className="w-4 h-4" />
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+          <div className="ab-stack">
+            <div className="ab-stack__t text-[13px] font-bold uppercase tracking-widest text-[color:var(--ink-soft)]">Ключові технологічні стеки та інтеграції</div>
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+              {i.map((d, x) => (
+                <div key={x} className="p-5 rounded-2xl bg-[color:var(--surface)] border border-[color:var(--card-border)]">
+                  <div className="font-bold text-[color:var(--ink)] text-lg">{d.name}</div>
+                  <div className="text-[15px] text-[color:var(--ink-soft)] mt-1 leading-snug">{d.role}</div>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-      </section>
-      <section className="py-24 md:py-32 bg-[color:var(--card)] border-t border-[color:var(--card-border)]">
-        <div className="max-w-[1680px] mx-auto px-5 sm:px-8 lg:px-12 xl:px-16">
-          <div className="mb-10 max-w-3xl">
-            <span className="text-[13px] font-bold uppercase tracking-widest text-[color:var(--accent-green)]">
-              Позиціонування
-            </span>
-            <h2 className="pb-h2 text-2xl sm:text-3xl font-extrabold text-[color:var(--ink)] mt-1 sm:tracking-tight">
-              Чим ми відрізняємось (3 ключові стандарти)
-            </h2>
-            <p className="text-[color:var(--ink-soft)] text-base mt-1">
-              Короткі та запам’ятовувані орієнтири нашої роботи, сформульовані
-              через цінність для вашого бізнесу
-            </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        </section>
+      </div>
+
+      {/* 3. communication principles (blue) */}
+      <div className="pb-band pb-band--blue">
+        <section className={wrap}>
+          <div className="pb-head max-w-3xl">
+            <span className={eyebrow}>Культура взаємодії</span>
+            <h2 className="pb-h2 text-2xl sm:text-3xl font-extrabold text-[color:var(--ink)] mt-1 sm:tracking-tight">Принципи комунікації</h2>
+            <p className="text-base mt-2">Фундаментальні принципи співпраці, за які нас рекомендують партнерам</p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {kv.map((d) => (
+              <div key={d.number} className="p-7 rounded-3xl bg-[color:var(--card)] border border-[color:var(--card-border)]">
+                <span className="text-3xl font-extrabold text-[color:var(--accent-green)] block mb-4">{d.number}</span>
+                <h3 className="text-lg font-bold text-[color:var(--ink)] mb-2 leading-snug">{d.title}</h3>
+                <p className="text-base text-[color:var(--ink-soft)] leading-relaxed">{d.description}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+      </div>
+
+      {/* 4. standards (light) */}
+      <div className="pb-band pb-band--light">
+        <section className={wrap}>
+          <div className="pb-head max-w-3xl">
+            <span className={eyebrow}>Позиціонування</span>
+            <h2 className="pb-h2 text-2xl sm:text-3xl font-extrabold text-[color:var(--ink)] mt-1 sm:tracking-tight">Чим ми відрізняємось (3 ключові стандарти)</h2>
+            <p className="text-base mt-2">Короткі та запам’ятовувані орієнтири нашої роботи, сформульовані через цінність для вашого бізнесу</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {Vv.map((d, x) => (
-              <div
-                key={x}
-                className="p-7 rounded-2xl bg-[color:var(--card)] border border-[color:var(--card-border)] flex flex-col justify-between hover:border-[color:var(--card-border)] transition-all"
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="w-9 h-9 rounded-xl bg-[color:var(--tint)] text-[color:var(--ink)] font-extrabold flex items-center justify-center text-sm">
-                      {d.number}
-                    </span>
-                    {d.badge && (
-                      <span className="px-2.5 py-0.5 rounded-full bg-[color:var(--card)] border border-[color:var(--card-border)] text-[13px] font-semibold text-[color:var(--ink-soft)]">
-                        {d.badge}
-                      </span>
-                    )}
-                  </div>
-                  <h3 className="text-base font-bold text-[color:var(--ink)] mb-2.5 leading-snug">
-                    {d.title}
-                  </h3>
-                  <p className="text-base text-[color:var(--ink-soft)] leading-relaxed">
-                    {d.description}
-                  </p>
+              <div key={x} className="p-7 rounded-3xl bg-[color:var(--surface)] border border-[color:var(--card-border)] shadow-[0_18px_36px_-26px_rgba(0,0,40,.55)]">
+                <div className="flex items-center justify-between mb-5">
+                  <span className="w-11 h-11 rounded-2xl bg-[#111144] text-white font-extrabold flex items-center justify-center text-sm">{d.number}</span>
+                  {d.badge && (
+                    <span className="px-3 py-1 rounded-full bg-[color:var(--tint)] border border-[color:var(--card-border)] text-[13px] font-semibold text-[color:var(--ink)]">{d.badge}</span>
+                  )}
                 </div>
+                <h3 className="text-lg font-bold text-[color:var(--ink)] mb-3 leading-snug">{d.title}</h3>
+                <p className="text-base text-[color:var(--ink-soft)] leading-relaxed">{d.description}</p>
               </div>
             ))}
           </div>
-        </div>
-      </section>
-      <section className="py-24 md:py-32 bg-[color:var(--tint)] border-t border-[color:var(--card-border)]">
-        <div className="max-w-[1680px] mx-auto px-5 sm:px-8 lg:px-12 xl:px-16">
-          <div className="max-w-3xl mb-12">
-            <span className="text-[13px] font-bold uppercase tracking-widest text-[color:var(--accent-green)]">
-              Стандарти якості
-            </span>
-            <h2 className="pb-h2 text-2xl sm:text-3xl font-extrabold text-[color:var(--ink)] mt-1 sm:tracking-tight">
-              Понад 35% клієнтів стають постійними
-            </h2>
-            <p className="text-[color:var(--ink-soft)] text-base mt-1">
-              Повний перелік 12 причин, чому бізнеси залишаються з Point B Group
-              на роки
-            </p>
+        </section>
+      </div>
+
+      {/* 5. 12 reasons + CTA (blue, same as footer tone) */}
+      <div className="pb-band pb-band--blue">
+        <section className={wrap}>
+          <div className="pb-head max-w-3xl">
+            <span className={eyebrow}>Стандарти якості</span>
+            <h2 className="pb-h2 text-2xl sm:text-3xl font-extrabold text-[color:var(--ink)] mt-1 sm:tracking-tight">Понад 35% клієнтів стають постійними</h2>
+            <p className="text-base mt-2">Повний перелік 12 причин, чому бізнеси залишаються з Point B Group на роки</p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-1 border-t border-[color:var(--card-border)]">
             {Kv.map((d, x) => (
-              <div
-                key={x}
-                className="p-6 rounded-2xl bg-[color:var(--card)] border border-[color:var(--card-border)] shadow-xs"
-              >
-                <div className="flex items-center gap-2 mb-2">
-                  <div className="w-5 h-5 rounded-full bg-[color:var(--tint)] text-[color:var(--accent-green)] flex items-center justify-center shrink-0">
-                    <Check className="w-3 h-3" />
-                  </div>
-                  <h3 className="text-base font-bold text-[color:var(--ink)]">
-                    {d.title}
-                  </h3>
+              <li key={x} className="flex gap-4 py-5 border-b border-[color:var(--card-border)]">
+                <span className="mt-0.5 w-6 h-6 rounded-full bg-[#F98513] text-[#111144] flex items-center justify-center shrink-0"><Check className="w-4 h-4" strokeWidth={3} /></span>
+                <div>
+                  <h3 className="text-base sm:text-lg font-bold text-[color:var(--ink)] leading-snug">{d.title}</h3>
+                  <p className="text-base text-[color:var(--ink-soft)] leading-relaxed mt-1">{d.description}</p>
                 </div>
-                <p className="text-base text-[color:var(--ink-soft)] leading-relaxed pl-7">
-                  {d.description}
-                </p>
-              </div>
+              </li>
             ))}
-          </div>
-        </div>
-      </section>
-      <section className="mt-24 max-w-[1680px] mx-auto px-5 sm:px-8 lg:px-12 xl:px-16">
-        <div className="rounded-3xl bg-[color:var(--card)] text-[color:var(--ink)] p-8 sm:p-14 border border-[color:var(--card-border)] text-center">
-          <div className="max-w-2xl mx-auto space-y-5">
-            <span className="text-[13px] font-bold uppercase tracking-widest text-[color:var(--accent-green)]">
-              Партнерство з Point B
-            </span>
-            <h2 className="pb-h2 text-3xl sm:text-4xl font-extrabold text-[color:var(--ink)] sm:tracking-tight">
-              Почніть з аудиту ваших процесів
-            </h2>
-            <p className="text-[color:var(--muted)] text-base sm:text-base">
-              Зв’яжіться з нами або перегляньте реалізовані проєкти у вашій
-              галузі.
-            </p>
-            <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4">
-              <button
+          </ul>
+          <div className="pb-hero ab-cta rounded-3xl border border-[color:var(--card-border)] px-6 py-14 sm:px-14 sm:py-20 text-center" style={{ backgroundImage: "var(--panel-gradient)" }}>
+            <span className={eyebrow}>Партнерство з Point B</span>
+            <h2 className="pb-h2 text-3xl sm:text-5xl font-extrabold text-[color:var(--ink)] sm:tracking-tight mt-3 max-w-3xl mx-auto leading-tight">Почніть з аудиту ваших процесів</h2>
+            <p className="text-base sm:text-lg text-[color:var(--ink)]/85 mt-5 max-w-xl mx-auto">Зв’яжіться з нами або перегляньте реалізовані проєкти у вашій галузі.</p>
+            <div className="ab-cta__row flex flex-col sm:flex-row items-center justify-center gap-4">
+              <a
                 id="about-cta-lead"
-                onClick={() => s("Сторінка Про компанію")}
-                className="w-full sm:w-auto px-8 py-3.5 rounded-full bg-[color:var(--lime)] text-[color:var(--ink)] font-bold text-sm hover:bg-[color:var(--lime)] transition-all flex items-center justify-center gap-2"
+                className="pb-hero-cta"
+                style={{ marginTop: 0 }}
+                href="#lead"
+                onClick={(e) => { e.preventDefault(); s("Сторінка Про компанію"); }}
               >
                 <span>Залишити заявку</span>
-                <ArrowRight className="w-4 h-4 text-[color:var(--ink)]" />
-              </button>
+                <span className="pb-hero-cta__ic" aria-hidden="true"><ArrowRight className="w-5 h-5" /></span>
+              </a>
               <button
                 id="about-cta-cases"
+                type="button"
                 onClick={() => n("cases")}
-                className="w-full sm:w-auto px-8 py-3.5 rounded-full border border-[color:var(--card-border)] text-[color:var(--on-dark)] font-semibold text-sm hover:bg-[color:var(--btn-dark-hover)] transition-all flex items-center justify-center gap-2"
+                className="px-8 py-4 rounded-full border border-[color:var(--card-border)] text-[color:var(--ink)] font-semibold text-[17px] hover:border-[#F98513] transition-colors cursor-pointer"
               >
-                <span>Дивитись кейси</span>
+                Дивитись кейси
               </button>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
     </div>
   );
 };
