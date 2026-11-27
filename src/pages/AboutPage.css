@@ -170,3 +170,32 @@ html.pb-inner body div.min-h-screen > section#reviews-section:not(#_):not(#__):n
 
 /* після блоку 12 причин тепер ідуть відгуки, а не футер — зайвий «підсвічений» відступ під ним не потрібен */
 .pb-band.ab-last:not(#_):not(#__){margin-bottom:0!important;box-shadow:none!important}
+
+/* ── соціал-пруф: цифри й підписи по центру колонок ── */
+.ab-stats>div:not(#_):not(#__){text-align:center}
+.ab-stats__l:not(#_):not(#__){margin-inline:auto}
+@media (min-width:768px){
+  .ab-stats>div:not(#_):not(#__){padding-left:32px;padding-right:32px}
+  .ab-stats>div:first-child:not(#_):not(#__){padding-left:32px}
+}
+
+/* ── шов між «Чим ми відрізняємось» і відгуками: перекриваємо на 2px, щоб не було тонкої лінії ── */
+.pb-band.ab-sheet:not(#_):not(#__){margin-bottom:-2px!important}
+html.pb-inner body div.min-h-screen > section#reviews-section:not(#_):not(#__):not(#___):not(#____){box-shadow:none!important;margin-top:0!important}
+
+/* ── ритм відступів: відгуки → «Понад 35%» → CTA → стрічка партнерів ── */
+.pb-band.ab-last:not(#_):not(#__){padding-top:var(--ab-gap-top,200px)!important;padding-bottom:var(--ab-gap,96px)!important}
+.ab-ed:not(#_):not(#__){margin-bottom:var(--ab-gap,96px)}
+body:has(.ab-last) footer.theme-dark:not(#_):not(#__){padding-top:0!important}
+body:has(.ab-last) footer.theme-dark .pbx-marquee:not(#_):not(#__){margin-top:0!important;margin-bottom:0!important}
+@media (max-width:767px){
+  .pb-band.ab-last:not(#_):not(#__){--ab-gap-top:96px;--ab-gap:56px}
+}
+.ab-last>section:not(#_):not(#__){padding-top:0!important;padding-bottom:0!important}
+.pb-band.ab-last:not(#_):not(#__){padding-bottom:32px!important}
+@media (max-width:767px){.pb-band.ab-last:not(#_):not(#__){padding-bottom:24px!important}}
+@media (min-width:768px) and (max-width:1023px){.pb-band.ab-last:not(#_):not(#__){--ab-gap-top:160px}}
+/* верхній падінг бенду нормалізатор виставляє інлайном (≥768) — додаткову «повітря» після дуги відгуків дає margin секції */
+@media (min-width:768px){.ab-last>section:not(#_):not(#__){margin-top:56px}}
+@media (min-width:1024px){.ab-last>section:not(#_):not(#__){margin-top:72px}}
+@media (min-width:1440px){.ab-last>section:not(#_):not(#__){margin-top:88px}}
