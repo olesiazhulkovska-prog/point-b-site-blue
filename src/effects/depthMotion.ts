@@ -13,7 +13,12 @@
   } catch (e) {}
   /* Safari (iPad/iPhone): view() timelines with min()/calc() ranges leave tall blocks half transparent -> use the IntersectionObserver fallback there */
   try {
-    var apple = /Apple/.test(navigator.vendor || "") && !/Chrome|CriOS|FxiOS|Edg/.test(navigator.userAgent);
+    /* усі браузери на iOS/iPadOS (Safari, Chrome/CriOS, Firefox/FxiOS, Google/GSA) працюють на WebKit — ті самі баги view(); iPadOS може маскуватись під Mac */
+    var ua = navigator.userAgent || "";
+    var apple =
+      /iPad|iPhone|iPod/.test(ua) ||
+      (navigator.platform === "MacIntel" && (navigator.maxTouchPoints || 0) > 1) ||
+      (/Apple/.test(navigator.vendor || "") && !/Chrome|CriOS|FxiOS|Edg/.test(ua));
     if (apple) sda = false;
   } catch (e) {}
   if (sda) root.classList.add("pbx-sda");
