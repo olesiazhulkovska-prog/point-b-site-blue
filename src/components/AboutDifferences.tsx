@@ -4,9 +4,6 @@ import { Vv } from "../data/data";
 import { CountUp } from "./CountUp";
 import "./AboutDifferences.css";
 
-// Коротка версія заголовка: до « — » або «, а не»
-const short = (t: string) => t.split(/ — |, а не /)[0];
-
 const Viz = ({ i, run }: { i: number; run: number }) => {
   if (i === 0)
     return (
@@ -86,7 +83,8 @@ export const AboutDifferences = () => {
           <span className="ab-diff__n">{d.number}</span>
           <div className="ab-diff__txt">
             {d.badge && <span className="ab-diff__badge">{d.badge}</span>}
-            <div role="heading" aria-level={3} className="ab-diff__title">{short(d.title)}</div>
+            <div role="heading" aria-level={3} className="ab-diff__title">{d.title}</div>
+            <p className="ab-diff__desc">{d.description}</p>
           </div>
           <Viz i={i} run={runs[i]} />
         </li>

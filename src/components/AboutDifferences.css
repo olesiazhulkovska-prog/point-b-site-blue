@@ -56,3 +56,8 @@
 .ab-diff__tick:not(#_):not(#__){border-color:#2431A4}
 /* галочка без синьої обводки після появи (перекриває legacy-обводку вище) */
 .is-in.ab-diff__row .ab-diff__tick:not(#_):not(#__){border-color:#F98513!important}
+
+/* повні тексти клієнта: заголовок + опис */
+.ab-diff__desc{margin:8px 0 0;font-size:15px;line-height:1.55;color:#5B6499;max-width:640px}
+.ab-diff__desc:not(#_):not(#__){color:#5B6499}
+@media (min-width:768px){.ab-diff__desc{font-size:16px}}
