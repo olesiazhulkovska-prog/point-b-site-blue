@@ -154,3 +154,8 @@ html body .pb-band.ab-sheet:not(#_):not(#__)::before{left:0;right:0;border-radiu
   .pb-band.ab-sheet:not(#_):not(#__){margin-top:-32px!important}
   html body .pb-band.ab-sheet:not(#_):not(#__)::before{border-radius:28px 28px 0 0}
 }
+
+/* ефект «накриття»: блок із відео стоїть, а «Чим ми відрізняємось» виїжджає й накриває його під час скролу (планшет/десктоп) */
+@media (min-width:768px){
+  html body .pb-band.ab-prin:not(#_):not(#__){position:sticky!important;top:var(--prin-top,0px)}
+}

@@ -16,7 +16,7 @@ const clean = (t: string) => t.replace(/^\d+\.\s*/, "");
 const num = (i: number) => String(i + 1).padStart(2, "0");
 
 export const AboutWhyStay = () => {
-  const [active, setActive] = useState(3);
+  const [active, setActive] = useState(0);
 
   const start = Math.min(TOTAL - PAGE, Math.max(0, active - 3));
   const items = Kv.slice(start, start + PAGE);

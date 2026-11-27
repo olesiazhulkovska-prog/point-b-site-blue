@@ -23,6 +23,17 @@ export const AboutPage = () => {
     window.addEventListener("scroll", fix, { passive: true });
     return () => window.removeEventListener("scroll", fix);
   }, []);
+  // блок із відео «залипає» (sticky), доки наступний блок його накриває: позиція = низ блоку біля низу екрана
+  useEffect(() => {
+    const el = document.querySelector<HTMLElement>(".ab-prin");
+    if (!el) return;
+    const set = () => el.style.setProperty("--prin-top", Math.min(0, window.innerHeight - el.offsetHeight) + "px");
+    set();
+    const ro = typeof ResizeObserver !== "undefined" ? new ResizeObserver(set) : null;
+    ro?.observe(el);
+    window.addEventListener("resize", set);
+    return () => { ro?.disconnect(); window.removeEventListener("resize", set); };
+  }, []);
   const { navigateTo: n, openLeadModal: s } = useSite(),
     o = [
       {
