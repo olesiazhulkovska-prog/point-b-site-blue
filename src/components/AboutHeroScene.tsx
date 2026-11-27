@@ -1,5 +1,6 @@
 // @ts-nocheck
 import * as React from "react";
+import { siViber } from "simple-icons";
 import "./AboutHeroScene.css";
 
 /* Hero «Про компанію»: демонстрація CRM-продукту.
@@ -22,7 +23,7 @@ const Wa = () => (
   <svg {...SV}><path d="M16 6.2a9.8 9.8 0 0 0-8.4 14.8L6.2 25.8l4.9-1.3A9.8 9.8 0 1 0 16 6.2Z" /><path d="M12.3 11.4c.4-.6 1-.5 1.2 0l.9 2c.1.3 0 .6-.2.8l-.6.7c.7 1.4 1.8 2.4 3.3 3.1l.7-.7c.2-.2.6-.3.8-.1l2 1c.5.3.5.8 0 1.3-1 1-2.4 1.3-3.8.6-2.6-1.2-4.4-3.2-5.2-5.1-.3-.9-.2-2.1.9-2.9Z" fill="currentColor" stroke="none" /></svg>
 );
 const Vb = () => (
-  <svg {...SV}><path d="M10.4 6.8h11.2A3.9 3.9 0 0 1 25.5 10.7v7.2a3.9 3.9 0 0 1-3.9 3.9h-3.5l-4.3 4v-4h-3.4a3.9 3.9 0 0 1-3.9-3.9v-7.2a3.9 3.9 0 0 1 3.9-3.9Z" /><path d="M13 11.5c.3-.4.8-.4 1 0l.8 1.5c.1.3 0 .5-.2.7l-.5.5c.6 1.1 1.4 1.8 2.5 2.3l.5-.5c.2-.2.5-.3.8-.1l1.4.8c.4.3.4.7 0 1.1-1 .9-2.2.9-3.2.4-1.6-.7-2.8-1.9-3.6-3.5-.4-.9-.3-1.9.5-2.7Z" fill="currentColor" stroke="none" /></svg>
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d={siViber.path} /></svg>
 );
 const ICONS = [Insta, Tg, Wa, Vb];
 export const CHANNEL_ICONS = ICONS;
