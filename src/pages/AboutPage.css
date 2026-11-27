@@ -159,3 +159,8 @@ html body .pb-band.ab-sheet:not(#_):not(#__)::before{left:0;right:0;border-radiu
 @media (min-width:768px){
   html body .pb-band.ab-prin:not(#_):not(#__){position:sticky!important;top:var(--prin-top,0px)}
 }
+
+/* кути листа: сам блок прозорий (білий малює лише заокруглений ::before), без тіні-серпанку над картками */
+html body .pb-band.ab-sheet:not(#_):not(#__){background:transparent!important;background-image:none!important}
+html body .pb-band.ab-sheet:not(#_):not(#__)::before{box-shadow:none!important}
+html body .pb-band.ab-sheet:not(#_):not(#__)::before{background:#fff!important}
