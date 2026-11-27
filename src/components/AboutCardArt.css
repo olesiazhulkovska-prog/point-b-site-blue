@@ -1,35 +1,35 @@
 /* Мініатюри карток послуг. Усе в em від ширини картки; legacy-радіуси перекриті !important. */
 .acx{container-type:inline-size;width:100%}
-.acx__s{font-size:calc(100cqw / 28);line-height:1.25;position:relative;aspect-ratio:17 / 13;overflow:hidden;border-radius:16px;background:#F1F2FB;border:1px solid #E1E3F4;color:#111144;font-family:Manrope,Inter Variable,system-ui,sans-serif}
+.acx__s{font-size:calc(100cqw / 28);line-height:1.25;position:relative;aspect-ratio:17 / 13;overflow:hidden;border-radius:16px;background:#EEF2FF;border:1px solid #D5DDFA;color:#111144;font-family:Manrope,Inter Variable,system-ui,sans-serif}
 .acx__in{position:absolute;inset:0;box-sizing:border-box;padding:.9em 1em;display:flex;flex-direction:column;gap:.5em}
 .acx *{box-sizing:border-box}
 .acx svg{display:block;width:100%;height:100%}
 .acx__hd{display:flex;align-items:center;gap:.6em;font-size:1.02em;height:1.6em;flex:none}
 .acx__hd b{font-weight:700}
-.acx__hd i,.acx__hd u{font-style:normal;text-decoration:none;margin-left:auto;font-size:.88em;color:#6B6E93}
+.acx__hd i,.acx__hd u{font-style:normal;text-decoration:none;margin-left:auto;font-size:.88em;color:#5B6499}
 .acx__hd u{margin-left:0}
-.acx__logo{flex:none;width:1.9em;height:1.9em;padding:.4em;background:#111144;color:#fff}
-.acx__logo--hot{background:#F98513;color:#111144}
+.acx__logo{flex:none;width:1.9em;height:1.9em;padding:.4em;background:#2431A4;color:#fff}
+.acx__logo--hot{background:#2431A4;color:#fff}
 .acx .acx__logo:not(#_):not(#__){border-radius:.55em !important}
 .acx__tags,.acx__chn{display:flex;gap:.5em}
 .acx__chn{margin-left:auto;gap:.55em}
-.acx__chn svg{width:1.15em;height:1.15em;color:#7C80A8}
+.acx__chn svg{width:1.15em;height:1.15em;color:#5B6499}
 .acx__hd u::before{content:"";display:inline-block;width:.55em;height:.55em;margin-right:.35em;background:#F98513;vertical-align:baseline}
 .acx .acx__hd u::before{border-radius:50%}
 .acx__hd i{margin-left:auto}
 
 /* ── CRM ── */
 .acx__cols{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:.6em;flex:none;height:12.5em}
-.acx__col{padding:.4em;background:#E7E9F8;display:flex;flex-direction:column;gap:.4em}
+.acx__col{padding:.4em;background:#E3E9FD;display:flex;flex-direction:column;gap:.4em}
 .acx .acx__col:not(#_):not(#__){border-radius:.7em !important}
-.acx__ch{flex:none;display:flex;justify-content:space-between;align-items:center;height:1.67em;font-size:.9em;font-weight:700;color:#3A3D6B;padding:0 .2em}
-.acx__ch em{font-style:normal;font-weight:600;color:#7C80A8}
-.acx__k,.acx__mv{flex:none;height:3em;padding:.35em .55em;background:#fff;border:1px solid #D5D8F0;display:flex;flex-direction:column;justify-content:center;gap:.1em}
+.acx__ch{flex:none;display:flex;justify-content:space-between;align-items:center;height:1.67em;font-size:.9em;font-weight:700;color:#111144;padding:0 .2em}
+.acx__ch em{font-style:normal;font-weight:600;color:#5B6499}
+.acx__k,.acx__mv{flex:none;height:3em;padding:.35em .55em;background:#fff;border:1px solid #D5DDFA;display:flex;flex-direction:column;justify-content:center;gap:.1em}
 .acx .acx__k:not(#_):not(#__),.acx .acx__mv:not(#_):not(#__){border-radius:.55em !important}
 .acx__k b,.acx__mv b{font-size:.95em;font-weight:700;line-height:1.1}
-.acx__k span,.acx__mv span{font-size:.86em;color:#6B6E93;line-height:1.1}
+.acx__k span,.acx__mv span{font-size:.86em;color:#5B6499;line-height:1.1}
 .acx__mv{position:absolute;left:.4em;top:0;width:calc((100% - 1.2em) / 3 - .8em);border:1.5px solid #F98513;box-shadow:0 .5em 1em -.5em rgba(17,17,68,.35);opacity:0;animation:acx-mv 8s ease-in-out infinite}
-.acx__mv span{color:#C46A0B;font-weight:600}
+.acx__mv span{color:#2431A4;font-weight:600}
 @keyframes acx-mv{
   0%{opacity:0;transform:translate(0,9.4em)}
   8%,30%{opacity:1;transform:translate(0,9.1em)}
@@ -37,16 +37,16 @@
   76%,92%{opacity:1;transform:translate(calc(200% + 2.8em),9.1em)}
   100%{opacity:0;transform:translate(calc(200% + 2.8em),9.1em)}
 }
-.acx__tags span{display:inline-flex;align-items:center;gap:.4em;padding:.4em .7em;background:#fff;border:1px solid #D5D8F0;font-size:.9em;font-weight:600;color:#3A3D6B}
+.acx__tags span{display:inline-flex;align-items:center;gap:.4em;padding:.4em .7em;background:#fff;border:1px solid #D5DDFA;font-size:.9em;font-weight:600;color:#111144}
 .acx .acx__tags span:not(#_):not(#__){border-radius:2em !important}
-.acx__tags svg{width:1.25em;height:1.25em;color:#F98513}
+.acx__tags svg{width:1.25em;height:1.25em;color:#2431A4}
 
 /* ── чат ── */
 .acx__msgs{display:flex;flex-direction:column;gap:.5em;flex:1;min-height:0}
 .acx__m{flex:none;max-width:82%;padding:.55em .8em;font-size:.95em;line-height:1.3;opacity:0}
 .acx .acx__m:not(#_):not(#__){border-radius:.9em !important}
-.acx__m--c{align-self:flex-start;background:#DDE0F6;color:#111144}
-.acx__m--a{align-self:flex-end;background:#111144;color:#fff;display:grid}
+.acx__m--c{align-self:flex-start;background:#D5DDFA;color:#111144}
+.acx__m--a{align-self:flex-end;background:#2431A4;color:#fff;display:grid}
 .acx__m--a>*{grid-area:1/1}
 .acx__typ{display:flex;gap:.3em;align-items:center;justify-content:flex-start;opacity:0;animation:acx-typ 8s linear infinite}
 .acx__typ i{width:.5em;height:.5em;background:#F98513;animation:acx-dot 1s ease-in-out infinite}
@@ -59,9 +59,9 @@
 .acx__m.m1{animation:acx-c1 8s ease infinite}
 .acx__m.m2{animation:acx-c2 8s ease infinite}
 .acx__m.m3{animation:acx-c3 8s ease infinite}
-.acx__ok{flex:none;align-self:flex-start;display:flex;align-items:center;gap:.6em;padding:.45em .9em .45em .5em;background:#fff;border:1px solid #D5D8F0;font-size:.95em;font-weight:700;opacity:0;animation:acx-c4 8s ease infinite}
+.acx__ok{flex:none;align-self:flex-start;display:flex;align-items:center;gap:.6em;padding:.45em .9em .45em .5em;background:#fff;border:1px solid #D5DDFA;font-size:.95em;font-weight:700;opacity:0;animation:acx-c4 8s ease infinite}
 .acx .acx__ok:not(#_):not(#__){border-radius:2em !important}
-.acx__ok span{width:1.7em;height:1.7em;padding:.38em;background:#F98513;color:#111144;display:block}
+.acx__ok span{width:1.7em;height:1.7em;padding:.38em;background:#2431A4;color:#fff;display:block}
 .acx .acx__ok span:not(#_):not(#__){border-radius:50% !important}
 @keyframes acx-c1{0%,3%{opacity:0;transform:translateY(.6em)}9%,92%{opacity:1;transform:none}98%,100%{opacity:0}}
 @keyframes acx-c2{0%,14%{opacity:0;transform:translateY(.6em)}19%,92%{opacity:1;transform:none}98%,100%{opacity:0}}
@@ -70,30 +70,30 @@
 
 /* ── код ── */
 .acx__code{flex-direction:row;gap:1em;align-items:stretch}
-.acx__win{flex:none;width:14.6em;background:#fff;border:1px solid #D5D8F0;display:flex;flex-direction:column;overflow:hidden}
+.acx__win{flex:none;width:14.6em;background:#fff;border:1px solid #D5DDFA;display:flex;flex-direction:column;overflow:hidden}
 .acx .acx__win:not(#_):not(#__){border-radius:.8em !important}
-.acx__bar{display:flex;align-items:center;gap:.35em;height:1.9em;padding:0 .7em;border-bottom:1px solid #E7E9F8;flex:none}
-.acx__bar i{width:.55em;height:.55em;background:#C3C7E6}
+.acx__bar{display:flex;align-items:center;gap:.35em;height:1.9em;padding:0 .7em;border-bottom:1px solid #E3E9FD;flex:none}
+.acx__bar i{width:.55em;height:.55em;background:#B9C4F0}
 .acx .acx__bar i:not(#_):not(#__){border-radius:50% !important}
 .acx__bar i:first-child{background:#F98513}
-.acx__bar span{margin-left:.5em;font-size:.82em;color:#6B6E93;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
-.acx__src{margin:0;padding:.7em .8em;flex:1;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.9em;line-height:1.55;color:#3A3D6B;white-space:pre;overflow:hidden}
+.acx__bar span{margin-left:.5em;font-size:.82em;color:#5B6499;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.acx__src{margin:0;padding:.7em .8em;flex:1;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.9em;line-height:1.55;color:#111144;white-space:pre;overflow:hidden}
 .acx__src span{display:block;overflow:hidden;max-width:0}
 .acx__src s{text-decoration:none;color:#F98513;font-weight:700}
-.acx__build{display:flex;align-items:center;gap:.4em;padding:.45em .8em;border-top:1px solid #E7E9F8;font-size:.82em;font-weight:700;color:#3A3D6B;opacity:0;animation:acx-bd 8s ease infinite;flex:none}
-.acx__build svg{width:1.3em;height:1.3em;padding:.2em;background:#F98513;color:#111144}
+.acx__build{display:flex;align-items:center;gap:.4em;padding:.45em .8em;border-top:1px solid #E3E9FD;font-size:.82em;font-weight:700;color:#111144;opacity:0;animation:acx-bd 8s ease infinite;flex:none}
+.acx__build svg{width:1.3em;height:1.3em;padding:.2em;background:#2431A4;color:#fff}
 .acx .acx__build svg:not(#_):not(#__){border-radius:50% !important}
 @keyframes acx-bd{0%,50%{opacity:0}58%,92%{opacity:1}98%,100%{opacity:0}}
 .acx__mods{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:center;gap:.6em;position:relative}
 .acx__mods::before{content:"";position:absolute;left:-1em;top:12%;bottom:12%;border-left:1.5px dashed rgba(249,133,19,.8);opacity:0;animation:acx-bus 8s linear infinite}
-.acx__mod{display:flex;align-items:center;gap:.6em;padding:.5em .6em;background:#fff;border:1px solid #D5D8F0;opacity:0}
+.acx__mod{display:flex;align-items:center;gap:.6em;padding:.5em .6em;background:#fff;border:1px solid #D5DDFA;opacity:0}
 .acx .acx__mod:not(#_):not(#__){border-radius:.7em !important}
-.acx__mod span{flex:none;width:2em;height:2em;padding:.45em;background:#111144;color:#fff}
+.acx__mod span{flex:none;width:2em;height:2em;padding:.45em;background:#2431A4;color:#fff}
 .acx .acx__mod span:not(#_):not(#__){border-radius:.55em !important}
 .acx__mod.is-hot{border-color:#F98513}
-.acx__mod.is-hot span{background:#F98513;color:#111144}
+.acx__mod.is-hot span{background:#2431A4;color:#fff}
 .acx__mod b{display:block;font-size:.92em;font-weight:700;line-height:1.15}
-.acx__mod em{display:block;font-style:normal;font-size:.78em;color:#6B6E93;line-height:1.2;margin-top:.15em}
+.acx__mod em{display:block;font-style:normal;font-size:.78em;color:#5B6499;line-height:1.2;margin-top:.15em}
 @keyframes acx-bus{0%,40%{opacity:0}46%,92%{opacity:1}98%,100%{opacity:0}}
 .acx__mod.m1{animation:acx-m1 8s ease infinite}.acx__mod.m2{animation:acx-m2 8s ease infinite}.acx__mod.m3{animation:acx-m3 8s ease infinite}
 @keyframes acx-m1{0%,46%{opacity:0;transform:translateX(1em)}54%,92%{opacity:1;transform:none}98%,100%{opacity:0}}

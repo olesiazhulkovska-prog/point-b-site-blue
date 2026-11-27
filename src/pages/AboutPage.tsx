@@ -112,7 +112,6 @@ export const AboutPage = () => {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {o.map((d, x) => {
-              const C_p = d.icon;
               return (
                 <button
                   key={x}
@@ -121,7 +120,6 @@ export const AboutPage = () => {
                   className="text-left flex flex-col gap-4 p-7 rounded-3xl bg-[color:var(--surface)] border border-[color:var(--card-border)] shadow-[0_18px_36px_-26px_rgba(0,0,40,.55)] hover:border-[#F98513] hover:-translate-y-0.5 transition-all cursor-pointer"
                 >
                   <AboutCardArt kind={x} />
-                  <span className="pbxt__i"><C_p size={26} strokeWidth={1.7} /></span>
                   <h3 className="text-xl font-bold text-[color:var(--ink)] leading-snug">{d.title}</h3>
                   <p className="text-base text-[color:var(--ink-soft)] leading-relaxed">{d.description}</p>
                   <span className="mt-auto pt-2 inline-flex items-center gap-2 text-[15px] font-semibold text-[color:var(--ink)]">

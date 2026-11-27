@@ -81,7 +81,6 @@ export const AboutWhyStay = () => {
           return (
             <li key={i} className={i === active ? "is-active" : ""}>
               <button type="button" onClick={() => setActive(i)} aria-current={i === active}>
-                <span className="ab-why__n">{num(i)}</span>
                 <span className="ab-why__ico" aria-hidden="true"><Ico strokeWidth={1.8} /></span>
                 <span className="ab-why__t">{clean(d.title)}</span>
               </button>

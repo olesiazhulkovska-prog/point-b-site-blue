@@ -1,5 +1,5 @@
 /* AboutWhyStay: темна картка «Чому клієнти залишаються» */
-.ab-why{display:grid;grid-template-columns:1fr;gap:32px;margin-top:40px;padding:28px 22px;border-radius:24px;background:#0D0D3B;color:#fff;border:1px solid rgba(255,255,255,.06)}
+.ab-why{display:grid;grid-template-columns:1fr;gap:32px;margin-top:40px;padding:28px 22px;border-radius:24px;background:#111144;color:#fff;border:1px solid rgba(255,255,255,.06)}
 .ab-why__eyebrow{display:block;font-size:15px;font-weight:500;color:#F98513}
 .ab-why__title{margin:14px 0 0;font-size:clamp(28px,6.6vw,40px);line-height:1.15;font-weight:700;color:#fff;max-width:11em}
 .ab-why__ring{position:relative;width:min(100%,300px);aspect-ratio:1;margin:28px auto 0}
