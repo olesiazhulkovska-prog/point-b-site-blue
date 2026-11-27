@@ -54,3 +54,5 @@
 .is-in.ab-diff__row .ab-diff__viz--check li:not(#_):not(#__){color:#111144}
 .ab-diff__viz--flow u:not(#_):not(#__){background:#2431A4;opacity:.35}
 .ab-diff__tick:not(#_):not(#__){border-color:#2431A4}
+/* галочка без синьої обводки після появи (перекриває legacy-обводку вище) */
+.is-in.ab-diff__row .ab-diff__tick:not(#_):not(#__){border-color:#F98513!important}
