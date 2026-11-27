@@ -28,7 +28,7 @@ export const AboutWhyStay = () => {
     return () => window.clearInterval(id);
   }, []);
 
-  const start = active < PAGE ? 0 : PAGE;
+  const start = Math.min(TOTAL - PAGE, Math.max(0, active - 3));
   const items = Kv.slice(start, start + PAGE);
   const p = pos(active);
   const top = pos(0);

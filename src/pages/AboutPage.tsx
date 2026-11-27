@@ -8,6 +8,7 @@ import { D1, Kv, Vv, kv } from "../data/data";
 import { AboutHeroScene } from "../components/AboutHeroScene";
 import { AboutDifferences } from "../components/AboutDifferences";
 import { AboutWhyStay } from "../components/AboutWhyStay";
+import { CountUp } from "../components/CountUp";
 
 const DIRECTION_PAGES = ["keycrm", "ai-bots", "analytics"];
 
@@ -91,7 +92,7 @@ export const AboutPage = () => {
             <div className="ab-stats">
               {D1.map((d, x) => (
                 <div key={x}>
-                  <div className="ab-stats__v text-[color:var(--ink)]">{d.value}</div>
+                  <div className="ab-stats__v text-[color:var(--ink)]"><CountUp value={d.value} delay={x * 100} /></div>
                   <div className="ab-stats__l text-[color:var(--ink)]">{d.label}</div>
                 </div>
               ))}

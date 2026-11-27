@@ -32,3 +32,6 @@
 .ab-why .ab-why__list li:not(#_):not(#__){border-bottom:1px solid #26265F!important;padding:0!important;margin:0!important}
 .ab-why .ab-why__list li.is-active:not(#_):not(#__){border-bottom-color:#F98513!important}
 .ab-why .ab-why__count span:not(#_):not(#__){font-size:15px!important;color:#F98513!important}
+.ab-why__list li{animation:ab-why-in .4s ease both}
+@keyframes ab-why-in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.ab-why__list li{animation:none}}
