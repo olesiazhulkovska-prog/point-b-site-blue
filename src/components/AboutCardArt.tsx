@@ -1,4 +1,4 @@
-import { Layers, Boxes, Receipt, Zap, Bot, Check, Building2, CodeXml, Package } from "lucide-react";
+import { Boxes, Receipt, Zap, Bot, Check, Building2, CodeXml, Package } from "lucide-react";
 import { CHANNEL_ICONS } from "./AboutHeroScene";
 import "./AboutCardArt.css";
 
@@ -12,7 +12,6 @@ const COLS = [
 const Crm = () => (
   <div className="acx__in acx__crm" role="img" aria-label="Воронка замовлень у keyCRM">
     <div className="acx__hd">
-      <span className="acx__logo"><Layers strokeWidth={2} /></span>
       <b>Воронка продажів</b>
       <i>21 угода</i>
     </div>

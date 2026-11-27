@@ -39,8 +39,17 @@
   .ab-diff__viz--count b{font-size:46px}
   .ab-diff__node{font-size:15px;padding:10px 16px}
   .ab-diff__viz--check li{font-size:15px}
-  .ab-diff__row{grid-template-columns:auto minmax(0,1fr) minmax(380px,480px);column-gap:28px;padding:32px 0}
+  .ab-diff__row{padding:32px 0}
+}
+/* три колонки (текст | ілюстрація) лише на широких екранах; на планшеті — як на мобільному, ілюстрація під текстом */
+@media (min-width:1024px){
+  .ab-diff__row{grid-template-columns:auto minmax(0,1fr) minmax(380px,480px);column-gap:28px}
   .ab-diff__viz{grid-column:auto}
+}
+@media (max-width:420px){
+  .ab-diff__viz{padding-left:12px;padding-right:12px}
+  .ab-diff__node{font-size:12px;padding:7px 10px}
+  .ab-diff__viz--flow{gap:4px}
 }
 @media (prefers-reduced-motion:reduce){
   .ab-diff__bar em,.ab-diff__node,.ab-diff__viz--flow u{transition:none!important;transform:none!important;opacity:1!important}
