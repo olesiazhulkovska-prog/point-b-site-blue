@@ -47,3 +47,23 @@
 @media(max-width:1023px){
   html body .pb-hero.ab-hero:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______){padding-top:3.5rem !important;padding-bottom:3.5rem !important}
 }
+
+/* Hero «Про компанію»: прибрати верхній відступ обгортки-смуги (було 96px + власні) */
+.pb-band:has(> .ab-hero):not(#_):not(#__):not(#___){padding-top:0 !important}
+@media (min-width:1024px){
+  html body .pb-hero.ab-hero:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______){padding-top:32px !important}
+}
+@media (max-width:1023px){
+  html body .pb-hero.ab-hero:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______){padding-top:2.25rem !important}
+}
+
+/* цифри під Hero — як на головній: великі, semibold, mono-підпис капсом */
+.ab-stats__v:not(#_):not(#__){font-family:Inter Variable,Inter,-apple-system,sans-serif;font-weight:600;letter-spacing:-.03em;line-height:.95;font-size:clamp(60px,15vw,72px)}
+@media (min-width:640px){.ab-stats__v:not(#_):not(#__){font-size:clamp(48px,7.5vw,72px)}}
+@media (min-width:1024px){.ab-stats__v:not(#_):not(#__){font-size:clamp(96px,8.5vw,136px)}}
+.ab-stats__l:not(#_):not(#__){margin-top:14px;max-width:none;font-family:Manrope,Inter Variable,sans-serif;font-size:14px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;line-height:1.4;opacity:1}
+@media (min-width:768px){.ab-stats__l:not(#_):not(#__){font-size:15px}}
+@media (min-width:1024px){
+  .ab-stats>div:not(#_):not(#__){padding:0 48px}
+  .ab-stats>div:first-child:not(#_):not(#__){padding-left:0}
+}

@@ -67,9 +67,12 @@
 .abx__ck{flex:none;width:1.9em;height:1.9em;border-radius:50%;background:#F98513;display:grid;place-items:center}
 .abx__ck svg{width:62%;height:62%;fill:none;stroke:#111144;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
 
-/* вузькі екрани: вертикально — канали, CRM, діалог, сповіщення */
+/* вузькі екрани: вертикально — канали, діалог, сповіщення, CRM */
 .abx__stage{flex-direction:column}
-.abx__toast{align-self:stretch}
+.abx__ch{order:1}
+.abx__ai{order:2}
+.abx__toast{order:3;align-self:stretch}
+.abx__crm{order:4}
 
 /* десктоп/планшет (контейнер ≥ 460px): CRM великий, діалог і сповіщення — поверх */
 @container (min-width: 460px){
@@ -90,3 +93,12 @@
 @media (prefers-reduced-motion: reduce){
   .abx *,.abx *::after{transition:none !important;animation:none !important}
 }
+
+/* менше заокруглення (legacy-стилі робили бульбашки майже пілюлями) */
+.abx .abx__m:not(#_):not(#__){border-radius:10px !important}
+.abx .abx__k:not(#_):not(#__){border-radius:10px !important}
+.abx .abx__ai:not(#_):not(#__){border-radius:14px !important}
+.abx .abx__crm:not(#_):not(#__){border-radius:14px !important}
+.abx .abx__toast:not(#_):not(#__){border-radius:12px !important}
+.abx .abx__nav li:not(#_):not(#__){border-radius:8px !important}
+.abx .abx__i:not(#_):not(#__){border-radius:12px !important}
