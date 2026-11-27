@@ -5,6 +5,7 @@ import { useSite } from "../context/SiteContext";
 import "./ServicePage.css";
 import "./AboutPage.css";
 import { D1, Kv, Vv, kv } from "../data/data";
+import { AboutHeroScene } from "../components/AboutHeroScene";
 
 const DIRECTION_PAGES = ["keycrm", "ai-bots", "analytics"];
 
@@ -56,7 +57,8 @@ export const AboutPage = () => {
       <div className="pb-band pb-band--blue pb-band--arch">
         <section className="pb-hero ab-hero relative overflow-hidden bg-transparent py-24 md:py-32">
           <div className={wrap}>
-            <div className="max-w-4xl">
+            <div className="ab-hero__grid">
+            <div className="ab-hero__txt max-w-4xl">
               <span className={eyebrow}>Про компанію Point B Group</span>
               <h1 className="pb-h2 text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[color:var(--ink)] sm:tracking-tight leading-tight">
                 Ми будуємо системи, які звільняють час власників та примножують дохід
@@ -79,6 +81,10 @@ export const AboutPage = () => {
                   <ArrowRight className="w-5 h-5" />
                 </span>
               </a>
+            </div>
+            <div className="ab-hero__art">
+              <AboutHeroScene />
+            </div>
             </div>
             <div className="ab-stats">
               {D1.map((d, x) => (

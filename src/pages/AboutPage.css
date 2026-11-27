@@ -29,3 +29,13 @@
 
 /* legacy.css forces "h2 + p {margin:20px 0 0 !important}" which pinned the CTA paragraph to the left edge */
 .ab-cta h2 + p:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______):not(#_______):not(#________){margin:20px auto 0 !important;text-align:center}
+
+/* Hero: текст ліворуч, графіка праворуч (~50/50); на мобільному графіка під CTA, перед статистикою */
+.ab-hero__grid:not(#_):not(#__){display:grid;grid-template-columns:minmax(0,1fr);gap:36px;align-items:center}
+.ab-hero__art:not(#_):not(#__){min-width:0}
+@media(min-width:1024px){
+  .ab-hero__grid:not(#_):not(#__){grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px}
+}
+@media(min-width:1024px){
+  html body .pb-hero.ab-hero .ab-hero__txt h1.pb-h2:not(#_):not(#__):not(#___):not(#____):not(#_____){font-size:clamp(38px,3.5vw,56px) !important;line-height:1.1 !important}
+}
