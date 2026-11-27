@@ -218,7 +218,7 @@ export const LeadForm = ({
             Вибрати напрямок послуги
           </h3>
           <div className="flex justify-center px-1">
-            <div className="w-full sm:w-auto max-w-full flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center justify-center bg-[color:var(--card)] rounded-2xl sm:rounded-3xl p-2 sm:p-1.5 shadow-[0_4px_20px_rgba(17,17,68,0.06)] border border-[color:var(--card-border)] gap-1.5 sm:gap-1 max-w-md sm:max-w-none">
+            <div className="pb-lead-seg w-full sm:w-auto max-w-full flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center justify-center bg-[color:var(--card)] rounded-2xl sm:rounded-3xl p-2 sm:p-1.5 shadow-[0_4px_20px_rgba(17,17,68,0.06)] border border-[color:var(--card-border)] gap-1.5 sm:gap-1 max-w-md sm:max-w-none">
               {H.map((Z) => {
                 const oe = C === Z;
                 return (

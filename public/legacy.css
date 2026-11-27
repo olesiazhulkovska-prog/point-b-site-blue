@@ -3315,3 +3315,9 @@ html body #why-us-section .snap-start div.\@container > div.flex > div.flex-1.ro
 @media (min-width:768px) and (max-width:1099px){
 html body{--sec-y:72px;--section-py:72px;--head-gap:40px}
 }
+
+/* заявка: три варіанти напрямку в один рядок на планшеті (640-1023px) */
+@media (min-width:640px) and (max-width:1023px){
+html body .pb-lead-seg:not(#_):not(#__){flex-wrap:nowrap !important;width:100% !important}
+html body .pb-lead-seg:not(#_):not(#__) button{padding-inline:12px !important;font-size:13px !important;white-space:nowrap !important;width:auto !important;flex:1 1 auto}
+}
