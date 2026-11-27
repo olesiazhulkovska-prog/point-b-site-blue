@@ -170,6 +170,7 @@ export const AboutPage = () => {
           aria-hidden="true"
           tabIndex={-1}
         />
+        <span className="ab-prin__shade" aria-hidden="true" />
         <section className={wrap}>
           <div className="pb-head max-w-3xl">
             <span className={eyebrow}>Культура взаємодії</span>
