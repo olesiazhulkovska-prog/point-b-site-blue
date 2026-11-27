@@ -146,3 +146,11 @@ body:has(.ab-last) footer.theme-dark .pbx-marquee:not(#_):not(#__){margin-top:-2
 /* розрив перед футером: відступ під блоком добарвлюємо кольором низу градієнта (#111144), щоб не було шва */
 .pb-band.ab-last:not(#_):not(#__){box-shadow:0 68px 0 0 #111144}
 @media (max-width:767px){.pb-band.ab-last:not(#_):not(#__){box-shadow:0 48px 0 0 #111144}}
+
+/* «Чим ми відрізняємось» наїжджає знизу на блок із відео: заокруглений верх + тінь */
+.pb-band.ab-sheet:not(#_):not(#__){position:relative!important;z-index:2;margin-top:-56px!important}
+html body .pb-band.ab-sheet:not(#_):not(#__)::before{left:0;right:0;border-radius:40px 40px 0 0;box-shadow:0 -18px 44px rgba(17,17,68,.35)}
+@media (max-width:767px){
+  .pb-band.ab-sheet:not(#_):not(#__){margin-top:-32px!important}
+  html body .pb-band.ab-sheet:not(#_):not(#__)::before{border-radius:28px 28px 0 0}
+}

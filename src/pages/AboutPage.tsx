@@ -189,8 +189,8 @@ export const AboutPage = () => {
         </section>
       </div>
 
-      {/* 4. standards (light) */}
-      <div className="pb-band pb-band--light">
+      {/* 4. standards (light) — наїжджає на блок з відео */}
+      <div className="pb-band pb-band--light ab-sheet">
         <section className={wrap}>
           <div className="pb-head max-w-3xl">
             <span className={eyebrow}>Позиціонування</span>
