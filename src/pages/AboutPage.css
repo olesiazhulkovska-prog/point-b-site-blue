@@ -164,3 +164,9 @@ html body .pb-band.ab-sheet:not(#_):not(#__)::before{left:0;right:0;border-radiu
 html body .pb-band.ab-sheet:not(#_):not(#__){background:transparent!important;background-image:none!important}
 html body .pb-band.ab-sheet:not(#_):not(#__)::before{box-shadow:none!important}
 html body .pb-band.ab-sheet:not(#_):not(#__)::before{background:#fff!important}
+
+/* відгуки (спільний ReviewsSection): на «Про компанію» білий фон, як на головній — перекриває inner-правило «усі секції темні» */
+html.pb-inner body div.min-h-screen > section#reviews-section:not(#_):not(#__):not(#___):not(#____){background:#FFFFFF!important}
+
+/* після блоку 12 причин тепер ідуть відгуки, а не футер — зайвий «підсвічений» відступ під ним не потрібен */
+.pb-band.ab-last:not(#_):not(#__){margin-bottom:0!important;box-shadow:none!important}

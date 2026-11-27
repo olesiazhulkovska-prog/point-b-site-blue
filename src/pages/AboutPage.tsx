@@ -9,6 +9,7 @@ import "./ServicePage.css";
 import "./AboutPage.css";
 import { D1, Kv, Vv, kv } from "../data/data";
 import { AboutHeroScene } from "../components/AboutHeroScene";
+import { ReviewsSection } from "../components/ReviewsSection";
 import { AboutDifferences } from "../components/AboutDifferences";
 import { AboutWhyStay } from "../components/AboutWhyStay";
 import { CountUp } from "../components/CountUp";
@@ -248,6 +249,9 @@ export const AboutPage = () => {
           </div>
         </section>
       </div>
+
+      {/* 6. відгуки — той самий спільний компонент і дані, що на головній */}
+      <ReviewsSection />
     </div>
   );
 };
