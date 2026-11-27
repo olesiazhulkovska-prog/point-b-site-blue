@@ -105,3 +105,9 @@ html body .pb-lead div.flex.flex-wrap.gap-2\.5.items-center:not(#_):not(#__):not
 .pbxt__t--brand:hover .pbxt__logos:not(#_):not(#__){color:#F98513}
 .pbxt__name:not(#_):not(#__){font-size:18px;line-height:1.3;font-weight:700;color:#111144}
 .pbxt__desc:not(#_):not(#__){font-size:14px;line-height:1.45;color:#4A538F}
+
+/* extra block tiles (not brand): compact row tile — icon left, text right, height follows the text; grid adapts to item count from CMS */
+.pbxt:not(.pbxt--brand):not(#_):not(#__){grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr));gap:14px;margin-top:-4px}
+.pbxt:not(.pbxt--brand) .pbxt__t:not(#_):not(#__){flex-direction:row;align-items:center;gap:16px;padding:16px 20px 16px 16px;border-radius:18px}
+.pbxt:not(.pbxt--brand) .pbxt__i:not(#_):not(#__){flex:none;width:48px;height:48px;border-radius:14px}
+.pbxt:not(.pbxt--brand) .pbxt__x:not(#_):not(#__){min-width:0;overflow-wrap:anywhere}
