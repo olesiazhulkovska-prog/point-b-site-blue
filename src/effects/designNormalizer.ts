@@ -180,7 +180,7 @@
           !e.matches('#why-us-section [class*="text-[44px]"]') &&
           !e.matches(".pb-why-num, .pb-why-badge") &&
           !(small && e.closest(".sv3-viz")) &&
-          !(innerWidth < 1100 && e.closest("#stats-section .tabular-nums"))
+          !(innerWidth < 1280 && e.closest("#stats-section .tabular-nums"))
         ) {
           if (
             !/^(Point|B|POINT)$/.test(e.textContent.trim()) &&

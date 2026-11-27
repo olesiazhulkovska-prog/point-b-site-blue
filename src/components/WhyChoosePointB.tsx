@@ -2177,7 +2177,8 @@ export const C_zq = () => {
               onClick={() => H(B)}
               className="h-2.5 cursor-pointer rounded-full transition-all duration-300"
               style={{
-                width: s === B ? 28 : 10,
+                width: 10,
+                transform: s === B ? "scale(1.4)" : "none",
                 background:
                   s === B
                     ? "var(--peach-deep)"

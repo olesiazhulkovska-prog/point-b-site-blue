@@ -8,6 +8,7 @@
         dgi = c.querySelector(".sv3-dgi");
       if (!viz || !dg || !dgi) return;
       dgi.style.removeProperty("--pb-k");
+      dgi.style.removeProperty("margin-top");
       dg.style.removeProperty("--pb-h");
       if (!land) return;
       var cs = getComputedStyle(c),
@@ -23,7 +24,22 @@
       if (!nat || avail <= 0) return;
       var k = Math.max(0.5, Math.min(1, avail / nat));
       dgi.style.setProperty("--pb-k", k.toFixed(3));
+      /* висота діаграми стрибає при перекомпонуванні тексту (ширина = 100%/k), тому шукаємо найбільший k, при якому вона ще вміщається */
+      var best = k;
+      for (var kt = k + 0.01; kt <= 1.0001; kt += 0.01) {
+        dgi.style.setProperty("--pb-k", kt.toFixed(3));
+        if (dgi.offsetHeight * kt <= avail + 2) best = kt;
+      }
+      k = Math.min(1, best);
+      dgi.style.setProperty("--pb-k", k.toFixed(3));
+      if (dgi.offsetHeight * k > avail + 2) {
+        k = Math.max(0.5, k * (avail / (dgi.offsetHeight * k)));
+        dgi.style.setProperty("--pb-k", k.toFixed(3));
+      }
       dg.style.setProperty("--pb-h", Math.round(dgi.offsetHeight * k) + "px");
+      /* діаграма по центру блоку: ділимо порожнє місце між верхом і низом */
+      var mt = Math.round((dg.clientHeight - dgi.offsetHeight * k) / 2);
+      if (mt > 0) dgi.style.setProperty("margin-top", mt + "px");
     });
   }
   var n = 0,
