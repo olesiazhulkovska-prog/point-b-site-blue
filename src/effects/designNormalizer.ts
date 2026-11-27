@@ -238,7 +238,8 @@
           tag !== "HEADER" &&
           tag !== "MAIN" &&
           tag !== "BODY" &&
-          !e.classList.contains("sv3-card")
+          !e.classList.contains("sv3-card") &&
+          !e.classList.contains("hero-graph")
         ) {
           /* perf: спершу рахуємо, чи взагалі є що міняти; closest — лише для тих, кому це потрібно */
           var sp2 = [];

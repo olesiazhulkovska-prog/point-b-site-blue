@@ -3354,7 +3354,8 @@ html body .sv3-card .sv3-viz .sv3-dg p + div.rounded-full:not(#_):not(#__):not(#
   html body .pb-diagram div[style*="chip-bg"]:not(#_):not(#__):not(#___){opacity:1 !important;transform:none !important;transition:none !important}
 }
 
-/* phones: stats numbers were too big (up to 96px) -> 52-64px */
-@media(max-width:760px){
-  html body #stats-section .tabular-nums:not(#_):not(#__):not(#___), html body #stats-section .tabular-nums *:not(#_):not(#__):not(#___){font-size:clamp(52px,14vw,64px) !important}
+/* services cards on tablet/phone: plain stack, no sticky/transform animation (robot jumped while swiping) */
+@media(max-width:1099px){
+  html body .sv3-card:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______){position:relative !important;top:auto !important;height:auto !important;transform:none !important;translate:none !important;scale:none !important;animation:none !important;transition:none !important;opacity:1 !important}
+  html body .sv3-card:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______) :is(img,video,canvas){animation:none !important;transition:none !important}
 }

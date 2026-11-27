@@ -4,7 +4,7 @@
   var io = new IntersectionObserver(
     function (es) {
       es.forEach(function (e) {
-        if (e.isIntersecting) {
+        if (e.isIntersecting || e.boundingClientRect.top < 0) {
           reveal(e.target);
           io.unobserve(e.target);
         }
