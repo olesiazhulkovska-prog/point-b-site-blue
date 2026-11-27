@@ -120,10 +120,10 @@ body:has(.ab-last) footer.theme-dark .relative.z-10.border-b:not(#_):not(#__):no
 }
 
 /* відступи футера прописані інлайном — тому скорочуємо негативними margin */
-.pb-band.ab-last:not(#_):not(#__){margin-bottom:-80px}
+.pb-band.ab-last:not(#_):not(#__){margin-bottom:-12px}
 body:has(.ab-last) footer.theme-dark .pbx-marquee:not(#_):not(#__){margin-top:-24px;margin-bottom:-24px}
 @media (max-width:767px){
-  .pb-band.ab-last:not(#_):not(#__){margin-bottom:-48px}
+  .pb-band.ab-last:not(#_):not(#__){margin-bottom:0}
   body:has(.ab-last) footer.theme-dark .pbx-marquee:not(#_):not(#__){margin-top:-12px;margin-bottom:-12px}
 }
 
