@@ -3301,3 +3301,8 @@ html body #why-us-section .snap-start div.\@container > div.flex > div.flex-1.ro
 @media(max-width:999px){
   html body .pb-tab-item:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______){transition:none !important}
 }
+
+/* sticky step cards on iOS: own compositing layer so a stuck card does not wobble 1-3px while scrolling */
+@media(max-width:999px){
+  html body .pb-tab-item:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______){transform:translate3d(0,0,0);-webkit-transform:translate3d(0,0,0);will-change:transform;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+}
