@@ -6,6 +6,8 @@ import "./ServicePage.css";
 import "./AboutPage.css";
 import { D1, Kv, Vv, kv } from "../data/data";
 import { AboutHeroScene } from "../components/AboutHeroScene";
+import { AboutDifferences } from "../components/AboutDifferences";
+import { AboutWhyStay } from "../components/AboutWhyStay";
 
 const DIRECTION_PAGES = ["keycrm", "ai-bots", "analytics"];
 
@@ -165,23 +167,10 @@ export const AboutPage = () => {
         <section className={wrap}>
           <div className="pb-head max-w-3xl">
             <span className={eyebrow}>Позиціонування</span>
-            <h2 className="pb-h2 text-2xl sm:text-3xl font-extrabold text-[color:var(--ink)] mt-1 sm:tracking-tight">Чим ми відрізняємось (3 ключові стандарти)</h2>
+            <h2 className="pb-h2 text-2xl sm:text-3xl font-extrabold text-[color:var(--ink)] mt-1 sm:tracking-tight">Чим ми відрізняємось</h2>
             <p className="text-base mt-2">Короткі та запам’ятовувані орієнтири нашої роботи, сформульовані через цінність для вашого бізнесу</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            {Vv.map((d, x) => (
-              <div key={x} className="p-7 rounded-3xl bg-[color:var(--surface)] border border-[color:var(--card-border)] shadow-[0_18px_36px_-26px_rgba(0,0,40,.55)]">
-                <div className="flex items-center justify-between mb-5">
-                  <span className="w-11 h-11 rounded-2xl bg-[#111144] text-white font-extrabold flex items-center justify-center text-sm">{d.number}</span>
-                  {d.badge && (
-                    <span className="px-3 py-1 rounded-full bg-[color:var(--tint)] border border-[color:var(--card-border)] text-[13px] font-semibold text-[color:var(--ink)]">{d.badge}</span>
-                  )}
-                </div>
-                <h3 className="text-lg font-bold text-[color:var(--ink)] mb-3 leading-snug">{d.title}</h3>
-                <p className="text-base text-[color:var(--ink-soft)] leading-relaxed">{d.description}</p>
-              </div>
-            ))}
-          </div>
+          <AboutDifferences />
         </section>
       </div>
 
@@ -193,17 +182,7 @@ export const AboutPage = () => {
             <h2 className="pb-h2 text-2xl sm:text-3xl font-extrabold text-[color:var(--ink)] mt-1 sm:tracking-tight">Понад 35% клієнтів стають постійними</h2>
             <p className="text-base mt-2">Повний перелік 12 причин, чому бізнеси залишаються з Point B Group на роки</p>
           </div>
-          <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-1 border-t border-[color:var(--card-border)]">
-            {Kv.map((d, x) => (
-              <li key={x} className="flex gap-4 py-5 border-b border-[color:var(--card-border)]">
-                <span className="mt-0.5 w-6 h-6 rounded-full bg-[#F98513] text-[#111144] flex items-center justify-center shrink-0"><Check className="w-4 h-4" strokeWidth={3} /></span>
-                <div>
-                  <h3 className="text-base sm:text-lg font-bold text-[color:var(--ink)] leading-snug">{d.title}</h3>
-                  <p className="text-base text-[color:var(--ink-soft)] leading-relaxed mt-1">{d.description}</p>
-                </div>
-              </li>
-            ))}
-          </ul>
+          <AboutWhyStay />
           <div className="pb-hero ab-cta rounded-3xl border border-[color:var(--card-border)] px-6 py-14 sm:px-14 sm:py-20 text-center" style={{ backgroundImage: "var(--panel-gradient)" }}>
             <span className={eyebrow}>Партнерство з Point B</span>
             <h2 className="pb-h2 text-3xl sm:text-5xl font-extrabold text-[color:var(--ink)] sm:tracking-tight mt-3 max-w-3xl mx-auto leading-tight">Почніть з аудиту ваших процесів</h2>

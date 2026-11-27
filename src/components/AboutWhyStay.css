@@ -1,0 +1,34 @@
+/* AboutWhyStay: темна картка «Чому клієнти залишаються» */
+.ab-why{display:grid;grid-template-columns:1fr;gap:32px;margin-top:40px;padding:28px 22px;border-radius:24px;background:#0D0D3B;color:#fff;border:1px solid rgba(255,255,255,.06)}
+.ab-why__eyebrow{display:block;font-size:15px;font-weight:500;color:#F98513}
+.ab-why__title{margin:14px 0 0;font-size:clamp(28px,6.6vw,40px);line-height:1.15;font-weight:700;color:#fff;max-width:11em}
+.ab-why__ring{position:relative;width:min(100%,300px);aspect-ratio:1;margin:28px auto 0}
+.ab-why__ring svg{display:block;width:100%;height:100%;overflow:visible}
+.ab-why__track{fill:none;stroke:#26265F;stroke-width:5}
+.ab-why__arc{fill:none;stroke:#F98513;stroke-width:6;stroke-linecap:round;transition:d .5s ease}
+.ab-why__dot{fill:#46467F;transition:r .3s ease,fill .3s ease}
+.ab-why__dot.is-on{fill:#F98513}
+.ab-why__count{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.ab-why__count b{font-size:clamp(64px,18vw,104px);line-height:1;font-weight:500;font-variant-numeric:tabular-nums;color:#fff}
+.ab-why__count span{margin-top:6px;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:#F98513;font-weight:500}
+.ab-why__list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.ab-why__list li{border-bottom:1px solid #26265F}
+.ab-why__list li.is-active{border-bottom-color:#F98513}
+.ab-why__list button{display:flex;align-items:baseline;gap:18px;width:100%;padding:18px 0;background:none;border:0;text-align:left;cursor:pointer;color:#A9A9D6;font:inherit;font-size:clamp(17px,4.4vw,22px);line-height:1.3;transition:color .25s ease}
+.ab-why__list button:hover{color:#fff}
+.ab-why__list button:focus-visible{outline:2px solid #F98513;outline-offset:2px}
+.ab-why__n{flex:none;min-width:2em;font-variant-numeric:tabular-nums;color:#6B6BA3;transition:color .25s ease}
+.ab-why__list li.is-active button{color:#fff}
+.ab-why__list li.is-active .ab-why__n{color:#F98513}
+@media (min-width:900px){
+  .ab-why{grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:48px;padding:36px 40px;align-items:start}
+  .ab-why__list button{padding:24px 0}
+}
+@media (prefers-reduced-motion:reduce){
+  .ab-why__arc,.ab-why__dot,.ab-why__list button,.ab-why__n{transition:none}
+}
+/* перекриття legacy-стилів h3/li/span */
+.ab-why .ab-why__title:not(#_):not(#__){font-size:clamp(30px,6.6vw,44px)!important;line-height:1.15!important;font-weight:700!important;color:#fff!important;margin:14px 0 0!important}
+.ab-why .ab-why__list li:not(#_):not(#__){border-bottom:1px solid #26265F!important;padding:0!important;margin:0!important}
+.ab-why .ab-why__list li.is-active:not(#_):not(#__){border-bottom-color:#F98513!important}
+.ab-why .ab-why__count span:not(#_):not(#__){font-size:15px!important;color:#F98513!important}
