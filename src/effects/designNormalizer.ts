@@ -98,7 +98,9 @@
         t0 === "path" ||
         t0 === "VIDEO" ||
         /* svg та всі його нащадки мають не-xhtml namespace — те саме, що closest("svg"), але без обходу предків */
-        e0.namespaceURI !== "http://www.w3.org/1999/xhtml"
+        e0.namespaceURI !== "http://www.w3.org/1999/xhtml" ||
+        /* мініатюри карток «Про компанію» мають власну типографіку в em */
+        e0.closest(".acx")
       ) {
         seen.set(e0, key);
         continue;

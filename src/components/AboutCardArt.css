@@ -1,74 +1,135 @@
-/* Ілюстрації карток послуг. Цикл 8s, у reduced-motion — статичний фінал. */
-.aca-wrap{width:100%;border-radius:16px;background:#F1F2FB;border:1px solid #E1E3F4;overflow:hidden;line-height:0}
-.aca{display:block;width:100%;height:auto}
-.aca *{transform-box:fill-box}
-.aca-bar{fill:#C9CDEC}
-.aca-col{fill:#E7E9F8}
-.aca-card{fill:#fff;stroke:#D5D8F0;stroke-width:1}
-.aca-card--hot{stroke:#F98513;stroke-width:1.5}
-.aca-ln{fill:#C3C7E6}
-.aca-ln--s{opacity:.7}
-.aca-hot{fill:#F98513}
-.aca-ico{fill:#111144}
-.aca-b-in{fill:#DDE0F6}
-.aca-b-out{fill:#111144}
-.aca-w{fill:#fff;opacity:.9}
-.aca-w--s{opacity:.55}
-.aca-d{fill:#F98513}
-.aca-pill{fill:#fff;stroke:#D5D8F0}
-.aca-ck{fill:none;stroke:#111144;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
-.aca-win{fill:#fff;stroke:#D5D8F0}
-.aca-code{fill:#C3C7E6;transform-origin:left center;transform:scaleX(0)}
-.aca-wire{fill:none;stroke:#F98513;stroke-width:1.6;stroke-dasharray:4 4;stroke-dashoffset:0;opacity:0}
-.aca-mod{opacity:0}
+/* Мініатюри карток послуг. Усе в em від ширини картки; legacy-радіуси перекриті !important. */
+.acx{container-type:inline-size;width:100%}
+.acx__s{font-size:calc(100cqw / 28);line-height:1.25;position:relative;aspect-ratio:17 / 13;overflow:hidden;border-radius:16px;background:#F1F2FB;border:1px solid #E1E3F4;color:#111144;font-family:Manrope,Inter Variable,system-ui,sans-serif}
+.acx__in{position:absolute;inset:0;box-sizing:border-box;padding:.9em 1em;display:flex;flex-direction:column;gap:.5em}
+.acx *{box-sizing:border-box}
+.acx svg{display:block;width:100%;height:100%}
+.acx__hd{display:flex;align-items:center;gap:.6em;font-size:1.02em;height:1.6em;flex:none}
+.acx__hd b{font-weight:700}
+.acx__hd i,.acx__hd u{font-style:normal;text-decoration:none;margin-left:auto;font-size:.88em;color:#6B6E93}
+.acx__hd u{margin-left:0}
+.acx__logo{flex:none;width:1.9em;height:1.9em;padding:.4em;background:#111144;color:#fff}
+.acx__logo--hot{background:#F98513;color:#111144}
+.acx .acx__logo:not(#_):not(#__){border-radius:.55em !important}
+.acx__tags,.acx__chn{display:flex;gap:.5em}
+.acx__chn{margin-left:auto;gap:.55em}
+.acx__chn svg{width:1.15em;height:1.15em;color:#7C80A8}
+.acx__hd u::before{content:"";display:inline-block;width:.55em;height:.55em;margin-right:.35em;background:#F98513;vertical-align:baseline}
+.acx .acx__hd u::before{border-radius:50%}
+.acx__hd i{margin-left:auto}
 
-/* kanban: помаранчева картка проходить колонки */
-.aca-mv{animation:aca-mv 8s ease-in-out infinite;transform:translate(16px,102px);opacity:0}
-@keyframes aca-mv{
-  0%{opacity:0;transform:translate(16px,108px)}
-  8%{opacity:1;transform:translate(16px,102px)}
-  30%{opacity:1;transform:translate(16px,102px)}
-  44%{opacity:1;transform:translate(117px,70px)}
-  62%{opacity:1;transform:translate(117px,70px)}
-  76%{opacity:1;transform:translate(218px,102px)}
-  92%{opacity:1;transform:translate(218px,102px)}
-  100%{opacity:0;transform:translate(218px,102px)}
+/* ── CRM ── */
+.acx__cols{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:.6em;flex:none;height:12.5em}
+.acx__col{padding:.4em;background:#E7E9F8;display:flex;flex-direction:column;gap:.4em}
+.acx .acx__col:not(#_):not(#__){border-radius:.7em !important}
+.acx__ch{flex:none;display:flex;justify-content:space-between;align-items:center;height:1.67em;font-size:.9em;font-weight:700;color:#3A3D6B;padding:0 .2em}
+.acx__ch em{font-style:normal;font-weight:600;color:#7C80A8}
+.acx__k,.acx__mv{flex:none;height:3em;padding:.35em .55em;background:#fff;border:1px solid #D5D8F0;display:flex;flex-direction:column;justify-content:center;gap:.1em}
+.acx .acx__k:not(#_):not(#__),.acx .acx__mv:not(#_):not(#__){border-radius:.55em !important}
+.acx__k b,.acx__mv b{font-size:.95em;font-weight:700;line-height:1.1}
+.acx__k span,.acx__mv span{font-size:.86em;color:#6B6E93;line-height:1.1}
+.acx__mv{position:absolute;left:.4em;top:0;width:calc((100% - 1.2em) / 3 - .8em);border:1.5px solid #F98513;box-shadow:0 .5em 1em -.5em rgba(17,17,68,.35);opacity:0;animation:acx-mv 8s ease-in-out infinite}
+.acx__mv span{color:#C46A0B;font-weight:600}
+@keyframes acx-mv{
+  0%{opacity:0;transform:translate(0,9.4em)}
+  8%,30%{opacity:1;transform:translate(0,9.1em)}
+  44%,62%{opacity:1;transform:translate(calc(100% + 1.4em),5.7em)}
+  76%,92%{opacity:1;transform:translate(calc(200% + 2.8em),9.1em)}
+  100%{opacity:0;transform:translate(calc(200% + 2.8em),9.1em)}
 }
+.acx__tags span{display:inline-flex;align-items:center;gap:.4em;padding:.4em .7em;background:#fff;border:1px solid #D5D8F0;font-size:.9em;font-weight:600;color:#3A3D6B}
+.acx .acx__tags span:not(#_):not(#__){border-radius:2em !important}
+.acx__tags svg{width:1.25em;height:1.25em;color:#F98513}
 
-/* chat: послідовність повідомлень */
-.aca-c1,.aca-c2,.aca-c3,.aca-c4{opacity:0}
-.aca-c1{animation:aca-c1 8s ease infinite}
-.aca-c2{animation:aca-c2 8s ease infinite}
-.aca-c3{animation:aca-c3 8s ease infinite}
-.aca-c4{animation:aca-c4 8s ease infinite}
-@keyframes aca-c1{0%,3%{opacity:0;transform:translateY(8px)}9%,92%{opacity:1;transform:none}98%,100%{opacity:0}}
-@keyframes aca-c2{0%,14%{opacity:0;transform:translateY(8px)}20%,36%{opacity:1;transform:none}40%,100%{opacity:0}}
-@keyframes aca-c3{0%,38%{opacity:0;transform:translateY(8px)}44%,92%{opacity:1;transform:none}98%,100%{opacity:0}}
-@keyframes aca-c4{0%,58%{opacity:0;transform:translateY(8px)}66%,92%{opacity:1;transform:none}98%,100%{opacity:0}}
-.aca-d{animation:aca-dot 1s ease-in-out infinite}
-.aca-d.d2{animation-delay:.15s}.aca-d.d3{animation-delay:.3s}
-@keyframes aca-dot{0%,100%{opacity:.3}50%{opacity:1}}
+/* ── чат ── */
+.acx__msgs{display:flex;flex-direction:column;gap:.5em;flex:1;min-height:0}
+.acx__m{flex:none;max-width:82%;padding:.55em .8em;font-size:.95em;line-height:1.3;opacity:0}
+.acx .acx__m:not(#_):not(#__){border-radius:.9em !important}
+.acx__m--c{align-self:flex-start;background:#DDE0F6;color:#111144}
+.acx__m--a{align-self:flex-end;background:#111144;color:#fff;display:grid}
+.acx__m--a>*{grid-area:1/1}
+.acx__typ{display:flex;gap:.3em;align-items:center;justify-content:flex-start;opacity:0;animation:acx-typ 8s linear infinite}
+.acx__typ i{width:.5em;height:.5em;background:#F98513;animation:acx-dot 1s ease-in-out infinite}
+.acx .acx__typ i:not(#_):not(#__){border-radius:50% !important}
+.acx__typ i:nth-child(2){animation-delay:.15s}.acx__typ i:nth-child(3){animation-delay:.3s}
+.acx__txt{opacity:0;animation:acx-txt 8s linear infinite}
+@keyframes acx-dot{0%,100%{opacity:.3}50%{opacity:1}}
+@keyframes acx-typ{0%,17%{opacity:0}19%,31%{opacity:1}33%,100%{opacity:0}}
+@keyframes acx-txt{0%,32%{opacity:0}35%,92%{opacity:1}98%,100%{opacity:0}}
+.acx__m.m1{animation:acx-c1 8s ease infinite}
+.acx__m.m2{animation:acx-c2 8s ease infinite}
+.acx__m.m3{animation:acx-c3 8s ease infinite}
+.acx__ok{flex:none;align-self:flex-start;display:flex;align-items:center;gap:.6em;padding:.45em .9em .45em .5em;background:#fff;border:1px solid #D5D8F0;font-size:.95em;font-weight:700;opacity:0;animation:acx-c4 8s ease infinite}
+.acx .acx__ok:not(#_):not(#__){border-radius:2em !important}
+.acx__ok span{width:1.7em;height:1.7em;padding:.38em;background:#F98513;color:#111144;display:block}
+.acx .acx__ok span:not(#_):not(#__){border-radius:50% !important}
+@keyframes acx-c1{0%,3%{opacity:0;transform:translateY(.6em)}9%,92%{opacity:1;transform:none}98%,100%{opacity:0}}
+@keyframes acx-c2{0%,14%{opacity:0;transform:translateY(.6em)}19%,92%{opacity:1;transform:none}98%,100%{opacity:0}}
+@keyframes acx-c3{0%,50%{opacity:0;transform:translateY(.6em)}56%,92%{opacity:1;transform:none}98%,100%{opacity:0}}
+@keyframes acx-c4{0%,64%{opacity:0;transform:translateY(.6em)}71%,92%{opacity:1;transform:none}98%,100%{opacity:0}}
 
-/* code: рядки «друкуються», модулі зʼявляються, лінія зʼєднує */
-.aca-code.k1{animation:aca-k1 8s ease infinite}.aca-code.k2{animation:aca-k2 8s ease infinite}.aca-code.k3{animation:aca-k3 8s ease infinite}
-.aca-code.k4{animation:aca-k4 8s ease infinite}.aca-code.k5{animation:aca-k5 8s ease infinite}.aca-code.k6{animation:aca-k6 8s ease infinite}
-@keyframes aca-k1{0%,4%{transform:scaleX(0)}12%,92%{transform:scaleX(1)}98%,100%{transform:scaleX(0)}}
-@keyframes aca-k2{0%,10%{transform:scaleX(0)}18%,92%{transform:scaleX(1)}98%,100%{transform:scaleX(0)}}
-@keyframes aca-k3{0%,16%{transform:scaleX(0)}24%,92%{transform:scaleX(1)}98%,100%{transform:scaleX(0)}}
-@keyframes aca-k4{0%,22%{transform:scaleX(0)}30%,92%{transform:scaleX(1)}98%,100%{transform:scaleX(0)}}
-@keyframes aca-k5{0%,28%{transform:scaleX(0)}36%,92%{transform:scaleX(1)}98%,100%{transform:scaleX(0)}}
-@keyframes aca-k6{0%,34%{transform:scaleX(0)}42%,92%{transform:scaleX(1)}98%,100%{transform:scaleX(0)}}
-.aca-wire{animation:aca-wire 8s linear infinite}
-@keyframes aca-wire{0%,40%{opacity:0}46%,92%{opacity:1}98%,100%{opacity:0}}
-.aca-mod.m1{animation:aca-m1 8s ease infinite}.aca-mod.m2{animation:aca-m2 8s ease infinite}.aca-mod.m3{animation:aca-m3 8s ease infinite}
-@keyframes aca-m1{0%,46%{opacity:0;transform:translateX(14px)}54%,92%{opacity:1;transform:none}98%,100%{opacity:0}}
-@keyframes aca-m2{0%,54%{opacity:0;transform:translateX(14px)}62%,92%{opacity:1;transform:none}98%,100%{opacity:0}}
-@keyframes aca-m3{0%,62%{opacity:0;transform:translateX(14px)}70%,92%{opacity:1;transform:none}98%,100%{opacity:0}}
+/* ── код ── */
+.acx__code{flex-direction:row;gap:1em;align-items:stretch}
+.acx__win{flex:none;width:14.6em;background:#fff;border:1px solid #D5D8F0;display:flex;flex-direction:column;overflow:hidden}
+.acx .acx__win:not(#_):not(#__){border-radius:.8em !important}
+.acx__bar{display:flex;align-items:center;gap:.35em;height:1.9em;padding:0 .7em;border-bottom:1px solid #E7E9F8;flex:none}
+.acx__bar i{width:.55em;height:.55em;background:#C3C7E6}
+.acx .acx__bar i:not(#_):not(#__){border-radius:50% !important}
+.acx__bar i:first-child{background:#F98513}
+.acx__bar span{margin-left:.5em;font-size:.82em;color:#6B6E93;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.acx__src{margin:0;padding:.7em .8em;flex:1;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.9em;line-height:1.55;color:#3A3D6B;white-space:pre;overflow:hidden}
+.acx__src span{display:block;overflow:hidden;max-width:0}
+.acx__src s{text-decoration:none;color:#F98513;font-weight:700}
+.acx__build{display:flex;align-items:center;gap:.4em;padding:.45em .8em;border-top:1px solid #E7E9F8;font-size:.82em;font-weight:700;color:#3A3D6B;opacity:0;animation:acx-bd 8s ease infinite;flex:none}
+.acx__build svg{width:1.3em;height:1.3em;padding:.2em;background:#F98513;color:#111144}
+.acx .acx__build svg:not(#_):not(#__){border-radius:50% !important}
+@keyframes acx-bd{0%,50%{opacity:0}58%,92%{opacity:1}98%,100%{opacity:0}}
+.acx__mods{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:center;gap:.6em;position:relative}
+.acx__mods::before{content:"";position:absolute;left:-1em;top:12%;bottom:12%;border-left:1.5px dashed rgba(249,133,19,.8);opacity:0;animation:acx-bus 8s linear infinite}
+.acx__mod{display:flex;align-items:center;gap:.6em;padding:.5em .6em;background:#fff;border:1px solid #D5D8F0;opacity:0}
+.acx .acx__mod:not(#_):not(#__){border-radius:.7em !important}
+.acx__mod span{flex:none;width:2em;height:2em;padding:.45em;background:#111144;color:#fff}
+.acx .acx__mod span:not(#_):not(#__){border-radius:.55em !important}
+.acx__mod.is-hot{border-color:#F98513}
+.acx__mod.is-hot span{background:#F98513;color:#111144}
+.acx__mod b{display:block;font-size:.92em;font-weight:700;line-height:1.15}
+.acx__mod em{display:block;font-style:normal;font-size:.78em;color:#6B6E93;line-height:1.2;margin-top:.15em}
+@keyframes acx-bus{0%,40%{opacity:0}46%,92%{opacity:1}98%,100%{opacity:0}}
+.acx__mod.m1{animation:acx-m1 8s ease infinite}.acx__mod.m2{animation:acx-m2 8s ease infinite}.acx__mod.m3{animation:acx-m3 8s ease infinite}
+@keyframes acx-m1{0%,46%{opacity:0;transform:translateX(1em)}54%,92%{opacity:1;transform:none}98%,100%{opacity:0}}
+@keyframes acx-m2{0%,54%{opacity:0;transform:translateX(1em)}62%,92%{opacity:1;transform:none}98%,100%{opacity:0}}
+@keyframes acx-m3{0%,62%{opacity:0;transform:translateX(1em)}70%,92%{opacity:1;transform:none}98%,100%{opacity:0}}
+@keyframes acx-l1{0%,4%{max-width:0}10%,92%{max-width:15ch}98%,100%{max-width:0}}
+.acx__src .l1{animation:acx-l1 8s steps(15,end) infinite}
+@keyframes acx-l2{0%,11%{max-width:0}17%,92%{max-width:23ch}98%,100%{max-width:0}}
+.acx__src .l2{animation:acx-l2 8s steps(23,end) infinite}
+@keyframes acx-l3{0%,18%{max-width:0}24%,92%{max-width:23ch}98%,100%{max-width:0}}
+.acx__src .l3{animation:acx-l3 8s steps(23,end) infinite}
+@keyframes acx-l4{0%,25%{max-width:0}31%,92%{max-width:19ch}98%,100%{max-width:0}}
+.acx__src .l4{animation:acx-l4 8s steps(19,end) infinite}
+@keyframes acx-l5{0%,32%{max-width:0}38%,92%{max-width:24ch}98%,100%{max-width:0}}
+.acx__src .l5{animation:acx-l5 8s steps(24,end) infinite}
+@keyframes acx-l6{0%,39%{max-width:0}45%,92%{max-width:1ch}98%,100%{max-width:0}}
+.acx__src .l6{animation:acx-l6 8s steps(1,end) infinite}
 
 @media (prefers-reduced-motion:reduce){
-  .aca *{animation:none !important}
-  .aca-mv{opacity:1;transform:translate(218px,102px)}
-  .aca-c1,.aca-c3,.aca-c4,.aca-mod,.aca-wire{opacity:1}
-  .aca-c2{opacity:0}
-  .aca-code{transform:none}
+  .acx *{animation:none !important}
+  .acx__mv{opacity:1;transform:translate(calc(200% + 2.8em),9.1em)}
+  .acx__m.m1,.acx__m.m2,.acx__m.m3,.acx__ok,.acx__mod,.acx__build,.acx__txt,.acx__mods::before{opacity:1}
+  .acx__src span{max-width:none}
 }
+
+/* legacy ставить font-size:14px на b/span/em: фіксуємо розміри явно */
+.acx .acx__hd b:not(#_):not(#__){font-size:1em!important;line-height:1.2!important}
+.acx .acx__hd i:not(#_):not(#__),.acx .acx__hd u:not(#_):not(#__){font-size:.88em!important;line-height:1.2!important}
+.acx .acx__ch span:not(#_):not(#__),.acx .acx__ch em:not(#_):not(#__){font-size:1em!important;line-height:1.2!important}
+.acx .acx__k b:not(#_):not(#__),.acx .acx__mv b:not(#_):not(#__){font-size:.95em!important;line-height:1.15!important;white-space:nowrap}
+.acx .acx__k span:not(#_):not(#__),.acx .acx__mv span:not(#_):not(#__){font-size:.86em!important;line-height:1.15!important;white-space:nowrap}
+.acx .acx__tags span:not(#_):not(#__){font-size:.9em!important;line-height:1.2!important}
+.acx .acx__txt:not(#_):not(#__){font-size:1em!important;line-height:inherit!important}
+.acx .acx__bar span:not(#_):not(#__){font-size:.82em!important;line-height:1.2!important}
+.acx .acx__src span:not(#_):not(#__){font-size:1em!important;line-height:inherit!important}
+.acx .acx__src s:not(#_):not(#__){font-size:1em!important}
+.acx .acx__mod b:not(#_):not(#__){font-size:.92em!important;line-height:1.15!important}
+.acx .acx__mod em:not(#_):not(#__){font-size:.78em!important;line-height:1.2!important}
+.acx .acx__ok:not(#_):not(#__){line-height:1.2!important}
