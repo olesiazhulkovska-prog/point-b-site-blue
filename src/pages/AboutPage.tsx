@@ -213,6 +213,8 @@ export const AboutPage = () => {
         </section>
       </div>
 
+      {/* відгуки — перед блоком «Понад 35%» */}
+      <ReviewsSection />
       {/* 5. 12 reasons + CTA (blue, same as footer tone) */}
       <div className="pb-band pb-band--blue ab-last">
         <section className={wrap}>
@@ -254,7 +256,6 @@ export const AboutPage = () => {
       </div>
 
       {/* 6. відгуки — той самий спільний компонент і дані, що на головній */}
-      <ReviewsSection />
     </div>
   );
 };
