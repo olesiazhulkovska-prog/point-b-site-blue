@@ -35,34 +35,16 @@ const Crm = () => (
   </div>
 );
 
-
+/** Справжній 3D-маскот Point B (кадри з головної): виходить зліва й махає рукою. */
 const Mascot = () => (
-  <>
-    <div className="acx__bot" aria-hidden="true">
-      <svg viewBox="0 0 100 150">
-        <path className="acx__ant a1" d="M24 38C13 29 11 13 22 6" />
-        <path className="acx__ant a2" d="M76 38C87 29 89 13 78 6" />
-        <g className="acx__lleg"><rect x="37" y="106" width="10" height="17" rx="5" className="mw" /><ellipse cx="42" cy="125" rx="8.5" ry="4.2" className="mn" /></g>
-        <g className="acx__rleg"><rect x="53" y="106" width="10" height="17" rx="5" className="mw" /><ellipse cx="58" cy="125" rx="8.5" ry="4.2" className="mn" /></g>
-        <g className="acx__larm"><rect x="25" y="70" width="9" height="28" rx="4.5" className="mw" /><circle cx="29.5" cy="100" r="5" className="mn" /></g>
-        <rect x="30" y="62" width="40" height="46" rx="18" className="mw" />
-        <rect x="40" y="78" width="20" height="10" rx="2.5" className="mn" />
-        <text x="50" y="85" textAnchor="middle" className="mt">POINT B</text>
-        <g className="acx__rarm"><rect x="66" y="70" width="9" height="28" rx="4.5" className="mw" /><circle cx="70.5" cy="100" r="5.5" className="mn" /></g>
-        <ellipse cx="50" cy="38" rx="28" ry="25" className="mw" />
-        <circle cx="22" cy="40" r="5" className="mn" />
-        <circle cx="78" cy="40" r="5" className="mn" />
-        <rect x="26" y="26" width="48" height="25" rx="12.5" className="mv" />
-        <g className="acx__eyes"><path d="M35 41q4.5-7 9 0" /><path d="M56 41q4.5-7 9 0" /></g>
-      </svg>
-    </div>
-    <div className="acx__say">Привіт! Я AI-агент Point B</div>
-  </>
+  <div className="acx__in acx__mascot" role="img" aria-label="Маскот Point B виходить і махає рукою">
+    <img className="acx__bot" src="./mascot-wave.webp" alt="" width="520" height="397" decoding="async" loading="lazy" />
+    <img className="acx__bot acx__bot--still" src="./mascot-wave-still.png" alt="" width="520" height="397" decoding="async" loading="lazy" />
+  </div>
 );
 
 const Chat = () => (
   <div className="acx__in acx__chat" role="img" aria-label="Діалог клієнта з AI-агентом">
-    <Mascot />
     <div className="acx__hd">
       <span className="acx__logo acx__logo--hot"><Bot strokeWidth={2} /></span>
       <b>AI-агент</b>
@@ -105,6 +87,6 @@ const Code = () => (
 
 export const AboutCardArt = ({ kind }: { kind: number }) => (
   <div className="acx" aria-hidden={false}>
-    <div className="acx__s">{kind === 0 ? <Crm /> : kind === 1 ? <Chat /> : <Code />}</div>
+    <div className="acx__s">{kind === 0 ? <Crm /> : kind === 1 ? <Mascot /> : <Code />}</div>
   </div>
 );
