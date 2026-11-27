@@ -137,7 +137,7 @@
           r = cs.borderTopLeftRadius;
         /* 1. radius */
         var rv = parseFloat(r);
-        if (rv > 0 && !e.dataset.dsRound) {
+        if (rv > 0 && !e.dataset.dsRound && !(e.closest(".abx") && !e.matches(".abx__i"))) {
           var w = e.offsetWidth,
             h = e.offsetHeight;
           if (Math.abs(w - h) <= 2 && w <= 64 && w > 0)

@@ -95,10 +95,10 @@
 }
 
 /* менше заокруглення (legacy-стилі робили бульбашки майже пілюлями) */
-.abx .abx__m:not(#_):not(#__){border-radius:10px !important}
-.abx .abx__k:not(#_):not(#__){border-radius:10px !important}
-.abx .abx__ai:not(#_):not(#__){border-radius:14px !important}
-.abx .abx__crm:not(#_):not(#__){border-radius:14px !important}
+.abx .abx__m:not(#_):not(#__){border-radius:12px !important}
+.abx .abx__k:not(#_):not(#__){border-radius:12px !important}
+.abx .abx__ai:not(#_):not(#__){border-radius:16px !important}
+.abx .abx__crm:not(#_):not(#__){border-radius:16px !important}
 .abx .abx__toast:not(#_):not(#__){border-radius:12px !important}
 .abx .abx__nav li:not(#_):not(#__){border-radius:8px !important}
 .abx .abx__i:not(#_):not(#__){border-radius:12px !important}
