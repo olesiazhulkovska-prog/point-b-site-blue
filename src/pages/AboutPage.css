@@ -58,8 +58,9 @@
 }
 
 /* цифри під Hero — як на головній: великі, semibold, mono-підпис капсом */
-.ab-stats__v:not(#_):not(#__){font-family:Inter Variable,Inter,-apple-system,sans-serif;font-weight:600;letter-spacing:-.03em;line-height:.95;font-size:clamp(60px,15vw,72px)}
-@media (min-width:640px){.ab-stats__v:not(#_):not(#__){font-size:clamp(48px,7.5vw,72px)}}
+.ab-stats__v:not(#_):not(#__){font-family:Inter Variable,Inter,-apple-system,sans-serif;font-weight:600;letter-spacing:-.03em;line-height:.95;font-size:clamp(64px,21vw,96px)}
+@media (min-width:640px) and (max-width:767px){.ab-stats__v:not(#_):not(#__){font-size:clamp(80px,13vw,96px)}}
+@media (min-width:768px){.ab-stats__v:not(#_):not(#__){font-size:clamp(48px,7.5vw,72px)}}
 @media (min-width:1024px){.ab-stats__v:not(#_):not(#__){font-size:clamp(96px,8.5vw,136px)}}
 .ab-stats__l:not(#_):not(#__){margin-top:14px;max-width:none;font-family:Manrope,Inter Variable,sans-serif;font-size:14px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;line-height:1.4;opacity:1}
 @media (min-width:768px){.ab-stats__l:not(#_):not(#__){font-size:15px}}
@@ -80,10 +81,10 @@
 .ab-stack__ico{display:flex;align-items:center;justify-content:center;width:40px;height:40px;margin-bottom:14px;border-radius:12px;background:#EEF2FF;color:#2431A4}
 .ab-stack__ico svg{width:22px;height:22px}
 
-/* ── мобілка: картки напрямків складаються стеком (sticky) ── */
+/* ── мобілка: картки напрямків — звичайний стовпчик (без sticky: через нього «стрибав» маскот) ── */
 @media (max-width:767px){
   .ab-dir:not(#_):not(#__){display:flex;flex-direction:column;gap:18px}
-  .ab-dir>button:not(#_):not(#__){position:sticky;top:calc(84px + var(--i,0) * 12px);padding:22px;gap:14px}
+  .ab-dir>button:not(#_):not(#__){position:relative;top:auto;padding:22px;gap:14px}
 }
 
 /* ── мобілка: відступ перед бігучою стрічкою партнерів ── */

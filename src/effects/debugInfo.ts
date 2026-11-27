@@ -37,6 +37,15 @@
       "style",
       "position:fixed;left:0;right:0;bottom:0;z-index:2147483647;margin:0;padding:8px;background:rgba(0,0,0,.85);color:#0f0;font:11px/1.3 monospace;white-space:pre-wrap;word-break:break-all;pointer-events:none",
     );
+    var fu = document.querySelector("#site-footer ul") as HTMLElement | null;
+    var fb = fu ? (fu.querySelector("button") as HTMLElement | null) : null;
+    var fx = (e: Element | null) => (e ? Math.round(e.getBoundingClientRect().left) : "—");
+    lines.push(
+      "footer ul pl:" + cs(fu, "padding-left") + " ml:" + cs(fu, "margin-left") + " ulX:" + fx(fu) +
+        " liX:" + fx(fu ? fu.firstElementChild : null) + " btnX:" + fx(fb) + " btnW:" + (fb ? Math.round(fb.getBoundingClientRect().width) : "—") +
+        " hX:" + fx(fu ? fu.previousElementSibling : null),
+    );
+    lines.push("ab-stats fs: " + [].slice.call(document.querySelectorAll(".ab-stats__v")).map(function (n) { return cs(n, "font-size"); }).join("/") + " | ab-dir pos: " + cs(document.querySelector(".ab-dir > button"), "position"));
     lines.push("modal: " + (document.querySelector(".fixed.inset-0.z-50") ? "OPEN" : "no") + " sda: " + document.documentElement.classList.contains("pbx-sda"));
     box.textContent = lines.concat(log).join("\n");
     if (!box.parentNode) document.body.appendChild(box);
