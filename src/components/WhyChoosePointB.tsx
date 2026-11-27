@@ -1884,6 +1884,8 @@ export const Oq = () => {
             background: "var(--btn-dark)",
             border: `1px solid ${_e.bar}`,
             color: "var(--on-dark)",
+            whiteSpace: "normal",
+            overflowWrap: "anywhere",
             ...Ma(s, 4),
           }}
         >
@@ -2215,8 +2217,8 @@ export const Wq = () => {
     );
   }, []);
   const p = o >= 1024,
-    f = o < 340 ? 590 : o < 385 ? 555 : o < 640 ? 535 : 590,
-    b = o < 640 ? Math.min(380, o - 56) : 390,
+    f = o < 340 ? 570 : o < 385 ? 525 : o < 640 ? 520 : 590,
+    b = o < 640 ? Math.min(400, o - 32) : 390,
     y = Math.round((b / 2 / Math.tan(Math.PI / at)) * 1.1),
     j = p ? Math.max(0.68, Math.min(1, (d - 270) / (f + 20))) : 1,
     h = useMotionValue(0),
