@@ -3266,4 +3266,7 @@ html body #why-us-section .snap-start div.\@container > div.flex > div.flex-1.ro
   html body [id^="lead-label-"] ~ div .flex-wrap:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______):not(#_______):not(#________){justify-content:flex-start !important}
   html body #lead-label-comment > span:first-child:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______):not(#_______):not(#________){white-space:normal !important}
   html body label[for="lead-heard-from"]:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______):not(#_______):not(#________){display:flex !important;flex-wrap:wrap;justify-content:flex-start !important;text-align:left !important;column-gap:10px;row-gap:2px}
+  /* service hero: less dead space on top, schematic does not hug the title */
+  html body section.pb-hero:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______):not(#_______):not(#________){padding-top:20px !important}
+  html body .pb-hero-media:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______):not(#_______):not(#________){margin-bottom:28px !important}
 }

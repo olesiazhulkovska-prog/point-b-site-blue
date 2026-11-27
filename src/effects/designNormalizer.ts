@@ -18,8 +18,10 @@
     if (px >= 100) return ["var(--fs-h1)", ".95"];
     if (px >= 48) return ["var(--fs-h2)", "1"];
     if (px >= 30) return ["var(--fs-h3)", "1.1"];
-    if (px >= 18.5) return ["20px", "1.5"];
-    if (px >= 15) return ["16px", "1.5"];
+    /* phones (<=480px): one step tighter — body 15px, lead 18px; 14px floor stays */
+    var ph = typeof innerWidth !== "undefined" && innerWidth <= 480;
+    if (px >= 18.5) return [ph ? "18px" : "20px", "1.5"];
+    if (px >= 15) return [ph ? "15px" : "16px", "1.5"];
     return ["14px", "1.4"];
   }
   var seen = new WeakMap();
