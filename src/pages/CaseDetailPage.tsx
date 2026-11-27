@@ -128,6 +128,8 @@ export const CaseDetailPage = ({ slug: n }) => {
   useEffect(() => {
     let ly = window.scrollY;
     const f = () => {
+      /* на телефоні панель статична (CSS) -> без setState на кожен розворот скролу: він перемальовував усю сторінку і «рвав» липкі картки */
+      if (window.matchMedia && window.matchMedia("(max-width:767px)").matches) return;
       const y = window.scrollY, dy = y - ly;
       if (Math.abs(dy) > 6) {
         setTabsHidden(dy > 0 && y > 160);

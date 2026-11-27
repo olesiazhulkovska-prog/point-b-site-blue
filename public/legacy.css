@@ -3296,3 +3296,8 @@ html body #why-us-section .snap-start div.\@container > div.flex > div.flex-1.ro
   html body .pb-tab-t:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______){font-size:18px !important;line-height:23px !important}
   html body .pb-tab-n:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______),html body .pb-tab-item[data-active="1"] .pb-tab-n:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______){font-size:22px !important}
 }
+
+/* sticky step cards on phones: no "transition: all" (it animated top/min-height/shadow while cards overlap -> visible jumps on iOS) */
+@media(max-width:999px){
+  html body .pb-tab-item:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______){transition:none !important}
+}
