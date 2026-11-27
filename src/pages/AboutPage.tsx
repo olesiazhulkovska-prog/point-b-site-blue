@@ -221,8 +221,7 @@ export const AboutPage = () => {
           <AboutReasons
             head={
               <div className="pb-head max-w-3xl">
-                <span className={eyebrow}>Стандарти якості</span>
-                <h2 className="pb-h2 text-2xl sm:text-3xl font-extrabold text-[color:var(--ink)] mt-1 sm:tracking-tight"><span className="ab-ed__sr">Понад 35% к</span><span aria-hidden="true">К</span>лієнтів стають постійними</h2>
+                <h2 className="pb-h2 text-2xl sm:text-3xl font-extrabold text-[color:var(--ink)] sm:tracking-tight"><span className="ab-ed__sr">Понад 35% к</span><span aria-hidden="true">К</span>лієнтів стають постійними</h2>
                 <p className="text-base mt-2">Повний перелік 12 причин, чому бізнеси залишаються з Point B Group на роки</p>
               </div>
             }

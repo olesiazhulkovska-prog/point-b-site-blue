@@ -8,7 +8,8 @@
 .ab-ed__rail em{display:block;width:100%;height:100%;background:#F98513;transform:scaleY(var(--p,0));transform-origin:top;will-change:transform}
 
 .ab-ed__list li{display:grid;grid-template-columns:48px minmax(0,1fr);column-gap:12px;align-items:baseline;padding:26px 0;border-top:1px solid rgba(255,255,255,.14)}
-.ab-ed__list li:last-child{border-bottom:1px solid rgba(255,255,255,.14)}
+.ab-ed__list li:first-of-type{border-top:0}
+.ab-ed__list li:last-child{border-bottom:0}
 .ab-ed__n{font-size:18px;line-height:1.2;font-weight:500;font-variant-numeric:tabular-nums;color:#F98513;transition:color .4s ease}
 .ab-ed__txt{opacity:.72;transform:translateY(5px);transition:opacity .6s ease,transform .6s ease}
 .ab-ed__t{margin:0;font-size:clamp(19px,5vw,22px);line-height:1.3;font-weight:600;color:#fff}
