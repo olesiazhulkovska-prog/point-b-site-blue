@@ -3237,3 +3237,8 @@ html body #why-us-section:not(#_):not(#__){background:linear-gradient(180deg,#1B
   html body .sv3-viz div.md\:hidden > div.mx-auto:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______):not(#_______):not(#________){margin:0 !important}
   html body .sv3-viz div.md\:hidden div.w-px:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______):not(#_______):not(#________){margin-top:0 !important;margin-bottom:0 !important}
 }
+
+/* === why-us diagram 02: "Одна система" box must never poke out of the dashed container === */
+html body #why-us-section .snap-start div.\@container > div.flex > div.flex-1.flex-wrap:not(#_):not(#__):not(#___){flex:0 0 auto !important}
+html body #why-us-section .snap-start div.\@container > div.flex > div.flex-1.rounded-lg:not(#_):not(#__):not(#___){min-width:0 !important;flex:1 1 0 !important}
+@media (max-width:480px){html body #why-us-section .snap-start div.\@container > div.flex:not(#_):not(#__):not(#___){gap:10px !important}}

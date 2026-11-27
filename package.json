@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "vite build && esbuild dist/legacy.css --minify --allow-overwrite --outfile=dist/legacy.css",
     "preview": "vite preview",
-    "lint": "tsc --noEmit"
+    "lint": "tsc --noEmit",
+    "check:mobile": "node scripts/mobile-check.mjs"
   },
   "dependencies": {
     "@vercel/blob": "^2.0.0",
