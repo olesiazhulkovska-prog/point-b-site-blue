@@ -35,6 +35,7 @@ import "./serviceCopyWidth";
 import "./ariaHiddenFocus";
 import "./botLoader";
 import "./keycrmVideo";
+import "./noHScroll";
 import "./heroScrollStory";
 import "./debugInfo";
 import "./mascotEvents";
