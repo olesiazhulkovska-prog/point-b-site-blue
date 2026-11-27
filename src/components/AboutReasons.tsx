@@ -46,7 +46,7 @@ export const AboutReasons = ({ head }: { head: ReactNode }) => {
   return (
     <div className="ab-ed">
       <div className="ab-ed__left">
-        <div className="ab-ed__big acx" aria-hidden="true">35%</div>
+        <div className="ab-ed__big acx" aria-hidden="true"><small>Понад</small>35%</div>
         {head}
       </div>
       <ol className="ab-ed__list" ref={listRef} aria-label="12 причин, чому клієнти залишаються">

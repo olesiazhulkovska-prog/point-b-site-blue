@@ -37,3 +37,6 @@
   .ab-ed__txt{opacity:1;transform:none;transition:none}
   .ab-ed__n{transition:none}
 }
+
+.ab-ed__big small{display:block;font-size:.16em;line-height:1;font-weight:600;letter-spacing:0;color:#D5DDFA;margin-bottom:.5em}
+.ab-ed__sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
