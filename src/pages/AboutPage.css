@@ -132,8 +132,18 @@ body:has(.ab-last) footer.theme-dark .pbx-marquee:not(#_):not(#__){margin-top:-2
 
 /* «Принципи комунікації»: відео на фоні блоку (під контентом, із затемненням для читабельності) */
 .pb-band.ab-prin:not(#_):not(#__){position:relative!important;overflow:hidden!important;isolation:isolate}
-.ab-prin__v{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;pointer-events:none}
+.ab-prin__v{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;pointer-events:none;filter:blur(10px);transform:scale(1.08)}
 /* той самий градієнт-затемнення, що на відео у блоці «Кейси» (.pb-cases-shade) */
 .ab-prin::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse 75% 85% at 50% 50%,rgba(17,17,68,.92) 0%,rgba(17,17,68,.88) 42%,rgba(17,17,68,.3) 100%)}
 @media (max-width:760px){.ab-prin::before{background:radial-gradient(ellipse 120% 90% at 50% 50%,rgba(17,17,68,.94) 0%,rgba(17,17,68,.88) 55%,rgba(17,17,68,.4) 100%)}}
 @media (prefers-reduced-motion:reduce){.ab-prin__v{display:none}}
+
+/* «Принципи комунікації»: білі картки поверх відео — все читабельно */
+.ab-prin .grid>div:not(#_):not(#__){background:#fff!important;border-color:#D5DDFA!important;box-shadow:0 14px 34px rgba(17,17,68,.28)}
+.ab-prin .grid>div:not(#_):not(#__) span{color:#F98513!important}
+.ab-prin .grid>div:not(#_):not(#__) h3{color:#111144!important}
+.ab-prin .grid>div:not(#_):not(#__) p{color:#5B6499!important}
+
+/* розрив перед футером: відступ під блоком добарвлюємо кольором низу градієнта (#111144), щоб не було шва */
+.pb-band.ab-last:not(#_):not(#__){box-shadow:0 68px 0 0 #111144}
+@media (max-width:767px){.pb-band.ab-last:not(#_):not(#__){box-shadow:0 48px 0 0 #111144}}
