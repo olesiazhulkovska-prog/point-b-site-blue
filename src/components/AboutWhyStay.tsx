@@ -1,7 +1,9 @@
 import { useEffect, useRef, useState } from "react";
+import { Search, SlidersHorizontal, Building2, BadgeCheck, Bot, ChartNoAxesCombined, GraduationCap, FileText, Headset, CalendarClock, Eye, Target } from "lucide-react";
 import { Kv } from "../data/data";
 import "./AboutWhyStay.css";
 
+const ICONS = [Search, SlidersHorizontal, Building2, BadgeCheck, Bot, ChartNoAxesCombined, GraduationCap, FileText, Headset, CalendarClock, Eye, Target];
 const TOTAL = Kv.length;
 const PAGE = 6;
 const R = 180; // радіус кільця у viewBox 400
@@ -46,7 +48,8 @@ export const AboutWhyStay = () => {
         <div className="ab-why__ring" aria-hidden="true">
           <svg viewBox="0 0 400 400">
             <circle cx={C} cy={C} r={R} className="ab-why__track" />
-            {active > 0 && (
+            {active === TOTAL - 1 && <circle cx={C} cy={C} r={R} className="ab-why__arc" />}
+            {active > 0 && active < TOTAL - 1 && (
               <path
                 className="ab-why__arc"
                 d={`M ${top.x} ${top.y} A ${R} ${R} 0 ${large} 1 ${p.x} ${p.y}`}
@@ -74,10 +77,12 @@ export const AboutWhyStay = () => {
       <ol className="ab-why__list" aria-label="12 причин, чому клієнти залишаються">
         {items.map((d, k) => {
           const i = start + k;
+          const Ico = ICONS[i] || Target;
           return (
             <li key={i} className={i === active ? "is-active" : ""}>
               <button type="button" onClick={() => setActive(i)} aria-current={i === active}>
                 <span className="ab-why__n">{num(i)}</span>
+                <span className="ab-why__ico" aria-hidden="true"><Ico strokeWidth={1.8} /></span>
                 <span className="ab-why__t">{clean(d.title)}</span>
               </button>
             </li>

@@ -35,3 +35,8 @@
 .ab-why__list li{animation:ab-why-in .4s ease both}
 @keyframes ab-why-in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){.ab-why__list li{animation:none}}
+
+.ab-why__ico{flex:none;align-self:center;width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.06);color:#8F8FC4;transition:background .25s,color .25s}
+.ab-why__ico svg{width:20px;height:20px}
+.ab-why__list li.is-active .ab-why__ico{background:rgba(249,133,19,.14);color:#F98513}
+.ab-why__list button:hover .ab-why__ico{color:#fff}

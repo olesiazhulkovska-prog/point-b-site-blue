@@ -9,6 +9,7 @@ import { AboutHeroScene } from "../components/AboutHeroScene";
 import { AboutDifferences } from "../components/AboutDifferences";
 import { AboutWhyStay } from "../components/AboutWhyStay";
 import { CountUp } from "../components/CountUp";
+import { AboutCardArt } from "../components/AboutCardArt";
 
 const DIRECTION_PAGES = ["keycrm", "ai-bots", "analytics"];
 
@@ -119,6 +120,7 @@ export const AboutPage = () => {
                   onClick={() => n(DIRECTION_PAGES[x])}
                   className="text-left flex flex-col gap-4 p-7 rounded-3xl bg-[color:var(--surface)] border border-[color:var(--card-border)] shadow-[0_18px_36px_-26px_rgba(0,0,40,.55)] hover:border-[#F98513] hover:-translate-y-0.5 transition-all cursor-pointer"
                 >
+                  <AboutCardArt kind={x} />
                   <span className="pbxt__i"><C_p size={26} strokeWidth={1.7} /></span>
                   <h3 className="text-xl font-bold text-[color:var(--ink)] leading-snug">{d.title}</h3>
                   <p className="text-base text-[color:var(--ink-soft)] leading-relaxed">{d.description}</p>

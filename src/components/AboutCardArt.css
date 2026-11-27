@@ -1,0 +1,74 @@
+/* Ілюстрації карток послуг. Цикл 8s, у reduced-motion — статичний фінал. */
+.aca-wrap{width:100%;border-radius:16px;background:#F1F2FB;border:1px solid #E1E3F4;overflow:hidden;line-height:0}
+.aca{display:block;width:100%;height:auto}
+.aca *{transform-box:fill-box}
+.aca-bar{fill:#C9CDEC}
+.aca-col{fill:#E7E9F8}
+.aca-card{fill:#fff;stroke:#D5D8F0;stroke-width:1}
+.aca-card--hot{stroke:#F98513;stroke-width:1.5}
+.aca-ln{fill:#C3C7E6}
+.aca-ln--s{opacity:.7}
+.aca-hot{fill:#F98513}
+.aca-ico{fill:#111144}
+.aca-b-in{fill:#DDE0F6}
+.aca-b-out{fill:#111144}
+.aca-w{fill:#fff;opacity:.9}
+.aca-w--s{opacity:.55}
+.aca-d{fill:#F98513}
+.aca-pill{fill:#fff;stroke:#D5D8F0}
+.aca-ck{fill:none;stroke:#111144;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.aca-win{fill:#fff;stroke:#D5D8F0}
+.aca-code{fill:#C3C7E6;transform-origin:left center;transform:scaleX(0)}
+.aca-wire{fill:none;stroke:#F98513;stroke-width:1.6;stroke-dasharray:4 4;stroke-dashoffset:0;opacity:0}
+.aca-mod{opacity:0}
+
+/* kanban: помаранчева картка проходить колонки */
+.aca-mv{animation:aca-mv 8s ease-in-out infinite;transform:translate(16px,102px);opacity:0}
+@keyframes aca-mv{
+  0%{opacity:0;transform:translate(16px,108px)}
+  8%{opacity:1;transform:translate(16px,102px)}
+  30%{opacity:1;transform:translate(16px,102px)}
+  44%{opacity:1;transform:translate(117px,70px)}
+  62%{opacity:1;transform:translate(117px,70px)}
+  76%{opacity:1;transform:translate(218px,102px)}
+  92%{opacity:1;transform:translate(218px,102px)}
+  100%{opacity:0;transform:translate(218px,102px)}
+}
+
+/* chat: послідовність повідомлень */
+.aca-c1,.aca-c2,.aca-c3,.aca-c4{opacity:0}
+.aca-c1{animation:aca-c1 8s ease infinite}
+.aca-c2{animation:aca-c2 8s ease infinite}
+.aca-c3{animation:aca-c3 8s ease infinite}
+.aca-c4{animation:aca-c4 8s ease infinite}
+@keyframes aca-c1{0%,3%{opacity:0;transform:translateY(8px)}9%,92%{opacity:1;transform:none}98%,100%{opacity:0}}
+@keyframes aca-c2{0%,14%{opacity:0;transform:translateY(8px)}20%,36%{opacity:1;transform:none}40%,100%{opacity:0}}
+@keyframes aca-c3{0%,38%{opacity:0;transform:translateY(8px)}44%,92%{opacity:1;transform:none}98%,100%{opacity:0}}
+@keyframes aca-c4{0%,58%{opacity:0;transform:translateY(8px)}66%,92%{opacity:1;transform:none}98%,100%{opacity:0}}
+.aca-d{animation:aca-dot 1s ease-in-out infinite}
+.aca-d.d2{animation-delay:.15s}.aca-d.d3{animation-delay:.3s}
+@keyframes aca-dot{0%,100%{opacity:.3}50%{opacity:1}}
+
+/* code: рядки «друкуються», модулі зʼявляються, лінія зʼєднує */
+.aca-code.k1{animation:aca-k1 8s ease infinite}.aca-code.k2{animation:aca-k2 8s ease infinite}.aca-code.k3{animation:aca-k3 8s ease infinite}
+.aca-code.k4{animation:aca-k4 8s ease infinite}.aca-code.k5{animation:aca-k5 8s ease infinite}.aca-code.k6{animation:aca-k6 8s ease infinite}
+@keyframes aca-k1{0%,4%{transform:scaleX(0)}12%,92%{transform:scaleX(1)}98%,100%{transform:scaleX(0)}}
+@keyframes aca-k2{0%,10%{transform:scaleX(0)}18%,92%{transform:scaleX(1)}98%,100%{transform:scaleX(0)}}
+@keyframes aca-k3{0%,16%{transform:scaleX(0)}24%,92%{transform:scaleX(1)}98%,100%{transform:scaleX(0)}}
+@keyframes aca-k4{0%,22%{transform:scaleX(0)}30%,92%{transform:scaleX(1)}98%,100%{transform:scaleX(0)}}
+@keyframes aca-k5{0%,28%{transform:scaleX(0)}36%,92%{transform:scaleX(1)}98%,100%{transform:scaleX(0)}}
+@keyframes aca-k6{0%,34%{transform:scaleX(0)}42%,92%{transform:scaleX(1)}98%,100%{transform:scaleX(0)}}
+.aca-wire{animation:aca-wire 8s linear infinite}
+@keyframes aca-wire{0%,40%{opacity:0}46%,92%{opacity:1}98%,100%{opacity:0}}
+.aca-mod.m1{animation:aca-m1 8s ease infinite}.aca-mod.m2{animation:aca-m2 8s ease infinite}.aca-mod.m3{animation:aca-m3 8s ease infinite}
+@keyframes aca-m1{0%,46%{opacity:0;transform:translateX(14px)}54%,92%{opacity:1;transform:none}98%,100%{opacity:0}}
+@keyframes aca-m2{0%,54%{opacity:0;transform:translateX(14px)}62%,92%{opacity:1;transform:none}98%,100%{opacity:0}}
+@keyframes aca-m3{0%,62%{opacity:0;transform:translateX(14px)}70%,92%{opacity:1;transform:none}98%,100%{opacity:0}}
+
+@media (prefers-reduced-motion:reduce){
+  .aca *{animation:none !important}
+  .aca-mv{opacity:1;transform:translate(218px,102px)}
+  .aca-c1,.aca-c3,.aca-c4,.aca-mod,.aca-wire{opacity:1}
+  .aca-c2{opacity:0}
+  .aca-code{transform:none}
+}
