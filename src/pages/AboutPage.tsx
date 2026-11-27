@@ -114,7 +114,7 @@ export const AboutPage = () => {
             <div className="ab-stats">
               {D1.map((d, x) => (
                 <div key={x}>
-                  <div className="ab-stats__v text-[color:var(--ink)]"><CountUp value={d.value} delay={x * 100} /></div>
+                  <div className="ab-stats__v acx text-[color:var(--ink)]"><CountUp value={d.value} delay={x * 100} /></div>
                   <div className="ab-stats__l text-[color:var(--ink)]">{d.label}</div>
                 </div>
               ))}

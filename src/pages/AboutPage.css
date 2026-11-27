@@ -58,7 +58,7 @@
 }
 
 /* цифри під Hero — як на головній: великі, semibold, mono-підпис капсом */
-.ab-stats__v:not(#_):not(#__){font-family:Inter Variable,Inter,-apple-system,sans-serif;font-weight:600;letter-spacing:-.03em;line-height:.95;font-size:clamp(64px,21vw,96px)}
+.ab-stats__v:not(#_):not(#__){font-family:Manrope,system-ui,sans-serif;font-weight:500;letter-spacing:-.03em;line-height:.95;font-size:clamp(64px,21vw,96px)}
 @media (min-width:640px) and (max-width:767px){.ab-stats__v:not(#_):not(#__){font-size:clamp(80px,13vw,96px)}}
 @media (min-width:768px){.ab-stats__v:not(#_):not(#__){font-size:clamp(48px,7.5vw,72px)}}
 @media (min-width:1024px){.ab-stats__v:not(#_):not(#__){font-size:clamp(96px,8.5vw,136px)}}
@@ -203,3 +203,6 @@ body:has(.ab-last) footer.theme-dark .pbx-marquee:not(#_):not(#__){margin-top:0!
 
 /* вікно перегляду не може їхати вбік (overflow:clip на html трактується як auto) */
 html:has(.ab-last):not(#_):not(#__){overflow-x:hidden!important}
+
+/* цифри статистики: суфікс і лічильник = розмір числа (як на головній) */
+.ab-stats__v:not(#_):not(#__) :is(span,i,b){font-size:inherit!important;line-height:inherit!important;font-weight:inherit!important;letter-spacing:inherit!important}
