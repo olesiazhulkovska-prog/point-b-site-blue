@@ -40,3 +40,4 @@ import "./heroScrollStory";
 import "./debugInfo";
 import "./mascotEvents";
 import "./rvFallback";
+import "./footerListFix";

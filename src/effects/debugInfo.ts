@@ -43,7 +43,7 @@
     lines.push(
       "footer ul pl:" + cs(fu, "padding-left") + " ml:" + cs(fu, "margin-left") + " ulX:" + fx(fu) +
         " liX:" + fx(fu ? fu.firstElementChild : null) + " btnX:" + fx(fb) + " btnW:" + (fb ? Math.round(fb.getBoundingClientRect().width) : "—") +
-        " hX:" + fx(fu ? fu.previousElementSibling : null),
+        " hX:" + fx(fu ? fu.previousElementSibling : null) + " style:[" + (fu ? (fu.getAttribute("style") || "") : "") + "]",
     );
     lines.push("ab-stats fs: " + [].slice.call(document.querySelectorAll(".ab-stats__v")).map(function (n) { return cs(n, "font-size"); }).join("/") + " | ab-dir pos: " + cs(document.querySelector(".ab-dir > button"), "position"));
     lines.push("modal: " + (document.querySelector(".fixed.inset-0.z-50") ? "OPEN" : "no") + " sda: " + document.documentElement.classList.contains("pbx-sda"));

@@ -238,6 +238,8 @@
           tag !== "HEADER" &&
           tag !== "MAIN" &&
           tag !== "BODY" &&
+          tag !== "UL" &&
+          tag !== "OL" &&
           !e.classList.contains("sv3-card") &&
           !e.classList.contains("hero-graph")
         ) {
