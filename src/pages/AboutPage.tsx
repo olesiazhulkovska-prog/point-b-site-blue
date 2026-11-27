@@ -1,6 +1,8 @@
 // @ts-nocheck
 /* Відновлено з прод-збірки; імена та типи доводяться вручну. */
-import { ArrowRight, Bot, Check, CodeXml, Layers } from "lucide-react";
+import { ArrowRight, Bot, Check, CodeXml, Layers, Send, ChartColumn, Database } from "lucide-react";
+
+const STACK_ICONS = { "keyCRM": Layers, "Telegram": Send, "Power BI": ChartColumn, "1С / BAS": Database };
 import { useSite } from "../context/SiteContext";
 import "./ServicePage.css";
 import "./AboutPage.css";
@@ -110,12 +112,13 @@ export const AboutPage = () => {
             <h2 className="pb-h2 text-2xl sm:text-3xl font-extrabold text-[color:var(--ink)] mt-1 sm:tracking-tight">Три напрямки роботи</h2>
             <p className="text-base mt-2">Комплексна синергія трьох ключових компетенцій в одній експертній команді</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <div className="ab-dir grid grid-cols-1 md:grid-cols-3 gap-5">
             {o.map((d, x) => {
               return (
                 <button
                   key={x}
                   type="button"
+                  style={{ "--i": x }}
                   onClick={() => n(DIRECTION_PAGES[x])}
                   className="text-left flex flex-col gap-4 p-7 rounded-3xl bg-[color:var(--surface)] border border-[color:var(--card-border)] shadow-[0_18px_36px_-26px_rgba(0,0,40,.55)] hover:border-[#F98513] hover:-translate-y-0.5 transition-all cursor-pointer"
                 >
@@ -132,12 +135,16 @@ export const AboutPage = () => {
           <div className="ab-stack">
             <div className="ab-stack__t text-[13px] font-bold uppercase tracking-widest text-[color:var(--ink-soft)]">Ключові технологічні стеки та інтеграції</div>
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-              {i.map((d, x) => (
-                <div key={x} className="p-5 rounded-2xl bg-[color:var(--surface)] border border-[color:var(--card-border)]">
+              {i.map((d, x) => {
+                const SI = STACK_ICONS[d.name] || Layers;
+                return (
+                <div key={x} className="ab-stack__c p-5 rounded-2xl bg-[color:var(--surface)] border border-[color:var(--card-border)]">
+                  <span className="ab-stack__ico" aria-hidden="true"><SI strokeWidth={1.8} /></span>
                   <div className="font-bold text-[color:var(--ink)] text-lg">{d.name}</div>
                   <div className="text-[15px] text-[color:var(--ink-soft)] mt-1 leading-snug">{d.role}</div>
                 </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </section>
@@ -176,7 +183,7 @@ export const AboutPage = () => {
       </div>
 
       {/* 5. 12 reasons + CTA (blue, same as footer tone) */}
-      <div className="pb-band pb-band--blue">
+      <div className="pb-band pb-band--blue ab-last">
         <section className={wrap}>
           <div className="pb-head max-w-3xl">
             <span className={eyebrow}>Стандарти якості</span>

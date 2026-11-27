@@ -102,3 +102,11 @@
 .abx .abx__toast:not(#_):not(#__){border-radius:12px !important}
 .abx .abx__nav li:not(#_):not(#__){border-radius:8px !important}
 .abx .abx__i:not(#_):not(#__){border-radius:12px !important}
+
+/* меню CRM: текст не виходить за плашку; вузький діалог не обрізає текст */
+.abx .abx__nav:not(#_):not(#__){width:21.5%;padding:1.2em .55em}
+.abx .abx__nav li:not(#_):not(#__){padding:.55em .55em;font-size:.86em;white-space:nowrap}
+@container (max-width:459px){
+  .abx__chat{height:15em}
+  .abx__m.is-on{max-height:10em}
+}

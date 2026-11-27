@@ -45,8 +45,8 @@ export const CountUp = ({ value, delay = 0, duration = 1750 }: { value: string; 
   if (!m) return <>{value}</>;
   return (
     <span ref={ref} style={{ position: "relative", display: "inline-block", fontVariantNumeric: "tabular-nums" }}>
-      <span aria-hidden="true" style={{ visibility: "hidden" }}>{value}</span>
-      <span style={{ position: "absolute", left: 0, top: 0 }} aria-label={value}>{n}{suffix}</span>
+      <span aria-hidden="true" style={{ visibility: "hidden" }}>{m[1]}{suffix}</span>
+      <span style={{ position: "absolute", left: 0, top: 0 }} aria-label={value}>{n}<span style={{ color: "var(--accent, #F98513)" }}>{suffix}</span></span>
     </span>
   );
 };

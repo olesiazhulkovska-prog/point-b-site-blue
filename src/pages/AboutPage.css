@@ -67,3 +67,35 @@
   .ab-stats>div:not(#_):not(#__){padding:0 48px}
   .ab-stats>div:first-child:not(#_):not(#__){padding-left:0}
 }
+
+/* ── статистика: помаранчеві «+» і «%»; на мобілці по центру з роздільниками (як на головній) ── */
+@media (max-width:639px){
+  .ab-stats:not(#_):not(#__){gap:0;margin-top:40px}
+  .ab-stats>div:not(#_):not(#__){padding:28px 0;text-align:center;border-top:1px solid rgba(255,255,255,.18)}
+  .ab-stats__l:not(#_):not(#__){margin-inline:auto}
+}
+
+/* ── стеки технологій: іконки ── */
+.ab-stack__c{display:flex;flex-direction:column;align-items:flex-start}
+.ab-stack__ico{display:flex;align-items:center;justify-content:center;width:40px;height:40px;margin-bottom:14px;border-radius:12px;background:#EEF2FF;color:#2431A4}
+.ab-stack__ico svg{width:22px;height:22px}
+
+/* ── мобілка: картки напрямків складаються стеком (sticky) ── */
+@media (max-width:767px){
+  .ab-dir:not(#_):not(#__){display:flex;flex-direction:column;gap:18px}
+  .ab-dir>button:not(#_):not(#__){position:sticky;top:calc(84px + var(--i,0) * 12px);padding:22px;gap:14px}
+}
+
+/* ── мобілка: відступ перед бігучою стрічкою партнерів ── */
+@media (max-width:767px){
+  .pb-band.ab-last:not(#_):not(#__){padding-bottom:28px}
+}
+
+/* ── ноутбук 1440×770: блоки поміщаються в один екран ── */
+@media (min-width:1024px) and (max-height:860px){
+  .ab-dir:not(#_):not(#__){gap:16px}
+  .ab-dir>button:not(#_):not(#__){padding:18px 20px;gap:10px}
+  .ab-dir .acx{max-width:78%;margin-inline:auto}
+  .ab-dir h3{font-size:19px!important}
+  .ab-dir>button p{font-size:15px!important;line-height:1.45!important}
+}

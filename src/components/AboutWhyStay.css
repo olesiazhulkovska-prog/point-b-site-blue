@@ -40,3 +40,17 @@
 .ab-why__ico svg{width:20px;height:20px}
 .ab-why__list li.is-active .ab-why__ico{background:rgba(249,133,19,.14);color:#F98513}
 .ab-why__list button:hover .ab-why__ico{color:#fff}
+
+/* ── мобілка: менше коло ── */
+@media (max-width:767px){
+  .ab-why__ring{width:min(100%,210px);margin-top:18px}
+  .ab-why__count b{font-size:clamp(48px,14vw,64px)}
+  .ab-why{gap:20px}
+}
+/* ── ноутбук 1440×770: блок у один екран ── */
+@media (min-width:900px) and (max-height:860px){
+  .ab-why{padding:26px 36px;gap:40px;margin-top:28px}
+  .ab-why__ring{width:min(100%,250px);margin-top:20px}
+  .ab-why__list button{padding:13px 0}
+  .ab-why__count b{font-size:clamp(64px,6vw,84px)}
+}
