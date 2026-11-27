@@ -1,6 +1,17 @@
 // Діагностика для мобільних браузерів: відкрити сайт з ?debug=1
 (function () {
   if (!/[?&]debug=1/.test(location.search)) return;
+  var log: string[] = [];
+  function push(t: string) { log.unshift(t.slice(0, 110)); if (log.length > 6) log.pop(); }
+  addEventListener("error", function (e) { push("ERR " + e.message + " @" + (e.filename || "").split("/").pop() + ":" + e.lineno); });
+  addEventListener("unhandledrejection", function (e) { push("REJ " + String((e as any).reason && ((e as any).reason.message || (e as any).reason))); });
+  function d(e: Element | null) { return e ? e.tagName + "." + String(e.className).slice(0, 40) + (e.id ? "#" + e.id : "") : "null"; }
+  ["pointerdown", "click"].forEach(function (n) {
+    addEventListener(n, function (e: any) {
+      var t = document.elementFromPoint(e.clientX, e.clientY);
+      push(n + " tgt=" + d(e.target) + " top=" + d(t) + " dp=" + e.defaultPrevented);
+    }, true);
+  });
   function render() {
     var el = document.querySelector("#stats-section .tabular-nums") as HTMLElement | null;
     var h = document.documentElement;
@@ -24,7 +35,8 @@
       "style",
       "position:fixed;left:0;right:0;bottom:0;z-index:2147483647;margin:0;padding:8px;background:rgba(0,0,0,.85);color:#0f0;font:11px/1.3 monospace;white-space:pre-wrap;word-break:break-all;pointer-events:none",
     );
-    box.textContent = lines.join("\n");
+    lines.push("modal: " + (document.querySelector(".fixed.inset-0.z-50") ? "OPEN" : "no") + " sda: " + document.documentElement.classList.contains("pbx-sda"));
+    box.textContent = lines.concat(log).join("\n");
     if (!box.parentNode) document.body.appendChild(box);
   }
   addEventListener("load", function () {
