@@ -27,8 +27,6 @@ export const AboutWhyStay = () => {
   return (
     <div className="ab-why">
       <div className="ab-why__left">
-        <span className="ab-why__eyebrow">Довіра клієнтів</span>
-        <div role="heading" aria-level={3} className="ab-why__title">Чому клієнти залишаються з нами</div>
         <div className="ab-why__ring" aria-hidden="true">
           <svg viewBox="0 0 400 400">
             <circle cx={C} cy={C} r={R} className="ab-why__track" />
