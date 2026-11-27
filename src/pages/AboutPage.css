@@ -39,3 +39,11 @@
 @media(min-width:1024px){
   html body .pb-hero.ab-hero .ab-hero__txt h1.pb-h2:not(#_):not(#__):not(#___):not(#____):not(#_____){font-size:clamp(38px,3.5vw,56px) !important;line-height:1.1 !important}
 }
+
+/* Hero ближче до верху: прибрано зайвий верхній відступ (було ~128px + відступ секції) */
+@media(min-width:1024px){
+  html body .pb-hero.ab-hero:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______){padding-top:24px !important;padding-bottom:72px !important}
+}
+@media(max-width:1023px){
+  html body .pb-hero.ab-hero:not(#_):not(#__):not(#___):not(#____):not(#_____):not(#______){padding-top:3.5rem !important;padding-bottom:3.5rem !important}
+}

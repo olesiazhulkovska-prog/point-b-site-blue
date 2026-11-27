@@ -4,11 +4,11 @@ import "./AboutHeroScene.css";
 
 /* Hero «Про компанію»: демонстрація CRM-продукту.
    Повідомлення клієнта → відповідь AI-агента → створення замовлення → заявка рухається воронкою CRM.
-   HTML + CSS + SVG, без бібліотек. Один цикл ≈ 15 с. Стан — одне число s. */
+   HTML + CSS + SVG, без бібліотек. Один цикл ≈ 16 с. Стан — одне число s. */
 
-const STEPS = [0, 500, 1500, 2700, 3700, 5000, 6000, 7500, 9000, 12000];
-const RESET_AT = 14000;
-const LOOP_AT = 14800;
+const STEPS = [0, 500, 1500, 2700, 3900, 5400, 6700, 7900, 9300, 10700, 13000];
+const RESET_AT = 15000;
+const LOOP_AT = 15800;
 
 /* монохромні іконки месенджерів (currentColor) */
 const SV = { viewBox: "0 0 32 32", fill: "none", stroke: "currentColor", strokeWidth: 1.8, strokeLinecap: "round", strokeLinejoin: "round", "aria-hidden": true };
@@ -42,7 +42,7 @@ export const AboutHeroScene = () => {
     const el = root.current;
     if (!el) return;
     if (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setS(8);
+      setS(10);
       return;
     }
     let timers = [];
@@ -91,7 +91,8 @@ export const AboutHeroScene = () => {
   }, []);
 
   const on = (k) => (s >= k ? " is-on" : "");
-  const col = s >= 8 ? 2 : s >= 7 ? 1 : 0;
+  /* s: 1 канал · 2 питання клієнта · 3 агент друкує · 4 відповідь · 5 «Так, оформлюйте» · 6 «Готово…» + імпульс · 7 сповіщення · 8 заявка в CRM · 9 «В роботі» · 10 «Успішні» */
+  const col = s >= 10 ? 2 : s >= 9 ? 1 : 0;
 
   return (
     <div className="abx" ref={root} aria-hidden="true">
@@ -105,7 +106,7 @@ export const AboutHeroScene = () => {
             ))}
           </div>
         </div>
-        <span className={"abx__wire" + (s === 1 || s === 5 ? " is-run" : "")}><i /></span>
+        <span className={"abx__wire" + (s === 1 || s === 6 ? " is-run" : "")}><i /></span>
 
         {/* CRM */}
         <div className="abx__crm">
@@ -126,13 +127,19 @@ export const AboutHeroScene = () => {
                     ))}
                   </div>
                 ))}
-                <span className={"abx__k abx__k--new" + (s >= 6 ? " is-on" : "") + (s === 0 ? " is-reset" : "") + (s >= 8 ? " is-done" : "")} style={{ "--c": col }}>
+                <span className={"abx__k abx__k--new" + (s >= 8 ? " is-on" : "") + (s === 0 ? " is-reset" : "") + (s >= 10 ? " is-done" : "")} style={{ "--c": col }}>
                   <b>Марія Ш.</b><i>1 890 ₴</i>
                 </span>
               </div>
-              <div className="abx__sum">
-                <span>Сума в роботі<b>48 320 ₴</b></span>
-                <span>Конверсія<b>34%</b></span>
+              <div className="abx__low">
+                <div className="abx__bars">
+                  <span className="abx__bl">Продажі за тиждень</span>
+                  <div>{[38, 52, 44, 66, 58, 76, 92].map((h, i) => <span key={i} style={{ height: h + "%" }} className={i === 6 ? "is-last" : ""} />)}</div>
+                </div>
+                <div className="abx__sum">
+                  <span>Сума в роботі<b>48 320 ₴</b></span>
+                  <span>Конверсія<b>34%</b></span>
+                </div>
               </div>
             </div>
           </div>
@@ -142,20 +149,20 @@ export const AboutHeroScene = () => {
         <div className="abx__ai">
           <div className="abx__ah"><i />AI-агент</div>
           <div className="abx__chat">
-            <div className={"abx__m abx__m--c abx__m--old" + (s >= 2 ? " is-off" : "")}>Є доставка по Україні?</div>
-            <div className={"abx__m abx__m--b abx__m--old" + (s >= 2 ? " is-off" : "")}>Так, Новою поштою</div>
-            <div className={"abx__m abx__m--c abx__m--new" + on(2)}>Хочу оформити замовлення</div>
-            <div className={"abx__m abx__m--b abx__m--new" + on(3) + (s === 3 ? " is-typing" : "")}>
+            <div className={"abx__m abx__m--c" + (s >= 2 && s < 5 ? " is-on" : "")}>Чи є розмір M? Скільки коштує доставка до Одеси?</div>
+            <div className={"abx__m abx__m--b" + (s >= 3 && s < 6 ? " is-on" : "") + (s === 3 ? " is-typing" : "")}>
               <span className="abx__typing"><i /><i /><i /></span>
-              <span className="abx__tx">Заявку прийнято!</span>
+              <span className="abx__tx">Вітаю!<br />Так, розмір M є в наявності, доставка до Одеси коштує 70 ₴. Оформити замовлення?</span>
             </div>
+            <div className={"abx__m abx__m--c" + (s < 2 || s >= 5 ? " is-on" : "")}>Так, оформлюйте</div>
+            <div className={"abx__m abx__m--b" + (s < 2 || s >= 6 ? " is-on" : "")}>Готово, замовлення оформлено. Надішлю ТТН сюди, щойно відправимо.</div>
           </div>
         </div>
 
         {/* сповіщення */}
-        <div className={"abx__toast" + (s >= 5 && s < 9 ? " is-on" : "")}>
+        <div className={"abx__toast" + (s >= 7 && s < 10 ? " is-on" : "")}>
           <span className="abx__ck"><svg viewBox="0 0 24 24"><path d="m6 12.5 4 4 8-9" /></svg></span>
-          Замовлення створено
+          Замовлення створено в CRM
         </div>
       </div>
     </div>
